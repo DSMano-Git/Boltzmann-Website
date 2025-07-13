@@ -1,0 +1,392 @@
+:root {
+  --bg: #f5f5f7;
+  --space-gray: #1d1d1f;
+  --silver: #e2e2e2;
+  --screen: #0d0d0d;
+  --key: #1a1a1a;
+  --keyboard: #2c2c2e;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --radius: 16px;
+  --border-radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.laptop-container {
+  width: clamp(300px, 50vw, 800px);
+  perspective: 2000px;
+}
+
+.laptop {
+  transform-style: preserve-3d;
+  position: relative;
+  transform: rotateX(-10deg) rotateY(20deg);
+  animation: float 6s ease-in-out 3s infinite;
+}
+
+
+
+/* Lid starts completely closed (180deg) and opens */
+.lid {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: var(--space-gray);
+  transform-origin: bottom center;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transform: rotateX(180deg); /* Start completely closed */
+  animation: openLid 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+
+
+/* Apple logo on the back of the lid */
+.lid-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--space-gray);
+  border-radius: var(--radius) var(--radius) 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: visible;
+  transform: rotateX(180deg);
+}
+
+.apple-logo {
+  width: 24px;
+  height: 24px;
+  background: rgba(255,255,255,0.8);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 24px;
+  background: var(--screen);
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+
+/* Professional Screen Content */
+.screen-content {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: fadeIn 1s ease 2.5s forwards;
+}
+
+.browser-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.browser-header {
+  height: 40px;
+  background: #f5f5f7;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-bottom: 1px solid #e1e1e3;
+}
+
+.browser-controls {
+  display: flex;
+  gap: 8px;
+  margin-right: 15px;
+}
+
+.control-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.close { background: #ff5f56; }
+.minimize { background: #ffbd2e; }
+.maximize { background: #27c93f; }
+
+.search-bar {
+  flex: 1;
+  height: 28px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #d6d6d8;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #555;
+}
+
+.browser-content {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.dashboard {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 20px;
+}
+
+.sidebar {
+  background: #f8f9fa;
+  border-right: 1px solid #e1e1e3;
+  padding: 20px;
+}
+
+.sidebar-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+}
+
+.sidebar-item.active {
+  background: #e9f0ff;
+  color: #0066ff;
+  font-weight: 500;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.content-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.content-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn-sm {
+  padding: 6px 12px;
+  background: #f5f5f7;
+  border: 1px solid #d6d6d8;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #333;
+}
+
+.data-grid {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e1e1e3;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.grid-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-bottom: 1px solid #e1e1e3;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+  color: #333;
+}
+
+.grid-row:last-child {
+  border-bottom: none;
+}
+
+
+
+/* MacBook Base */
+.base {
+  background: var(--space-gray);
+  padding: 12px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  z-index: 1;
+  position: relative;
+}
+
+.keyboard {
+  background: var(--keyboard);
+  border-radius: 4px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 4px;
+  padding-bottom: 8px;
+}
+
+.key {
+  background: var(--key);
+  height: 12px;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.spacebar {
+  grid-column: span 6;
+  height: 12px;
+}
+
+.trackpad {
+  width: 50%;
+  height: 80px;
+  background: var(--keyboard);
+  margin: 12px auto 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+
+/* Thin bezel */
+.screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 8px solid var(--screen);
+  border-radius: var(--border-radius);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Glare Effect */
+.lid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
+  animation: glare 5s infinite linear;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+
+/* Hinge details */
+.base::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 10%;
+  width: 80%;
+  height: 6px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.2), transparent);
+  border-radius: 3px;
+}
+
+/* Ventilation grilles */
+.base::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.1) 3px,
+    rgba(0,0,0,0.1) 4px
+  );
+  border-radius: 2px;
+}
+
+@keyframes float {
+  0%, 100% { transform: rotateX(-10deg) rotateY(20deg) translateY(0); }
+  50% { transform: rotateX(-8deg) rotateY(20deg) translateY(-15px); }
+}
+
+@keyframes openLid {
+  0% { transform: rotateX(-180deg); }
+  100% { transform: rotateX(-40deg); }
+}
+
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes glare {
+  from { transform: translateX(-100%) rotate(-20deg); }
+  to { transform: translateX(200%) rotate(-20deg); }
+}
+
+ @keyframes float {
+  0% {
+    transform: rotateX(0deg) rotateY(-42deg) rotateZ(-6deg) translateY(0);
+  }
+  50% {
+    transform: rotateX(0deg) rotateY(-38deg) rotateZ(-4deg) translateY(-10px);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(-42deg) rotateZ(-6deg) translateY(0);
+  }
+}
