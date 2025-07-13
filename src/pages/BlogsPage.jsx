@@ -758,7 +758,7 @@
 //     </div>
 //   );
 // }
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import boltzBuzzLogo from '../assets/boltz_buzz_logo.png';
