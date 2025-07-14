@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavbarPage from './components/NavbarPage';
-import './App.css';
+
 import HomePage from './pages/HomePage'
 import HackathonPage from './pages/HackathonPage';
 import About from './pages/About';
 import Blogs from './pages/BlogsPage';
 import Products from './pages/Products';
-import Pipeline from './pages/Mainpageherocontent';
+import Pipeline from './components/Pipeline';
 import BlogDetails from './pages/BlogDetails';
 import UltraSmoothTimeline from './components/Aboutjourney';
 import ContactUs from './pages/Contactus';

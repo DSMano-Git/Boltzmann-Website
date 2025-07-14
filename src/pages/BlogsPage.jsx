@@ -896,6 +896,7 @@ export default function BlogsPage() {
         alignItems: 'flex-end',
         maxWidth: '1200px',
         margin: '0 auto 32px',
+        marginTop: '-4rem',
         padding: '0 16px'
       }}>
         <div style={{
