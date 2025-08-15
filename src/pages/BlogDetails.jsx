@@ -8,7 +8,7 @@ export default function BlogDetails() {
   const page = parseInt(searchParams.get('page') || '1', 10);
 
   const blogId = parseInt(id, 10);
-  const maxId = 45; // You know you have 45 items
+  const maxId = 45;
 
   return (
     <div style={{ padding: '40px', fontFamily: "'Inter', sans-serif", maxWidth: '800px', margin: '0 auto' }}>

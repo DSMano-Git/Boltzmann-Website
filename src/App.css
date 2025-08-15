@@ -51,3 +51,245 @@ html, body {
   border-bottom: none !important;
   border-top: none !important;
 }
+
+/*import React, { useState, useEffect } from 'react';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Button,
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Divider,
+  useMediaQuery,
+  useScrollTrigger,
+  Typography,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import { useTheme, styled } from '@mui/material/styles';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+
+// Navigation items
+const NAV_ITEMS = [
+  { label: 'Home', path: '/' },
+  { label: 'Our Suite', path: '/products' },
+  { label: 'Buy Need', path: '#' },
+  { label: 'Resources', path: '/blogs' },
+  { label: 'About', path: '/about' },
+];
+
+// Styled wrapper for desktop navigation
+const NavWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(2),
+  backgroundColor: theme.palette.action.hover,
+  borderRadius: 50,
+  padding: '6px 12px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  transition: 'all 0.3s ease',
+}));
+
+// Styled navigation button
+const NavButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})(({ theme, active }) => ({
+  textTransform: 'none',
+  fontWeight: 600,
+  fontSize: 14,
+  padding: '8px 20px',
+  borderRadius: 30,
+  backgroundColor: active ? '#4F1985' : 'transparent',
+  color: active ? '#fff' : theme.palette.text.primary,
+  boxShadow: active ? '0 4px 12px rgba(79,25,133,0.25)' : 'none',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    backgroundColor: active ? '#4F1985' : theme.palette.action.selected,
+    color: active ? '#fff' : theme.palette.text.primary,
+  },
+}));
+
+export default function NavbarPage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+  const location = useLocation();
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('Home');
+
+  // Set active tab based on route
+  useEffect(() => {
+    const currentItem = NAV_ITEMS.find(item => item.path === location.pathname);
+    setActiveTab(currentItem ? currentItem.label : 'Home');
+  }, [location.pathname]);
+
+  const handleNavClick = (label) => {
+    setActiveTab(label);
+    setDrawerOpen(false);
+  };
+
+  return (
+    <>
+      {/* AppBar 
+      <AppBar
+        position="sticky"
+        elevation={trigger ? 6 : 0}
+        sx={{
+          backgroundColor: '#fff',
+          color: '#4F1985',
+          transition: 'all 0.3s ease',
+          boxShadow: trigger ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
+        }}
+      >
+        <Toolbar
+          sx={{
+            minHeight: { xs: 64, sm: 72, md: 80 },
+            display: 'flex',
+            justifyContent: 'center',
+            px: { xs: 2, sm: 4, md: 6 },
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: 1440,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            {/* Logo *
+            <RouterLink to="/" style={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src="/logo.png"
+                alt="Boltzmann Logo"
+                height={50}
+                style={{ marginRight: 12 }}
+              />
+              <Typography variant="h6" sx={{ fontWeight: 700, color: '#4F1985' }}>
+                Boltzmann
+              </Typography>
+            </RouterLink>
+
+            {/* Desktop Navigation *
+            {!isMobile && (
+              <NavWrapper sx={{ mx: 6 }}>
+                {NAV_ITEMS.map((item) => (
+                  <NavButton
+                    key={item.label}
+                    active={activeTab === item.label}
+                    component={RouterLink}
+                    to={item.path}
+                    onClick={() => setActiveTab(item.label)}
+                  >
+                    {item.label}
+                  </NavButton>
+                ))}
+              </NavWrapper>
+            )}
+
+            {/* Desktop Request Demo Button *
+            {!isMobile && (
+              <Button
+                variant="contained"
+                component={RouterLink}
+                to="/contact"
+                sx={{
+                  textTransform: 'none',
+                  fontSize: 14,
+                  borderRadius: 30,
+                  px: 3,
+                  py: 1,
+                  height: 42,
+                  backgroundColor: '#4F1985',
+                  boxShadow: '0 4px 12px rgba(79,25,133,0.25)',
+                  '&:hover': { backgroundColor: '#3a1259' },
+                }}
+              >
+                Request Demo
+              </Button>
+            )}
+
+            {/* Mobile Menu Icon *
+            {isMobile && (
+              <IconButton edge="end" onClick={() => setDrawerOpen(true)}>
+                <MenuIcon sx={{ fontSize: 28 }} />
+              </IconButton>
+            )}
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Mobile Drawer *
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{ sx: { width: 300, borderRadius: '0 0 0 12px' } }}
+      >
+        <Box sx={{ width: '100%', height: '100%' }}>
+          <Box display="flex" justifyContent="space-between" alignItems="center" p={3}>
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>
+              Menu
+            </Typography>
+            <IconButton onClick={() => setDrawerOpen(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          <Divider />
+
+          <List sx={{ py: 1 }}>
+            {NAV_ITEMS.map((item) => (
+              <ListItem key={item.label} disablePadding>
+                <ListItemButton
+                  component={RouterLink}
+                  to={item.path}
+                  onClick={() => handleNavClick(item.label)}
+                  selected={activeTab === item.label}
+                  sx={{
+                    '&.Mui-selected': {
+                      color: '#4F1985',
+                      fontWeight: 600,
+                      backgroundColor: 'transparent',
+                    },
+                    '&.Mui-selected:hover': { backgroundColor: theme.palette.action.hover },
+                    px: 3,
+                    py: 1.5,
+                  }}
+                >
+                  <ListItemText primary={item.label} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+
+          <Box p={3}>
+            <Button
+              variant="contained"
+              fullWidth
+              component={RouterLink}
+              to="/contact"
+              sx={{
+                borderRadius: 30,
+                backgroundColor: '#4F1985',
+                py: 1.2,
+                fontWeight: 600,
+                '&:hover': { backgroundColor: '#3a1259' },
+              }}
+              onClick={() => setDrawerOpen(false)}
+            >
+              Contact Us
+            </Button>
+          </Box>
+        </Box>
+      </Drawer>
+    </>
+  );
+}
+*/

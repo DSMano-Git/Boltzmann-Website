@@ -60,7 +60,7 @@ export default function Footer() {
             <Box component="address" sx={{ fontStyle: 'normal' }}>
               <Typography component="p" sx={{ mb: 2, fontSize: '1.1rem' }}>
                 <Link
-                  href="mailto:contact@bayeslabs.co"
+                  href="mailto:contact@boltzmann.co"
                   color="inherit"
                   underline="hover"
                   sx={{
@@ -70,7 +70,7 @@ export default function Footer() {
                     fontFamily: "'Inria Serif', serif",
                   }}
                 >
-                  contact@bayeslabs.co
+                  contact@boltzmann.co
                 </Link>
               </Typography>
               <Typography component="p" sx={{ mb: 2, fontSize: '1.1rem' }}>
@@ -161,8 +161,8 @@ export default function Footer() {
             <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               {[
                 { label: 'Blogs', href: '#' },
-                { label: 'Pipeline', href: '#' },
-                { label: 'Hackathon', href: '/hackathon' },
+                // { label: 'Pipeline', href: '#' },
+                // { label: 'Hackathon', href: '/hackathon' },
                 { label: 'Research Papers', href: '#' },
               ].map((item) => (
                 <Link

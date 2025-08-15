@@ -44,10 +44,10 @@ export default function Pipeline() {
       display: 'flex',
       flexDirection: 'column'
     }}>
-      <Helmet>
+      {/* <Helmet>
         <title>Boltzmann | Pipeline</title>
         <meta name="description" content="Boltzmann Pipeline" />
-      </Helmet>
+      </Helmet> */}
 
       <div style={{ 
         flex: '1',

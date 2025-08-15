@@ -1,7 +1,7 @@
 export default function Products(){
 return(
     <>
-    <h1>Hello World</h1>
+    <h1>Products Page</h1>
     </>
 );
 

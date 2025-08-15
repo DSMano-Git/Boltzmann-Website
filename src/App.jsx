@@ -3,7 +3,7 @@ import NavbarPage from './components/NavbarPage';
 
 import HomePage from './pages/HomePage'
 import HackathonPage from './pages/HackathonPage';
-import About from './pages/About';
+import About from './pages/AboutPage';
 import Blogs from './pages/BlogsPage';
 import Products from './pages/Products';
 import Pipeline from './components/Pipeline';
@@ -17,7 +17,7 @@ export default function App() {
       <NavbarPage />
     <Routes>
   <Route path="/" element={<HomePage />} />
-  <Route path="/about" element={<UltraSmoothTimeline />} />
+  <Route path="/about" element={<About />} />
   <Route path="/products" element={<Products />} />
   <Route path="/blogs" element={<Blogs />} />
   <Route path="/blogs/:id" element={<BlogDetails />} />
