@@ -1206,19 +1206,19 @@ const PRODUCT_ITEMS = [
   { 
     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', 
     title: 'Small Molecule Design', 
-    path: '/about', // Changed to navigate to About page
+    path: '/smallmoleculedesign', // Changed to navigate to About page
     desc: 'Transform the way you discover, design, and optimize small molecules faster, smarter.' 
   },
   { 
     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', 
     title: 'Protein Engineering', 
-    path: '/product-two',
+    path: '/proteinengineering',
     desc: 'Reimagine how proteins are designed, optimized, and brought to life faster, smarter, more precise.' 
   },
   { 
     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
     title: 'Synthetic Chemistry', 
-    path: '/product-three',
+    path: '/syntheticchemistry',
     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
   },
 ];
