@@ -8,7 +8,7 @@ import SmallInsightCards from '../components/smallmoleculedesigncomp/Smallmolecu
 import SmallExploreModulesSection from '../components/smallmoleculedesigncomp/Smallmoleculemodules';
 import SmallFeaturesGrid from '../components/smallmoleculedesigncomp/SmallmoleculeFeatureGrid';
 import LaptopSection from './LaptopAnimationLandingPage';
-
+import Footer from '../components/Footer';
 export default function SmallmoleculeDesign() {
   // Intersection Observer for Laptop Section
   const { ref: laptopRef, inView: laptopInView } = useInView({
@@ -54,6 +54,7 @@ export default function SmallmoleculeDesign() {
           <LaptopSection isOpen={laptopInView} />
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 }

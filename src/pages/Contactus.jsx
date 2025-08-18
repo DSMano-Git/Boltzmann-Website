@@ -116,21 +116,17 @@ export default function ContactUs() {
       <div style={grid}>
         <div style={{ ...side, ...leftColumn }}>
           <div style={card}>
-            <span style={iconStyle}>Icon</span>
-            <span style={labelStyle}>Office Email</span>
-          </div>
-          <div style={card}>
-            <span style={iconStyle}>Icon</span>
-            <span style={labelStyle}>Mobile Number</span>
-          </div>
-          <div style={card}>
-            <span style={iconStyle}>Icon</span>
-            <span style={labelStyle}>Office Address</span>
-          </div>
-          <div style={card}>
-            <span style={iconStyle}>Icon</span>
-            <span style={labelStyle}>Office Address</span>
-          </div>
+  <span style={labelStyle}>contact@boltzmann.co</span>
+</div>
+<div style={card}>
+  <span style={labelStyle}>+91 9498866488</span>
+</div>
+<div style={card}>
+  <span style={labelStyle}>
+    B Block, Asian Sun City, 309, Forest Dept Colony, Kondapur, Hyderabad, Telangana 500084
+  </span>
+</div>
+
         </div>
         <div style={{ ...side, ...rightColumn }}>
           <h3 style={formTitle}>

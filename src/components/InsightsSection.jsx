@@ -760,7 +760,7 @@ export default function InsightCards() {
         <h2
           style={{
             fontSize: "42px",
-            fontWeight: "200",
+            fontWeight: "500",
             textAlign: "center",
             marginBottom: "60px",
             lineHeight: "1.2",
@@ -768,20 +768,21 @@ export default function InsightCards() {
             letterSpacing: "-0.5px",
             position: "relative",
             opacity: isVisible ? 1 : 0,
-            transition: 'opacity 0.6s ease-out 0.2s'
+            transition: 'opacity 0.6s ease-out 0.2s',
+            fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'timesnew'
           }}
         >
           We empower businesses to be insight-driven
-          <span style={{
-            position: "absolute",
-            bottom: "-10px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "100px",
-            height: "4px",
-            background: "linear-gradient(90deg, rgba(34, 211, 238, 0.8), rgba(192, 132, 252, 0.8), rgba(251, 146, 60, 0.8))",
-            borderRadius: "2px"
-          }} />
+          <span
+            style={{
+              display: "block",
+              width: "80px",
+              height: "4px",
+              backgroundColor: "#4F1985",
+              margin: "15px auto 0",
+              borderRadius: "2px"
+            }}
+          />
         </h2>
 
         <div

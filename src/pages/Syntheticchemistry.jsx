@@ -8,6 +8,7 @@ import SyntheticInsightCards from '../components/syntheticchemistrycomp/Syntheti
 import SyntheticExploreModulesSection from '../components/syntheticchemistrycomp/Syntheticchemistrymodules';
 import SyntheticFeaturesGrid from '../components/syntheticchemistrycomp/SyntheticchemistryFeatureGrid';
 import LaptopSection from './LaptopAnimationLandingPage';
+import Footer from '../components/Footer';
 export default function Synthetic() {
   // Intersection Observer for Laptop Section
   const { ref: laptopRef, inView: laptopInView } = useInView({
@@ -53,6 +54,7 @@ export default function Synthetic() {
           <LaptopSection isOpen={laptopInView} />
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 }

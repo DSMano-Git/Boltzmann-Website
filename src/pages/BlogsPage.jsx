@@ -1,12 +1,19 @@
-
-import  { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import Footer from '../components/Footer';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { db } from "../firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 import boltzBuzzLogo from '../assets/boltz_buzz_logo.png';
+import Footer from '../components/Footer';
 
-export default function BlogsPage() {
+const BlogsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [Pdata, setPdata] = useState([]);
+  const [Reference, setReference] = useState([]);
+  const [reslmessage, setreslmessage] = useState('');
+  const [Postnotfound, setPostnotfound] = useState(false);
+  const navigate = useNavigate();
+  
   const categories = [
     'Technology',
     'Case Studies',
@@ -14,16 +21,6 @@ export default function BlogsPage() {
     'Collaboration',
     'Industrial Insights'
   ];
-
-  // Simulated blog data with categories
-  const blogs = Array.from({ length: 45 }, (_, i) => ({
-    id: i + 1,
-    title: `Proteins are essential for life #${i + 1}`,
-    author: 'Surya',
-    date: '30-6-2025',
-    image: 'https://via.placeholder.com/300x180?text=Image',
-    category: categories[i % categories.length]
-  }));
 
   const blogsPerPage = 15;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,21 +31,199 @@ export default function BlogsPage() {
     setSearchParams({ page: currentPage });
   }, [currentPage, setSearchParams]);
 
-  // Filtering logic
-  const filteredBlogs = blogs.filter(blog =>
-    blog.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (selectedCategory ? blog.category === selectedCategory : true)
-  );
+  // Improved image extraction function
+  const extractImageFromContent = (content) => {
+    if (!content || typeof content !== 'string') {
+      return 'https://via.placeholder.com/300x180?text=Image';
+    }
+
+    try {
+      // More robust regex pattern for img tags
+      const imgTagRegex = /<img[^>]+>/gi;
+      const imgMatch = content.match(imgTagRegex);
+      
+      if (!imgMatch || imgMatch.length === 0) {
+        return 'https://via.placeholder.com/300x180?text=Image';
+      }
+
+      // Extract src attribute from the first img tag
+      const firstImgTag = imgMatch[0];
+      const srcRegex = /src\s*=\s*["']([^"']+)["']/i;
+      const srcMatch = firstImgTag.match(srcRegex);
+      
+      if (!srcMatch || srcMatch.length < 2) {
+        return 'https://via.placeholder.com/300x180?text=Image';
+      }
+
+      const imageUrl = srcMatch[1].trim();
+      
+      // Validate that the URL is not empty and looks like a valid URL
+      if (!imageUrl || imageUrl.length === 0) {
+        return 'https://via.placeholder.com/300x180?text=Image';
+      }
+
+      // Basic URL validation
+      if (imageUrl.startsWith('data:image/') || 
+          imageUrl.startsWith('http://') || 
+          imageUrl.startsWith('https://') ||
+          imageUrl.startsWith('/')) {
+        return imageUrl;
+      }
+
+      return 'https://via.placeholder.com/300x180?text=Image';
+    } catch (error) {
+      console.error('Error extracting image from content:', error);
+      return 'https://via.placeholder.com/300x180?text=Image';
+    }
+  };
+
+  const FETCHPosts = async () => {
+    const Ref = collection(db, 'boltzmannlabs-posts');
+    
+    try {
+      await onSnapshot(Ref, (POSTE) => {
+        if (POSTE.empty) {
+          setPostnotfound(true);
+          setPdata([]);
+          setReference([]);
+          return;
+        }
+
+        const postarray = [];
+        POSTE.forEach(Posts => {
+          const postData = Posts.data();
+          
+          if (postData.published) {
+            const extractedImage = extractImageFromContent(postData.content);
+            
+            postarray.push({
+              id: Posts.id,
+              Author: postData.author || 'Admin',
+              category: postData.categories,
+              title: postData.title || 'Untitled',
+              content: postData.content,
+              date: postData.created_date ? postData.created_date.toDate() : new Date(),
+              image: extractedImage
+            });
+          }
+        });
+
+        if (postarray.length === 0) {
+          setPostnotfound(true);
+          setPdata([]);
+          setReference([]);
+          return;
+        }
+
+        // Sort by date (newest first)
+        postarray.sort((a, b) => b.date - a.date);
+        
+        setPdata(postarray);
+        setReference(postarray);
+        setPostnotfound(false);
+      });
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      setPostnotfound(true);
+    }
+  };
+
+  const SearchFun = () => {
+    if (!searchTerm.trim()) {
+      setPdata(Reference);
+      setreslmessage('');
+      setPostnotfound(Reference.length === 0);
+      return;
+    }
+
+    const filteredArray = Reference.filter((post) => 
+      post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
+    
+    setPdata(filteredArray);
+    setreslmessage(searchTerm.trim());
+    setPostnotfound(filteredArray.length === 0);
+    setCurrentPage(1); // Reset to first page after search
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
+    setPdata(Reference);
+    setreslmessage('');
+    setSelectedCategory('');
+    setCurrentPage(1);
+    setPostnotfound(Reference.length === 0);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      FETCHPosts();
+    }, 200);
+
+    window.scrollTo(0, 0);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Filtering logic with improved error handling
+  const filteredBlogs = Pdata.filter(blog => {
+    const matchesSearch = !searchTerm || 
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = !selectedCategory || 
+      blog.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
 
   const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / blogsPerPage));
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
+  // Image error handler component
+  const BlogImage = ({ src, alt, style }) => {
+    const [imgSrc, setImgSrc] = useState(src);
+    const [hasError, setHasError] = useState(false);
+
+    const handleError = () => {
+      if (!hasError) {
+        setHasError(true);
+        setImgSrc('https://via.placeholder.com/300x180?text=Image+Not+Found');
+      }
+    };
+
+    const handleLoad = () => {
+      setHasError(false);
+    };
+
+    return (
+      <div 
+        style={{
+          ...style,
+          backgroundImage: `url(${imgSrc})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <img
+          src={imgSrc}
+          alt={alt}
+          onError={handleError}
+          onLoad={handleLoad}
+          style={{
+            display: 'none' // Hidden img for error handling
+          }}
+        />
+      </div>
+    );
+  };
+
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }}>
+     
       {/* Header */}
-      <header style={{ textAlign: 'center', marginBottom: '24px' }}>
+      <header style={{ textAlign: 'center', marginBottom: '24px', marginTop: '20px' }}>
         <h1 style={{ fontSize: '32px', color: '#3b82f6', fontWeight: '800' }}>
           Insights & Discoveries from AI Research
         </h1>
@@ -56,7 +231,8 @@ export default function BlogsPage() {
           Stay updated with the latest breakthroughs
         </p>
       </header>
-         {/* Blogs Heading */}
+
+      {/* Blogs Heading */}
       <section style={{ textAlign: 'center', marginBottom: '32px' }}>
         <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#3b82f6' }}>
           Blogs
@@ -128,8 +304,6 @@ export default function BlogsPage() {
         </div>
       </section>
 
-   
-
       {/* Search Bar */}
       <div style={{
         display: 'flex',
@@ -157,6 +331,11 @@ export default function BlogsPage() {
             placeholder="Search blogs..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                SearchFun();
+              }
+            }}
             style={{
               border: 'none',
               outline: 'none',
@@ -165,10 +344,44 @@ export default function BlogsPage() {
               backgroundColor: 'transparent'
             }}
           />
+          <button 
+            style={searchTerm === '' ? { display: 'none' } : { border: 'none', background: 'none', cursor: 'pointer' }}
+            onClick={clearSearch}
+          >
+            <span style={{ color: '#9ca3af', fontSize: '16px' }}>✖</span>
+          </button>
+          <button 
+            style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+            onClick={SearchFun}
+          >
+            <span style={{ color: '#9ca3af', fontSize: '16px' }}>↵</span>
+          </button>
         </div>
 
+        {/* Search results message */}
+        {(reslmessage !== '' || selectedCategory) && (
+          <div style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}>
+            <span style={{ color: '#501f84', fontWeight: 600 }}>
+              Showing results {reslmessage && `for "${reslmessage}"`} 
+              {reslmessage && selectedCategory && ' in'} 
+              {selectedCategory && ` category "${selectedCategory}"`}
+            </span>
+            <button 
+              onClick={clearSearch} 
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                cursor: 'pointer',
+                marginLeft: '10px'
+              }}
+            >
+              <span style={{ color: '#6366f1' }}>Clear all</span>
+            </button>
+          </div>
+        )}
+
         {/* No Results */}
-        {filteredBlogs.length === 0 && (
+        {filteredBlogs.length === 0 && Pdata.length > 0 && (
           <section
             style={{
               marginTop: '24px',
@@ -212,105 +425,147 @@ export default function BlogsPage() {
         )}
       </div>
 
-      {/* Blog Cards Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
-        gap: '24px',
-        maxWidth: '1200px',
-        margin: '0 auto'
-      }}>
-        {currentBlogs.map(blog => (
-          <Link
-            key={blog.id}
-            to={`/blogs/${blog.id}?page=${currentPage}`}
-            style={{
-              textDecoration: 'none',
-              color: 'inherit',
-              background: '#f9fafb',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              paddingBottom: '16px'
-            }}
-          >
-            <div style={{
-              width: '100%',
-              height: '180px',
-              backgroundImage: `url(${blog.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}></div>
+      {/* Loading state */}
+      {Pdata.length === 0 && !Postnotfound && (
+        <div style={{ width: '100%', height: '100%', minHeight: '50vh', textAlign: 'center' }}>
+          <div className="loader" style={{ 
+            display: 'inline-block',
+            width: '80px',
+            height: '80px',
+            border: '8px solid #f3f3f3',
+            borderTop: '8px solid #3b82f6',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            marginTop: '100px'
+          }}></div>
+        </div>
+      )}
 
-            <div style={{ padding: '16px' }}>
-              <p style={{ fontSize: '14px', marginBottom: '12px' }}>
-                {blog.title}
-              </p>
-              <div style={{
+      {/* No posts found */}
+      {Postnotfound && Pdata.length === 0 && (
+        <p style={{ fontSize: '20px', color: 'red', padding: '10px', textAlign: 'center' }}> No posts Found</p>
+      )}
+
+      {/* Blog Cards Grid */}
+      {filteredBlogs.length > 0 && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+          gap: '24px',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 16px'
+        }}>
+          {currentBlogs.map(blog => (
+            <Link
+              key={blog.id}
+              to={`/blogs/${blog.id}?page=${currentPage}`}
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+                background: '#f9fafb',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                 display: 'flex',
+                flexDirection: 'column',
                 justifyContent: 'space-between',
-                fontSize: '12px',
-                color: '#6b7280'
-              }}>
-                <span>👤 {blog.author}</span>
-                <span>📅 {blog.date}</span>
+                paddingBottom: '16px'
+              }}
+            >
+              <BlogImage
+                src={blog.image}
+                alt={blog.title}
+                style={{
+                  width: '100%',
+                  height: '180px'
+                }}
+              />
+
+              <div style={{ padding: '16px' }}>
+                <p style={{ 
+                  fontSize: '14px', 
+                  marginBottom: '12px',
+                  fontWeight: '600',
+                  height: '4.6rem',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical'
+                }}>
+                  {blog.title}
+                </p>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: '12px',
+                  color: '#6b7280'
+                }}>
+                  <span>👤 {blog.Author}</span>
+                  <span>📅 {blog.date.toString().slice(4, 15)}</span>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
       {/* Pagination Controls */}
-      <div style={{
-        marginTop: '40px',
-        maxWidth: '1200px',
-        marginInline: 'auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap'
-      }}>
-        {currentPage > 1 ? (
-          <button
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            style={{
-              padding: '10px 20px',
-              borderRadius: '999px',
-              border: 'none',
-              background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
-              color: '#fff',
-              fontSize: '14px',
-              cursor: 'pointer',
-              boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
-              transition: 'background 0.3s ease'
-            }}
-          >
-            Previous
-          </button>
-        ) : <div></div>}
+      {filteredBlogs.length > 0 && totalPages > 1 && (
+        <div style={{
+          marginTop: '40px',
+          maxWidth: '1200px',
+          marginInline: 'auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          padding: '0 16px'
+        }}>
+          {currentPage > 1 ? (
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '999px',
+                border: 'none',
+                background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+                color: '#fff',
+                fontSize: '14px',
+                cursor: 'pointer',
+                boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+                transition: 'background 0.3s ease'
+              }}
+            >
+              Previous
+            </button>
+          ) : <div></div>}
 
-        {currentPage < totalPages ? (
-          <button
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            style={{
-              padding: '10px 20px',
-              borderRadius: '999px',
-              border: 'none',
-              background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
-              color: '#fff',
-              fontSize: '14px',
-              cursor: 'pointer',
-              boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
-              transition: 'background 0.3s ease'
-            }}
-          >
-            Next
-          </button>
-        ) : <div></div>}
-      </div>
+          <span style={{ color: '#6b7280', fontSize: '14px' }}>
+            Page {currentPage} of {totalPages}
+          </span>
+
+          {currentPage < totalPages ? (
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '999px',
+                border: 'none',
+                background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+                color: '#fff',
+                fontSize: '14px',
+                cursor: 'pointer',
+                boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+                transition: 'background 0.3s ease'
+              }}
+            >
+              Next
+            </button>
+          ) : <div></div>}
+        </div>
+      )}
 
       {/* CTA Banner */}
       <section
@@ -446,4 +701,8 @@ export default function BlogsPage() {
       <Footer />
     </div>
   );
-}
+};
+
+export default BlogsPage;
+
+

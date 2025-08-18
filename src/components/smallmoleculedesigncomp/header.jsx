@@ -263,6 +263,7 @@
 // }
 
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function SmallOverlappingCard() {
   const [isLaptop, setIsLaptop] = useState(false);
@@ -275,6 +276,26 @@ export default function SmallOverlappingCard() {
     window.addEventListener("resize", checkWidth);
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
+
+  // Motion variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
+  const buttonVariant = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 120, duration: 0.6 } },
+  };
 
   return (
     <div style={{ position: "relative", width: "100%", overflow: "hidden" }}>
@@ -294,7 +315,7 @@ export default function SmallOverlappingCard() {
           zIndex: 1,
         }}
       >
-        <div
+        <motion.div
           style={{
             maxWidth: "900px",
             margin: "0 auto",
@@ -302,8 +323,11 @@ export default function SmallOverlappingCard() {
             zIndex: 2,
             padding: "0 20px",
           }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
-          <h2
+          <motion.h2
             style={{
               marginBottom: "20px",
               fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
@@ -312,23 +336,26 @@ export default function SmallOverlappingCard() {
               lineHeight: 1.2,
               paddingTop: "40px",
             }}
+            variants={fadeUpVariant}
           >
             Small Molecule Design
-          </h2>
-          <p
+          </motion.h2>
+
+          <motion.p
             style={{
               maxWidth: "700px",
-              margin: "0 auto",
+              margin: "0 auto 30px",
               fontSize: "clamp(1rem, 2vw, 1.2rem)",
               lineHeight: 1.6,
               opacity: 0.9,
-              marginBottom: "30px",
             }}
+            variants={fadeUpVariant}
           >
             Media insights that drive your business forward. Request a demo to
             learn more about our comprehensive analytics platform.
-          </p>
-          <button
+          </motion.p>
+
+          <motion.button
             style={{
               backgroundColor: "white",
               color: "#4F1985",
@@ -338,13 +365,15 @@ export default function SmallOverlappingCard() {
               fontSize: "1rem",
               fontWeight: 500,
               cursor: "pointer",
-              transition: "all 0.3s ease",
               marginBottom: "20px",
             }}
+            variants={buttonVariant}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Request Demo
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* White bottom section */}
@@ -352,20 +381,20 @@ export default function SmallOverlappingCard() {
         style={{
           backgroundColor: "#ffffff",
           width: "100%",
-          paddingTop: isLaptop ? "380px" : "min(300px, 30vw)", // reduced so height looks balanced
+          paddingTop: isLaptop ? "380px" : "min(300px, 30vw)",
           borderTopLeftRadius: "60px",
           borderTopRightRadius: "60px",
-          marginTop: isLaptop ? "-160px" : "min(-150px, -15vw)", // overlap just enough
+          marginTop: isLaptop ? "-160px" : "min(-150px, -15vw)",
           position: "relative",
           zIndex: 1,
         }}
       ></div>
 
-      {/* Center splash image */}
+      {/* Center splash image (static) */}
       <div
         style={{
           position: "absolute",
-          top: isLaptop ? "330px" : "min(400px, 50vw)", // visually centered for desktop
+          top: isLaptop ? "330px" : "min(400px, 50vw)",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 2,
@@ -381,9 +410,6 @@ export default function SmallOverlappingCard() {
           style={{
             width: "100%",
             borderRadius: "16px",
-           
-            transition:
-              "transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
           }}
         />
       </div>

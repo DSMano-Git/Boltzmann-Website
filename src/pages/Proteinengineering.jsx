@@ -8,7 +8,7 @@ import ProteinInsightCards from '../components/proteinengineeringcomp/Proteineng
 import ProteinExploreModulesSection from '../components/proteinengineeringcomp/Proteinengineeringmodules';
 import ProteinFeaturesGrid from '../components/proteinengineeringcomp/ProteinengineeringFeatureGrid';
 import LaptopSection from './LaptopAnimationLandingPage';
-
+import Footer from '../components/Footer';
 export default function Proteinengineering() {
   // Intersection Observer for Laptop Section
   const { ref: laptopRef, inView: laptopInView } = useInView({
@@ -54,6 +54,7 @@ export default function Proteinengineering() {
           <LaptopSection isOpen={laptopInView} />
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 }

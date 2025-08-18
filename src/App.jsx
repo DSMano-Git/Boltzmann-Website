@@ -1,38 +1,131 @@
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import NavbarPage from './components/NavbarPage';
+// import { HelmetProvider } from 'react-helmet-async';
+// import HomePage from './pages/HomePage'
+// import HackathonPage from './pages/HackathonPage';
+// import About from './pages/AboutPage';
+// import Blogs from './pages/BlogsPage';
+// import Products from './pages/Products';
+// import Pipeline from './components/Pipeline';
+// import BlogDetails from './pages/BlogDetails';
+// import ScrollToTop from './pages/Scrolltotop'
+// import ContactUs from './pages/Contactus';
+// import SmallmoleculeDesign from './pages/Smallmoleculedesign';
+// import Proteinengineering from './pages/Proteinengineering';
+// import Synthetic from './pages/Syntheticchemistry';
+// export default function App() {
+//   return (
+//     <BrowserRouter>
+//       <NavbarPage />
+// <ScrollToTop />
+//     <Routes>
+//   <Route path="/" element={<HomePage />} />
+//   <Route path="/about" element={<About />} />
+//   <Route path="/products" element={<Products />} />
+//   <Route path="/blogs" element={<Blogs />} />
+//   <Route path="/blogs/:id" element={<BlogDetails />} />
+//   <Route path="/blogs/:id" element={<BlogDetails />} />
+//   <Route path="/pipeline" element={<Pipeline />} />
+//   <Route path="/hackathon" element={<HackathonPage />} />
+//   <Route path="/contact" element={<ContactUs />} />
+//     <Route path="/smallmoleculedesign" element={<SmallmoleculeDesign />} />
+//     <Route path="/proteinengineering" element={<Proteinengineering />} />
+//     <Route path="/syntheticchemistry" element={<Synthetic />} />
+
+  
+// </Routes>
+
+//     </BrowserRouter>
+//   );
+// }
+
+
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import NavbarPage from './components/NavbarPage';
+// import { HelmetProvider } from 'react-helmet-async';
+// import HomePage from './pages/HomePage';
+// import HackathonPage from './pages/HackathonPage';
+// import About from './pages/AboutPage';
+// import Blogs from './pages/BlogsPage';
+// import CategoryBlog from './pages/Categoryblogs';
+// import Products from './pages/Products';
+// import Pipeline from './components/Pipeline';
+// import BlogDetails from './pages/BlogDetails';
+// import ScrollToTop from './pages/Scrolltotop';
+// import ContactUs from './pages/Contactus';
+// import SmallmoleculeDesign from './pages/Smallmoleculedesign';
+// import Proteinengineering from './pages/Proteinengineering';
+// import Synthetic from './pages/Syntheticchemistry';
+// import Medicinalchemist from '../src/pages/MedicinalChemist';
+// import Biotechandpharma from '../src/pages/Biotechandpharma';
+// export default function App() {
+//   return (
+//     <BrowserRouter>
+//       <NavbarPage />
+//       <ScrollToTop />
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/products" element={<Products />} />
+//         <Route path="/blogs" element={<Blogs />} />
+//         <Route path="/category" element={<CategoryBlog />} />
+//         <Route path="/blogs/:id" element={<BlogDetails />} />
+        
+//         <Route path="/pipeline" element={<Pipeline />} />
+//         <Route path="/hackathon" element={<HackathonPage />} />
+//         <Route path="/contact" element={<ContactUs />} />
+//         <Route path="/smallmoleculedesign" element={<SmallmoleculeDesign />} />
+//         <Route path="/proteinengineering" element={<Proteinengineering />} />
+//         <Route path="/syntheticchemistry" element={<Synthetic />} />
+//         <Route path="/medicinal-chemists" element={<Medicinalchemist />} />
+//         <Route path="/pharmaceuticals-biotech" element={<Biotechandpharma />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavbarPage from './components/NavbarPage';
-
-import HomePage from './pages/HomePage'
+import { HelmetProvider } from 'react-helmet-async';
+import HomePage from './pages/HomePage';
 import HackathonPage from './pages/HackathonPage';
 import About from './pages/AboutPage';
 import Blogs from './pages/BlogsPage';
+import CategoryBlog from './pages/Categoryblogs';
 import Products from './pages/Products';
 import Pipeline from './components/Pipeline';
 import BlogDetails from './pages/BlogDetails';
-import UltraSmoothTimeline from './components/Aboutjourney';
+import ScrollToTop from './pages/Scrolltotop';
 import ContactUs from './pages/Contactus';
 import SmallmoleculeDesign from './pages/Smallmoleculedesign';
 import Proteinengineering from './pages/Proteinengineering';
 import Synthetic from './pages/Syntheticchemistry';
+import Medicinalchemist from '../src/pages/MedicinalChemist';
+import Biotechandpharma from '../src/pages/Biotechandpharma';
+
 export default function App() {
   return (
     <BrowserRouter>
       <NavbarPage />
-    <Routes>
-  <Route path="/" element={<HomePage />} />
-  <Route path="/about" element={<About />} />
-  <Route path="/products" element={<Products />} />
-  <Route path="/blogs" element={<Blogs />} />
-  <Route path="/blogs/:id" element={<BlogDetails />} />
-  <Route path="/pipeline" element={<Pipeline />} />
-  <Route path="/hackathon" element={<HackathonPage />} />
-  <Route path="/contact" element={<ContactUs />} />
-    <Route path="/smallmoleculedesign" element={<SmallmoleculeDesign />} />
-    <Route path="/proteinengineering" element={<Proteinengineering />} />
-    <Route path="/syntheticchemistry" element={<Synthetic />} />
-
-  
-</Routes>
-
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/blogs" element={<Blogs />} />
+        {/* Add the category route with parameter */}
+        <Route path="/blog/:category" element={<CategoryBlog />} />
+        <Route path="/blogs/:id" element={<BlogDetails />} />
+        <Route path="/pipeline" element={<Pipeline />} />
+        <Route path="/hackathon" element={<HackathonPage />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/smallmoleculedesign" element={<SmallmoleculeDesign />} />
+        <Route path="/proteinengineering" element={<Proteinengineering />} />
+        <Route path="/syntheticchemistry" element={<Synthetic />} />
+        <Route path="/medicinal-chemists" element={<Medicinalchemist />} />
+        <Route path="/pharmaceuticals-biotech" element={<Biotechandpharma />} />
+      </Routes>
     </BrowserRouter>
   );
 }
