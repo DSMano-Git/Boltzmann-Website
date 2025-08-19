@@ -425,7 +425,7 @@ export default function HomePage() {
           initial="hidden"
           animate={visibleSections.labAutomation2 ? "visible" : "hidden"}
           variants={fadeInRight}
-          style={{ marginBottom: '80px' }}
+      
         >
           <LabAutomationSection
             icon="🧬"
@@ -446,7 +446,7 @@ export default function HomePage() {
           variants={fadeInUp}
           style={{ 
             position: 'relative',
-            padding: '100px 0'
+            
           }}
         >
           <div style={{ 

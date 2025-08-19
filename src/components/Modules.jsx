@@ -1297,7 +1297,14 @@ const modules = [
       "https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    name: "Synthetic Chemistry",
+    name: "Multi Omics Analysis",
+    description:
+      "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    name: "Clinical Trials",
     description:
       "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
     imageUrl:

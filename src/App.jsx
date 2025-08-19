@@ -87,7 +87,7 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavbarPage from './components/NavbarPage';
-import { HelmetProvider } from 'react-helmet-async';
+
 import HomePage from './pages/HomePage';
 import HackathonPage from './pages/HackathonPage';
 import About from './pages/AboutPage';
@@ -103,7 +103,15 @@ import Proteinengineering from './pages/Proteinengineering';
 import Synthetic from './pages/Syntheticchemistry';
 import Medicinalchemist from '../src/pages/MedicinalChemist';
 import Biotechandpharma from '../src/pages/Biotechandpharma';
-
+import Bioinformatician from '../src/pages/Bioinformatician';
+import Synthetichemists from '../src/pages/Syntheticchemists';
+import Pharmacologist from '../src/pages/Pharmacologist';
+import Clinicalresearchers from '../src/pages/Clinicalresearchers';
+import Chemicalss from './pages/Chemicals';
+import Agrochemicals from './pages/Agrochemicals';
+import Cros from './pages/Cro';
+import Academicresearch from './pages/Academicresearch';
+import PrecisionMedicine from './pages/Precisionmedicine';
 export default function App() {
   return (
     <BrowserRouter>
@@ -125,6 +133,24 @@ export default function App() {
         <Route path="/syntheticchemistry" element={<Synthetic />} />
         <Route path="/medicinal-chemists" element={<Medicinalchemist />} />
         <Route path="/pharmaceuticals-biotech" element={<Biotechandpharma />} />
+        <Route path="/bioinformatics" element={<Bioinformatician />} />
+        <Route path="/synthetic-chemists" element={<Synthetichemists />} />
+        <Route path="/pharmacologist" element={<Pharmacologist />} />
+        <Route path="/clinical-researchers" element={<Clinicalresearchers />} />
+        <Route path="/chemicals" element={<Chemicalss />} />
+        <Route path="/agrochemicals" element={<Agrochemicals />} />
+        <Route path="/cros" element={<Cros />} />
+        <Route path="/academic-research" element={<Academicresearch/>} />
+        <Route path="/precision-medicine" element={<PrecisionMedicine/>} />
+        
+        
+        
+
+        
+     
+
+
+        
       </Routes>
     </BrowserRouter>
   );

@@ -3,13 +3,13 @@ import { Box, styled } from '@mui/material';
 
 export default function LogoCarousel() {
   const logos = [
-    "public/alogo-1.png",
-    "public/alogo-2.png",
-    "public/alogo-3.png",
-    "public/alogo-4.png",
-    "public/alogo-5.jpeg",
-    "public/alogo-6.jpeg",
-
+    "/alogo-1.png",
+    "/alogo-2.png",
+    "/alogo-3.png",
+    "/alogo-4.png",
+    "/alogo-5.jpeg",
+    "/alogo-6.jpeg",
+    
   ];
 
   // Styled components for better organization

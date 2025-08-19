@@ -628,7 +628,7 @@ export default function LaptopSection({ isOpen }) {
               </p>
 
               <div style={buttonContainerStyle}>
-                {['Learn More', 'Request Demo'].map((text) => (
+                {['Request Demo'].map((text) => (
                   <button
                     key={text}
                     style={buttonStyle}
