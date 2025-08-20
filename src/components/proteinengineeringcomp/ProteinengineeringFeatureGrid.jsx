@@ -624,57 +624,255 @@
 // }
 
 
+// import React from "react";
+
+// import {
+//   Cpu,
+//   Zap,
+//   Thermometer,
+//   MapPin,
+//   Box,
+//   Dna,
+//   Microscope,
+//   Users,
+// } from "lucide-react";
+
+// const features = [
+//   {
+//     icon: Cpu,
+//     title: "Generative Protein Design",
+//     description: "Create novel sequences with targeted functions and high stability.",
+//     bgColor: "#6366f1",
+//     hoverColor: "#4f46e5"
+//   },
+//   {
+//     icon: Zap,
+//     title: "Binding Affinity Prediction",
+//     description: "Identify mutations that enhance target interactions without compromising structure.",
+//     bgColor: "#f43f5e",
+//     hoverColor: "#e11d48"
+//   },
+//   {
+//     icon: Thermometer,
+//     title: "Stability & Solubility Scoring",
+//     description: "Predict and improve folding efficiency, thermostability, and solubility before synthesis.",
+//     bgColor: "#38bdf8",
+//     hoverColor: "#0ea5e9"
+//   },
+//   {
+//     icon: MapPin,
+//     title: "Epitope Mapping & Immunogenicity Prediction",
+//     description: "Design safer therapeutics by minimizing unwanted immune responses.",
+//     bgColor: "#f97316",
+//     hoverColor: "#ea580c"
+//   },
+//   {
+//     icon: Box,
+//     title: "Structure Prediction & Validation",
+//     description: "Model accurate 3D structures to guide intelligent engineering decisions.",
+//     bgColor: "#f59e0b",
+//     hoverColor: "#d97706"
+//   },
+//   {
+//     icon: Dna,
+//     title: "Enzyme Engineering",
+//     description: "Boost catalytic efficiency, substrate specificity, and process stability for industrial enzymes.",
+//     bgColor: "#9333ea",
+//     hoverColor: "#7c3aed"
+//   },
+//   {
+//     icon: Microscope,
+//     title: "Antibody Optimization",
+//     description: "Refine affinity, specificity, and manufacturability for therapeutic antibodies.",
+//     bgColor: "#10b981",
+//     hoverColor: "#059669"
+//   },
+//   {
+//     icon: Users,
+//     title: "Collaborative Protein Workspaces",
+//     description: "Secure, real-time environments for design, review, and iteration.",
+//     bgColor: "#ea580c",
+//     hoverColor: "#c2410c"
+//   },
+// ];
+
+// const FeatureCard = ({ feature }) => {
+//   const [isHovered, setIsHovered] = React.useState(false);
+//   const IconComponent = feature.icon;
+
+//   const cardStyle = {
+//     backgroundColor: "#ffffff",
+//     borderRadius: "24px",
+//     boxShadow: isHovered 
+//       ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)" 
+//       : "0 10px 25px -3px rgba(0, 0, 0, 0.1)",
+//     padding: "32px",
+//     textAlign: "center",
+//     cursor: "pointer",
+//     transform: isHovered ? "translateY(-12px) scale(1.02)" : "translateY(0) scale(1)",
+//     transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+//     border: isHovered ? "1px solid rgba(99, 102, 241, 0.2)" : "1px solid transparent",
+//     height: "100%",
+//     boxSizing: "border-box",
+//     display: "flex",
+//     flexDirection: "column",
+//   };
+
+//   const iconWrapperStyle = {
+//     width: "64px",
+//     height: "64px",
+//     borderRadius: "50%",
+//     backgroundColor: isHovered ? feature.hoverColor : feature.bgColor,
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "center",
+//     margin: "0 auto 24px",
+//     color: "#ffffff",
+//     transition: "all 0.3s ease",
+//     boxShadow: isHovered 
+//       ? `0 8px 25px ${feature.bgColor}40` 
+//       : `0 4px 15px ${feature.bgColor}30`,
+//   };
+
+//   const titleStyle = {
+//     fontSize: "20px",
+//     fontWeight: "700",
+//     marginBottom: "16px",
+//     color: isHovered ? "#4f46e5" : "#111827",
+//     transition: "color 0.3s ease",
+//     lineHeight: "1.3",
+//   };
+
+//   const descriptionStyle = {
+//     fontSize: "15px",
+//     color: isHovered ? "#4b5563" : "#6b7280",
+//     lineHeight: "1.6",
+//     transition: "color 0.3s ease",
+//     flexGrow: 1,
+//   };
+
+//   return (
+//     <div 
+//       style={cardStyle}
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <div style={iconWrapperStyle}>
+//         <IconComponent size={24} strokeWidth={2} />
+//       </div>
+//       <h3 style={titleStyle}>{feature.title}</h3>
+//       <p style={descriptionStyle}>{feature.description}</p>
+//     </div>
+//   );
+// };
+
+// export default function ProteinFeaturesGrid() {
+//   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+
+//   React.useEffect(() => {
+//     const handleResize = () => setIsMobile(window.innerWidth <= 768);
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const containerStyle = {
+//     maxWidth: "1280px",
+//     margin: "0 auto",
+//     padding: isMobile ? "48px 16px" : "64px 32px",
+//   };
+
+//   const headerStyle = { textAlign: "center", marginBottom: "64px" };
+
+//   const gridStyle = {
+//     display: "grid",
+//     gridTemplateColumns: isMobile
+//       ? "1fr"
+//       : window.innerWidth <= 1024
+//       ? "repeat(2, 1fr)"
+//       : "repeat(4, 1fr)",
+//     gap: isMobile ? "24px" : "32px",
+//     alignItems: "stretch",
+//     gridAutoRows: "1fr",
+//   };
+
+//   return (
+//     <section style={containerStyle}>
+//       <div style={headerStyle}>
+//         <h2 style={{textAlign: 'center', marginBottom: '4%', fontWeight: 400, color: '#4F1985', fontSize: '2.5rem', fontFamily: 'timesnew'}}>
+//           Generative Protein Design AI-Driven Features
+//           <span
+//             style={{
+//               display: "block",
+//               width: "80px",
+//               height: "4px",
+//               backgroundColor: "#4F1985",
+//               margin: "15px auto 0",
+//               borderRadius: "2px"
+//             }}
+//           />
+//         </h2>
+//       </div>
+//       <div style={gridStyle}>
+//         {features.map((feature, index) => (
+//           <FeatureCard key={index} feature={feature} />
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
+
+
 import React from "react";
 
 import {
-  Cpu,
-  Zap,
-  Thermometer,
-  MapPin,
-  Box,
-  Dna,
-  Microscope,
-  Users,
+  FlaskRound,      // experiment / design
+  Crosshair,       // precision targeting
+  Droplets,        // solubility / stability
+  ShieldAlert,     // safety / immunogenicity
+  Cuboid,          // structure / 3D models
+  Activity,        // enzyme activity
+  Microscope,      // antibody optimization
+  Network,         // collaboration / workspaces
 } from "lucide-react";
 
 const features = [
   {
-    icon: Cpu,
+    icon: FlaskRound,
     title: "Generative Protein Design",
     description: "Create novel sequences with targeted functions and high stability.",
     bgColor: "#6366f1",
     hoverColor: "#4f46e5"
   },
   {
-    icon: Zap,
+    icon: Crosshair,
     title: "Binding Affinity Prediction",
     description: "Identify mutations that enhance target interactions without compromising structure.",
     bgColor: "#f43f5e",
     hoverColor: "#e11d48"
   },
   {
-    icon: Thermometer,
+    icon: Droplets,
     title: "Stability & Solubility Scoring",
     description: "Predict and improve folding efficiency, thermostability, and solubility before synthesis.",
     bgColor: "#38bdf8",
     hoverColor: "#0ea5e9"
   },
   {
-    icon: MapPin,
+    icon: ShieldAlert,
     title: "Epitope Mapping & Immunogenicity Prediction",
     description: "Design safer therapeutics by minimizing unwanted immune responses.",
     bgColor: "#f97316",
     hoverColor: "#ea580c"
   },
   {
-    icon: Box,
+    icon: Cuboid,
     title: "Structure Prediction & Validation",
     description: "Model accurate 3D structures to guide intelligent engineering decisions.",
     bgColor: "#f59e0b",
     hoverColor: "#d97706"
   },
   {
-    icon: Dna,
+    icon: Activity,
     title: "Enzyme Engineering",
     description: "Boost catalytic efficiency, substrate specificity, and process stability for industrial enzymes.",
     bgColor: "#9333ea",
@@ -688,13 +886,14 @@ const features = [
     hoverColor: "#059669"
   },
   {
-    icon: Users,
+    icon: Network,
     title: "Collaborative Protein Workspaces",
     description: "Secure, real-time environments for design, review, and iteration.",
     bgColor: "#ea580c",
     hoverColor: "#c2410c"
   },
-];
+]; 
+
 
 const FeatureCard = ({ feature }) => {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -702,15 +901,15 @@ const FeatureCard = ({ feature }) => {
 
   const cardStyle = {
     backgroundColor: "#ffffff",
-    borderRadius: "24px",
+    borderRadius: "20px", // Reduced from 24px
     boxShadow: isHovered 
-      ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)" 
-      : "0 10px 25px -3px rgba(0, 0, 0, 0.1)",
-    padding: "32px",
+      ? "0 20px 40px -10px rgba(0, 0, 0, 0.2)" 
+      : "0 8px 20px -3px rgba(0, 0, 0, 0.08)",
+    padding: "24px", // Reduced from 32px
     textAlign: "center",
     cursor: "pointer",
-    transform: isHovered ? "translateY(-12px) scale(1.02)" : "translateY(0) scale(1)",
-    transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+    transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+    transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
     border: isHovered ? "1px solid rgba(99, 102, 241, 0.2)" : "1px solid transparent",
     height: "100%",
     boxSizing: "border-box",
@@ -719,34 +918,34 @@ const FeatureCard = ({ feature }) => {
   };
 
   const iconWrapperStyle = {
-    width: "64px",
-    height: "64px",
+    width: "56px", // Reduced from 64px
+    height: "56px", // Reduced from 64px
     borderRadius: "50%",
     backgroundColor: isHovered ? feature.hoverColor : feature.bgColor,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    margin: "0 auto 24px",
+    margin: "0 auto 20px", // Reduced from 24px
     color: "#ffffff",
     transition: "all 0.3s ease",
     boxShadow: isHovered 
-      ? `0 8px 25px ${feature.bgColor}40` 
-      : `0 4px 15px ${feature.bgColor}30`,
+      ? `0 6px 20px ${feature.bgColor}40` 
+      : `0 3px 12px ${feature.bgColor}30`,
   };
 
   const titleStyle = {
-    fontSize: "20px",
+    fontSize: "18px", // Reduced from 20px
     fontWeight: "700",
-    marginBottom: "16px",
+    marginBottom: "14px", // Reduced from 16px
     color: isHovered ? "#4f46e5" : "#111827",
     transition: "color 0.3s ease",
     lineHeight: "1.3",
   };
 
   const descriptionStyle = {
-    fontSize: "15px",
+    fontSize: "14px", // Reduced from 15px
     color: isHovered ? "#4b5563" : "#6b7280",
-    lineHeight: "1.6",
+    lineHeight: "1.5", // Reduced from 1.6
     transition: "color 0.3s ease",
     flexGrow: 1,
   };
@@ -758,7 +957,7 @@ const FeatureCard = ({ feature }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={iconWrapperStyle}>
-        <IconComponent size={24} strokeWidth={2} />
+        <IconComponent size={22} strokeWidth={2} /> {/* Reduced from 24px */}
       </div>
       <h3 style={titleStyle}>{feature.title}</h3>
       <p style={descriptionStyle}>{feature.description}</p>
@@ -776,12 +975,15 @@ export default function ProteinFeaturesGrid() {
   }, []);
 
   const containerStyle = {
-    maxWidth: "1280px",
+    maxWidth: "1100px", // Reduced from 1280px
     margin: "0 auto",
-    padding: isMobile ? "48px 16px" : "64px 32px",
+    padding: isMobile ? "40px 16px" : "56px 24px", // Reduced padding
   };
 
-  const headerStyle = { textAlign: "center", marginBottom: "64px" };
+  const headerStyle = { 
+    textAlign: "center", 
+    marginBottom: "48px" // Reduced from 64px
+  };
 
   const gridStyle = {
     display: "grid",
@@ -790,7 +992,7 @@ export default function ProteinFeaturesGrid() {
       : window.innerWidth <= 1024
       ? "repeat(2, 1fr)"
       : "repeat(4, 1fr)",
-    gap: isMobile ? "24px" : "32px",
+    gap: isMobile ? "20px" : "28px", // Reduced gap
     alignItems: "stretch",
     gridAutoRows: "1fr",
   };
@@ -798,15 +1000,22 @@ export default function ProteinFeaturesGrid() {
   return (
     <section style={containerStyle}>
       <div style={headerStyle}>
-        <h2 style={{textAlign: 'center', marginBottom: '4%', fontWeight: 400, color: '#4F1985', fontSize: '2.5rem', fontFamily: 'timesnew'}}>
+        <h2 style={{
+          textAlign: 'center', 
+          marginBottom: '4%', 
+          fontWeight: 400, 
+          color: '#4F1985', 
+          fontSize: '2.2rem', // Reduced from 2.5rem
+          fontFamily: 'timesnew'
+        }}>
           Generative Protein Design AI-Driven Features
           <span
             style={{
               display: "block",
-              width: "80px",
-              height: "4px",
+              width: "70px", // Reduced from 80px
+              height: "3px", // Reduced from 4px
               backgroundColor: "#4F1985",
-              margin: "15px auto 0",
+              margin: "12px auto 0", // Reduced from 15px
               borderRadius: "2px"
             }}
           />

@@ -1,11 +1,348 @@
+// import React, { useState, useEffect, useRef } from "react";
+
+// const AgroNumbers = () => {
+//   const [isLaptop, setIsLaptop] = useState(false);
+//   const [animatedStats, setAnimatedStats] = useState([
+//     { value: 0, target: 40, suffix: '%' },
+//     { value: 0, target: 60, suffix: '%' },
+//     { value: 0, target: 85, suffix: '%' }
+//   ]);
+//   const [isVisible, setIsVisible] = useState(false);
+//   const statsRef = useRef(null);
+//   const showcaseRef = useRef(null);
+
+//   const logos = [
+//     "/alogo-1.png",
+//     "/alogo-2.png", 
+//     "/alogo-3.png",
+//     "/alogo-4.png",
+//     "/alogo-5.jpeg",
+//     "/alogo-6.jpeg",
+//   ];
+
+//   const statsData = [
+//     {
+//       color: "#00BCD4",
+//       description: "faster agrochemical development."
+//     },
+//     {
+//       color: "#E91E63", 
+//       description: "of formulation testing automated."
+//     },
+//     {
+//       color: "#FF5722",
+//       description: "key performance parameters optimized in a single iteration"
+//     }
+//   ];
+
+//   useEffect(() => {
+//     const checkWidth = () => {
+//       setIsLaptop(window.innerWidth >= 1024);
+//     };
+//     checkWidth();
+//     window.addEventListener("resize", checkWidth);
+//     return () => window.removeEventListener("resize", checkWidth);
+//   }, []);
+
+//   // Set up Intersection Observer
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach(entry => {
+//           if (entry.isIntersecting) {
+//             setIsVisible(true);
+//             observer.unobserve(entry.target);
+//           }
+//         });
+//       },
+//       { threshold: 0.1 }
+//     );
+
+//     if (statsRef.current) {
+//       observer.observe(statsRef.current);
+//     }
+//     if (showcaseRef.current) {
+//       observer.observe(showcaseRef.current);
+//     }
+
+//     return () => {
+//       if (statsRef.current) observer.unobserve(statsRef.current);
+//       if (showcaseRef.current) observer.unobserve(showcaseRef.current);
+//     };
+//   }, []);
+
+//   // Animate statistics when component becomes visible
+//   useEffect(() => {
+//     if (!isVisible) return;
+
+//     const animateNumbers = () => {
+//       const duration = 2000; // 2 seconds
+//       const steps = 60; // 60 steps for smooth animation
+//       const interval = duration / steps;
+      
+//       let currentStep = 0;
+      
+//       const timer = setInterval(() => {
+//         currentStep++;
+//         const progress = currentStep / steps;
+//         const easeOut = 1 - Math.pow(1 - progress, 3); // Ease out function
+        
+//         setAnimatedStats(prev => prev.map((stat, index) => ({
+//           ...stat,
+//           value: Math.round(stat.target * easeOut)
+//         })));
+        
+//         if (currentStep >= steps) {
+//           clearInterval(timer);
+//         }
+//       }, interval);
+      
+//       return () => clearInterval(timer);
+//     };
+
+//     animateNumbers();
+//   }, [isVisible]);
+
+//   return (
+//     <div 
+//       ref={showcaseRef}
+//       style={{ 
+//         maxWidth: "1350px", 
+//         margin: "0 auto", 
+//         padding: "0 16px",
+//         opacity: isVisible ? 1 : 0,
+//         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+//         transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+//         transitionDelay: '0.4s'
+//       }}
+//     >
+//       <div
+//         style={{
+//           marginTop: "120px",
+//           position: "relative",
+//           borderRadius: "32px",
+//           padding: "3px",
+//           background: "linear-gradient(135deg, #4F1985, #6A1B9A, #4F1985)",
+//         }}
+//       >
+//         {/* Inner Container */}
+//         <div
+//           style={{
+//             backgroundColor: "#ffffff",
+//             borderRadius: "28px",
+//             overflow: "hidden",
+//           }}
+//         >
+//           {/* Logo Carousel */}
+//           <div
+//             style={{
+//               borderBottom: "1px solid #e0e0e0",
+//               backgroundColor: "#ffffff",
+//               backdropFilter: "blur(4px)",
+//               overflow: "hidden",
+//               position: "relative",
+//               margin: "24px 0",
+//               padding: "8px 0",
+//             }}
+//           >
+//             <div
+//               style={{
+//                 display: "inline-flex",
+//                 animation: "scroll 20s linear infinite",
+//                 alignItems: "center",
+//                 whiteSpace: "nowrap",
+//               }}
+//             >
+//               {[...logos, ...logos].map((logo, index) => (
+//                 <div
+//                   key={index}
+//                   style={{
+//                     width: "160px",
+//                     height: "80px",
+//                     margin: "0 15px",
+//                     display: "flex",
+//                     alignItems: "center",
+//                     justifyContent: "center",
+//                     padding: "10px",
+//                     backgroundColor: "white",
+//                     borderRadius: "4px",
+//                     boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+//                   }}
+//                 >
+//                   <img
+//                     src={logo}
+//                     alt={`logo-${index}`}
+//                     style={{
+//                       maxWidth: "100%",
+//                       maxHeight: "100%",
+//                       width: "auto",
+//                       height: "auto",
+//                       objectFit: "contain",
+//                       filter: "grayscale(20%)",
+//                       transition: "all 0.3s ease",
+//                     }}
+//                     onMouseEnter={(e) => {
+//                       e.target.style.filter = "grayscale(0%)";
+//                       e.target.style.transform = "scale(1.05)";
+//                     }}
+//                     onMouseLeave={(e) => {
+//                       e.target.style.filter = "grayscale(20%)";
+//                       e.target.style.transform = "scale(1)";
+//                     }}
+//                   />
+//                 </div>
+//               ))}
+//             </div>
+//             <style>
+//               {`
+//                 @keyframes scroll {
+//                   0% { transform: translateX(0); }
+//                   100% { transform: translateX(-50%); }
+//                 }
+//               `}
+//             </style>
+//           </div>
+
+//           {/* Main Content with Stats */}
+//           <div
+//             style={{
+//               display: "flex",
+//               flexDirection: window.innerWidth < 1024 ? "column" : "row",
+//               gap: window.innerWidth < 768 ? "24px" : "64px",
+//               padding: window.innerWidth < 768 ? "24px" : "80px",
+//               maxWidth: "100%",
+//               overflowX: "hidden",
+//               boxSizing: "border-box",
+//             }}
+//           >
+//             {/* Left Text */}
+//             <div
+//               style={{
+//                 flex: "1 1 auto",
+//                 display: "flex",
+//                 flexDirection: "column", 
+//                 justifyContent: "center",
+//                 padding: window.innerWidth < 768 ? "16px" : "64px",
+//                 maxWidth: "100%",
+//               }}
+//             >
+//               <h2
+//                 style={{
+//                   fontSize: window.innerWidth < 768 ? "1.25rem" : "2.6rem",
+//                   fontWeight: 500,
+//                   lineHeight: 1.25,
+//                   marginBottom: window.innerWidth < 768 ? "19.2px" : "35.2px",
+//                   color: "#333333",
+//                 }}
+//               >
+//                 No industry moves as fast as biotech.
+//               </h2>
+//               <p
+//                 style={{
+//                   fontSize: window.innerWidth < 768 ? "0.85rem" : "1.05rem",
+//                   lineHeight: 1.6,
+//                   color: "#666666",
+//                   marginBottom: window.innerWidth < 768 ? "28.8px" : "48px",
+//                 }}
+//               >
+//                 The world runs on innovation, and for those who build biotechnology relied on by millions, it's a never-ending challenge to keep ahead of the market. Any industry can be disrupted almost overnight by a new discovery. Isn't it better to know that your research is the one making the breakthrough? Our platform helps you do just that.
+//               </p>
+//               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+//                 <div
+//                   style={{
+//                     width: window.innerWidth < 640 ? "28px" : "36px",
+//                     height: "2px",
+//                     background: "linear-gradient(90deg, #4F1985, #6A1B9A)",
+//                   }}
+//                 />
+//                 <span
+//                   style={{
+//                     textTransform: "uppercase",
+//                     letterSpacing: "1px",
+//                     fontWeight: 400,
+//                     color: "#666666",
+//                     fontSize: window.innerWidth < 640 ? "0.65rem" : "0.75rem",
+//                   }}
+//                 >
+//                   Protein Design Innovation
+//                 </span>
+//               </div>
+//             </div>
+
+//             {/* Right Stats */}
+//             <div
+//               ref={statsRef}
+//               style={{
+//                 flex: window.innerWidth < 1024 ? "1 1 auto" : "0 0 50%",
+//                 display: "flex",
+//                 flexDirection: "column",
+//                 gap: "32px",
+//                 maxWidth: "100%",
+//               }}
+//             >
+//               {animatedStats.map((stat, index) => (
+//                 <div
+//                   key={index}
+//                   style={{
+//                     padding: "32px",
+//                     border: "1px solid #e0e0e0",
+//                     borderRadius: "16px",
+//                     backgroundColor: "#ffffff",
+//                     boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
+//                     transition: "transform 0.2s ease, box-shadow 0.2s ease"
+//                   }}
+//                   onMouseEnter={(e) => {
+//                     e.currentTarget.style.transform = "translateY(-4px)";
+//                     e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.1)";
+//                   }}
+//                   onMouseLeave={(e) => {
+//                     e.currentTarget.style.transform = "translateY(0)";
+//                     e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.05)";
+//                   }}
+//                 >
+//                   <div
+//                     style={{
+//                       fontSize: "4rem",
+//                       fontWeight: 700,
+//                       color: statsData[index].color,
+//                       lineHeight: 1,
+//                       marginBottom: "16px",
+//                     }}
+//                   >
+//                     {stat.value}{stat.suffix}
+//                   </div>
+//                   <p
+//                     style={{
+//                       fontSize: "1rem",
+//                       color: "#666666",
+//                       lineHeight: 1.5,
+//                       margin: 0,
+//                     }}
+//                   >
+//                     {statsData[index].description}
+//                   </p>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AgroNumbers;
+
+
+
+
 import React, { useState, useEffect, useRef } from "react";
 
-const CroNumbers = () => {
-  const [isLaptop, setIsLaptop] = useState(false);
+const CRONumbers = () => {
   const [animatedStats, setAnimatedStats] = useState([
-    { value: 0, target: 97, suffix: '%' },
-    { value: 0, target: 80, suffix: '%' },
-    { value: 0, target: 49, suffix: '%' }
+    { value: 0, target: 60, suffix: '%' },
+    { value: 0, target: 85, suffix: '%' },
+    { value: 0, target: 90, suffix: '%' }
   ]);
   const [isVisible, setIsVisible] = useState(false);
   const statsRef = useRef(null);
@@ -23,26 +360,18 @@ const CroNumbers = () => {
   const statsData = [
     {
       color: "#00BCD4",
-      description: "of protein engineers use AI-driven design tools to accelerate discovery."
+      description: "faster trial setup and execution."
     },
     {
       color: "#E91E63", 
-      description: "reduction in protein optimization time using generative models."
+      description: "of data processing tasks automated."
     },
     {
       color: "#FF5722",
-      description: "of pharmaceutical companies invest in computational protein design."
-    }
+      description: "trial endpoints predicted with high confidence before enrollment."   
+    
+}
   ];
-
-  useEffect(() => {
-    const checkWidth = () => {
-      setIsLaptop(window.innerWidth >= 1024);
-    };
-    checkWidth();
-    window.addEventListener("resize", checkWidth);
-    return () => window.removeEventListener("resize", checkWidth);
-  }, []);
 
   // Set up Intersection Observer
   useEffect(() => {
@@ -76,8 +405,8 @@ const CroNumbers = () => {
     if (!isVisible) return;
 
     const animateNumbers = () => {
-      const duration = 2000; // 2 seconds
-      const steps = 60; // 60 steps for smooth animation
+      const duration = 1500;
+      const steps = 50;
       const interval = duration / steps;
       
       let currentStep = 0;
@@ -85,7 +414,7 @@ const CroNumbers = () => {
       const timer = setInterval(() => {
         currentStep++;
         const progress = currentStep / steps;
-        const easeOut = 1 - Math.pow(1 - progress, 3); // Ease out function
+        const easeOut = 1 - Math.pow(1 - progress, 3);
         
         setAnimatedStats(prev => prev.map((stat, index) => ({
           ...stat,
@@ -107,21 +436,20 @@ const CroNumbers = () => {
     <div 
       ref={showcaseRef}
       style={{ 
-        maxWidth: "1350px", 
-        margin: "0 auto", 
+        maxWidth: "1100px", // Increased from 1000px
+        margin: "50px auto", // Increased from 40px
         padding: "0 16px",
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-        transitionDelay: '0.4s'
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+        transitionDelay: '0.3s'
       }}
     >
       <div
         style={{
-          marginTop: "120px",
           position: "relative",
-          borderRadius: "32px",
-          padding: "3px",
+          borderRadius: "22px", // Increased from 20px
+          padding: "2px",
           background: "linear-gradient(135deg, #4F1985, #6A1B9A, #4F1985)",
         }}
       >
@@ -129,7 +457,7 @@ const CroNumbers = () => {
         <div
           style={{
             backgroundColor: "#ffffff",
-            borderRadius: "28px",
+            borderRadius: "20px", // Increased from 18px
             overflow: "hidden",
           }}
         >
@@ -138,11 +466,10 @@ const CroNumbers = () => {
             style={{
               borderBottom: "1px solid #e0e0e0",
               backgroundColor: "#ffffff",
-              backdropFilter: "blur(4px)",
               overflow: "hidden",
               position: "relative",
-              margin: "24px 0",
-              padding: "8px 0",
+              margin: "18px 0", // Increased from 16px
+              padding: "7px 0", // Increased from 6px
             }}
           >
             <div
@@ -157,16 +484,16 @@ const CroNumbers = () => {
                 <div
                   key={index}
                   style={{
-                    width: "160px",
-                    height: "80px",
-                    margin: "0 15px",
+                    width: "130px", // Increased from 120px
+                    height: "55px", // Increased from 50px
+                    margin: "0 12px", // Increased from 10px
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    padding: "10px",
+                    padding: "7px", // Increased from 6px
                     backgroundColor: "white",
                     borderRadius: "4px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
                   }}
                 >
                   <img
@@ -179,11 +506,11 @@ const CroNumbers = () => {
                       height: "auto",
                       objectFit: "contain",
                       filter: "grayscale(20%)",
-                      transition: "all 0.3s ease",
+                      transition: "all 0.2s ease",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.filter = "grayscale(0%)";
-                      e.target.style.transform = "scale(1.05)";
+                      e.target.style.transform = "scale(1.03)";
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.filter = "grayscale(20%)";
@@ -208,8 +535,8 @@ const CroNumbers = () => {
             style={{
               display: "flex",
               flexDirection: window.innerWidth < 1024 ? "column" : "row",
-              gap: window.innerWidth < 768 ? "24px" : "64px",
-              padding: window.innerWidth < 768 ? "24px" : "80px",
+              gap: window.innerWidth < 768 ? "18px" : "36px", // Increased from 32px
+              padding: window.innerWidth < 768 ? "18px" : "44px", // Increased from 40px
               maxWidth: "100%",
               overflowX: "hidden",
               boxSizing: "border-box",
@@ -222,35 +549,39 @@ const CroNumbers = () => {
                 display: "flex",
                 flexDirection: "column", 
                 justifyContent: "center",
-                padding: window.innerWidth < 768 ? "16px" : "64px",
+                padding: window.innerWidth < 768 ? "14px" : "36px", // Increased from 32px
                 maxWidth: "100%",
               }}
             >
               <h2
                 style={{
-                  fontSize: window.innerWidth < 768 ? "1.25rem" : "2.6rem",
+                  fontSize: window.innerWidth < 768 ? "1.15rem" : "1.9rem", // Increased from 1.8rem
                   fontWeight: 500,
-                  lineHeight: 1.25,
-                  marginBottom: window.innerWidth < 768 ? "19.2px" : "35.2px",
+                  lineHeight: 1.3,
+                  marginBottom: window.innerWidth < 768 ? "14px" : "22px", // Increased
                   color: "#333333",
                 }}
               >
-                No industry moves as fast as biotech.
+             Accelerate Clinical Trials with Smarter, Safer, Patient-Focused Design
               </h2>
               <p
                 style={{
-                  fontSize: window.innerWidth < 768 ? "0.85rem" : "1.05rem",
-                  lineHeight: 1.6,
+                  fontSize: window.innerWidth < 768 ? "0.82rem" : "0.95rem", // Increased
+                  lineHeight: 1.5,
                   color: "#666666",
-                  marginBottom: window.innerWidth < 768 ? "28.8px" : "48px",
+                  marginBottom: window.innerWidth < 768 ? "18px" : "26px", // Increased
                 }}
               >
-                The world runs on innovation, and for those who build biotechnology relied on by millions, it's a never-ending challenge to keep ahead of the market. Any industry can be disrupted almost overnight by a new discovery. Isn't it better to know that your research is the one making the breakthrough? Our platform helps you do just that.
+In today’s high-stakes healthcare environment, being first-to-market isn’t enough—you need to be right-first-time. The Boltzmann AI Discovery Suite doesn’t just accelerate your trials; it empowers your teams to design smarter studies, reduce patient risk, and improve clinical outcomes.
+
+
+
+
               </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
                 <div
                   style={{
-                    width: window.innerWidth < 640 ? "28px" : "36px",
+                    width: window.innerWidth < 640 ? "22px" : "30px", // Increased
                     height: "2px",
                     background: "linear-gradient(90deg, #4F1985, #6A1B9A)",
                   }}
@@ -258,13 +589,13 @@ const CroNumbers = () => {
                 <span
                   style={{
                     textTransform: "uppercase",
-                    letterSpacing: "1px",
+                    letterSpacing: "0.5px",
                     fontWeight: 400,
                     color: "#666666",
-                    fontSize: window.innerWidth < 640 ? "0.65rem" : "0.75rem",
+                    fontSize: window.innerWidth < 640 ? "0.62rem" : "0.72rem", // Increased
                   }}
                 >
-                  Protein Design Innovation
+                  Chemicals
                 </span>
               </div>
             </div>
@@ -273,10 +604,10 @@ const CroNumbers = () => {
             <div
               ref={statsRef}
               style={{
-                flex: window.innerWidth < 1024 ? "1 1 auto" : "0 0 50%",
+                flex: window.innerWidth < 1024 ? "1 1 auto" : "0 0 46%", // Increased from 45%
                 display: "flex",
                 flexDirection: "column",
-                gap: "32px",
+                gap: "22px", // Increased from 20px
                 maxWidth: "100%",
               }}
             >
@@ -284,38 +615,38 @@ const CroNumbers = () => {
                 <div
                   key={index}
                   style={{
-                    padding: "32px",
+                    padding: "22px", // Increased from 20px
                     border: "1px solid #e0e0e0",
-                    borderRadius: "16px",
+                    borderRadius: "13px", // Increased from 12px
                     backgroundColor: "#ffffff",
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                     transition: "transform 0.2s ease, box-shadow 0.2s ease"
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-4px)";
-                    e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.1)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.05)";
+                    e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.05)";
                   }}
                 >
                   <div
                     style={{
-                      fontSize: "4rem",
+                      fontSize: "2.7rem", // Increased from 2.5rem
                       fontWeight: 700,
                       color: statsData[index].color,
                       lineHeight: 1,
-                      marginBottom: "16px",
+                      marginBottom: "10px", // Increased from 8px
                     }}
                   >
                     {stat.value}{stat.suffix}
                   </div>
                   <p
                     style={{
-                      fontSize: "1rem",
+                      fontSize: "0.87rem", // Increased from 0.85rem
                       color: "#666666",
-                      lineHeight: 1.5,
+                      lineHeight: 1.4,
                       margin: 0,
                     }}
                   >
@@ -331,4 +662,4 @@ const CroNumbers = () => {
   );
 };
 
-export default CroNumbers;
+export default CRONumbers;

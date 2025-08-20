@@ -542,7 +542,7 @@ const ArShowcase = () => {
               letterSpacing: "1px",
             }}
           >
-            PROTEIN ENGINEERING
+          Academic Research
           </p>
           <h2
             style={{
@@ -553,7 +553,7 @@ const ArShowcase = () => {
               lineHeight: "1.2",
             }}
           >
-            Revolutionizing Biotech with AI-Powered Protein Design
+           Accelerate Scientific Discovery from Hypothesis to Publication
           </h2>
           <p
             style={{
@@ -564,7 +564,8 @@ const ArShowcase = () => {
               textAlign: 'justify'
             }}
           >
-            Our platform leverages cutting-edge artificial intelligence to accelerate protein engineering, enabling researchers to design novel enzymes, therapeutics, and biomaterials with unprecedented speed and precision. By combining deep learning with biophysical modeling, we're transforming how proteins are designed and optimized.
+            Whether you're advancing fundamental science, unlocking cross-disciplinary insights, or scaling research collaborations, our AI Discovery Suite is built to help you bring your ideas from hypothesis to publication faster.
+
           </p>
         </div>
       </div>

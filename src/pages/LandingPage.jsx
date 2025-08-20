@@ -592,10 +592,32 @@ export default function LaptopSection({ isOpen }) {
   return (
     <div style={containerStyle}>
       {/* Section Title */}
-      <h2 style={sectionTitleStyle}>
-        Explore Our Technology
-        <span style={underlineStyle} />
-      </h2>
+      <h2 style={{ 
+            fontFamily: "'Inter', sans-serif", 
+            fontSize: '42px', 
+            fontWeight: '200', 
+            color: '#111827',
+            margin: 0,
+            padding: '20px',
+            textAlign: 'center',
+            fontWeight: 400,
+            color: '#4F1985',
+            fontSize: '2.5rem',
+            fontFamily: 'timesnew'
+          }}>
+           Explore Our Technology
+
+             <span
+            style={{
+              display: "block",
+              width: "80px",
+              height: "4px",
+              backgroundColor: "#4F1985",
+              margin: "15px auto 0",
+              borderRadius: "2px"
+            }}
+          />
+          </h2>
 
       <AnimatePresence>
         {isOpen && (
@@ -628,21 +650,23 @@ export default function LaptopSection({ isOpen }) {
               </p>
 
               <div style={buttonContainerStyle}>
-                {['Learn More', 'Request Demo'].map((text) => (
-                  <button
-                    key={text}
-                    style={buttonStyle}
-                    onMouseOver={(e) =>
-                      (e.target.style.backgroundColor = '#3c1269')
-                    }
-                    onMouseOut={(e) =>
-                      (e.target.style.backgroundColor = '#4F1985')
-                    }
-                  >
-                    {text}
-                  </button>
-                ))}
-              </div>
+  {['Request Demo'].map((text) => (
+    <button
+      key={text}
+      style={buttonStyle}
+      onMouseOver={(e) =>
+        (e.target.style.backgroundColor = '#3c1269')
+      }
+      onMouseOut={(e) =>
+        (e.target.style.backgroundColor = '#4F1985')
+      }
+      onClick={() => window.location.href = '/contact'} 
+    >
+      {text}
+    </button>
+  ))}
+</div>
+
             </motion.div>
           </div>
         )}

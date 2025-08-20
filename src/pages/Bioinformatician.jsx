@@ -9,9 +9,10 @@ export default function Bioinformatician(){
         logo="logo.png"
       title="Bioinformatician"
       subtitle="By Role"
-      description="Medicinal chemists design and refine molecules to modulate biological targets effectively.
- They balance potency, selectivity, and safety while optimizing drug-like properties.
- Their insights bridge biological hypotheses with chemical innovation.
+      description="Bioinformaticians turn complex biological datasets into actionable patterns and predictions.
+They integrate omics, literature, and clinical data to uncover targets and mechanisms.
+Their work drives data-informed decisions in discovery pipelines.
+
 ." />
         <BioinsightZigZagSection />
         <BioinfoMarketingDaySection />

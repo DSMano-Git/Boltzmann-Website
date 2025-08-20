@@ -432,6 +432,7 @@ export default function MarketingDaySection() {
         }}
       >
         From idea to lead compound—faster and smarter.
+
       </h2>
 
       <div

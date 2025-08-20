@@ -6,7 +6,12 @@ import Footer from '../components/Footer'
 export default function Biotechandpharma() {
     return(
 <>
-<ProteinEngineeringShowcase />
+<ProteinEngineeringShowcase
+
+ logo="logo.png"
+      title="We're Boltzmann"
+      subtitle="About us"
+      description="Since 2019, our AI-powered discovery platform has been transforming the way researchers, scientists, and innovators work—enabling faster breakthroughs, reducing costs, and driving sustainable innovation."/>
 <ProteinNumbers />
 <PharmaFeaturesGrid />
 <BiotechExploreModulesSection />

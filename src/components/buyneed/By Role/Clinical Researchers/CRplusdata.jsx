@@ -394,21 +394,21 @@ export default function CRMarketingDaySection() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  const items = [
-    {
-      title: "Design Novel Molecules",
-      desc: "Generate drug-like compounds tailored to potency, selectivity, and safety constraints.",
-    },
-    {
-      title: "Optimize Properties",
-      desc: "Predict and refine ADMET and binding profiles before synthesis.",
-    },
-    {
-      title: "Data-Driven Decisions",
-      desc: "Use AI-guided structure–activity relationship (SAR) analysis to make confident design choices.",
-    },
-    
-  ];
+ const items = [
+  {
+    title: "Cohort Stratification",
+    desc: "Identify and group patient subpopulations for targeted trials.",
+  },
+  {
+    title: "Predictive Trial Design",
+    desc: "Model trial outcomes and optimize inclusion/exclusion criteria.",
+  },
+  {
+    title: "Biomarker-Driven Insights",
+    desc: "Link preclinical biomarkers with real-world patient data for precision medicine strategies.",
+  },
+];
+
 
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -431,7 +431,7 @@ export default function CRMarketingDaySection() {
           lineHeight: 1.3,
         }}
       >
-        From idea to lead compound—faster and smarter.
+        Bridge discovery with clinical translation.
       </h2>
 
       <div

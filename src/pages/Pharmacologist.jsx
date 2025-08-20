@@ -9,9 +9,10 @@ return(
 logo="logo.png"
       title="Pharmacologists"
       subtitle="By Role"
-      description="Medicinal chemists design and refine molecules to modulate biological targets effectively.
- They balance potency, selectivity, and safety while optimizing drug-like properties.
- Their insights bridge biological hypotheses with chemical innovation.
+      description="Pharmacologists study how molecules interact with biological systems.
+They assess efficacy, safety, and mechanisms of action through experiments and modeling.
+Their evaluations guide candidate selection and development.
+.
 ." 
 />
 <PharmacoloZigZagSection />

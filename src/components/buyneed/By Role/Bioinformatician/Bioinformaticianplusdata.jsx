@@ -394,21 +394,21 @@ export default function BioinfoMarketingDaySection() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  const items = [
-    {
-      title: "Design Novel Molecules",
-      desc: "Generate drug-like compounds tailored to potency, selectivity, and safety constraints.",
-    },
-    {
-      title: "Optimize Properties",
-      desc: "Predict and refine ADMET and binding profiles before synthesis.",
-    },
-    {
-      title: "Data-Driven Decisions",
-      desc: "Use AI-guided structure–activity relationship (SAR) analysis to make confident design choices.",
-    },
-    
-  ];
+ const items = [
+  {
+    title: "Multi-Omics Integration",
+    desc: "Combine genomics, transcriptomics, proteomics, and clinical datasets for a holistic view of biology.",
+  },
+  {
+    title: "Target Discovery",
+    desc: "Identify and validate genes, proteins, and biomarkers linked to disease or function.",
+  },
+  {
+    title: "Automated Knowledge Mining",
+    desc: "Use LLMs to scan literature, patents, and databases for hidden connections.",
+  },
+];
+
 
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -431,7 +431,8 @@ export default function BioinfoMarketingDaySection() {
           lineHeight: 1.3,
         }}
       >
-        From idea to lead compound—faster and smarter.
+       Turn complex datasets into actionable discovery insights.
+
       </h2>
 
       <div

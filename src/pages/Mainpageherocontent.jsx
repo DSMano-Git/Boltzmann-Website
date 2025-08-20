@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion, useAnimationControls } from "framer-motion";
-import videoFile from '/src/assets/video3.mp4'; 
+import { motion, scale, useAnimationControls } from "framer-motion";
 
 export default function MainPageherocontent() {
   const taglineLines = ["Reimagine drug discovery through"];
@@ -233,7 +232,7 @@ export default function MainPageherocontent() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f7fafd, #eef2f5)',
+        
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
         justifyContent: 'space-between',
@@ -407,21 +406,20 @@ export default function MainPageherocontent() {
           marginTop: isMobile ? '2rem' : 0
         }}
       >
-        {/* <video
-          src={videoFile}
+        <video
+          src='public/video3.mp4'
           autoPlay
           loop
           muted
           playsInline
           style={{
-            width: isMobile ? '90%' : '70%',
-            height: 'auto',
+            width: isMobile ? '100%' : '70%',
+            height: '500px',
             borderRadius: '12px',
-            backgroundColor: '#000',
+            
             maxHeight: isMobile ? '50vh' : '90vh',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
           }}
-        /> */}
+        />
       </div>
     </div>
   );

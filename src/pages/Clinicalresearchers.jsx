@@ -10,9 +10,10 @@ return(
 logo="logo.png"
       title="Clinical Researchers"
       subtitle="By Role"
-      description="Medicinal chemists design and refine molecules to modulate biological targets effectively.
- They balance potency, selectivity, and safety while optimizing drug-like properties.
- Their insights bridge biological hypotheses with chemical innovation.
+      description="Clinical researchers translate preclinical findings into patient-centered trials.
+ They design studies to test safety, efficacy, and real-world impact.
+ Their work ensures scientific discoveries become viable therapeutic solutions.
+
 ."  />
 <CRZigZagSection />
 <CRMarketingDaySection />

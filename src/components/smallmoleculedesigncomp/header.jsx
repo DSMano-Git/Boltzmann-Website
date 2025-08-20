@@ -351,8 +351,7 @@ export default function SmallOverlappingCard() {
             }}
             variants={fadeUpVariant}
           >
-            Media insights that drive your business forward. Request a demo to
-            learn more about our comprehensive analytics platform.
+            Transform the way you discover, design, and optimize small molecules — faster, smarter  
           </motion.p>
 
           <motion.button

@@ -501,51 +501,317 @@
 //   );
 // }
 
+// import React, { useEffect, useRef, useState } from "react";
+
+// export default function SmallInsightCards() {
+//   const cards = [
+//     {
+//       title: "Design Breakthrough Molecules with Confidence",
+//       description:
+//         "Go beyond conventional screening. Our platform uses cutting-edge generative AI trained on multi-omics, chemical, and structural datasets to propose high-potential small molecules for your specific target or pathway. Every suggestion comes with predicted activity, toxicity, and developability scores — enabling faster decision-making from hit to lead.",
+//       gradient:
+//         "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(147,197,253,0.1))",
+//       accent: "rgba(59,130,246,1)",
+//       shadow: "rgba(59,130,246,0.25)",
+//       iconType: "monitor",
+//     },
+//     {
+//       title: "Streamline Discovery to Development",
+//       description:
+//         "From in silico design to pathway planning, the AI Discovery Suite integrates predictive modeling, retrosynthetic analysis, and property optimization in a single workspace. Collaborate across teams, automate routine workflows, and reduce R&D cycles without compromising quality.",
+//       gradient:
+//         "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(110,231,183,0.1))",
+//       accent: "rgba(16,185,129,1)",
+//       shadow: "rgba(16,185,129,0.25)",
+//       iconType: "network",
+//     },
+//     {
+//       title: "Built for Innovation, Backed by Science",
+//       description:
+//         "Our technology doesn’t just predict — it explains. With transparent AI reasoning, structure–activity visualizations, and integration with lab data, you get actionable insights grounded in chemistry. The result? More innovative molecules, fewer dead ends, and faster routes to clinical relevance.",
+//       gradient:
+//         "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(244,114,182,0.1))",
+//       accent: "rgba(236,72,153,1)",
+//       shadow: "rgba(236,72,153,0.25)",
+//       iconType: "integration",
+//     },
+//     {
+//       title: "Your Competitive Edge in Drug Discovery",
+//       description:
+//         "In a space where speed and precision determine success, our AI Discovery Suite gives you the tools to stay ahead. Reduce costs, explore chemical space like never before, and bring transformative therapies to market faster.",
+//       gradient:
+//         "linear-gradient(135deg, rgba(245,158,11,0.15), rgba(253,224,71,0.1))",
+//       accent: "rgba(245,158,11,1)",
+//       shadow: "rgba(245,158,11,0.25)",
+//       iconType: "monitor",
+//     },
+//   ];
+
+//   const sectionRef = useRef(null);
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => entry.isIntersecting && setIsVisible(true),
+//       { threshold: 0.1 }
+//     );
+//     if (sectionRef.current) observer.observe(sectionRef.current);
+//     return () => sectionRef.current && observer.unobserve(sectionRef.current);
+//   }, []);
+
+//   useEffect(() => {
+//     const handleResize = () => setWindowWidth(window.innerWidth);
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const getGridColumns = () => {
+//     if (windowWidth < 640) return "1fr"; // mobile
+//     if (windowWidth < 1024) return "1fr 1fr"; // tablet & small laptops
+//     return "1fr 1fr"; // desktops
+//   };
+
+//   const renderIcon = (type, color) => {
+//     const size = 48; // bigger icons
+//     switch (type) {
+//       case "monitor":
+//         return (
+//           <svg
+//             width={size}
+//             height={size}
+//             fill="none"
+//             stroke={color}
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             viewBox="0 0 24 24"
+//           >
+//             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+//             <line x1="8" y1="21" x2="16" y2="21"></line>
+//             <line x1="12" y1="17" x2="12" y2="21"></line>
+//             <path d="M7 11h10"></path>
+//           </svg>
+//         );
+//       case "network":
+//         return (
+//           <svg
+//             width={size}
+//             height={size}
+//             fill="none"
+//             stroke={color}
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             viewBox="0 0 24 24"
+//           >
+//             <path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+//             <path d="M17.8 19.2a9 9 0 0 0 1.6-4.7 1 1 0 0 0-1-1h-3.2a4 4 0 0 1-.8-2.3V8.3a1 1 0 0 0-1-1H9.2a1 1 0 0 0-1 1v2.5a4 4 0 0 1-.8 2.3H4.2a1 1 0 0 0-1 1 9 9 0 0 0 1.6 4.7"></path>
+//             <path d="M7.5 14.6a5 5 0 0 1 9 0"></path>
+//           </svg>
+//         );
+//       case "integration":
+//         return (
+//           <svg
+//             width={size}
+//             height={size}
+//             fill="none"
+//             stroke={color}
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             viewBox="0 0 24 24"
+//           >
+//             <path d="M12 2v4"></path>
+//             <path d="m16.24 7.76 2.83-2.83"></path>
+//             <path d="M18 12h4"></path>
+//             <path d="m16.24 16.24 2.83 2.83"></path>
+//             <path d="M12 18v4"></path>
+//             <path d="m7.76 16.24-2.83 2.83"></path>
+//             <path d="M6 12H2"></path>
+//             <path d="m7.76 7.76-2.83-2.83"></path>
+//             <circle cx="12" cy="12" r="3"></circle>
+//           </svg>
+//         );
+//       default:
+//         return null;
+//     }
+//   };
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       style={{
+//         position: "relative",
+//         overflow: "hidden",
+//         padding: "0px 20px 80px", // more balanced top/bottom padding
+//         maxWidth: "1280px",
+//         margin: "0 auto",
+//         opacity: isVisible ? 1 : 0,
+//         transform: isVisible ? "translateY(0)" : "translateY(20px)",
+//         transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+//       }}
+//     >
+//       <h2
+//         style={{
+//           fontSize: windowWidth < 640 ? "32px" : "40px", // bigger heading
+//           marginTop: windowWidth < 640 ? "60px" : "0px", // bigger heading
+//           marginBottom: windowWidth < 640 ? "60px" : "70px", // bigger heading
+//           fontWeight: 500,
+//           textAlign: "center",
+//           margin: "0 0 40px", // remove default top margin
+//           lineHeight: 1.3,
+//           color: "#111827", 
+//           position: "relative",
+//           opacity: isVisible ? 1 : 0,
+//           transition: "opacity 0.6s ease-out 0.2s",
+//           fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'timesnew'
+//         }}
+//       >
+//         We empower businesses to be insight-driven.
+         
+//          <span
+//             style={{
+//               display: "block",
+//               width: "80px",
+//               height: "4px",
+//               backgroundColor: "#4F1985",
+//               margin: "15px auto 0",
+//               borderRadius: "2px"
+//             }}
+//           />
+//      </h2>
+      
+
+//       <div
+//         style={{
+//           display: "grid",
+//           gridTemplateColumns: getGridColumns(),
+//           gap: windowWidth < 640 ? "24px" : "36px",
+//         }}
+//       >
+//         {cards.map((card, index) => (
+//           <div
+//             key={index}
+//             style={{
+//               background: card.gradient,
+//               padding: windowWidth < 640 ? "32px 24px" : "35px 25px", // more space inside cards //cardspadding
+//               borderRadius: "24px",
+//               boxShadow: `0 8px 20px ${card.shadow}`,
+//               display: "flex",
+//               flexDirection: "column",
+//               position: "relative",
+//               overflow: "hidden",
+//               opacity: isVisible ? 1 : 0,
+//               transform: isVisible ? "translateY(0)" : "translateY(20px)",
+//               transition: `opacity 0.6s ease-out ${0.3 + index * 0.1}s, transform 0.6s ease-out ${0.3 + index * 0.1}s`,
+//             }}
+//           >
+//             <div style={{ marginBottom: "24px", opacity: 0.9 }}>
+//               {renderIcon(card.iconType, card.accent)}
+//             </div>
+//             <h3
+//               style={{
+//                 fontSize: windowWidth < 640 ? "20px" : "26px", // bigger titles
+//                 fontWeight: 600,
+//                 marginBottom: "18px",
+//                 lineHeight: 1.5,
+//                 color: "#111827",
+//                 position: "relative",
+//                 paddingBottom: "12px",
+//               }}
+//             >
+//               {card.title}
+//               <span
+//                 style={{
+//                   position: "absolute",
+//                   bottom: 0,
+//                   left: 0,
+//                   width: "60px",
+//                   height: "3px",
+//                   background: card.accent,
+//                   borderRadius: "2px",
+//                 }}
+//               />
+//             </h3>
+//             <p
+//               style={{
+//                 fontSize: windowWidth < 640 ? "16px" : "18px", // readable text
+//                 color: "#374151",
+//                 lineHeight: 1.75,
+//                 flexGrow: 1,
+//               }}
+//             >
+//               {card.description}
+//             </p>
+
+//             <div
+//               style={{
+//                 position: "absolute",
+//                 top: 0,
+//                 right: 0,
+//                 width: 0,
+//                 height: 0,
+//                 borderTop: `70px solid ${card.accent}20`,
+//                 borderLeft: "70px solid transparent",
+//               }}
+//             />
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
+
+
+
 import React, { useEffect, useRef, useState } from "react";
+import { FlaskConical, Workflow, Beaker, Target } from "lucide-react";
+
 
 export default function SmallInsightCards() {
   const cards = [
-    {
-      title: "Design Breakthrough Molecules with Confidence",
-      description:
-        "Go beyond conventional screening. Our platform uses cutting-edge generative AI trained on multi-omics, chemical, and structural datasets to propose high-potential small molecules for your specific target or pathway. Every suggestion comes with predicted activity, toxicity, and developability scores — enabling faster decision-making from hit to lead.",
-      gradient:
-        "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(147,197,253,0.1))",
-      accent: "rgba(59,130,246,1)",
-      shadow: "rgba(59,130,246,0.25)",
-      iconType: "monitor",
-    },
-    {
-      title: "Streamline Discovery to Development",
-      description:
-        "From in silico design to pathway planning, the AI Discovery Suite integrates predictive modeling, retrosynthetic analysis, and property optimization in a single workspace. Collaborate across teams, automate routine workflows, and reduce R&D cycles without compromising quality.",
-      gradient:
-        "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(110,231,183,0.1))",
-      accent: "rgba(16,185,129,1)",
-      shadow: "rgba(16,185,129,0.25)",
-      iconType: "network",
-    },
-    {
-      title: "Built for Innovation, Backed by Science",
-      description:
-        "Our technology doesn’t just predict — it explains. With transparent AI reasoning, structure–activity visualizations, and integration with lab data, you get actionable insights grounded in chemistry. The result? More innovative molecules, fewer dead ends, and faster routes to clinical relevance.",
-      gradient:
-        "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(244,114,182,0.1))",
-      accent: "rgba(236,72,153,1)",
-      shadow: "rgba(236,72,153,0.25)",
-      iconType: "integration",
-    },
-    {
-      title: "Your Competitive Edge in Drug Discovery",
-      description:
-        "In a space where speed and precision determine success, our AI Discovery Suite gives you the tools to stay ahead. Reduce costs, explore chemical space like never before, and bring transformative therapies to market faster.",
-      gradient:
-        "linear-gradient(135deg, rgba(245,158,11,0.15), rgba(253,224,71,0.1))",
-      accent: "rgba(245,158,11,1)",
-      shadow: "rgba(245,158,11,0.25)",
-      iconType: "monitor",
-    },
-  ];
+  {
+    title: "Design Breakthrough Molecules with Confidence",
+    description:
+      "Go beyond conventional screening. Our platform uses cutting-edge generative AI trained on multi-omics, chemical, and structural datasets to propose high-potential small molecules for your specific target or pathway. Every suggestion comes with predicted activity, toxicity, and developability scores — enabling faster decision-making from hit to lead.",
+    gradient:
+      "linear-gradient(135deg, rgba(99,102,241,0.15), rgba(165,180,252,0.1))",
+    accent: "rgba(99,102,241,1)",
+    shadow: "rgba(99,102,241,0.25)",
+    iconType: "flask", // lab flask for molecules
+  },
+  {
+    title: "Streamline Discovery to Development",
+    description:
+      "From in silico design to pathway planning, the AI Discovery Suite integrates predictive modeling, retrosynthetic analysis, and property optimization in a single workspace. Collaborate across teams, automate routine workflows, and reduce R&D cycles without compromising quality.",
+    gradient:
+      "linear-gradient(135deg, rgba(34,197,94,0.15), rgba(110,231,183,0.1))",
+    accent: "rgba(34,197,94,1)",
+    shadow: "rgba(34,197,94,0.25)",
+    iconType: "workflow", // workflow/process icon
+  },
+  {
+    title: "Built for Innovation, Backed by Science",
+    description:
+      "Our technology doesn’t just predict — it explains. With transparent AI reasoning, structure–activity visualizations, and integration with lab data, you get actionable insights grounded in chemistry. The result? More innovative molecules, fewer dead ends, and faster routes to clinical relevance.",
+    gradient:
+      "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(251,207,232,0.1))",
+    accent: "rgba(236,72,153,1)",
+    shadow: "rgba(236,72,153,0.25)",
+    iconType: "beaker", // scientific beaker icon
+  },
+  {
+    title: "Your Competitive Edge in Drug Discovery",
+    description:
+      "In a space where speed and precision determine success, our AI Discovery Suite gives you the tools to stay ahead. Reduce costs, explore chemical space like never before, and bring transformative therapies to market faster.",
+    gradient:
+      "linear-gradient(135deg, rgba(250,204,21,0.15), rgba(253,230,138,0.1))",
+    accent: "rgba(250,204,21,1)",
+    shadow: "rgba(250,204,21,0.25)",
+    iconType: "target", // target/bullseye for precision
+  },
+];
 
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -567,76 +833,26 @@ export default function SmallInsightCards() {
   }, []);
 
   const getGridColumns = () => {
-    if (windowWidth < 640) return "1fr"; // mobile
-    if (windowWidth < 1024) return "1fr 1fr"; // tablet & small laptops
-    return "1fr 1fr"; // desktops
+    if (windowWidth < 640) return "1fr";
+    if (windowWidth < 1024) return "1fr 1fr";
+    return "1fr 1fr";
   };
 
-  const renderIcon = (type, color) => {
-    const size = 48; // bigger icons
-    switch (type) {
-      case "monitor":
-        return (
-          <svg
-            width={size}
-            height={size}
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-            <path d="M7 11h10"></path>
-          </svg>
-        );
-      case "network":
-        return (
-          <svg
-            width={size}
-            height={size}
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-            <path d="M17.8 19.2a9 9 0 0 0 1.6-4.7 1 1 0 0 0-1-1h-3.2a4 4 0 0 1-.8-2.3V8.3a1 1 0 0 0-1-1H9.2a1 1 0 0 0-1 1v2.5a4 4 0 0 1-.8 2.3H4.2a1 1 0 0 0-1 1 9 9 0 0 0 1.6 4.7"></path>
-            <path d="M7.5 14.6a5 5 0 0 1 9 0"></path>
-          </svg>
-        );
-      case "integration":
-        return (
-          <svg
-            width={size}
-            height={size}
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2v4"></path>
-            <path d="m16.24 7.76 2.83-2.83"></path>
-            <path d="M18 12h4"></path>
-            <path d="m16.24 16.24 2.83 2.83"></path>
-            <path d="M12 18v4"></path>
-            <path d="m7.76 16.24-2.83 2.83"></path>
-            <path d="M6 12H2"></path>
-            <path d="m7.76 7.76-2.83-2.83"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-        );
-      default:
-        return null;
-    }
-  };
+const renderIcon = (type, color) => {
+  const size = 36; // Compact icon size
+  switch (type) {
+    case "flask":
+      return <FlaskConical color={color} size={size} />;
+    case "workflow":
+      return <Workflow color={color} size={size} />;
+    case "beaker":
+      return <Beaker color={color} size={size} />;
+    case "target":
+      return <Target color={color} size={size} />;
+    default:
+      return null;
+  }
+};
 
   return (
     <section
@@ -644,50 +860,50 @@ export default function SmallInsightCards() {
       style={{
         position: "relative",
         overflow: "hidden",
-        padding: "0px 20px 80px", // more balanced top/bottom padding
-        maxWidth: "1280px",
+        padding: "0px 16px 50px",
+        maxWidth: "1000px",
         margin: "0 auto",
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+        transform: isVisible ? "translateY(0)" : "translateY(15px)",
+        transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
       }}
     >
       <h2
         style={{
-          fontSize: windowWidth < 640 ? "32px" : "40px", // bigger heading
-          marginTop: windowWidth < 640 ? "60px" : "0px", // bigger heading
-          marginBottom: windowWidth < 640 ? "60px" : "70px", // bigger heading
+          marginTop: windowWidth < 640 ? "30px" : "0px",
+          marginBottom: windowWidth < 640 ? "30px" : "40px",
           fontWeight: 500,
           textAlign: "center",
-          margin: "0 0 40px", // remove default top margin
+          margin: "0 0 25px",
           lineHeight: 1.3,
-          color: "#111827", 
+          color: "#111827",
           position: "relative",
           opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.6s ease-out 0.2s",
-          fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'timesnew'
+          transition: "opacity 0.5s ease-out 0.2s",
+          fontWeight: 400,
+          color: "#4F1985",
+          fontSize: "2rem",
+          fontFamily: "timesnew"
         }}
       >
         We empower businesses to be insight-driven.
-         
-         <span
-            style={{
-              display: "block",
-              width: "80px",
-              height: "4px",
-              backgroundColor: "#4F1985",
-              margin: "15px auto 0",
-              borderRadius: "2px"
-            }}
-          />
-     </h2>
-      
+        <span
+          style={{
+            display: "block",
+            width: "60px",
+            height: "3px",
+            backgroundColor: "#4F1985",
+            margin: "10px auto 0",
+            borderRadius: "2px"
+          }}
+        />
+      </h2>
 
       <div
         style={{
           display: "grid",
           gridTemplateColumns: getGridColumns(),
-          gap: windowWidth < 640 ? "24px" : "36px",
+          gap: windowWidth < 640 ? "18px" : "24px",
         }}
       >
         {cards.map((card, index) => (
@@ -695,30 +911,30 @@ export default function SmallInsightCards() {
             key={index}
             style={{
               background: card.gradient,
-              padding: windowWidth < 640 ? "32px 24px" : "35px 25px", // more space inside cards //cardspadding
-              borderRadius: "24px",
-              boxShadow: `0 8px 20px ${card.shadow}`,
+              padding: windowWidth < 640 ? "20px 18px" : "24px 20px",
+              borderRadius: "18px",
+              boxShadow: `0 5px 14px ${card.shadow}`,
               display: "flex",
               flexDirection: "column",
               position: "relative",
               overflow: "hidden",
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: `opacity 0.6s ease-out ${0.3 + index * 0.1}s, transform 0.6s ease-out ${0.3 + index * 0.1}s`,
+              transform: isVisible ? "translateY(0)" : "translateY(15px)",
+              transition: `opacity 0.5s ease-out ${0.2 + index * 0.08}s, transform 0.5s ease-out ${0.2 + index * 0.08}s`,
             }}
           >
-            <div style={{ marginBottom: "24px", opacity: 0.9 }}>
+            <div style={{ marginBottom: "16px", opacity: 0.9 }}>
               {renderIcon(card.iconType, card.accent)}
             </div>
             <h3
               style={{
-                fontSize: windowWidth < 640 ? "20px" : "26px", // bigger titles
+                fontSize: windowWidth < 640 ? "17px" : "20px",
                 fontWeight: 600,
-                marginBottom: "18px",
-                lineHeight: 1.5,
+                marginBottom: "12px",
+                lineHeight: 1.4,
                 color: "#111827",
                 position: "relative",
-                paddingBottom: "12px",
+                paddingBottom: "8px",
               }}
             >
               {card.title}
@@ -727,8 +943,8 @@ export default function SmallInsightCards() {
                   position: "absolute",
                   bottom: 0,
                   left: 0,
-                  width: "60px",
-                  height: "3px",
+                  width: "40px",
+                  height: "2px",
                   background: card.accent,
                   borderRadius: "2px",
                 }}
@@ -736,9 +952,9 @@ export default function SmallInsightCards() {
             </h3>
             <p
               style={{
-                fontSize: windowWidth < 640 ? "16px" : "18px", // readable text
+                fontSize: windowWidth < 640 ? "14px" : "15px",
                 color: "#374151",
-                lineHeight: 1.75,
+                lineHeight: 1.6,
                 flexGrow: 1,
               }}
             >
@@ -752,8 +968,8 @@ export default function SmallInsightCards() {
                 right: 0,
                 width: 0,
                 height: 0,
-                borderTop: `70px solid ${card.accent}20`,
-                borderLeft: "70px solid transparent",
+                borderTop: `50px solid ${card.accent}20`,
+                borderLeft: "50px solid transparent",
               }}
             />
           </div>
@@ -762,4 +978,3 @@ export default function SmallInsightCards() {
     </section>
   );
 }
-

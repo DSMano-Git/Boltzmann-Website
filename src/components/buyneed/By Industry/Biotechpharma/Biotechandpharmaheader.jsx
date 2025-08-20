@@ -542,7 +542,7 @@ const ProteinEngineeringShowcase = () => {
               letterSpacing: "1px",
             }}
           >
-            PROTEIN ENGINEERING
+          Pharmaceuticals & Biotechnology 
           </p>
           <h2
             style={{
@@ -553,7 +553,7 @@ const ProteinEngineeringShowcase = () => {
               lineHeight: "1.2",
             }}
           >
-            Revolutionizing Biotech with AI-Powered Protein Design
+            Accelerating Drug Discovery and Scaling Innovation Pipelines
           </h2>
           <p
             style={{
@@ -564,7 +564,8 @@ const ProteinEngineeringShowcase = () => {
               textAlign: 'justify'
             }}
           >
-            Our platform leverages cutting-edge artificial intelligence to accelerate protein engineering, enabling researchers to design novel enzymes, therapeutics, and biomaterials with unprecedented speed and precision. By combining deep learning with biophysical modeling, we're transforming how proteins are designed and optimized.
+            Whether you're accelerating drug discovery, optimizing clinical research, or scaling innovation pipelines, our AI Discovery Suite is built to help you bring breakthrough therapies to market faster.
+give me the heading without question mark
           </p>
         </div>
       </div>

@@ -112,6 +112,10 @@ import Agrochemicals from './pages/Agrochemicals';
 import Cros from './pages/Cro';
 import Academicresearch from './pages/Academicresearch';
 import PrecisionMedicine from './pages/Precisionmedicine';
+import Multiomicsanalysis from './pages/Multiomicsanalysis';
+import Clinicaltrials from './pages/Clinicaltrials';
+import Materialsciences from './pages/Materialscience';
+import ClinicalTrialshealth from './pages/Clinicaltrialsandhealth';
 export default function App() {
   return (
     <BrowserRouter>
@@ -131,6 +135,8 @@ export default function App() {
         <Route path="/smallmoleculedesign" element={<SmallmoleculeDesign />} />
         <Route path="/proteinengineering" element={<Proteinengineering />} />
         <Route path="/syntheticchemistry" element={<Synthetic />} />
+        <Route path="/multiomicsanalysis" element={<Multiomicsanalysis />} />
+        <Route path="/clinicaltrials" element={<Clinicaltrials />} />
         <Route path="/medicinal-chemists" element={<Medicinalchemist />} />
         <Route path="/pharmaceuticals-biotech" element={<Biotechandpharma />} />
         <Route path="/bioinformatics" element={<Bioinformatician />} />
@@ -142,6 +148,10 @@ export default function App() {
         <Route path="/cros" element={<Cros />} />
         <Route path="/academic-research" element={<Academicresearch/>} />
         <Route path="/precision-medicine" element={<PrecisionMedicine/>} />
+        <Route path="/material-science" element={<Materialsciences/>} />
+        <Route path="/clinical-trials" element={<ClinicalTrialshealth/>} />
+
+
         
         
         

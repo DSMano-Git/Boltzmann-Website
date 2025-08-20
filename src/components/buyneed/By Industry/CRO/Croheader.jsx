@@ -542,7 +542,7 @@ const CroShowcase = () => {
               letterSpacing: "1px",
             }}
           >
-            PROTEIN ENGINEERING
+           CRO
           </p>
           <h2
             style={{
@@ -553,7 +553,7 @@ const CroShowcase = () => {
               lineHeight: "1.2",
             }}
           >
-            Revolutionizing Biotech with AI-Powered Protein Design
+           Accelerate Clinical Research with Confidence
           </h2>
           <p
             style={{
@@ -564,7 +564,7 @@ const CroShowcase = () => {
               textAlign: 'justify'
             }}
           >
-            Our platform leverages cutting-edge artificial intelligence to accelerate protein engineering, enabling researchers to design novel enzymes, therapeutics, and biomaterials with unprecedented speed and precision. By combining deep learning with biophysical modeling, we're transforming how proteins are designed and optimized.
+          Whether you're running multi-phase clinical trials, managing complex preclinical studies, or scaling client research programs, our AI Discovery Suite is built to help CROs deliver results faster, more accurately, and with full regulatory confidence.
           </p>
         </div>
       </div>

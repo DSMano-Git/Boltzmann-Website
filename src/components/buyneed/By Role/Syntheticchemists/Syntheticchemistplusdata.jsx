@@ -394,21 +394,22 @@ export default function SynthetichemistMarketingDaySection() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  const items = [
+const items = [
     {
-      title: "Design Novel Molecules",
-      desc: "Generate drug-like compounds tailored to potency, selectivity, and safety constraints.",
+      title: "Retrosynthesis Planning",
+      desc: "Generate multiple feasible synthetic routes optimized for cost and sustainability.",
     },
     {
-      title: "Optimize Properties",
-      desc: "Predict and refine ADMET and binding profiles before synthesis.",
+      title: "Feasibility Scoring",
+      desc: "Assess each route for complexity, safety, and regulatory alignment.",
     },
     {
-      title: "Data-Driven Decisions",
-      desc: "Use AI-guided structure–activity relationship (SAR) analysis to make confident design choices.",
+      title: "Lab-Ready Outputs",
+      desc: "Export experimental protocols directly into ELNs for streamlined execution.",
     },
-    
   ];
+
+
 
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -431,7 +432,8 @@ export default function SynthetichemistMarketingDaySection() {
           lineHeight: 1.3,
         }}
       >
-        From idea to lead compound—faster and smarter.
+        Plan and execute synthesis with precision and efficiency.
+
       </h2>
 
       <div

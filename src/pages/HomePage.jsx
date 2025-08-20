@@ -409,7 +409,7 @@ export default function HomePage() {
           style={{ marginBottom: '80px' }}
         >
           <LabAutomationSection
-            icon="⚛️"
+            
             heading="Gen AI for Scientific Precision"
             paragraphs={[
               'Unifies all stages of the discovery lifecycle.',
@@ -428,7 +428,7 @@ export default function HomePage() {
       
         >
           <LabAutomationSection
-            icon="🧬"
+            
             heading="Integrated LIMS with customizable APIs and CLI-first workflows for seamless operations."
             paragraphs={[
               'Unifies all stages of the discovery lifecycle.',

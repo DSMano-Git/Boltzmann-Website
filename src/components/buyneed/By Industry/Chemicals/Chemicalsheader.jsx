@@ -522,7 +522,7 @@ const ChemicalsShowcase = () => {
         >
           <img
             src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-            alt="Protein Engineering"
+            alt="Chemicals"
             style={{
               borderRadius: '20px',
               width: "420px",
@@ -542,7 +542,7 @@ const ChemicalsShowcase = () => {
               letterSpacing: "1px",
             }}
           >
-            PROTEIN ENGINEERING
+            Chemicals
           </p>
           <h2
             style={{
@@ -553,7 +553,8 @@ const ChemicalsShowcase = () => {
               lineHeight: "1.2",
             }}
           >
-            Revolutionizing Biotech with AI-Powered Protein Design
+            Transform Chemistry with AI-Driven Solutions
+
           </h2>
           <p
             style={{
@@ -564,7 +565,7 @@ const ChemicalsShowcase = () => {
               textAlign: 'justify'
             }}
           >
-            Our platform leverages cutting-edge artificial intelligence to accelerate protein engineering, enabling researchers to design novel enzymes, therapeutics, and biomaterials with unprecedented speed and precision. By combining deep learning with biophysical modeling, we're transforming how proteins are designed and optimized.
+            Whether you're advancing specialty materials, optimizing reaction pathways, or scaling sustainable manufacturing, our AI Discovery Suite is built to help you bring innovative chemical solutions to market faster.
           </p>
         </div>
       </div>

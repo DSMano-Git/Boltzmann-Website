@@ -395,20 +395,20 @@ export default function PharmacoloMarketingDaySection() {
   }, []);
 
   const items = [
-    {
-      title: "Design Novel Molecules",
-      desc: "Generate drug-like compounds tailored to potency, selectivity, and safety constraints.",
-    },
-    {
-      title: "Optimize Properties",
-      desc: "Predict and refine ADMET and binding profiles before synthesis.",
-    },
-    {
-      title: "Data-Driven Decisions",
-      desc: "Use AI-guided structure–activity relationship (SAR) analysis to make confident design choices.",
-    },
-    
-  ];
+  {
+    title: "Mechanism of Action Modeling",
+    desc: "Simulate drug–target interactions and predict pathway-level effects.",
+  },
+  {
+    title: "Efficacy & Safety Profiling",
+    desc: "Forecast dose-response curves, side effects, and off-target risks.",
+  },
+  {
+    title: "Data-Backed Prioritization",
+    desc: "Rank candidates based on therapeutic potential and predicted outcomes.",
+  },
+];
+
 
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -431,7 +431,8 @@ export default function PharmacoloMarketingDaySection() {
           lineHeight: 1.3,
         }}
       >
-        From idea to lead compound—faster and smarter.
+        Predict biological effects and accelerate preclinical success.
+
       </h2>
 
       <div

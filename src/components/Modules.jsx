@@ -1047,10 +1047,425 @@
 //   );
 // }
 
+// import React, { useState, useRef, useEffect } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import styled from "styled-components";
+// import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
+// // Styled components
+// const Container = styled.section`
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+
+//   @media (max-width: 768px) {
+//     padding: 40px 0;
+//   }
+// `;
+
+// const ContentWrapper = styled.div`
+//   max-width: 1440px;
+//   width: 100%;
+//   padding: 0 1.5rem;
+// `;
+
+// const Header = styled.div`
+//   text-align: center;
+//   margin-bottom: 50px;  // unified spacing
+//   max-width: 800px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   position: relative;
+// `;
+
+
+// const Title = styled.h2`
+//   font-size: 2.75rem;
+//   font-weight: 700;
+//   background: linear-gradient(90deg, #22d3ee, #c084fc, #fb923c);
+//   -webkit-background-clip: text;
+//   background-clip: text;
+//   color: transparent;
+//   margin-bottom: 1.25rem;
+//   line-height: 1.2;
+//   position: relative;
+
+//   @media (max-width: 768px) {
+//     font-size: 2.25rem;
+//   }
+// `;
+
+// const GradientUnderline = styled.span`
+//   position: absolute;
+//   bottom: -12px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   width: 120px;
+//   height: 4px;
+//   background: linear-gradient(
+//     90deg,
+//     rgba(34, 211, 238, 0.8),
+//     rgba(192, 132, 252, 0.8),
+//     rgba(251, 146, 60, 0.8)
+//   );
+//   border-radius: 2px;
+// `;
+
+// const Subtitle = styled.p`
+//   font-size: 1.35rem;
+//   color: #666;
+//   line-height: 1.6;
+//   margin: 0;
+
+//   @media (max-width: 768px) {
+//     font-size: 1.15rem;
+//   }
+// `;
+
+// const Card = styled.div`
+//   background: #fff;
+//   border-radius: 2rem;
+//   overflow: hidden;
+//   transition: all 0.3s ease;
+// `;
+
+// const TabBar = styled.div`
+//   display: flex;
+//   position: relative;
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+//   @media (max-width: 768px) {
+//     display: none;
+//   }
+// `;
+
+// const TabIndicator = styled(motion.div)`
+//   position: absolute;
+//   bottom: 0;
+//   height: 3px;
+//   background: linear-gradient(90deg, #4F1985,#4F1985,#4F1985);
+//   border-radius: 3px 3px 0 0;
+// `;
+
+// const Tab = styled.button`
+//   flex: 1;
+//   padding: 1.75rem 1.5rem;
+//   font-size: 1.1rem;
+//   font-weight: 500;
+//   color: ${(props) => (props.$active ? "#111" : "#888")};
+//   background: transparent;
+//   border: none;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
+//   position: relative;
+
+//   &:hover {
+//     color: #111;
+//   }
+// `;
+
+// const ContentArea = styled.div`
+//   display: flex;
+//   min-height: auto;  // let content determine height
+//   gap: 2.5rem;       // spacing between text and image
+//   position: relative;
+
+//   @media (max-width: 768px) {
+//     flex-direction: column;
+//     gap: 1.5rem;
+//   }
+// `;
+
+// const TextContent = styled.div`
+//   flex: 1;
+//   padding: 3rem; // slightly reduced from 3.5rem
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+
+//   @media (max-width: 768px) {
+//     padding: 2rem 1.5rem;
+//     order: 2;
+//   }
+// `;
+// const Description = styled(motion.p)`
+//   font-size: 1.25rem;
+//   line-height: 1.8;
+//   color: #444;
+//   margin-bottom: 2.5rem;
+
+//   @media (max-width: 768px) {
+//     font-size: 1.1rem;
+//     margin-bottom: 2rem;
+//   }
+// `;
+
+// const Button = styled.button`
+//   align-self: flex-start;
+//   padding: 1rem 2.25rem;
+//   background: linear-gradient(90deg, #22d3ee, #c084fc, #fb923c);
+//   color: white;
+//   border: none;
+//   border-radius: 50px;
+//   font-size: 1rem;
+//   font-weight: 600;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
+//   margin-top: 1rem;
+
+//   &:hover {
+//     transform: translateY(-2px);
+//   }
+
+//   @media (max-width: 768px) {
+//     align-self: center;
+//     width: 100%;
+//     max-width: 220px;
+//   }
+// `;
+// const ImageContainer = styled.div`
+//   flex: 1;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 3rem;
+
+//   @media (max-width: 768px) {
+//     padding: 2rem 1.5rem;
+//     order: 1;
+//   }
+// `;
+
+// const Image = styled(motion.img)`
+//   width: 100%;
+//   max-width: 650px;
+//   border-radius: 1rem;
+//   object-fit: cover;
+// `;
+
+// const MobileControls = styled.div`
+//   display: none;
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+//   @media (max-width: 768px) {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 1.25rem;
+//   }
+// `;
+
+// const MobileTabTitle = styled.div`
+//   font-weight: 600;
+//   font-size: 1.1rem;
+//   text-align: center;
+//   flex: 1;
+// `;
+
+// const ArrowButton = styled.button`
+//   background: transparent;
+//   border: none;
+//   padding: 0.75rem;
+//   border-radius: 50%;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   &:disabled {
+//     opacity: 0.5;
+//     cursor: not-allowed;
+//   }
+// `;
+
+// // Data
+// const modules = [
+//   {
+//     name: "Small Molecule Design",
+//     description:
+//       "Transform the way you discover, design, and optimize small molecules — faster, smarter.",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+//   },
+//   {
+//     name: "Protein Engineering",
+//     description:
+//       "Reimagine how proteins are designed, optimized, and brought to life — faster, smarter, more precise.",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=1200&q=80",
+//   },
+//   {
+//     name: "Multi Omics Analysis",
+//     description:
+//       "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+//   },
+//   {
+//     name: "Clinical Trials",
+//     description:
+//       "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+//   },
+// ];
+
+// const textVariants = {
+//   enter: { opacity: 0, y: 20 },
+//   center: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+//   exit: { opacity: 0, y: -20 },
+// };
+
+// const imageVariants = {
+//   enter: { opacity: 0, x: 30 },
+//   center: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+//   exit: { opacity: 0, x: -30 },
+// };
+
+// export default function ExploreModulesSection() {
+//   const [selected, setSelected] = useState(0);
+//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+//   const tabRefs = useRef([]);
+//   const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
+
+//   // Update indicator position
+//   const updateIndicator = () => {
+//     if (!isMobile && tabRefs.current[selected]) {
+//       const tab = tabRefs.current[selected];
+//       setIndicatorStyle({
+//         width: tab.offsetWidth,
+//         left: tab.offsetLeft,
+//       });
+//     }
+//   };
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   useEffect(() => {
+//     requestAnimationFrame(updateIndicator);
+//   }, [selected, isMobile]);
+
+//   return (
+//     <Container>
+//       <ContentWrapper>
+//         <Header>
+//          <h2 style={{ 
+//             fontFamily: "'Inter', sans-serif", 
+//             fontSize: '42px', 
+//             fontWeight: '200', 
+//             color: '#111827',
+//             margin: 0,
+//             padding: '20px',
+//             textAlign: 'center',
+//             fontWeight: 400,
+//             color: '#4F1985',
+//             fontSize: '2.5rem',
+//             fontFamily: 'timesnew'
+//           }}>
+//            Explore Small Molecule Design
+
+//              <span
+//             style={{
+//               display: "block",
+//               width: "80px",
+//               height: "4px",
+//               backgroundColor: "#4F1985",
+//               margin: "15px auto 0",
+//               borderRadius: "2px"
+//             }}
+//           />
+//           </h2>
+//           <Subtitle>Comprehensive tools for scientific teams</Subtitle>
+//         </Header>
+
+//         <Card>
+//           {!isMobile && (
+//             <TabBar>
+//               {modules.map((module, index) => (
+//                 <Tab
+//                   key={index}
+//                   ref={(el) => (tabRefs.current[index] = el)}
+//                   $active={selected === index}
+//                   onClick={() => setSelected(index)}
+//                 >
+//                   {module.name}
+//                 </Tab>
+//               ))}
+//               <TabIndicator
+//                 layoutId="tabIndicator"
+//                 style={indicatorStyle}
+//                 transition={{
+//                   type: "spring",
+//                   stiffness: 300,
+//                   damping: 30,
+//                 }}
+//               />
+//             </TabBar>
+//           )}
+
+//           {isMobile && (
+//             <MobileControls>
+//               <ArrowButton onClick={() => setSelected((p) => (p === 0 ? modules.length - 1 : p - 1))}>
+//                 <FiChevronLeft size={26} />
+//               </ArrowButton>
+//               <MobileTabTitle>{modules[selected].name}</MobileTabTitle>
+//               <ArrowButton onClick={() => setSelected((p) => (p === modules.length - 1 ? 0 : p + 1))}>
+//                 <FiChevronRight size={26} />
+//               </ArrowButton>
+//             </MobileControls>
+//           )}
+
+//           <ContentArea>
+//             <TextContent>
+//               <AnimatePresence mode="wait">
+//                 <Description
+//                   key={`text-${selected}`}
+//                   variants={textVariants}
+//                   initial="enter"
+//                   animate="center"
+//                   exit="exit"
+//                 >
+//                   {modules[selected].description}
+//                 </Description>
+//               </AnimatePresence>
+//               <Button>Learn more</Button>
+//             </TextContent>
+
+//             <ImageContainer>
+//               <AnimatePresence mode="wait">
+//                 <Image
+//                   key={`image-${selected}`}
+//                   variants={imageVariants}
+//                   initial="enter"
+//                   animate="center"
+//                   exit="exit"
+//                   src={modules[selected].imageUrl}
+//                   alt={modules[selected].name}
+//                 />
+//               </AnimatePresence>
+//             </ImageContainer>
+//           </ContentArea>
+//         </Card>
+//       </ContentWrapper>
+//     </Container>
+//   );
+// }
+
+
+
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { Link } from "react-router-dom"; // Import Link
 
 // Styled components
 const Container = styled.section`
@@ -1058,7 +1473,6 @@ const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-
 
   @media (max-width: 768px) {
     padding: 40px 0;
@@ -1079,7 +1493,6 @@ const Header = styled.div`
   margin-right: auto;
   position: relative;
 `;
-
 
 const Title = styled.h2`
   font-size: 2.75rem;
@@ -1145,7 +1558,7 @@ const TabIndicator = styled(motion.div)`
   position: absolute;
   bottom: 0;
   height: 3px;
-  background: linear-gradient(90deg, #22d3ee, #c084fc, #fb923c);
+  background: linear-gradient(90deg, #4F1985,#4F1985,#4F1985);
   border-radius: 3px 3px 0 0;
 `;
 
@@ -1190,6 +1603,7 @@ const TextContent = styled.div`
     order: 2;
   }
 `;
+
 const Description = styled(motion.p)`
   font-size: 1.25rem;
   line-height: 1.8;
@@ -1205,7 +1619,7 @@ const Description = styled(motion.p)`
 const Button = styled.button`
   align-self: flex-start;
   padding: 1rem 2.25rem;
-  background: linear-gradient(90deg, #22d3ee, #c084fc, #fb923c);
+  background: linear-gradient(90deg,#4F1985,#4F1985,#4F1985);
   color: white;
   border: none;
   border-radius: 50px;
@@ -1225,6 +1639,7 @@ const Button = styled.button`
     max-width: 220px;
   }
 `;
+
 const ImageContainer = styled.div`
   flex: 1;
   display: flex;
@@ -1280,7 +1695,7 @@ const ArrowButton = styled.button`
   }
 `;
 
-// Data
+// Data with paths added
 const modules = [
   {
     name: "Small Molecule Design",
@@ -1288,28 +1703,41 @@ const modules = [
       "Transform the way you discover, design, and optimize small molecules — faster, smarter.",
     imageUrl:
       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+    path: "/smallmoleculedesign"
   },
   {
     name: "Protein Engineering",
     description:
       "Reimagine how proteins are designed, optimized, and brought to life — faster, smarter, more precise.",
     imageUrl:
-      "https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+    path: "/proteinengineering"
+  },
+   {
+    name: "Synthetic Chemistry",
+    description:
+      "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+    path: "/proteinengineering"
   },
   {
     name: "Multi Omics Analysis",
     description:
       "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
     imageUrl:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+    path: "/multiomicsanalysis"
   },
   {
     name: "Clinical Trials",
     description:
       "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
     imageUrl:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+    path: "/clinicaltrials"
   },
+
 ];
 
 const textVariants = {
@@ -1357,8 +1785,32 @@ export default function ExploreModulesSection() {
     <Container>
       <ContentWrapper>
         <Header>
-          <Title>Explore Our Solutions</Title>
-          <GradientUnderline />
+         <h2 style={{ 
+            fontFamily: "'Inter', sans-serif", 
+            fontSize: '42px', 
+            fontWeight: '200', 
+            color: '#111827',
+            margin: 0,
+            padding: '20px',
+            textAlign: 'center',
+            fontWeight: 400,
+            color: '#4F1985',
+            fontSize: '2.5rem',
+            fontFamily: 'timesnew'
+          }}>
+           Explore Small Molecule Design
+
+             <span
+            style={{
+              display: "block",
+              width: "80px",
+              height: "4px",
+              backgroundColor: "#4F1985",
+              margin: "15px auto 0",
+              borderRadius: "2px"
+            }}
+          />
+          </h2>
           <Subtitle>Comprehensive tools for scientific teams</Subtitle>
         </Header>
 
@@ -1412,7 +1864,9 @@ export default function ExploreModulesSection() {
                   {modules[selected].description}
                 </Description>
               </AnimatePresence>
-              <Button>Learn more</Button>
+              <Link to={modules[selected].path}>
+                <Button>Learn more</Button>
+              </Link>
             </TextContent>
 
             <ImageContainer>

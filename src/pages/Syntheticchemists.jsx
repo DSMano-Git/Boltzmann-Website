@@ -10,9 +10,10 @@ export default function Syntheticchemist(){
  logo="logo.png"
       title="Synthetic Chemists"
       subtitle="By Role"
-      description="Medicinal chemists design and refine molecules to modulate biological targets effectively.
- They balance potency, selectivity, and safety while optimizing drug-like properties.
- Their insights bridge biological hypotheses with chemical innovation.
+      description="Synthetic chemists transform molecular designs into real, testable compounds.
+ They develop efficient, safe, and scalable synthetic routes.
+ Their craftsmanship enables rapid validation of discovery hypotheses.
+
 ." 
  />
 <SynthetichemistZigZagSection />

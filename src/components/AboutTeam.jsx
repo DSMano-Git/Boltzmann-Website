@@ -78,7 +78,7 @@ export default function LeadershipSection() {
             key={idx}
             style={{
               backgroundColor: "#ffffff",
-              borderRadius: "1rem",
+            
               boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
               width: "clamp(280px, 90vw, 320px)",
               overflow: "hidden",
@@ -106,7 +106,7 @@ export default function LeadershipSection() {
                 //for mobileview change 
                 width: isMobileOrTablet ? "clamp(180px, 50vw, 220px)" : "clamp(150px, 40vw, 200px)",
                 height: isMobileOrTablet ? "clamp(180px, 50vw, 220px)" : "clamp(150px, 40vw, 200px)",
-                borderRadius: "10%",
+                
                 overflow: "hidden",
               }}>
                 <img

@@ -86,6 +86,7 @@ export default function SyntheticOverlappingCard() {
             variants={fadeUpVariant}
           >
             Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.
+
           </motion.p>
 
           <motion.button

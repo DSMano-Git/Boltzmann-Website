@@ -542,7 +542,7 @@ const AgroShowcase = () => {
               letterSpacing: "1px",
             }}
           >
-            PROTEIN ENGINEERING
+            Agrochemicals & Crop Science
           </p>
           <h2
             style={{
@@ -553,7 +553,7 @@ const AgroShowcase = () => {
               lineHeight: "1.2",
             }}
           >
-            Revolutionizing Biotech with AI-Powered Protein Design
+           Accelerate Agricultural Innovation with AI
           </h2>
           <p
             style={{
@@ -564,7 +564,8 @@ const AgroShowcase = () => {
               textAlign: 'justify'
             }}
           >
-            Our platform leverages cutting-edge artificial intelligence to accelerate protein engineering, enabling researchers to design novel enzymes, therapeutics, and biomaterials with unprecedented speed and precision. By combining deep learning with biophysical modeling, we're transforming how proteins are designed and optimized.
+           Whether you're developing next-gen crop protection solutions, optimizing sustainable formulations, or accelerating field-to-market timelines, our AI Discovery Suite is designed to help you bring agricultural innovations to life faster.
+
           </p>
         </div>
       </div>
