@@ -116,6 +116,7 @@ import Multiomicsanalysis from './pages/Multiomicsanalysis';
 import Clinicaltrials from './pages/Clinicaltrials';
 import Materialsciences from './pages/Materialscience';
 import ClinicalTrialshealth from './pages/Clinicaltrialsandhealth';
+import Oursuite from './pages/Oursuite';
 export default function App() {
   return (
     <BrowserRouter>
@@ -137,6 +138,7 @@ export default function App() {
         <Route path="/syntheticchemistry" element={<Synthetic />} />
         <Route path="/multiomicsanalysis" element={<Multiomicsanalysis />} />
         <Route path="/clinicaltrials" element={<Clinicaltrials />} />
+        <Route path="/oursuite" element={<Oursuite />} />
         <Route path="/medicinal-chemists" element={<Medicinalchemist />} />
         <Route path="/pharmaceuticals-biotech" element={<Biotechandpharma />} />
         <Route path="/bioinformatics" element={<Bioinformatician />} />

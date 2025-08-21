@@ -220,6 +220,7 @@ import ExploreModulesSection from '../components/Modules';
 import LabAutomationSection from '../components/LabAutomationSection';
 import Images from '../components/HomeImages';
 
+
 export default function HomePage() {
   // Refs for each section
   const heroRef = useRef(null);

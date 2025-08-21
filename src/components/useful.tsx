@@ -16436,3 +16436,8247 @@
 //     </div>
 //   );
 // }
+
+
+//navbar useful
+// import React, { useState, useEffect, useRef } from 'react';
+// import {
+//   AppBar,
+//   Toolbar,
+//   IconButton,
+//   Button,
+//   Box,
+//   Drawer,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemText,
+//   Divider,
+//   useMediaQuery,
+//   useScrollTrigger,
+//   Typography,
+// } from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import CloseIcon from '@mui/icons-material/Close';
+// import ScienceIcon from '@mui/icons-material/Science';
+// import BiotechIcon from '@mui/icons-material/Biotech';
+// import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+// import SchoolIcon from '@mui/icons-material/School';
+// import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+// import { useTheme, styled } from '@mui/material/styles';
+// import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+
+// const NAV_ITEMS = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' },
+  
+// ];
+
+// const PRODUCT_ITEMS = [
+//   { 
+//     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Small Molecule Design', 
+//     path: '/smallmoleculedesign',
+//     desc: 'Transform the way you discover, design, and optimize small molecules faster, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Protein Engineering', 
+//     path: '/proteinengineering',
+//     desc: 'Reimagine how proteins are designed, optimized, and brought to life faster, smarter, more precise.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
+//   },
+// ];
+
+// const BUY_NEED_ITEMS = [
+//   {
+//     title: 'By Role',
+//     icon: <PrecisionManufacturingIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Medicinal Chemists', path: '/medicinal-chemists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Bioinformatics', path: '/bioinformatics', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Synthetic Chemists', path: '/synthetic-chemists', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Pharmacologists', path: '/pharmacologists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Researchers', path: '/clinical-researchers', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   },
+//   {
+//     title: 'By Industry',
+//     icon: <SchoolIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Pharmaceuticals & Biotechnology', path: '/pharmaceuticals-biotech', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Chemicals', path: '/chemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Agrochemicals and Crop Science', path: '/agrochemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'CROs', path: '/cros', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Academic Research', path: '/academic-research', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Precision Medicine', path: '/precision-medicine', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Material Science', path: '/material-science', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Trials & Healthcare', path: '/clinical-trials', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   }
+// ];
+
+// const NavWrapper = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   backgroundColor: theme.palette.action.hover,
+//   borderRadius: 24,
+//   padding: '4px',
+//   width: '100%',
+//   alignItems: 'center',
+  
+// }));
+
+// const NavButton = styled(Button, {
+//   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'hovered',
+// })(({ theme, active, hovered }) => ({
+//   textTransform: 'none',
+//   fontWeight: 500,
+//   fontSize: 14,
+//   padding: '4px 16px',
+//   borderRadius: 20,
+//   backgroundColor: active ? theme.palette.background.paper : 'transparent',
+
+//   color: active ? '#4f1985' : theme.palette.text.primary,
+//   boxShadow: active ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+//   transition: 'all 0.3s ease',
+//   flex: 1,
+//   minWidth: 0,
+//   whiteSpace: 'nowrap',
+//   position: 'relative',
+//   overflow: 'hidden',
+
+//   '&:hover': {
+//     backgroundColor: hovered ? theme.palette.action.selected : 'transparent',
+//   },
+
+// '&::before': {
+//   content: '""',
+//   position: 'absolute',
+//   bottom: 2,
+//   left: '50%',
+//   height: 2,
+//   transform: !active && hovered ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//   width: '60%',
+//   backgroundColor: 'rgba(79, 25, 133, 0.3)',
+//   borderRadius: 2,
+//   transition: 'transform 0.3s ease',
+// },
+
+
+//   '&::after': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: active ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '30%',
+//     backgroundColor: '#4f1985',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s ease',
+//   }
+// }));
+
+// const BuyNeedColumn = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '16px',
+//   flex: 1,
+//   minWidth: 0,
+// }));
+
+// const BuyNeedSection = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '8px',
+// }));
+
+// const BuyNeedTitle = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   fontWeight: 700,
+//   fontSize: '1rem',
+//   color: '#4F1985',
+//   marginBottom: '12px',
+//   paddingBottom: '4px',
+//   borderBottom: '2px solid rgba(79, 25, 133, 0.2)',
+//   whiteSpace: 'nowrap',
+// }));
+
+// const BuyNeedItem = styled(Button)(({ theme }) => ({
+//   textTransform: 'none',
+//   justifyContent: 'flex-start',
+//   padding: '8px 12px',
+//   borderRadius: '6px',
+//   color: theme.palette.text.primary,
+//   fontWeight: 500,
+//   fontSize: '0.9rem',
+//   transition: 'all 0.2s ease',
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   whiteSpace: 'nowrap',
+//   minWidth: 'max-content',
+//   '&:hover': {
+//     backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//     color: '#4F1985',
+//     transform: 'translateX(4px)',
+//   },
+// }));
+
+// export default function NavbarPage() {
+//   const theme = useTheme();
+//   const isMobile = useMediaQuery('(max-width: 908px)');
+//   const isTablet = useMediaQuery('(max-width: 1200px)');
+//   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const [drawerOpen, setDrawerOpen] = useState(false);
+//   const [activeTab, setActiveTab] = useState('');
+//   const [showMegaMenu, setShowMegaMenu] = useState(false);
+//   const [showBuyNeedMenu, setShowBuyNeedMenu] = useState(false);
+//   const [hoveredItem, setHoveredItem] = useState(null);
+  
+//   const megaMenuRef = useRef(null);
+//   const buyNeedMenuRef = useRef(null);
+//   const navItemRef = useRef(null);
+//   const buyNeedItemRef = useRef(null);
+//   const hideTimeoutRef = useRef(null);
+//   const isMouseInsideRef = useRef(false);
+
+//   useEffect(() => {
+//     const currentItem = NAV_ITEMS.find(item => item.path === location.pathname);
+//     if (currentItem) {
+//       setActiveTab(currentItem.label);
+//     } else {
+//       setActiveTab('Home');
+//     }
+//   }, [location.pathname]);
+
+//   const handleNavClick = (label) => {
+//     setActiveTab(label);
+//     setDrawerOpen(false);
+//   };
+
+//   const handleItemHover = (label) => {
+//     setHoveredItem(label);
+//   };
+
+//   const handleItemLeave = () => {
+//     setHoveredItem(null);
+//   };
+
+//   const showMenu = (menuType) => {
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (menuType === 'products') {
+//       setShowMegaMenu(true);
+//       setShowBuyNeedMenu(false);
+//     } else if (menuType === 'buyNeed') {
+//       setShowBuyNeedMenu(true);
+//       setShowMegaMenu(false);
+//     }
+//     isMouseInsideRef.current = true;
+//   };
+
+//   const hideMenu = () => {
+//     isMouseInsideRef.current = false;
+//     hideTimeoutRef.current = setTimeout(() => {
+//       if (!isMouseInsideRef.current) {
+//         setShowMegaMenu(false);
+//         setShowBuyNeedMenu(false);
+//       }
+//     }, 150);
+//   };
+
+//   const handleNavItemMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleNavItemMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleMegaMenuMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleMegaMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMenuMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleProductClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleLearnMoreClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleBuyNeedItemClick = (path, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowBuyNeedMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (path) {
+//       navigate(path);
+//     }
+//   };
+
+//   useEffect(() => {
+//     return () => {
+//       if (hideTimeoutRef.current) {
+//         clearTimeout(hideTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       <AppBar
+//         position="sticky"
+//         elevation={trigger ? 4 : 0}
+//         sx={{
+//           backgroundColor: theme.palette.background.paper,
+//           color: "#4F1985",
+//           transition: 'all 0.3s ease',
+//           boxShadow: trigger ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
+//           height: { xs: '70px', sm: '80px' },
+//           justifyContent: 'center',
+//           zIndex: theme.zIndex.drawer + 1,
+//         }}
+//       >
+//         <Toolbar sx={{ 
+//           minHeight: { xs: '70px', sm: '80px' },
+//           display: 'flex', 
+//           justifyContent: 'center', 
+//           px: { xs: 1, sm: 2 } 
+//         }}>
+//           <Box sx={{ 
+//             width: '100%', 
+//             maxWidth: '1440px', 
+//             display: 'flex', 
+//             alignItems: 'center', 
+//             justifyContent: isMobile ? 'space-between' : 'space-evenly',
+//             position: 'relative',
+//             overflow: 'hidden',
+//           }}>
+//             {/* Logo */}
+//             <RouterLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+//               <img src="/logo.png" alt="Logo" height={50} style={{ marginRight: 8 }} />
+//             </RouterLink>
+
+//             {/* Desktop Navigation */}
+//             {!isMobile && (
+//               <Box sx={{ 
+//                 flex: 1, 
+//                 mx: 2,
+//                 minWidth: 0,
+//                 position: 'relative',
+//                 display: 'flex',
+//                 justifyContent: 'center'
+//               }}>
+//                 <NavWrapper sx={{
+//                   maxWidth: '600px',
+//                   minWidth: '400px',
+//                 }}>
+//                   {NAV_ITEMS.map((item) =>
+//                     item.label === 'Our Suite' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={navItemRef}
+//                         onMouseEnter={handleNavItemMouseEnter}
+//                         onMouseLeave={handleNavItemMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+                          
+                          
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : item.label === 'Buy Need' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={buyNeedItemRef}
+//                         onMouseEnter={handleBuyNeedMouseEnter}
+//                         onMouseLeave={handleBuyNeedMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : (
+//                       <Box
+//                         key={item.label}
+//                         onMouseEnter={() => handleItemHover(item.label)}
+//                         onMouseLeave={handleItemLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           component={RouterLink}
+//                           to={item.path}
+//                           onClick={() => setActiveTab(item.label)}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     )
+//                   )}
+//                 </NavWrapper>
+
+//                 {/* Mega Menu for Our Suite */}
+//                 {showMegaMenu && (
+//                   <Box
+//                     ref={megaMenuRef}
+//                     onMouseEnter={handleMegaMenuMouseEnter}
+//                     onMouseLeave={handleMegaMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '900px',
+//                       maxWidth: '1100px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 4,
+//                       opacity: 0,
+//                       transform: 'translateX(-50%) translateY(-10px)',
+//                       animation: 'megaMenuSlideIn 0.3s ease forwards',
+//                       '@keyframes megaMenuSlideIn': {
+//                         '0%': { 
+//                           opacity: 0, 
+//                           transform: 'translateX(-50%) translateY(-10px) scale(0.95)' 
+//                         },
+//                         '100%': { 
+//                           opacity: 1, 
+//                           transform: 'translateX(-50%) translateY(0) scale(1)' 
+//                         },
+//                       },
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'grid',
+//                         gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
+//                         gap: 3,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {PRODUCT_ITEMS.map((product, idx) => (
+//                         <Box
+//                           key={idx}
+//                           onClick={(event) => handleProductClick(product, event)}
+//                           sx={{
+//                             bgcolor: '#fafafa',
+//                             p: 3,
+//                             borderRadius: 3,
+//                             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+//                             cursor: 'pointer',
+//                             display: 'flex',
+//                             flexDirection: 'column',
+//                             alignItems: 'flex-start',
+//                             gap: 2,
+//                             transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+//                             border: '1px solid transparent',
+//                             userSelect: 'none',
+//                             position: 'relative',
+//                             '&:hover': {
+//                               transform: 'translateY(-4px)',
+//                               boxShadow: '0 16px 40px rgba(79, 25, 133, 0.2)',
+//                               bgcolor: '#fff',
+//                               borderColor: 'rgba(79, 25, 133, 0.1)',
+//                             },
+//                             '&:active': {
+//                               transform: 'translateY(-2px)',
+//                             },
+//                             opacity: 0,
+//                             transform: 'translateY(20px)',
+//                             animation: `productFadeIn 0.4s ease forwards`,
+//                             animationDelay: `${idx * 0.1}s`,
+//                             '@keyframes productFadeIn': {
+//                               to: { 
+//                                 opacity: 1, 
+//                                 transform: 'translateY(0)' 
+//                               },
+//                             },
+//                           }}
+//                         >
+//                           <Box
+//                             component="img"
+//                             src={product.img}
+//                             alt={product.title}
+//                             onError={(e) => {
+//                               e.target.src = 'https://via.placeholder.com/300x140?text=Product+Image';
+//                             }}
+//                             sx={{
+//                               width: '100%',
+//                               height: 140,
+//                               borderRadius: 2,
+//                               objectFit: 'cover',
+//                               mb: 1,
+//                             }}
+//                           />
+//                           <Box sx={{ width: '100%' }}>
+//                             <Typography 
+//                               variant="h6" 
+//                               sx={{ 
+//                                 fontWeight: 700, 
+//                                 color: '#4F1985', 
+//                                 mb: 1,
+//                                 fontSize: '1.1rem',
+//                                 lineHeight: 1.3,
+//                               }}
+//                             >
+//                               {product.title}
+//                             </Typography>
+//                             <Typography 
+//                               variant="body2" 
+//                               sx={{ 
+//                                 color: 'text.secondary', 
+//                                 lineHeight: 1.5,
+//                                 fontSize: '0.875rem',
+//                                 display: '-webkit-box',
+//                                 WebkitLineClamp: 3,
+//                                 WebkitBoxOrient: 'vertical',
+//                                 overflow: 'hidden',
+//                                 mb: 2,
+//                               }}
+//                             >
+//                               {product.desc}
+//                             </Typography>
+//                             <Button
+//                               size="small"
+//                               onClick={(event) => handleLearnMoreClick(product, event)}
+//                               sx={{
+//                                 color: '#4F1985',
+//                                 fontWeight: 600,
+//                                 textTransform: 'none',
+//                                 fontSize: '0.8rem',
+//                                 padding: '6px 12px',
+//                                 minWidth: 'auto',
+//                                 borderRadius: 2,
+//                                 backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                                 '&:hover': {
+//                                   backgroundColor: 'rgba(79, 25, 133, 0.15)',
+//                                   transform: 'scale(1.02)',
+//                                 },
+//                                 '&:active': {
+//                                   transform: 'scale(0.98)',
+//                                 },
+//                                 transition: 'all 0.2s ease',
+//                               }}
+//                             >
+//                               Learn more →
+//                             </Button>
+//                           </Box>
+//                         </Box>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+
+//                 {/* Mega Menu for Buy Need */}
+//                 {showBuyNeedMenu && (
+//                   <Box
+//                     ref={buyNeedMenuRef}
+//                     onMouseEnter={handleBuyNeedMenuMouseEnter}
+//                     onMouseLeave={handleBuyNeedMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '750px', // Increased width
+//                       maxWidth: '900px', // Increased max width
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 3,
+//                       opacity: 0,
+//                       transform: 'translateX(-50%) translateY(-10px)',
+//                       animation: 'megaMenuSlideIn 0.3s ease forwards',
+//                       '@keyframes megaMenuSlideIn': {
+//                         '0%': { 
+//                           opacity: 0, 
+//                           transform: 'translateX(-50%) translateY(-10px) scale(0.95)' 
+//                         },
+//                         '100%': { 
+//                           opacity: 1, 
+//                           transform: 'translateX(-50%) translateY(0) scale(1)' 
+//                         },
+//                       },
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'flex',
+//                         gap: 6, // Increased gap between columns
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {BUY_NEED_ITEMS.map((section, sectionIdx) => (
+//                         <BuyNeedColumn key={sectionIdx}>
+//                           <BuyNeedTitle>
+//                             {section.icon}
+//                             {section.title}
+//                           </BuyNeedTitle>
+//                           <BuyNeedSection>
+//                             {section.items.map((item, itemIdx) => (
+//                               <BuyNeedItem
+//                                 key={itemIdx}
+//                                 onClick={(event) => handleBuyNeedItemClick(item.path, event)}
+//                                 sx={{
+//                                   opacity: 0,
+//                                   transform: 'translateX(20px)',
+//                                   animation: `itemSlideIn 0.3s ease forwards`,
+//                                   animationDelay: `${sectionIdx * 0.1 + itemIdx * 0.05}s`,
+//                                   '@keyframes itemSlideIn': {
+//                                     to: { 
+//                                       opacity: 1, 
+//                                       transform: 'translateX(0)' 
+//                                     },
+//                                   },
+//                                 }}
+//                               >
+//                                 {item.icon}
+//                                 {item.label}
+//                               </BuyNeedItem>
+//                             ))}
+//                           </BuyNeedSection>
+//                         </BuyNeedColumn>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+//               </Box>
+//             )}
+
+//             {/* Desktop Contact Button */}
+//             {!isMobile && (
+//               <Button
+//                 variant="contained"
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   textTransform: 'none',
+//                   fontSize: 13,
+//                   borderRadius: 2,
+//                   px: 2,
+//                   py: 0.5,
+//                   height: 35,
+//                   backgroundColor: '#4F1985',
+//                   flexShrink: 0,
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'scale(1.02)',
+//                   },
+//                   transition: 'all 0.2s ease',
+//                 }}
+//               >
+//                 Request Demo
+//               </Button>
+//             )}
+
+//             {/* Mobile Menu Icon */}
+//             {isMobile && (
+//               <IconButton 
+//                 edge="end" 
+//                 onClick={() => setDrawerOpen(true)}
+//                 sx={{ flexShrink: 0 }}
+//               >
+//                 <MenuIcon />
+//               </IconButton>
+//             )}
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+
+//       {/* Mobile Drawer */}
+//       <Drawer 
+//         anchor="right" 
+//         open={drawerOpen} 
+//         onClose={() => setDrawerOpen(false)}
+//         sx={{
+//           '& .MuiDrawer-paper': {
+//             width: 280,
+//             maxWidth: '80vw',
+//           },
+//         }}
+//       >
+//         <Box sx={{ width: '100%', height: '100%' }}>
+//           <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+//             <Typography variant="h6" sx={{ color: '#4F1985', fontWeight: 600 }}>
+//               Menu
+//             </Typography>
+//             <IconButton onClick={() => setDrawerOpen(false)}>
+//               <CloseIcon />
+//             </IconButton>
+//           </Box>
+//           <Divider />
+//           <List sx={{ flex: 1 }}>
+//             {NAV_ITEMS.map((item) => (
+//               <ListItem disablePadding key={item.label}>
+//                 <ListItemButton
+//                   component={item.path !== '#' ? RouterLink : 'div'}
+//                   to={item.path !== '#' ? item.path : undefined}
+//                   onClick={() => handleNavClick(item.label)}
+//                   selected={activeTab === item.label}
+//                   sx={{
+                    
+//                     py: 1.5,
+//                     '&.Mui-selected': {
+//                       color: '#4f1985',
+//                       backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                       '& .MuiListItemText-primary': {
+//                         fontWeight: 600,
+//                       },
+//                       '&::after': {
+//                         content: '""',
+//                         position: 'absolute',
+//                         bottom: '8px',
+//                         left: '16px',
+//                         width: 'calc(100% - 32px)',
+//                         height: '2px',
+//                         backgroundColor: '#4f1985',
+//                       }
+//                     },
+//                     '&.Mui-selected:hover': {
+//                       backgroundColor: 'rgba(79, 25, 133, 0.12)',
+//                     },
+//                     '&:hover': {
+//                       backgroundColor: theme.palette.action.hover,
+//                     },
+//                     position: 'relative',
+//                   }}
+//                 >
+//                   <ListItemText
+//                     primary={item.label}
+//                     primaryTypographyProps={{
+//                       fontWeight: activeTab === item.label ? 600 : 400,
+//                       fontSize: '1rem',
+                      
+//                     }}
+//                   />
+//                 </ListItemButton>
+//               </ListItem>
+//             ))}
+//           </List>
+//           <Divider />
+//           <Box p={2}>
+//             <Button
+//               variant="contained"
+//               fullWidth
+//               component={RouterLink}
+//               to="/contact"
+//               sx={{
+//                 borderRadius: 3,
+//                 backgroundColor: '#4F1985',
+//                 fontWeight: 600,
+//                 py: 1.5,
+//                 '&:hover': { 
+//                   backgroundColor: '#3a1259',
+//                   transform: 'scale(1.02)',
+//                 },
+//                 transition: 'all 0.2s ease',
+//               }}
+//               onClick={() => setDrawerOpen(false)}
+//             >
+//               Request Demo
+//             </Button>
+//           </Box>
+//         </Box>
+//       </Drawer>
+//     </>
+//   );
+// }
+
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import {
+//   AppBar,
+//   Toolbar,
+//   IconButton,
+//   Button,
+//   Box,
+//   Drawer,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemText,
+//   Divider,
+//   useMediaQuery,
+//   useScrollTrigger,
+//   Typography,
+// } from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import CloseIcon from '@mui/icons-material/Close';
+// import ScienceIcon from '@mui/icons-material/Science';
+// import BiotechIcon from '@mui/icons-material/Biotech';
+// import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+// import SchoolIcon from '@mui/icons-material/School';
+// import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+// import { useTheme, styled, keyframes } from '@mui/material/styles';
+// import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+
+// const NAV_ITEMS = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' }
+// ];
+
+// const NAV_ITEMS_WITH_CONTACT = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' },
+//   { label: 'Contact Us', path: '/contact' }
+// ];
+
+// const PRODUCT_ITEMS = [
+//   { 
+//     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Small Molecule Design', 
+//     path: '/smallmoleculedesign',
+//     desc: 'Transform the way you discover, design, and optimize small molecules faster, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Protein Engineering', 
+//     path: '/proteinengineering',
+//     desc: 'Reimagine how proteins are designed, optimized, and brought to life faster, smarter, more precise.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
+//   },
+// ];
+
+// const BUY_NEED_ITEMS = [
+//   {
+//     title: 'By Role',
+//     icon: <PrecisionManufacturingIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Medicinal Chemists', path: '/medicinal-chemists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Bioinformatics', path: '/bioinformatics', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Synthetic Chemists', path: '/synthetic-chemists', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Pharmacologists', path: '/pharmacologists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Researchers', path: '/clinical-researchers', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   },
+//   {
+//     title: 'By Industry',
+//     icon: <SchoolIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Pharmaceuticals & Biotechnology', path: '/pharmaceuticals-biotech', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Chemicals', path: '/chemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Agrochemicals and Crop Science', path: '/agrochemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'CROs', path: '/cros', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Academic Research', path: '/academic-research', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Precision Medicine', path: '/precision-medicine', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Material Science', path: '/material-science', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Trials & Healthcare', path: '/clinical-trials', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   }
+// ];
+
+// // Enhanced smooth animations
+// const megaMenuSlideIn = keyframes`
+//   0% { 
+//     opacity: 0; 
+//     transform: translateX(-50%) translateY(-15px) scale(0.96);
+//     filter: blur(3px);
+//   }
+//   100% { 
+//     opacity: 1; 
+//     transform: translateX(-50%) translateY(0) scale(1);
+//     filter: blur(0px);
+//   }
+// `;
+
+// const productFadeIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateY(25px) scale(0.96);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateY(0) scale(1);
+//   }
+// `;
+
+// const itemSlideIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateX(25px);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateX(0);
+//   }
+// `;
+
+// const NavWrapper = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   backgroundColor: theme.palette.action.hover,
+//   borderRadius: 24,
+//   padding: '4px',
+//   width: '100%',
+//   alignItems: 'center',
+//   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+// }));
+
+// const NavButton = styled(Button, {
+//   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'hovered',
+// })(({ theme, active, hovered }) => ({
+//   textTransform: 'none',
+//   fontWeight: 500,
+//   fontSize: 14,
+//   padding: '4px 16px',
+//   borderRadius: 20,
+//   backgroundColor: active ? theme.palette.background.paper : 'transparent',
+//   color: active ? '#4f1985' : theme.palette.text.primary,
+//   boxShadow: active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//   flex: 1,
+//   minWidth: 0,
+//   whiteSpace: 'nowrap',
+//   position: 'relative',
+//   overflow: 'hidden',
+
+//   '&:hover': {
+//     backgroundColor: hovered ? theme.palette.action.selected : 'transparent',
+//     transform: active ? 'none' : 'translateY(-1px)',
+//     boxShadow: hovered && !active ? '0 4px 12px rgba(79, 25, 133, 0.08)' : active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   },
+
+//   '&::before': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: !active && hovered ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '60%',
+//     backgroundColor: 'rgba(79, 25, 133, 0.3)',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   },
+
+//   '&::after': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: active ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '30%',
+//     backgroundColor: '#4f1985',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   }
+// }));
+
+// const BuyNeedColumn = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '16px',
+//   flex: 1,
+//   minWidth: 0,
+// }));
+
+// const BuyNeedSection = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '8px',
+// }));
+
+// const BuyNeedTitle = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   fontWeight: 700,
+//   fontSize: '1rem',
+//   color: '#4F1985',
+//   marginBottom: '12px',
+//   paddingBottom: '4px',
+//   borderBottom: '2px solid rgba(79, 25, 133, 0.2)',
+//   whiteSpace: 'nowrap',
+// }));
+
+// const BuyNeedItem = styled(Button)(({ theme }) => ({
+//   textTransform: 'none',
+//   justifyContent: 'flex-start',
+//   padding: '8px 12px',
+//   borderRadius: '6px',
+//   color: theme.palette.text.primary,
+//   fontWeight: 500,
+//   fontSize: '0.9rem',
+//   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   whiteSpace: 'nowrap',
+//   minWidth: 'max-content',
+//   '&:hover': {
+//     backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//     color: '#4F1985',
+//     transform: 'translateX(6px) scale(1.01)',
+//   },
+// }));
+
+// export default function NavbarPage() {
+//   const theme = useTheme();
+//   const isMobile = useMediaQuery('(max-width: 1024px)');
+//   const isTablet = useMediaQuery('(max-width: 1200px)');
+//   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const [drawerOpen, setDrawerOpen] = useState(false);
+//   const [activeTab, setActiveTab] = useState('');
+//   const [showMegaMenu, setShowMegaMenu] = useState(false);
+//   const [showBuyNeedMenu, setShowBuyNeedMenu] = useState(false);
+//   const [hoveredItem, setHoveredItem] = useState(null);
+  
+//   // Determine if we're on the contact page
+//   const isContactPage = location.pathname === '/contact';
+  
+//   // Choose which nav items to show based on current page
+//   const currentNavItems = isContactPage ? NAV_ITEMS_WITH_CONTACT : NAV_ITEMS;
+  
+//   const megaMenuRef = useRef(null);
+//   const buyNeedMenuRef = useRef(null);
+//   const navItemRef = useRef(null);
+//   const buyNeedItemRef = useRef(null);
+//   const hideTimeoutRef = useRef(null);
+//   const isMouseInsideRef = useRef(false);
+
+//   useEffect(() => {
+//     const currentItem = currentNavItems.find(item => item.path === location.pathname);
+//     if (currentItem) {
+//       setActiveTab(currentItem.label);
+//     } else {
+//       setActiveTab('Home');
+//     }
+//   }, [location.pathname, currentNavItems]);
+
+//   const handleNavClick = (label) => {
+//     setActiveTab(label);
+//     setDrawerOpen(false);
+//   };
+
+//   const handleItemHover = (label) => {
+//     setHoveredItem(label);
+//   };
+
+//   const handleItemLeave = () => {
+//     setHoveredItem(null);
+//   };
+
+//   const showMenu = (menuType) => {
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (menuType === 'products') {
+//       setShowMegaMenu(true);
+//       setShowBuyNeedMenu(false);
+//     } else if (menuType === 'buyNeed') {
+//       setShowBuyNeedMenu(true);
+//       setShowMegaMenu(false);
+//     }
+//     isMouseInsideRef.current = true;
+//   };
+
+//   const hideMenu = () => {
+//     isMouseInsideRef.current = false;
+//     hideTimeoutRef.current = setTimeout(() => {
+//       if (!isMouseInsideRef.current) {
+//         setShowMegaMenu(false);
+//         setShowBuyNeedMenu(false);
+//       }
+//     }, 150);
+//   };
+
+//   const handleNavItemMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleNavItemMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleMegaMenuMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleMegaMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMenuMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleProductClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleLearnMoreClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleBuyNeedItemClick = (path, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowBuyNeedMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (path) {
+//       navigate(path);
+//     }
+//   };
+
+//   useEffect(() => {
+//     return () => {
+//       if (hideTimeoutRef.current) {
+//         clearTimeout(hideTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       <AppBar
+//         position="sticky"
+//         elevation={trigger ? 4 : 0}
+//         sx={{
+//           backgroundColor: theme.palette.background.paper,
+//           color: "#4F1985",
+//           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//           boxShadow: trigger ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
+//           height: { xs: '70px', sm: '80px' },
+//           justifyContent: 'center',
+//           zIndex: theme.zIndex.drawer + 1,
+//         }}
+//       >
+//         <Toolbar sx={{ 
+//           minHeight: { xs: '70px', sm: '80px' },
+//           display: 'flex', 
+//           justifyContent: 'center', 
+//           px: { xs: 1, sm: 2 } 
+//         }}>
+//           <Box sx={{ 
+//             width: '100%', 
+//             maxWidth: '1440px', 
+//             display: 'flex', 
+//             alignItems: 'center', 
+//             justifyContent: isMobile ? 'space-between' : 'space-evenly',
+//             position: 'relative',
+//             overflow: 'hidden',
+//           }}>
+//             {/* Logo */}
+//             <RouterLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+//               <img 
+//                 src="/logo.png" 
+//                 alt="Logo" 
+//                 height={50} 
+//                 style={{ 
+//                   marginRight: 8,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 }} 
+//                 onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+//                 onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+//               />
+//             </RouterLink>
+
+//             {/* Desktop Navigation */}
+//             {!isMobile && (
+//               <Box sx={{ 
+//                 flex: 1, 
+//                 mx: 2,
+//                 minWidth: 0,
+//                 position: 'relative',
+//                 display: 'flex',
+//                 justifyContent: 'center'
+//               }}>
+//                 <NavWrapper sx={{
+//                   maxWidth: isContactPage ? '700px' : '600px',
+//                   minWidth: isContactPage ? '500px' : '400px',
+//                 }}>
+//                   {currentNavItems.map((item) =>
+//                     item.label === 'Our Suite' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={navItemRef}
+//                         onMouseEnter={handleNavItemMouseEnter}
+//                         onMouseLeave={handleNavItemMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : item.label === 'Buy Need' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={buyNeedItemRef}
+//                         onMouseEnter={handleBuyNeedMouseEnter}
+//                         onMouseLeave={handleBuyNeedMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : (
+//                       <Box
+//                         key={item.label}
+//                         onMouseEnter={() => handleItemHover(item.label)}
+//                         onMouseLeave={handleItemLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           component={RouterLink}
+//                           to={item.path}
+//                           onClick={() => setActiveTab(item.label)}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     )
+//                   )}
+//                 </NavWrapper>
+
+//                 {/* Mega Menu for Our Suite */}
+//                 {showMegaMenu && (
+//                   <Box
+//                     ref={megaMenuRef}
+//                     onMouseEnter={handleMegaMenuMouseEnter}
+//                     onMouseLeave={handleMegaMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '900px',
+//                       maxWidth: '1100px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 4,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'grid',
+//                         gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
+//                         gap: 3,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {PRODUCT_ITEMS.map((product, idx) => (
+//                         <Box
+//                           key={idx}
+//                           onClick={(event) => handleProductClick(product, event)}
+//                           sx={{
+//                             bgcolor: '#fafafa',
+//                             p: 3,
+//                             borderRadius: 3,
+//                             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+//                             cursor: 'pointer',
+//                             display: 'flex',
+//                             flexDirection: 'column',
+//                             alignItems: 'flex-start',
+//                             gap: 2,
+//                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                             border: '1px solid transparent',
+//                             userSelect: 'none',
+//                             position: 'relative',
+//                             '&:hover': {
+//                               transform: 'translateY(-6px) scale(1.01)',
+//                               boxShadow: '0 20px 40px rgba(79, 25, 133, 0.15)',
+//                               bgcolor: '#fff',
+//                               borderColor: 'rgba(79, 25, 133, 0.1)',
+//                             },
+//                             '&:active': {
+//                               transform: 'translateY(-3px) scale(1.005)',
+//                             },
+//                             opacity: 0,
+//                             transform: 'translateY(20px)',
+//                             animation: `${productFadeIn} 0.4s ease forwards`,
+//                             animationDelay: `${idx * 0.1}s`,
+//                           }}
+//                         >
+//                           <Box
+//                             component="img"
+//                             src={product.img}
+//                             alt={product.title}
+//                             onError={(e) => {
+//                               e.target.src = 'https://via.placeholder.com/300x140?text=Product+Image';
+//                             }}
+//                             sx={{
+//                               width: '100%',
+//                               height: 140,
+//                               borderRadius: 2,
+//                               objectFit: 'cover',
+//                               mb: 1,
+//                               transition: 'transform 0.3s ease',
+//                             }}
+//                           />
+//                           <Box sx={{ width: '100%' }}>
+//                             <Typography 
+//                               variant="h6" 
+//                               sx={{ 
+//                                 fontWeight: 700, 
+//                                 color: '#4F1985', 
+//                                 mb: 1,
+//                                 fontSize: '1.1rem',
+//                                 lineHeight: 1.3,
+//                               }}
+//                             >
+//                               {product.title}
+//                             </Typography>
+//                             <Typography 
+//                               variant="body2" 
+//                               sx={{ 
+//                                 color: 'text.secondary', 
+//                                 lineHeight: 1.5,
+//                                 fontSize: '0.875rem',
+//                                 display: '-webkit-box',
+//                                 WebkitLineClamp: 3,
+//                                 WebkitBoxOrient: 'vertical',
+//                                 overflow: 'hidden',
+//                                 mb: 2,
+//                               }}
+//                             >
+//                               {product.desc}
+//                             </Typography>
+//                             <Button
+//                               size="small"
+//                               onClick={(event) => handleLearnMoreClick(product, event)}
+//                               sx={{
+//                                 color: '#4F1985',
+//                                 fontWeight: 600,
+//                                 textTransform: 'none',
+//                                 fontSize: '0.8rem',
+//                                 padding: '6px 12px',
+//                                 minWidth: 'auto',
+//                                 borderRadius: 2,
+//                                 backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                                 '&:hover': {
+//                                   backgroundColor: 'rgba(79, 25, 133, 0.15)',
+//                                   transform: 'scale(1.02)',
+//                                 },
+//                                 '&:active': {
+//                                   transform: 'scale(0.98)',
+//                                 },
+//                                 transition: 'all 0.2s ease',
+//                               }}
+//                             >
+//                               Learn more →
+//                             </Button>
+//                           </Box>
+//                         </Box>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+
+//                 {/* Mega Menu for Buy Need */}
+//                 {showBuyNeedMenu && (
+//                   <Box
+//                     ref={buyNeedMenuRef}
+//                     onMouseEnter={handleBuyNeedMenuMouseEnter}
+//                     onMouseLeave={handleBuyNeedMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '750px',
+//                       maxWidth: '900px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 3,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'flex',
+//                         gap: 6,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {BUY_NEED_ITEMS.map((section, sectionIdx) => (
+//                         <BuyNeedColumn key={sectionIdx}>
+//                           <BuyNeedTitle>
+//                             {section.icon}
+//                             {section.title}
+//                           </BuyNeedTitle>
+//                           <BuyNeedSection>
+//                             {section.items.map((item, itemIdx) => (
+//                               <BuyNeedItem
+//                                 key={itemIdx}
+//                                 onClick={(event) => handleBuyNeedItemClick(item.path, event)}
+//                                 sx={{
+//                                   opacity: 0,
+//                                   transform: 'translateX(20px)',
+//                                   animation: `${itemSlideIn} 0.3s ease forwards`,
+//                                   animationDelay: `${sectionIdx * 0.1 + itemIdx * 0.05}s`,
+//                                 }}
+//                               >
+//                                 {item.icon}
+//                                 {item.label}
+//                               </BuyNeedItem>
+//                             ))}
+//                           </BuyNeedSection>
+//                         </BuyNeedColumn>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+//               </Box>
+//             )}
+
+//             {/* Desktop Contact Button - Only show if NOT on contact page */}
+//             {!isMobile && !isContactPage && (
+//               <Button
+//                 variant="contained"
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   textTransform: 'none',
+//                   fontSize: 13,
+//                   borderRadius: 2,
+//                   px: 2,
+//                   py: 0.5,
+//                   height: 35,
+//                   backgroundColor: '#4F1985',
+//                   flexShrink: 0,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                    
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => setActiveTab('Contact Us')}
+//               >
+//                 Request Demo
+//               </Button>
+//             )}
+
+//             {/* Mobile Menu Icon */}
+//             {isMobile && (
+//               <IconButton 
+//                 edge="end" 
+//                 onClick={() => setDrawerOpen(true)}
+//                 sx={{ 
+//                   flexShrink: 0,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': {
+//                     transform: 'scale(1.1) rotate(90deg)',
+//                   }
+//                 }}
+//               >
+//                 <MenuIcon />
+//               </IconButton>
+//             )}
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+
+//       {/* Mobile Drawer */}
+//       <Drawer 
+//         anchor="right" 
+//         open={drawerOpen} 
+//         onClose={() => setDrawerOpen(false)}
+//         sx={{
+//           '& .MuiDrawer-paper': {
+//             width: 280,
+//             maxWidth: '80vw',
+//             backgroundColor: '#fff',
+//           },
+//           '& .MuiBackdrop-root': {
+//             backdropFilter: 'blur(4px)',
+//             backgroundColor: 'rgba(0,0,0,0.3)',
+//           },
+//         }}
+//       >
+//         <Box sx={{ width: '100%', height: '100%' }}>
+//           <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+//             <Typography variant="h6" sx={{ color: '#4F1985', fontWeight: 600 }}>
+//               Menu
+//             </Typography>
+//             <IconButton 
+//               onClick={() => setDrawerOpen(false)}
+//               sx={{
+//                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 '&:hover': {
+//                   transform: 'rotate(90deg) scale(1.1)',
+//                   backgroundColor: 'rgba(79, 25, 133, 0.1)',
+//                 }
+//               }}
+//             >
+//               <CloseIcon />
+//             </IconButton>
+//           </Box>
+//           <Divider />
+//           <List sx={{ flex: 1 }}>
+//             {currentNavItems.map((item) => (
+//               <ListItem disablePadding key={item.label}>
+//                 <ListItemButton
+//                   component={item.path !== '#' ? RouterLink : 'div'}
+//                   to={item.path !== '#' ? item.path : undefined}
+//                   onClick={() => handleNavClick(item.label)}
+//                   selected={activeTab === item.label}
+//                   sx={{
+//                     py: 1.5,
+//                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                     '&.Mui-selected': {
+//                       color: '#4f1985',
+//                       backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                       transform: 'translateX(8px)',
+//                       '& .MuiListItemText-primary': {
+//                         fontWeight: 600,
+//                       },
+//                       '&::after': {
+//                         content: '""',
+//                         position: 'absolute',
+//                         bottom: '8px',
+//                         left: '16px',
+//                         width: 'calc(100% - 32px)',
+//                         height: '2px',
+//                         backgroundColor: '#4f1985',
+//                         borderRadius: '1px',
+//                       }
+//                     },
+//                     '&.Mui-selected:hover': {
+//                       backgroundColor: 'rgba(79, 25, 133, 0.12)',
+//                       transform: 'translateX(12px) scale(1.01)',
+//                     },
+//                     '&:hover': {
+//                       backgroundColor: theme.palette.action.hover,
+//                       transform: 'translateX(4px)',
+//                     },
+//                     position: 'relative',
+//                   }}
+//                 >
+//                   <ListItemText
+//                     primary={item.label}
+//                     primaryTypographyProps={{
+//                       fontWeight: activeTab === item.label ? 600 : 400,
+//                       fontSize: '1rem',
+//                     }}
+//                   />
+//                 </ListItemButton>
+//               </ListItem>
+//             ))}
+//           </List>
+//           <Divider />
+//           {/* Mobile Contact Button - Only show if NOT on contact page */}
+//           {!isContactPage && (
+//             <Box p={2}>
+//               <Button
+//                 variant="contained"
+//                 fullWidth
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   borderRadius: 3,
+//                   backgroundColor: '#4F1985',
+//                   fontWeight: 600,
+//                   py: 1.5,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                   
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => {
+//                   setDrawerOpen(false);
+//                   setActiveTab('Contact Us');
+//                 }}
+//               >
+//                 Request Demo
+//               </Button>
+//             </Box>
+//           )}
+//         </Box>
+//       </Drawer>
+//     </>
+//   );
+// }
+
+
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import {
+//   AppBar,
+//   Toolbar,
+//   IconButton,
+//   Button,
+//   Box,
+//   Drawer,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemText,
+//   Divider,
+//   useMediaQuery,
+//   useScrollTrigger,
+//   Typography,
+// } from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import CloseIcon from '@mui/icons-material/Close';
+// import ScienceIcon from '@mui/icons-material/Science';
+// import BiotechIcon from '@mui/icons-material/Biotech';
+// import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+// import SchoolIcon from '@mui/icons-material/School';
+// import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+// import { useTheme, styled, keyframes } from '@mui/material/styles';
+// import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+
+// const NAV_ITEMS = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' }
+// ];
+
+// const NAV_ITEMS_WITH_CONTACT = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' },
+//   { label: 'Contact Us', path: '/contact' }
+// ];
+
+// const PRODUCT_ITEMS = [
+//   { 
+//     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Small Molecule Design', 
+//     path: '/smallmoleculedesign',
+//     desc: 'Transform the way you discover, design, and optimize small molecules faster, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Protein Engineering', 
+//     path: '/proteinengineering',
+//     desc: 'Reimagine how proteins are designed, optimized, and brought to life faster, smarter, more precise.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'AI Drug Discovery', 
+//     path: '/aidrugdiscovery',
+//     desc: 'Accelerate pharmaceutical innovation with cutting-edge AI algorithms and machine learning.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Molecular Analytics', 
+//     path: '/molecularanalytics',
+//     desc: 'Advanced computational tools for molecular analysis, prediction, and optimization workflows.' 
+//   },
+// ];
+
+// const BUY_NEED_ITEMS = [
+//   {
+//     title: 'By Role',
+//     icon: <PrecisionManufacturingIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Medicinal Chemists', path: '/medicinal-chemists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Bioinformatics', path: '/bioinformatics', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Synthetic Chemists', path: '/synthetic-chemists', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Pharmacologists', path: '/pharmacologists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Researchers', path: '/clinical-researchers', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   },
+//   {
+//     title: 'By Industry',
+//     icon: <SchoolIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Pharmaceuticals & Biotechnology', path: '/pharmaceuticals-biotech', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Chemicals', path: '/chemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Agrochemicals and Crop Science', path: '/agrochemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'CROs', path: '/cros', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Academic Research', path: '/academic-research', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Precision Medicine', path: '/precision-medicine', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Material Science', path: '/material-science', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Trials & Healthcare', path: '/clinical-trials', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   }
+// ];
+
+// // Enhanced smooth animations
+// const megaMenuSlideIn = keyframes`
+//   0% { 
+//     opacity: 0; 
+//     transform: translateX(-50%) translateY(-15px) scale(0.96);
+//     filter: blur(3px);
+//   }
+//   100% { 
+//     opacity: 1; 
+//     transform: translateX(-50%) translateY(0) scale(1);
+//     filter: blur(0px);
+//   }
+// `;
+
+// const productFadeIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateY(25px) scale(0.96);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateY(0) scale(1);
+//   }
+// `;
+
+// const itemSlideIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateX(25px);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateX(0);
+//   }
+// `;
+
+// const NavWrapper = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   backgroundColor: theme.palette.action.hover,
+//   borderRadius: 24,
+//   padding: '4px',
+//   width: '100%',
+//   alignItems: 'center',
+//   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+// }));
+
+// const NavButton = styled(Button, {
+//   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'hovered',
+// })(({ theme, active, hovered }) => ({
+//   textTransform: 'none',
+//   fontWeight: 500,
+//   fontSize: 14,
+//   padding: '4px 16px',
+//   borderRadius: 20,
+//   backgroundColor: active ? theme.palette.background.paper : 'transparent',
+//   color: active ? '#4f1985' : theme.palette.text.primary,
+//   boxShadow: active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//   flex: 1,
+//   minWidth: 0,
+//   whiteSpace: 'nowrap',
+//   position: 'relative',
+//   overflow: 'hidden',
+
+//   '&:hover': {
+//     backgroundColor: hovered ? theme.palette.action.selected : 'transparent',
+//     transform: active ? 'none' : 'translateY(-1px)',
+//     boxShadow: hovered && !active ? '0 4px 12px rgba(79, 25, 133, 0.08)' : active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   },
+
+//   '&::before': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: !active && hovered ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '60%',
+//     backgroundColor: 'rgba(79, 25, 133, 0.3)',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   },
+
+//   '&::after': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: active ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '30%',
+//     backgroundColor: '#4f1985',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   }
+// }));
+
+// const BuyNeedColumn = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '16px',
+//   flex: 1,
+//   minWidth: 0,
+// }));
+
+// const BuyNeedSection = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '8px',
+// }));
+
+// const BuyNeedTitle = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   fontWeight: 700,
+//   fontSize: '1rem',
+//   color: '#4F1985',
+//   marginBottom: '12px',
+//   paddingBottom: '4px',
+//   borderBottom: '2px solid rgba(79, 25, 133, 0.2)',
+//   whiteSpace: 'nowrap',
+// }));
+
+// const BuyNeedItem = styled(Button)(({ theme }) => ({
+//   textTransform: 'none',
+//   justifyContent: 'flex-start',
+//   padding: '8px 12px',
+//   borderRadius: '6px',
+//   color: theme.palette.text.primary,
+//   fontWeight: 500,
+//   fontSize: '0.9rem',
+//   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   whiteSpace: 'nowrap',
+//   minWidth: 'max-content',
+//   '&:hover': {
+//     backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//     color: '#4F1985',
+//     transform: 'translateX(6px) scale(1.01)',
+//   },
+// }));
+
+// export default function NavbarPage() {
+//   const theme = useTheme();
+//   const isMobile = useMediaQuery('(max-width: 1024px)');
+//   const isTablet = useMediaQuery('(max-width: 1200px)');
+//   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const [drawerOpen, setDrawerOpen] = useState(false);
+//   const [activeTab, setActiveTab] = useState('');
+//   const [showMegaMenu, setShowMegaMenu] = useState(false);
+//   const [showBuyNeedMenu, setShowBuyNeedMenu] = useState(false);
+//   const [hoveredItem, setHoveredItem] = useState(null);
+  
+//   // Determine if we're on the contact page
+//   const isContactPage = location.pathname === '/contact';
+  
+//   // Choose which nav items to show based on current page
+//   const currentNavItems = isContactPage ? NAV_ITEMS_WITH_CONTACT : NAV_ITEMS;
+  
+//   const megaMenuRef = useRef(null);
+//   const buyNeedMenuRef = useRef(null);
+//   const navItemRef = useRef(null);
+//   const buyNeedItemRef = useRef(null);
+//   const hideTimeoutRef = useRef(null);
+//   const isMouseInsideRef = useRef(false);
+
+//   useEffect(() => {
+//     const currentItem = currentNavItems.find(item => item.path === location.pathname);
+//     if (currentItem) {
+//       setActiveTab(currentItem.label);
+//     } else {
+//       setActiveTab('Home');
+//     }
+//   }, [location.pathname, currentNavItems]);
+
+//   const handleNavClick = (label) => {
+//     setActiveTab(label);
+//     setDrawerOpen(false);
+//   };
+
+//   const handleItemHover = (label) => {
+//     setHoveredItem(label);
+//   };
+
+//   const handleItemLeave = () => {
+//     setHoveredItem(null);
+//   };
+
+//   const showMenu = (menuType) => {
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (menuType === 'products') {
+//       setShowMegaMenu(true);
+//       setShowBuyNeedMenu(false);
+//     } else if (menuType === 'buyNeed') {
+//       setShowBuyNeedMenu(true);
+//       setShowMegaMenu(false);
+//     }
+//     isMouseInsideRef.current = true;
+//   };
+
+//   const hideMenu = () => {
+//     isMouseInsideRef.current = false;
+//     hideTimeoutRef.current = setTimeout(() => {
+//       if (!isMouseInsideRef.current) {
+//         setShowMegaMenu(false);
+//         setShowBuyNeedMenu(false);
+//       }
+//     }, 150);
+//   };
+
+//   const handleNavItemMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleNavItemMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleMegaMenuMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleMegaMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMenuMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleProductClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleLearnMoreClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleBuyNeedItemClick = (path, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowBuyNeedMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (path) {
+//       navigate(path);
+//     }
+//   };
+
+//   useEffect(() => {
+//     return () => {
+//       if (hideTimeoutRef.current) {
+//         clearTimeout(hideTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       <AppBar
+//         position="sticky"
+//         elevation={trigger ? 4 : 0}
+//         sx={{
+//           backgroundColor: theme.palette.background.paper,
+//           color: "#4F1985",
+//           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//           boxShadow: trigger ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
+//           height: { xs: '70px', sm: '80px' },
+//           justifyContent: 'center',
+//           zIndex: theme.zIndex.drawer + 1,
+//         }}
+//       >
+//         <Toolbar sx={{ 
+//           minHeight: { xs: '70px', sm: '80px' },
+//           display: 'flex', 
+//           justifyContent: 'center', 
+//           px: { xs: 1, sm: 2 } 
+//         }}>
+//           <Box sx={{ 
+//             width: '100%', 
+//             maxWidth: '1440px', 
+//             display: 'flex', 
+//             alignItems: 'center', 
+//             justifyContent: isMobile ? 'space-between' : 'space-evenly',
+//             position: 'relative',
+//             overflow: 'hidden',
+//           }}>
+//             {/* Logo */}
+//             <RouterLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+//               <img 
+//                 src="/logo.png" 
+//                 alt="Logo" 
+//                 height={50} 
+//                 style={{ 
+//                   marginRight: 8,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 }} 
+//                 onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+//                 onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+//               />
+//             </RouterLink>
+
+//             {/* Desktop Navigation */}
+//             {!isMobile && (
+//               <Box sx={{ 
+//                 flex: 1, 
+//                 mx: 2,
+//                 minWidth: 0,
+//                 position: 'relative',
+//                 display: 'flex',
+//                 justifyContent: 'center'
+//               }}>
+//                 <NavWrapper sx={{
+//                   maxWidth: isContactPage ? '700px' : '600px',
+//                   minWidth: isContactPage ? '500px' : '400px',
+//                 }}>
+//                   {currentNavItems.map((item) =>
+//                     item.label === 'Our Suite' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={navItemRef}
+//                         onMouseEnter={handleNavItemMouseEnter}
+//                         onMouseLeave={handleNavItemMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : item.label === 'Buy Need' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={buyNeedItemRef}
+//                         onMouseEnter={handleBuyNeedMouseEnter}
+//                         onMouseLeave={handleBuyNeedMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : (
+//                       <Box
+//                         key={item.label}
+//                         onMouseEnter={() => handleItemHover(item.label)}
+//                         onMouseLeave={handleItemLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           component={RouterLink}
+//                           to={item.path}
+//                           onClick={() => setActiveTab(item.label)}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     )
+//                   )}
+//                 </NavWrapper>
+
+//                 {/* Mega Menu for Our Suite - Optimized Layout */}
+//                 {showMegaMenu && (
+//                   <Box
+//                     ref={megaMenuRef}
+//                     onMouseEnter={handleMegaMenuMouseEnter}
+//                     onMouseLeave={handleMegaMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '95vw' : '1200px',
+//                       maxWidth: '1300px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 4,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'grid',
+//                         gridTemplateColumns: { 
+//                           xs: '1fr', 
+//                           sm: '1fr 1fr', 
+//                           md: 'repeat(3, 1fr)',
+//                           lg: 'repeat(5, 1fr)'
+//                         },
+//                         gap: 3,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {PRODUCT_ITEMS.map((product, idx) => (
+//                         <Box
+//                           key={idx}
+//                           onClick={(event) => handleProductClick(product, event)}
+//                           sx={{
+//                             bgcolor: '#fafafa',
+//                             p: 2.5,
+//                             borderRadius: 3,
+//                             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+//                             cursor: 'pointer',
+//                             display: 'flex',
+//                             flexDirection: 'column',
+//                             alignItems: 'flex-start',
+//                             gap: 1.5,
+//                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                             border: '1px solid transparent',
+//                             userSelect: 'none',
+//                             position: 'relative',
+//                             height: 'auto',
+//                             minHeight: '280px',
+//                             maxHeight: '320px',
+//                             '&:hover': {
+//                               transform: 'translateY(-6px) scale(1.02)',
+//                               boxShadow: '0 20px 40px rgba(79, 25, 133, 0.15)',
+//                               bgcolor: '#fff',
+//                               borderColor: 'rgba(79, 25, 133, 0.1)',
+//                             },
+//                             '&:active': {
+//                               transform: 'translateY(-3px) scale(1.005)',
+//                             },
+//                             opacity: 0,
+//                             transform: 'translateY(20px)',
+//                             animation: `${productFadeIn} 0.4s ease forwards`,
+//                             animationDelay: `${idx * 0.08}s`,
+//                           }}
+//                         >
+//                           <Box
+//                             component="img"
+//                             src={product.img}
+//                             alt={product.title}
+//                             onError={(e) => {
+//                               e.target.src = 'https://via.placeholder.com/280x120?text=Product+Image';
+//                             }}
+//                             sx={{
+//                               width: '100%',
+//                               height: 120,
+//                               borderRadius: 2,
+//                               objectFit: 'cover',
+//                               mb: 1,
+//                               transition: 'transform 0.3s ease',
+//                             }}
+//                           />
+//                           <Box sx={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+//                             <Box>
+//                               <Typography 
+//                                 variant="h6" 
+//                                 sx={{ 
+//                                   fontWeight: 700, 
+//                                   color: '#4F1985', 
+//                                   mb: 1,
+//                                   fontSize: '1rem',
+//                                   lineHeight: 1.3,
+//                                 }}
+//                               >
+//                                 {product.title}
+//                               </Typography>
+//                               <Typography 
+//                                 variant="body2" 
+//                                 sx={{ 
+//                                   color: 'text.secondary', 
+//                                   lineHeight: 1.4,
+//                                   fontSize: '0.8rem',
+//                                   display: '-webkit-box',
+//                                   WebkitLineClamp: 3,
+//                                   WebkitBoxOrient: 'vertical',
+//                                   overflow: 'hidden',
+//                                   mb: 1.5,
+//                                   height: '3.6em',
+//                                 }}
+//                               >
+//                                 {product.desc}
+//                               </Typography>
+//                             </Box>
+//                             <Button
+//                               size="small"
+//                               onClick={(event) => handleLearnMoreClick(product, event)}
+//                               sx={{
+//                                 color: '#4F1985',
+//                                 fontWeight: 600,
+//                                 textTransform: 'none',
+//                                 fontSize: '0.75rem',
+//                                 padding: '4px 10px',
+//                                 minWidth: 'auto',
+//                                 borderRadius: 2,
+//                                 backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                                 alignSelf: 'flex-start',
+//                                 '&:hover': {
+//                                   backgroundColor: 'rgba(79, 25, 133, 0.15)',
+//                                   transform: 'scale(1.02)',
+//                                 },
+//                                 '&:active': {
+//                                   transform: 'scale(0.98)',
+//                                 },
+//                                 transition: 'all 0.2s ease',
+//                               }}
+//                             >
+//                               Learn more →
+//                             </Button>
+//                           </Box>
+//                         </Box>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+
+//                 {/* Mega Menu for Buy Need */}
+//                 {showBuyNeedMenu && (
+//                   <Box
+//                     ref={buyNeedMenuRef}
+//                     onMouseEnter={handleBuyNeedMenuMouseEnter}
+//                     onMouseLeave={handleBuyNeedMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '750px',
+//                       maxWidth: '900px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 3,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'flex',
+//                         gap: 6,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {BUY_NEED_ITEMS.map((section, sectionIdx) => (
+//                         <BuyNeedColumn key={sectionIdx}>
+//                           <BuyNeedTitle>
+//                             {section.icon}
+//                             {section.title}
+//                           </BuyNeedTitle>
+//                           <BuyNeedSection>
+//                             {section.items.map((item, itemIdx) => (
+//                               <BuyNeedItem
+//                                 key={itemIdx}
+//                                 onClick={(event) => handleBuyNeedItemClick(item.path, event)}
+//                                 sx={{
+//                                   opacity: 0,
+//                                   transform: 'translateX(20px)',
+//                                   animation: `${itemSlideIn} 0.3s ease forwards`,
+//                                   animationDelay: `${sectionIdx * 0.1 + itemIdx * 0.05}s`,
+//                                 }}
+//                               >
+//                                 {item.icon}
+//                                 {item.label}
+//                               </BuyNeedItem>
+//                             ))}
+//                           </BuyNeedSection>
+//                         </BuyNeedColumn>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+//               </Box>
+//             )}
+
+//             {/* Desktop Contact Button - Only show if NOT on contact page */}
+//             {!isMobile && !isContactPage && (
+//               <Button
+//                 variant="contained"
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   textTransform: 'none',
+//                   fontSize: 13,
+//                   borderRadius: 2,
+//                   px: 2,
+//                   py: 0.5,
+//                   height: 35,
+//                   backgroundColor: '#4F1985',
+//                   flexShrink: 0,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                    
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => setActiveTab('Contact Us')}
+//               >
+//                 Request Demo
+//               </Button>
+//             )}
+
+//             {/* Mobile Menu Icon */}
+//             {isMobile && (
+//               <IconButton 
+//                 edge="end" 
+//                 onClick={() => setDrawerOpen(true)}
+//                 sx={{ 
+//                   flexShrink: 0,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': {
+//                     transform: 'scale(1.1) rotate(90deg)',
+//                   }
+//                 }}
+//               >
+//                 <MenuIcon />
+//               </IconButton>
+//             )}
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+
+//       {/* Mobile Drawer */}
+//       <Drawer 
+//         anchor="right" 
+//         open={drawerOpen} 
+//         onClose={() => setDrawerOpen(false)}
+//         sx={{
+//           '& .MuiDrawer-paper': {
+//             width: 280,
+//             maxWidth: '80vw',
+//             backgroundColor: '#fff',
+//           },
+//           '& .MuiBackdrop-root': {
+//             backdropFilter: 'blur(4px)',
+//             backgroundColor: 'rgba(0,0,0,0.3)',
+//           },
+//         }}
+//       >
+//         <Box sx={{ width: '100%', height: '100%' }}>
+//           <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+//             <Typography variant="h6" sx={{ color: '#4F1985', fontWeight: 600 }}>
+//               Menu
+//             </Typography>
+//             <IconButton 
+//               onClick={() => setDrawerOpen(false)}
+//               sx={{
+//                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 '&:hover': {
+//                   transform: 'rotate(90deg) scale(1.1)',
+//                   backgroundColor: 'rgba(79, 25, 133, 0.1)',
+//                 }
+//               }}
+//             >
+//               <CloseIcon />
+//             </IconButton>
+//           </Box>
+//           <Divider />
+//           <List sx={{ flex: 1 }}>
+//             {currentNavItems.map((item) => (
+//               <ListItem disablePadding key={item.label}>
+//                 <ListItemButton
+//                   component={item.path !== '#' ? RouterLink : 'div'}
+//                   to={item.path !== '#' ? item.path : undefined}
+//                   onClick={() => handleNavClick(item.label)}
+//                   selected={activeTab === item.label}
+//                   sx={{
+//                     py: 1.5,
+//                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                     '&.Mui-selected': {
+//                       color: '#4f1985',
+//                       backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                       transform: 'translateX(8px)',
+//                       '& .MuiListItemText-primary': {
+//                         fontWeight: 600,
+//                       },
+//                       '&::after': {
+//                         content: '""',
+//                         position: 'absolute',
+//                         bottom: '8px',
+//                         left: '16px',
+//                         width: 'calc(100% - 32px)',
+//                         height: '2px',
+//                         backgroundColor: '#4f1985',
+//                         borderRadius: '1px',
+//                       }
+//                     },
+//                     '&.Mui-selected:hover': {
+//                       backgroundColor: 'rgba(79, 25, 133, 0.12)',
+//                       transform: 'translateX(12px) scale(1.01)',
+//                     },
+//                     '&:hover': {
+//                       backgroundColor: theme.palette.action.hover,
+//                       transform: 'translateX(4px)',
+//                     },
+//                     position: 'relative',
+//                   }}
+//                 >
+//                   <ListItemText
+//                     primary={item.label}
+//                     primaryTypographyProps={{
+//                       fontWeight: activeTab === item.label ? 600 : 400,
+//                       fontSize: '1rem',
+//                     }}
+//                   />
+//                 </ListItemButton>
+//               </ListItem>
+//             ))}
+//           </List>
+//           <Divider />
+//           {/* Mobile Contact Button - Only show if NOT on contact page */}
+//           {!isContactPage && (
+//             <Box p={2}>
+//               <Button
+//                 variant="contained"
+//                 fullWidth
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   borderRadius: 3,
+//                   backgroundColor: '#4F1985',
+//                   fontWeight: 600,
+//                   py: 1.5,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                   
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => {
+//                   setDrawerOpen(false);
+//                   setActiveTab('Contact Us');
+//                 }}
+//               >
+//                 Request Demo
+//               </Button>
+//             </Box>
+//           )}
+//         </Box>
+//       </Drawer>
+//     </>
+//   );
+// }
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import {
+//   AppBar,
+//   Toolbar,
+//   IconButton,
+//   Button,
+//   Box,
+//   Drawer,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemText,
+//   Divider,
+//   useMediaQuery,
+//   useScrollTrigger,
+//   Typography,
+// } from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import CloseIcon from '@mui/icons-material/Close';
+// import ScienceIcon from '@mui/icons-material/Science';
+// import BiotechIcon from '@mui/icons-material/Biotech';
+// import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+// import SchoolIcon from '@mui/icons-material/School';
+// import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+// import { useTheme, styled, keyframes } from '@mui/material/styles';
+// import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+
+// const NAV_ITEMS = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' }
+// ];
+
+// const NAV_ITEMS_WITH_CONTACT = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' },
+//   { label: 'Contact Us', path: '/contact' }
+// ];
+
+// const PRODUCT_ITEMS = [
+//   { 
+//     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Small Molecule Design', 
+//     path: '/smallmoleculedesign',
+//     desc: 'Transform the way you discover, design, and optimize small molecules faster, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Protein Engineering', 
+//     path: '/proteinengineering',
+//     desc: 'Reimagine how proteins are designed, optimized, and brought to life faster, smarter, more precise.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'AI Drug Discovery', 
+//     path: '/aidrugdiscovery',
+//     desc: 'Accelerate pharmaceutical innovation with cutting-edge AI algorithms and machine learning.' 
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Molecular Analytics', 
+//     path: '/molecularanalytics',
+//     desc: 'Advanced computational tools for molecular analysis, prediction, and optimization workflows.' 
+//   },
+// ];
+
+// const BUY_NEED_ITEMS = [
+//   {
+//     title: 'By Role',
+//     icon: <PrecisionManufacturingIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Medicinal Chemists', path: '/medicinal-chemists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Bioinformatics', path: '/bioinformatics', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Synthetic Chemists', path: '/synthetic-chemists', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Pharmacologists', path: '/pharmacologists', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Researchers', path: '/clinical-researchers', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   },
+//   {
+//     title: 'By Industry',
+//     icon: <SchoolIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Pharmaceuticals & Biotechnology', path: '/pharmaceuticals-biotech', icon: <BiotechIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Chemicals', path: '/chemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Agrochemicals and Crop Science', path: '/agrochemicals', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'CROs', path: '/cros', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Academic Research', path: '/academic-research', icon: <SchoolIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Precision Medicine', path: '/precision-medicine', icon: <PrecisionManufacturingIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Material Science', path: '/material-science', icon: <ScienceIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//       { label: 'Clinical Trials & Healthcare', path: '/clinical-trials', icon: <LocalPharmacyIcon fontSize="small" sx={{ color: '#4F1985' }} /> },
+//     ]
+//   }
+// ];
+
+// // Enhanced smooth animations
+// const megaMenuSlideIn = keyframes`
+//   0% { 
+//     opacity: 0; 
+//     transform: translateX(-50%) translateY(-15px) scale(0.96);
+//     filter: blur(3px);
+//   }
+//   100% { 
+//     opacity: 1; 
+//     transform: translateX(-50%) translateY(0) scale(1);
+//     filter: blur(0px);
+//   }
+// `;
+
+// const productFadeIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateY(25px) scale(0.96);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateY(0) scale(1);
+//   }
+// `;
+
+// const itemSlideIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateX(25px);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateX(0);
+//   }
+// `;
+
+// const NavWrapper = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   backgroundColor: theme.palette.action.hover,
+//   borderRadius: 24,
+//   padding: '4px',
+//   width: '100%',
+//   alignItems: 'center',
+//   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+// }));
+
+// const NavButton = styled(Button, {
+//   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'hovered',
+// })(({ theme, active, hovered }) => ({
+//   textTransform: 'none',
+//   fontWeight: 500,
+//   fontSize: 14,
+//   padding: '4px 16px',
+//   borderRadius: 20,
+//   backgroundColor: active ? theme.palette.background.paper : 'transparent',
+//   color: active ? '#4f1985' : theme.palette.text.primary,
+//   boxShadow: active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//   flex: 1,
+//   minWidth: 0,
+//   whiteSpace: 'nowrap',
+//   position: 'relative',
+//   overflow: 'hidden',
+
+//   '&:hover': {
+//     backgroundColor: hovered ? theme.palette.action.selected : 'transparent',
+//     transform: active ? 'none' : 'translateY(-1px)',
+//     boxShadow: hovered && !active ? '0 4px 12px rgba(79, 25, 133, 0.08)' : active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   },
+
+//   '&::before': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: !active && hovered ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '60%',
+//     backgroundColor: 'rgba(79, 25, 133, 0.3)',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   },
+
+//   '&::after': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: active ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '30%',
+//     backgroundColor: '#4f1985',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   }
+// }));
+
+// const BuyNeedColumn = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '16px',
+//   flex: 1,
+//   minWidth: 0,
+// }));
+
+// const BuyNeedSection = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '8px',
+// }));
+
+// const BuyNeedTitle = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   fontWeight: 700,
+//   fontSize: '1rem',
+//   color: '#4F1985',
+//   marginBottom: '12px',
+//   paddingBottom: '4px',
+//   borderBottom: '2px solid rgba(79, 25, 133, 0.2)',
+//   whiteSpace: 'nowrap',
+// }));
+
+// const BuyNeedItem = styled(Button)(({ theme }) => ({
+//   textTransform: 'none',
+//   justifyContent: 'flex-start',
+//   padding: '8px 12px',
+//   borderRadius: '6px',
+//   color: theme.palette.text.primary,
+//   fontWeight: 500,
+//   fontSize: '0.9rem',
+//   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   whiteSpace: 'nowrap',
+//   minWidth: 'max-content',
+//   '&:hover': {
+//     backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//     color: '#4F1985',
+//     transform: 'translateX(6px) scale(1.01)',
+//   },
+// }));
+
+// export default function NavbarPage() {
+//   const theme = useTheme();
+//   const isMobile = useMediaQuery('(max-width: 1024px)');
+//   const isTablet = useMediaQuery('(max-width: 1200px)');
+//   const isSmallDesktop = useMediaQuery('(min-width: 1025px) and (max-width: 1200px)');
+//   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const [drawerOpen, setDrawerOpen] = useState(false);
+//   const [activeTab, setActiveTab] = useState('');
+//   const [showMegaMenu, setShowMegaMenu] = useState(false);
+//   const [showBuyNeedMenu, setShowBuyNeedMenu] = useState(false);
+//   const [hoveredItem, setHoveredItem] = useState(null);
+  
+//   // Determine if we're on the contact page
+//   const isContactPage = location.pathname === '/contact';
+  
+//   // Choose which nav items to show based on current page
+//   const currentNavItems = isContactPage ? NAV_ITEMS_WITH_CONTACT : NAV_ITEMS;
+  
+//   const megaMenuRef = useRef(null);
+//   const buyNeedMenuRef = useRef(null);
+//   const navItemRef = useRef(null);
+//   const buyNeedItemRef = useRef(null);
+//   const hideTimeoutRef = useRef(null);
+//   const isMouseInsideRef = useRef(false);
+
+//   useEffect(() => {
+//     const currentItem = currentNavItems.find(item => item.path === location.pathname);
+//     if (currentItem) {
+//       setActiveTab(currentItem.label);
+//     } else {
+//       setActiveTab('Home');
+//     }
+//   }, [location.pathname, currentNavItems]);
+
+//   const handleNavClick = (label) => {
+//     setActiveTab(label);
+//     setDrawerOpen(false);
+//   };
+
+//   const handleItemHover = (label) => {
+//     setHoveredItem(label);
+//   };
+
+//   const handleItemLeave = () => {
+//     setHoveredItem(null);
+//   };
+
+//   const showMenu = (menuType) => {
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (menuType === 'products') {
+//       setShowMegaMenu(true);
+//       setShowBuyNeedMenu(false);
+//     } else if (menuType === 'buyNeed') {
+//       setShowBuyNeedMenu(true);
+//       setShowMegaMenu(false);
+//     }
+//     isMouseInsideRef.current = true;
+//   };
+
+//   const hideMenu = () => {
+//     isMouseInsideRef.current = false;
+//     hideTimeoutRef.current = setTimeout(() => {
+//       if (!isMouseInsideRef.current) {
+//         setShowMegaMenu(false);
+//         setShowBuyNeedMenu(false);
+//       }
+//     }, 150);
+//   };
+
+//   const handleNavItemMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleNavItemMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleMegaMenuMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleMegaMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMenuMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleProductClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleLearnMoreClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleBuyNeedItemClick = (path, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowBuyNeedMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (path) {
+//       navigate(path);
+//     }
+//   };
+
+//   useEffect(() => {
+//     return () => {
+//       if (hideTimeoutRef.current) {
+//         clearTimeout(hideTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       <AppBar
+//         position="sticky"
+//         elevation={trigger ? 4 : 0}
+//         sx={{
+//           backgroundColor: theme.palette.background.paper,
+//           color: "#4F1985",
+//           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//           boxShadow: trigger ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
+//           height: { xs: '70px', sm: '80px' },
+//           justifyContent: 'center',
+//           zIndex: theme.zIndex.drawer + 1,
+//         }}
+//       >
+//         <Toolbar sx={{ 
+//           minHeight: { xs: '70px', sm: '80px' },
+//           display: 'flex', 
+//           justifyContent: 'center', 
+//           px: { xs: 1, sm: 2 } 
+//         }}>
+//           <Box sx={{ 
+//             width: '100%', 
+//             maxWidth: '1440px', 
+//             display: 'flex', 
+//             alignItems: 'center', 
+//             justifyContent: isMobile ? 'space-between' : 'space-evenly',
+//             position: 'relative',
+//             overflow: 'hidden',
+//           }}>
+//             {/* Logo */}
+//             <RouterLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+//               <img 
+//                 src="/logo.png" 
+//                 alt="Logo" 
+//                 height={50} 
+//                 style={{ 
+//                   marginRight: 8,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 }} 
+//                 onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+//                 onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+//               />
+//             </RouterLink>
+
+//             {/* Desktop Navigation */}
+//             {!isMobile && (
+//               <Box sx={{ 
+//                 flex: 1, 
+//                 mx: 2,
+//                 minWidth: 0,
+//                 position: 'relative',
+//                 display: 'flex',
+//                 justifyContent: 'center'
+//               }}>
+//                 <NavWrapper sx={{
+//                   maxWidth: isContactPage ? '700px' : '600px',
+//                   minWidth: isContactPage ? '500px' : '400px',
+//                 }}>
+//                   {currentNavItems.map((item) =>
+//                     item.label === 'Our Suite' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={navItemRef}
+//                         onMouseEnter={handleNavItemMouseEnter}
+//                         onMouseLeave={handleNavItemMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : item.label === 'Buy Need' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={buyNeedItemRef}
+//                         onMouseEnter={handleBuyNeedMouseEnter}
+//                         onMouseLeave={handleBuyNeedMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : (
+//                       <Box
+//                         key={item.label}
+//                         onMouseEnter={() => handleItemHover(item.label)}
+//                         onMouseLeave={handleItemLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           component={RouterLink}
+//                           to={item.path}
+//                           onClick={() => setActiveTab(item.label)}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     )
+//                   )}
+//                 </NavWrapper>
+
+//                 {/* Mega Menu for Our Suite - Optimized Layout */}
+//                 {showMegaMenu && (
+//                   <Box
+//                     ref={megaMenuRef}
+//                     onMouseEnter={handleMegaMenuMouseEnter}
+//                     onMouseLeave={handleMegaMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '95vw' : '1200px',
+//                       maxWidth: '1300px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 4,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'grid',
+//                         gridTemplateColumns: isSmallDesktop 
+//                           ? 'repeat(5, 1fr)' 
+//                           : { 
+//                               xs: '1fr', 
+//                               sm: '1fr 1fr', 
+//                               md: 'repeat(3, 1fr)',
+//                               lg: 'repeat(5, 1fr)'
+//                             },
+//                         gap: isSmallDesktop ? 2 : 3,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {PRODUCT_ITEMS.map((product, idx) => (
+//                         <Box
+//                           key={idx}
+//                           onClick={(event) => handleProductClick(product, event)}
+//                           sx={{
+//                             bgcolor: '#fafafa',
+//                             p: isSmallDesktop ? 1.5 : 2.5,
+//                             borderRadius: 3,
+//                             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+//                             cursor: 'pointer',
+//                             display: 'flex',
+//                             flexDirection: 'column',
+//                             alignItems: 'flex-start',
+//                             gap: isSmallDesktop ? 1 : 1.5,
+//                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                             border: '1px solid transparent',
+//                             userSelect: 'none',
+//                             position: 'relative',
+//                             height: 'auto',
+//                             minHeight: isSmallDesktop ? '250px' : '280px',
+//                             maxHeight: isSmallDesktop ? '250px' : '320px',
+//                             '&:hover': {
+//                               transform: 'translateY(-6px) scale(1.02)',
+//                               boxShadow: '0 20px 40px rgba(79, 25, 133, 0.15)',
+//                               bgcolor: '#fff',
+//                               borderColor: 'rgba(79, 25, 133, 0.1)',
+//                             },
+//                             '&:active': {
+//                               transform: 'translateY(-3px) scale(1.005)',
+//                             },
+//                             opacity: 0,
+//                             transform: 'translateY(20px)',
+//                             animation: `${productFadeIn} 0.4s ease forwards`,
+//                             animationDelay: `${idx * 0.08}s`,
+//                           }}
+//                         >
+//                           <Box
+//                             component="img"
+//                             src={product.img}
+//                             alt={product.title}
+//                             onError={(e) => {
+//                               e.target.src = 'https://via.placeholder.com/280x120?text=Product+Image';
+//                             }}
+//                             sx={{
+//                               width: '100%',
+//                               height: isSmallDesktop ? 80 : 120,
+//                               borderRadius: 2,
+//                               objectFit: 'cover',
+//                               mb: 1,
+//                               transition: 'transform 0.3s ease',
+//                             }}
+//                           />
+//                           <Box sx={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+//                             <Box>
+//                               <Typography 
+//                                 variant="h6" 
+//                                 sx={{ 
+//                                   fontWeight: 700, 
+//                                   color: '#4F1985', 
+//                                   mb: 1,
+//                                   fontSize: isSmallDesktop ? '0.85rem' : '1rem',
+//                                   lineHeight: 1.3,
+//                                 }}
+//                               >
+//                                 {product.title}
+//                               </Typography>
+//                               <Typography 
+//                                 variant="body2" 
+//                                 sx={{ 
+//                                   color: 'text.secondary', 
+//                                   lineHeight: 1.4,
+//                                   fontSize: isSmallDesktop ? 'rem' : '0.8rem',
+//                                   display: '-webkit-box',
+//                                   WebkitLineClamp: isSmallDesktop ? 2 : 3,
+//                                   WebkitBoxOrient: 'vertical',
+//                                   overflow: 'hidden',
+//                                   mb: 1.5,
+//                                   height: isSmallDesktop ? '2.4em' : '3.6em',
+//                                 }}
+//                               >
+//                                 {product.desc}
+//                               </Typography>
+//                             </Box>
+//                             <Button
+//                               size="small"
+//                               onClick={(event) => handleLearnMoreClick(product, event)}
+//                               sx={{
+//                                 color: '#4F1985',
+//                                 fontWeight: 600,
+//                                 textTransform: 'none',
+//                                 fontSize: isSmallDesktop ? '0.7rem' : '0.75rem',
+//                                 padding: isSmallDesktop ? '3px 8px' : '4px 10px',
+//                                 minWidth: 'auto',
+//                                 borderRadius: 2,
+//                                 backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                                 alignSelf: 'flex-start',
+//                                 '&:hover': {
+//                                   backgroundColor: 'rgba(79, 25, 133, 0.15)',
+//                                   transform: 'scale(1.02)',
+//                                 },
+//                                 '&:active': {
+//                                   transform: 'scale(0.98)',
+//                                 },
+//                                 transition: 'all 0.2s ease',
+//                               }}
+//                             >
+//                               Learn more →
+//                             </Button>
+//                           </Box>
+//                         </Box>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+
+//                 {/* Mega Menu for Buy Need */}
+//                 {showBuyNeedMenu && (
+//                   <Box
+//                     ref={buyNeedMenuRef}
+//                     onMouseEnter={handleBuyNeedMenuMouseEnter}
+//                     onMouseLeave={handleBuyNeedMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '750px',
+//                       maxWidth: '900px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 3,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'flex',
+//                         gap: 6,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {BUY_NEED_ITEMS.map((section, sectionIdx) => (
+//                         <BuyNeedColumn key={sectionIdx}>
+//                           <BuyNeedTitle>
+//                             {section.icon}
+//                             {section.title}
+//                           </BuyNeedTitle>
+//                           <BuyNeedSection>
+//                             {section.items.map((item, itemIdx) => (
+//                               <BuyNeedItem
+//                                 key={itemIdx}
+//                                 onClick={(event) => handleBuyNeedItemClick(item.path, event)}
+//                                 sx={{
+//                                   opacity: 0,
+//                                   transform: 'translateX(20px)',
+//                                   animation: `${itemSlideIn} 0.3s ease forwards`,
+//                                   animationDelay: `${sectionIdx * 0.1 + itemIdx * 0.05}s`,
+//                                 }}
+//                               >
+//                                 {item.icon}
+//                                 {item.label}
+//                               </BuyNeedItem>
+//                             ))}
+//                           </BuyNeedSection>
+//                         </BuyNeedColumn>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+//               </Box>
+//             )}
+
+//             {/* Desktop Contact Button - Only show if NOT on contact page */}
+//             {!isMobile && !isContactPage && (
+//               <Button
+//                 variant="contained"
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   textTransform: 'none',
+//                   fontSize: 13,
+//                   borderRadius: 2,
+//                   px: 2,
+//                   py: 0.5,
+//                   height: 35,
+//                   backgroundColor: '#4F1985',
+//                   flexShrink: 0,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                    
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => setActiveTab('Contact Us')}
+//               >
+//                 Request Demo
+//               </Button>
+//             )}
+
+//             {/* Mobile Menu Icon */}
+//             {isMobile && (
+//               <IconButton 
+//                 edge="end" 
+//                 onClick={() => setDrawerOpen(true)}
+//                 sx={{ 
+//                   flexShrink: 0,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': {
+//                     transform: 'scale(1.1) rotate(90deg)',
+//                   }
+//                 }}
+//               >
+//                 <MenuIcon />
+//               </IconButton>
+//             )}
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+
+//       {/* Mobile Drawer */}
+//       <Drawer 
+//         anchor="right" 
+//         open={drawerOpen} 
+//         onClose={() => setDrawerOpen(false)}
+//         sx={{
+//           '& .MuiDrawer-paper': {
+//             width: 280,
+//             maxWidth: '80vw',
+//             backgroundColor: '#fff',
+//           },
+//           '& .MuiBackdrop-root': {
+//             backdropFilter: 'blur(4px)',
+//             backgroundColor: 'rgba(0,0,0,0.3)',
+//           },
+//         }}
+//       >
+//         <Box sx={{ width: '100%', height: '100%' }}>
+//           <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+//             <Typography variant="h6" sx={{ color: '#4F1985', fontWeight: 600 }}>
+//               Menu
+//             </Typography>
+//             <IconButton 
+//               onClick={() => setDrawerOpen(false)}
+//               sx={{
+//                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 '&:hover': {
+//                   transform: 'rotate(90deg) scale(1.1)',
+//                   backgroundColor: 'rgba(79, 25, 133, 0.1)',
+//                 }
+//               }}
+//             >
+//               <CloseIcon />
+//             </IconButton>
+//           </Box>
+//           <Divider />
+//           <List sx={{ flex: 1 }}>
+//             {currentNavItems.map((item) => (
+//               <ListItem disablePadding key={item.label}>
+//                 <ListItemButton
+//                   component={item.path !== '#' ? RouterLink : 'div'}
+//                   to={item.path !== '#' ? item.path : undefined}
+//                   onClick={() => handleNavClick(item.label)}
+//                   selected={activeTab === item.label}
+//                   sx={{
+//                     py: 1.5,
+//                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                     '&.Mui-selected': {
+//                       color: '#4f1985',
+//                       backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                       transform: 'translateX(8px)',
+//                       '& .MuiListItemText-primary': {
+//                         fontWeight: 600,
+//                       },
+//                       '&::after': {
+//                         content: '""',
+//                         position: 'absolute',
+//                         bottom: '8px',
+//                         left: '16px',
+//                         width: 'calc(100% - 32px)',
+//                         height: '2px',
+//                         backgroundColor: '#4f1985',
+//                         borderRadius: '1px',
+//                       }
+//                     },
+//                     '&.Mui-selected:hover': {
+//                       backgroundColor: 'rgba(79, 25, 133, 0.12)',
+//                       transform: 'translateX(12px) scale(1.01)',
+//                     },
+//                     '&:hover': {
+//                       backgroundColor: theme.palette.action.hover,
+//                       transform: 'translateX(4px)',
+//                     },
+//                     position: 'relative',
+//                   }}
+//                 >
+//                   <ListItemText
+//                     primary={item.label}
+//                     primaryTypographyProps={{
+//                       fontWeight: activeTab === item.label ? 600 : 400,
+//                       fontSize: '1rem',
+//                     }}
+//                   />
+//                 </ListItemButton>
+//               </ListItem>
+//             ))}
+//           </List>
+//           <Divider />
+//           {/* Mobile Contact Button - Only show if NOT on contact page */}
+//           {!isContactPage && (
+//             <Box p={2}>
+//               <Button
+//                 variant="contained"
+//                 fullWidth
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   borderRadius: 3,
+//                   backgroundColor: '#4F1985',
+//                   fontWeight: 600,
+//                   py: 1.5,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                   
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => {
+//                   setDrawerOpen(false);
+//                   setActiveTab('Contact Us');
+//                 }}
+//               >
+//                 Request Demo
+//               </Button>
+//             </Box>
+//           )}
+//         </Box>
+//       </Drawer>
+//     </>
+//   );
+// }
+
+
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import {
+//   AppBar,
+//   Toolbar,
+//   IconButton,
+//   Button,
+//   Box,
+//   Drawer,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemText,
+//   Divider,
+//   useMediaQuery,
+//   useScrollTrigger,
+//   Typography,
+// } from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import CloseIcon from '@mui/icons-material/Close';
+// import ScienceIcon from '@mui/icons-material/Science';
+// import BiotechIcon from '@mui/icons-material/Biotech';
+// import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+// import SchoolIcon from '@mui/icons-material/School';
+// import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+// import { useTheme, styled, keyframes } from '@mui/material/styles';
+// import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+
+// const NAV_ITEMS = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' }
+// ];
+
+// const NAV_ITEMS_WITH_CONTACT = [
+//   { label: 'Home', path: '/' },
+//   { label: 'Our Suite', path: '/products' },
+//   { label: 'Buy Need', path: '#' },
+//   { label: 'Resources', path: '/blogs' },
+//   { label: 'About', path: '/about' },
+//   { label: 'Contact Us', path: '/contact' }
+// ];
+
+// const PRODUCT_ITEMS = [
+//   { 
+//     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Small Molecule Design', 
+//     path: '/smallmoleculedesign',
+//     desc: 'Transform the way you discover, design, and optimize small molecules faster, smarter.',
+//     parentMenu: 'Our Suite'
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Protein Engineering', 
+//     path: '/proteinengineering',
+//     desc: 'Reimagine how proteins are designed, optimized, and brought to life faster, smarter, more precise.',
+//     parentMenu: 'Our Suite'
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Synthetic Chemistry', 
+//     path: '/syntheticchemistry',
+//     desc: 'Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.',
+//     parentMenu: 'Our Suite'
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'AI Drug Discovery', 
+//     path: '/aidrugdiscovery',
+//     desc: 'Accelerate pharmaceutical innovation with cutting-edge AI algorithms and machine learning.',
+//     parentMenu: 'Our Suite'
+//   },
+//   { 
+//     img: 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?auto=format&fit=crop&w=1200&q=80', 
+//     title: 'Molecular Analytics', 
+//     path: '/molecularanalytics',
+//     desc: 'Advanced computational tools for molecular analysis, prediction, and optimization workflows.',
+//     parentMenu: 'Our Suite'
+//   },
+// ];
+
+// const BUY_NEED_ITEMS = [
+//   {
+//     title: 'By Role',
+//     icon: <PrecisionManufacturingIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Medicinal Chemists', path: '/medicinal-chemists', parentMenu: 'Buy Need' },
+//       { label: 'Bioinformatics', path: '/bioinformatics',  parentMenu: 'Buy Need' },
+//       { label: 'Synthetic Chemists', path: '/synthetic-chemists', parentMenu: 'Buy Need' },
+//       { label: 'Pharmacologists', path: '/pharmacologist', parentMenu: 'Buy Need' },
+//       { label: 'Clinical Researchers', path: '/clinical-researchers', parentMenu: 'Buy Need' },
+//     ]
+//   },
+//   {
+//     title: 'By Industry',
+//     icon: <SchoolIcon sx={{ color: '#4F1985', fontSize: '1.2rem' }} />,
+//     items: [
+//       { label: 'Pharmaceuticals & Biotechnology', path: '/pharmaceuticals-biotech', parentMenu: 'Buy Need' },
+//       { label: 'Chemicals', path: '/chemicals', parentMenu: 'Buy Need' },
+//       { label: 'Agrochemicals and Crop Science', path: '/agrochemicals',  parentMenu: 'Buy Need' },
+//       { label: 'CROs', path: '/cros',  parentMenu: 'Buy Need' },
+//       { label: 'Academic Research', path: '/academic-research',  parentMenu: 'Buy Need' },
+//       { label: 'Precision Medicine', path: '/precision-medicine',  parentMenu: 'Buy Need' },
+//       { label: 'Material Science', path: '/material-science', parentMenu: 'Buy Need' },
+//       { label: 'Clinical Trials & Healthcare', path: '/clinical-trials',  parentMenu: 'Buy Need' },
+//     ]
+//   }
+// ];
+
+// // Enhanced smooth animations
+// const megaMenuSlideIn = keyframes`
+//   0% { 
+//     opacity: 0; 
+//     transform: translateX(-50%) translateY(-15px) scale(0.96);
+//     filter: blur(3px);
+//   }
+//   100% { 
+//     opacity: 1; 
+//     transform: translateX(-50%) translateY(0) scale(1);
+//     filter: blur(0px);
+//   }
+// `;
+
+// const productFadeIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateY(25px) scale(0.96);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateY(0) scale(1);
+//   }
+// `;
+
+// const itemSlideIn = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateX(25px);
+//   }
+//   to { 
+//     opacity: 1; 
+//     transform: translateX(0);
+//   }
+// `;
+
+// const NavWrapper = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   backgroundColor: theme.palette.action.hover,
+//   borderRadius: 24,
+//   padding: '4px',
+//   width: '100%',
+//   alignItems: 'center',
+//   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+// }));
+
+// const NavButton = styled(Button, {
+//   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'hovered',
+// })(({ theme, active, hovered }) => ({
+//   textTransform: 'none',
+//   fontWeight: 500,
+//   fontSize: 14,
+//   padding: '4px 16px',
+//   borderRadius: 20,
+//   backgroundColor: active ? theme.palette.background.paper : 'transparent',
+//   color: active ? '#4f1985' : theme.palette.text.primary,
+//   boxShadow: active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//   flex: 1,
+//   minWidth: 0,
+//   whiteSpace: 'nowrap',
+//   position: 'relative',
+//   overflow: 'hidden',
+
+//   '&:hover': {
+//     backgroundColor: hovered ? theme.palette.action.selected : 'transparent',
+//     transform: active ? 'none' : 'translateY(-1px)',
+//     boxShadow: hovered && !active ? '0 4px 12px rgba(79, 25, 133, 0.08)' : active ? '0 2px 8px rgba(79, 25, 133, 0.12)' : 'none',
+//   },
+
+//   '&::before': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: !active && hovered ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '60%',
+//     backgroundColor: 'rgba(79, 25, 133, 0.3)',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   },
+
+//   '&::after': {
+//     content: '""',
+//     position: 'absolute',
+//     bottom: 2,
+//     left: '50%',
+//     height: 2,
+//     transform: active ? 'translateX(-50%) scaleX(1)' : 'translateX(-50%) scaleX(0)',
+//     width: '30%',
+//     backgroundColor: '#4f1985',
+//     borderRadius: 2,
+//     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   }
+// }));
+
+// const BuyNeedColumn = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '16px',
+//   flex: 1,
+//   minWidth: 0,
+// }));
+
+// const BuyNeedSection = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   gap: '8px',
+// }));
+
+// const BuyNeedTitle = styled(Box)(({ theme }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   fontWeight: 700,
+//   fontSize: '1rem',
+//   color: '#4F1985',
+//   marginBottom: '12px',
+//   paddingBottom: '4px',
+//   borderBottom: '2px solid rgba(79, 25, 133, 0.2)',
+//   whiteSpace: 'nowrap',
+// }));
+
+// const BuyNeedItem = styled(Button)(({ theme }) => ({
+//   textTransform: 'none',
+//   justifyContent: 'flex-start',
+//   padding: '8px 12px',
+//   borderRadius: '6px',
+//   color: theme.palette.text.primary,
+//   fontWeight: 500,
+//   fontSize: '0.9rem',
+//   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//   display: 'flex',
+//   alignItems: 'center',
+//   gap: '8px',
+//   whiteSpace: 'nowrap',
+//   minWidth: 'max-content',
+//   '&:hover': {
+//     backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//     color: '#4F1985',
+//     transform: 'translateX(6px) scale(1.01)',
+//   },
+// }));
+
+// export default function NavbarPage() {
+//   const theme = useTheme();
+//   const isMobile = useMediaQuery('(max-width: 1024px)');
+//   const isTablet = useMediaQuery('(max-width: 1200px)');
+//   const isSmallDesktop = useMediaQuery('(min-width: 1025px) and (max-width: 1200px)');
+//   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const [drawerOpen, setDrawerOpen] = useState(false);
+//   const [activeTab, setActiveTab] = useState('');
+//   const [showMegaMenu, setShowMegaMenu] = useState(false);
+//   const [showBuyNeedMenu, setShowBuyNeedMenu] = useState(false);
+//   const [hoveredItem, setHoveredItem] = useState(null);
+  
+//   // Determine if we're on the contact page
+//   const isContactPage = location.pathname === '/contact';
+  
+//   // Choose which nav items to show based on current page
+//   const currentNavItems = isContactPage ? NAV_ITEMS_WITH_CONTACT : NAV_ITEMS;
+  
+//   const megaMenuRef = useRef(null);
+//   const buyNeedMenuRef = useRef(null);
+//   const navItemRef = useRef(null);
+//   const buyNeedItemRef = useRef(null);
+//   const hideTimeoutRef = useRef(null);
+//   const isMouseInsideRef = useRef(false);
+
+//   // Helper function to determine if current path belongs to a parent menu
+//   const getParentMenuForPath = (pathname) => {
+//     // Check if current path matches any product item
+//     const productMatch = PRODUCT_ITEMS.find(item => item.path === pathname);
+//     if (productMatch) return 'Our Suite';
+    
+//     // Check if current path matches any buy need item
+//     const buyNeedMatch = BUY_NEED_ITEMS.flatMap(section => section.items).find(item => item.path === pathname);
+//     if (buyNeedMatch) return 'Buy Need';
+    
+//     return null;
+//   };
+
+//   useEffect(() => {
+//     const parentMenu = getParentMenuForPath(location.pathname);
+    
+//     if (parentMenu) {
+//       setActiveTab(parentMenu);
+//     } else {
+//       const currentItem = currentNavItems.find(item => item.path === location.pathname);
+//       if (currentItem) {
+//         setActiveTab(currentItem.label);
+//       } else {
+//         setActiveTab('Home');
+//       }
+//     }
+//   }, [location.pathname, currentNavItems]);
+
+//   const handleNavClick = (label) => {
+//     setActiveTab(label);
+//     setDrawerOpen(false);
+//   };
+
+//   const handleItemHover = (label) => {
+//     setHoveredItem(label);
+//   };
+
+//   const handleItemLeave = () => {
+//     setHoveredItem(null);
+//   };
+
+//   const showMenu = (menuType) => {
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (menuType === 'products') {
+//       setShowMegaMenu(true);
+//       setShowBuyNeedMenu(false);
+//     } else if (menuType === 'buyNeed') {
+//       setShowBuyNeedMenu(true);
+//       setShowMegaMenu(false);
+//     }
+//     isMouseInsideRef.current = true;
+//   };
+
+//   const hideMenu = () => {
+//     isMouseInsideRef.current = false;
+//     hideTimeoutRef.current = setTimeout(() => {
+//       if (!isMouseInsideRef.current) {
+//         setShowMegaMenu(false);
+//         setShowBuyNeedMenu(false);
+//       }
+//     }, 150);
+//   };
+
+//   const handleNavItemMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleNavItemMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleMegaMenuMouseEnter = () => {
+//     showMenu('products');
+//     handleItemHover('Our Suite');
+//   };
+
+//   const handleMegaMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleBuyNeedMenuMouseEnter = () => {
+//     showMenu('buyNeed');
+//     handleItemHover('Buy Need');
+//   };
+
+//   const handleBuyNeedMenuMouseLeave = () => {
+//     hideMenu();
+//     handleItemLeave();
+//   };
+
+//   const handleProductClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleLearnMoreClick = (product, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowMegaMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (product.path) {
+//       navigate(product.path);
+//     }
+//   };
+
+//   const handleBuyNeedItemClick = (path, event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     setShowBuyNeedMenu(false);
+//     isMouseInsideRef.current = false;
+//     if (hideTimeoutRef.current) {
+//       clearTimeout(hideTimeoutRef.current);
+//       hideTimeoutRef.current = null;
+//     }
+//     if (path) {
+//       navigate(path);
+//     }
+//   };
+
+//   useEffect(() => {
+//     return () => {
+//       if (hideTimeoutRef.current) {
+//         clearTimeout(hideTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   // Enhanced responsive grid calculations
+//   const getGridConfig = () => {
+//     if (isSmallDesktop) {
+//       return {
+//         columns: 'repeat(5, 1fr)',
+//         gap: 2,
+//         cardMinHeight: '300px',
+//         cardMaxHeight: '320px',
+//         imgHeight: 100,
+//         titleFontSize: '0.95rem',
+//         descFontSize: '0.78rem',
+//         buttonFontSize: '0.72rem',
+//         padding: 2,
+//         lineClamp: 3
+//       };
+//     } else if (isTablet) {
+//       return {
+//         columns: 'repeat(3, 1fr)',
+//         gap: 3,
+//         cardMinHeight: '280px',
+//         cardMaxHeight: '320px',
+//         imgHeight: 120,
+//         titleFontSize: '1rem',
+//         descFontSize: '0.8rem',
+//         buttonFontSize: '0.75rem',
+//         padding: 2.5,
+//         lineClamp: 3
+//       };
+//     } else {
+//       return {
+//         columns: 'repeat(5, 1fr)',
+//         gap: 3,
+//         cardMinHeight: '280px',
+//         cardMaxHeight: '320px',
+//         imgHeight: 120,
+//         titleFontSize: '1rem',
+//         descFontSize: '0.8rem',
+//         buttonFontSize: '0.75rem',
+//         padding: 2.5,
+//         lineClamp: 3
+//       };
+//     }
+//   };
+
+//   const gridConfig = getGridConfig();
+
+//   return (
+//     <>
+//       <AppBar
+//         position="sticky"
+//         elevation={trigger ? 4 : 0}
+//         sx={{
+//           backgroundColor: theme.palette.background.paper,
+//           color: "#4F1985",
+//           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+//           boxShadow: trigger ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
+//           height: { xs: '70px', sm: '80px' },
+//           justifyContent: 'center',
+//           zIndex: theme.zIndex.drawer + 1,
+//         }}
+//       >
+//         <Toolbar sx={{ 
+//           minHeight: { xs: '70px', sm: '80px' },
+//           display: 'flex', 
+//           justifyContent: 'center', 
+//           px: { xs: 1, sm: 2 } 
+//         }}>
+//           <Box sx={{ 
+//             width: '100%', 
+//             maxWidth: '1440px', 
+//             display: 'flex', 
+//             alignItems: 'center', 
+//             justifyContent: isMobile ? 'space-between' : 'space-evenly',
+//             position: 'relative',
+//             overflow: 'hidden',
+//           }}>
+//             {/* Logo */}
+//             <RouterLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+//               <img 
+//                 src="/logo.png" 
+//                 alt="Logo" 
+//                 height={50} 
+//                 style={{ 
+//                   marginRight: 8,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 }} 
+//                 onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+//                 onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+//               />
+//             </RouterLink>
+
+//             {/* Desktop Navigation */}
+//             {!isMobile && (
+//               <Box sx={{ 
+//                 flex: 1, 
+//                 mx: 2,
+//                 minWidth: 0,
+//                 position: 'relative',
+//                 display: 'flex',
+//                 justifyContent: 'center'
+//               }}>
+//                 <NavWrapper sx={{
+//                   maxWidth: isContactPage ? '700px' : '600px',
+//                   minWidth: isContactPage ? '500px' : '400px',
+//                 }}>
+//                   {currentNavItems.map((item) =>
+//                     item.label === 'Our Suite' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={navItemRef}
+//                         onMouseEnter={handleNavItemMouseEnter}
+//                         onMouseLeave={handleNavItemMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : item.label === 'Buy Need' ? (
+//                       <Box
+//                         key={item.label}
+//                         ref={buyNeedItemRef}
+//                         onMouseEnter={handleBuyNeedMouseEnter}
+//                         onMouseLeave={handleBuyNeedMouseLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton 
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           sx={{ width: '100%' }}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     ) : (
+//                       <Box
+//                         key={item.label}
+//                         onMouseEnter={() => handleItemHover(item.label)}
+//                         onMouseLeave={handleItemLeave}
+//                         sx={{ 
+//                           position: 'relative', 
+//                           display: 'flex',
+//                           flex: 1,
+//                         }}
+//                       >
+//                         <NavButton
+//                           active={activeTab === item.label}
+//                           hovered={hoveredItem === item.label}
+//                           component={RouterLink}
+//                           to={item.path}
+//                           onClick={() => setActiveTab(item.label)}
+//                         >
+//                           {item.label}
+//                         </NavButton>
+//                       </Box>
+//                     )
+//                   )}
+//                 </NavWrapper>
+
+//                 {/* Mega Menu for Our Suite - Enhanced for Small Desktop */}
+//                 {showMegaMenu && (
+//                   <Box
+//                     ref={megaMenuRef}
+//                     onMouseEnter={handleMegaMenuMouseEnter}
+//                     onMouseLeave={handleMegaMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isSmallDesktop ? '98vw' : isTablet ? '95vw' : '1200px',
+//                       maxWidth: isSmallDesktop ? '1180px' : '1300px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: isSmallDesktop ? 3 : 4,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'grid',
+//                         gridTemplateColumns: gridConfig.columns,
+//                         gap: gridConfig.gap,
+//                         padding: gridConfig.padding,
+//                       }}
+//                     >
+//                       {PRODUCT_ITEMS.map((product, idx) => (
+//                         <Box
+//                           key={idx}
+//                           onClick={(event) => handleProductClick(product, event)}
+//                           sx={{
+//                             bgcolor: '#fafafa',
+//                             p: gridConfig.padding,
+//                             borderRadius: 3,
+//                             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+//                             cursor: 'pointer',
+//                             display: 'flex',
+//                             flexDirection: 'column',
+//                             alignItems: 'flex-start',
+//                             gap: 1.5,
+//                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                             border: '1px solid transparent',
+//                             userSelect: 'none',
+//                             position: 'relative',
+//                             height: 'auto',
+//                             minHeight: gridConfig.cardMinHeight,
+//                             maxHeight: gridConfig.cardMaxHeight,
+//                             '&:hover': {
+//                               transform: 'translateY(-6px) scale(1.02)',
+//                               boxShadow: '0 20px 40px rgba(79, 25, 133, 0.15)',
+//                               bgcolor: '#fff',
+//                               borderColor: 'rgba(79, 25, 133, 0.1)',
+//                             },
+//                             '&:active': {
+//                               transform: 'translateY(-3px) scale(1.005)',
+//                             },
+//                             opacity: 0,
+//                             transform: 'translateY(20px)',
+//                             animation: `${productFadeIn} 0.4s ease forwards`,
+//                             animationDelay: `${idx * 0.08}s`,
+//                           }}
+//                         >
+//                           <Box
+//                             component="img"
+//                             src={product.img}
+//                             alt={product.title}
+//                             onError={(e) => {
+//                               e.target.src = 'https://via.placeholder.com/280x120?text=Product+Image';
+//                             }}
+//                             sx={{
+//                               width: '100%',
+//                               height: gridConfig.imgHeight,
+//                               borderRadius: 2,
+//                               objectFit: 'cover',
+//                               mb: 1,
+//                               transition: 'transform 0.3s ease',
+//                             }}
+//                           />
+//                           <Box sx={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+//                             <Box>
+//                               <Typography 
+//                                 variant="h6" 
+//                                 sx={{ 
+//                                   fontWeight: 700, 
+//                                   color: '#4F1985', 
+//                                   mb: 1,
+//                                   fontSize: gridConfig.titleFontSize,
+//                                   lineHeight: 1.3,
+//                                 }}
+//                               >
+//                                 {product.title}
+//                               </Typography>
+//                               <Typography 
+//                                 variant="body2" 
+//                                 sx={{ 
+//                                   color: 'text.secondary', 
+//                                   lineHeight: 1.4,
+//                                   fontSize: gridConfig.descFontSize,
+//                                   display: '-webkit-box',
+//                                   WebkitLineClamp: gridConfig.lineClamp,
+//                                   WebkitBoxOrient: 'vertical',
+//                                   overflow: 'hidden',
+//                                   mb: 1.5,
+//                                   minHeight: isSmallDesktop ? '3.6em' : '3.6em',
+//                                   maxHeight: isSmallDesktop ? '3.6em' : '3.6em',
+//                                 }}
+//                               >
+//                                 {product.desc}
+//                               </Typography>
+//                             </Box>
+//                             <Button
+//                               size="small"
+//                               onClick={(event) => handleLearnMoreClick(product, event)}
+//                               sx={{
+//                                 color: '#4F1985',
+//                                 fontWeight: 600,
+//                                 textTransform: 'none',
+//                                 fontSize: gridConfig.buttonFontSize,
+//                                 padding: isSmallDesktop ? '4px 10px' : '4px 10px',
+//                                 minWidth: 'auto',
+//                                 borderRadius: 2,
+//                                 backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                                 alignSelf: 'flex-start',
+//                                 '&:hover': {
+//                                   backgroundColor: 'rgba(79, 25, 133, 0.15)',
+//                                   transform: 'scale(1.02)',
+//                                 },
+//                                 '&:active': {
+//                                   transform: 'scale(0.98)',
+//                                 },
+//                                 transition: 'all 0.2s ease',
+//                               }}
+//                             >
+//                               Learn more →
+//                             </Button>
+//                           </Box>
+//                         </Box>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+
+//                 {/* Mega Menu for Buy Need */}
+//                 {showBuyNeedMenu && (
+//                   <Box
+//                     ref={buyNeedMenuRef}
+//                     onMouseEnter={handleBuyNeedMenuMouseEnter}
+//                     onMouseLeave={handleBuyNeedMenuMouseLeave}
+//                     sx={{
+//                       position: 'fixed',
+//                       top: { xs: '70px', sm: '80px' },
+//                       left: '50%',
+//                       transform: 'translateX(-50%)',
+//                       width: isTablet ? '90vw' : '750px',
+//                       maxWidth: '900px',
+//                       backgroundColor: '#fff',
+//                       boxShadow: '0 15px 40px rgba(0,0,0,0.12)',
+//                       borderRadius: '24px',
+//                       zIndex: 1300,
+//                       padding: 3,
+//                       animation: `${megaMenuSlideIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+//                     }}
+//                   >
+//                     <Box
+//                       sx={{
+//                         display: 'flex',
+//                         gap: 6,
+//                         padding: 2,
+//                       }}
+//                     >
+//                       {BUY_NEED_ITEMS.map((section, sectionIdx) => (
+//                         <BuyNeedColumn key={sectionIdx}>
+//                           <BuyNeedTitle>
+//                             {section.icon}
+//                             {section.title}
+//                           </BuyNeedTitle>
+//                           <BuyNeedSection>
+//                             {section.items.map((item, itemIdx) => (
+//                               <BuyNeedItem
+//                                 key={itemIdx}
+//                                 onClick={(event) => handleBuyNeedItemClick(item.path, event)}
+//                                 sx={{
+//                                   opacity: 0,
+//                                   transform: 'translateX(20px)',
+//                                   animation: `${itemSlideIn} 0.3s ease forwards`,
+//                                   animationDelay: `${sectionIdx * 0.1 + itemIdx * 0.05}s`,
+//                                 }}
+//                               >
+//                                 {item.icon}
+//                                 {item.label}
+//                               </BuyNeedItem>
+//                             ))}
+//                           </BuyNeedSection>
+//                         </BuyNeedColumn>
+//                       ))}
+//                     </Box>
+//                   </Box>
+//                 )}
+//               </Box>
+//             )}
+
+//             {/* Desktop Contact Button - Only show if NOT on contact page */}
+//             {!isMobile && !isContactPage && (
+//               <Button
+//                 variant="contained"
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   textTransform: 'none',
+//                   fontSize: 13,
+//                   borderRadius: 2,
+//                   px: 2,
+//                   py: 0.5,
+//                   height: 35,
+//                   backgroundColor: '#4F1985',
+//                   flexShrink: 0,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                    
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => setActiveTab('Contact Us')}
+//               >
+//                 Request Demo
+//               </Button>
+//             )}
+
+//             {/* Mobile Menu Icon */}
+//             {isMobile && (
+//               <IconButton 
+//                 edge="end" 
+//                 onClick={() => setDrawerOpen(true)}
+//                 sx={{ 
+//                   flexShrink: 0,
+//                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': {
+//                     transform: 'scale(1.1) rotate(90deg)',
+//                   }
+//                 }}
+//               >
+//                 <MenuIcon />
+//               </IconButton>
+//             )}
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+
+//       {/* Mobile Drawer */}
+//       <Drawer 
+//         anchor="right" 
+//         open={drawerOpen} 
+//         onClose={() => setDrawerOpen(false)}
+//         sx={{
+//           '& .MuiDrawer-paper': {
+//             width: 280,
+//             maxWidth: '80vw',
+//             backgroundColor: '#fff',
+//           },
+//           '& .MuiBackdrop-root': {
+//             backdropFilter: 'blur(4px)',
+//             backgroundColor: 'rgba(0,0,0,0.3)',
+//           },
+//         }}
+//       >
+//         <Box sx={{ width: '100%', height: '100%' }}>
+//           <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+//             <Typography variant="h6" sx={{ color: '#4F1985', fontWeight: 600 }}>
+//               Menu
+//             </Typography>
+//             <IconButton 
+//               onClick={() => setDrawerOpen(false)}
+//               sx={{
+//                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                 '&:hover': {
+//                   transform: 'rotate(90deg) scale(1.1)',
+//                   backgroundColor: 'rgba(79, 25, 133, 0.1)',
+//                 }
+//               }}
+//             >
+//               <CloseIcon />
+//             </IconButton>
+//           </Box>
+//           <Divider />
+//           <List sx={{ flex: 1 }}>
+//             {currentNavItems.map((item) => (
+//               <ListItem disablePadding key={item.label}>
+//                 <ListItemButton
+//                   component={item.path !== '#' ? RouterLink : 'div'}
+//                   to={item.path !== '#' ? item.path : undefined}
+//                   onClick={() => handleNavClick(item.label)}
+//                   selected={activeTab === item.label}
+//                   sx={{
+//                     py: 1.5,
+//                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                     '&.Mui-selected': {
+//                       color: '#4f1985',
+//                       backgroundColor: 'rgba(79, 25, 133, 0.08)',
+//                       transform: 'translateX(8px)',
+//                       '& .MuiListItemText-primary': {
+//                         fontWeight: 600,
+//                       },
+//                       '&::after': {
+//                         content: '""',
+//                         position: 'absolute',
+//                         bottom: '8px',
+//                         left: '16px',
+//                         width: 'calc(100% - 32px)',
+//                         height: '2px',
+//                         backgroundColor: '#4f1985',
+//                         borderRadius: '1px',
+//                       }
+//                     },
+//                     '&.Mui-selected:hover': {
+//                       backgroundColor: 'rgba(79, 25, 133, 0.12)',
+//                       transform: 'translateX(12px) scale(1.01)',
+//                     },
+//                     '&:hover': {
+//                       backgroundColor: theme.palette.action.hover,
+//                       transform: 'translateX(4px)',
+//                     },
+//                     position: 'relative',
+//                   }}
+//                 >
+//                   <ListItemText
+//                     primary={item.label}
+//                     primaryTypographyProps={{
+//                       fontWeight: activeTab === item.label ? 600 : 400,
+//                       fontSize: '1rem',
+//                     }}
+//                   />
+//                 </ListItemButton>
+//               </ListItem>
+//             ))}
+//           </List>
+//           <Divider />
+//           {/* Mobile Contact Button - Only show if NOT on contact page */}
+//           {!isContactPage && (
+//             <Box p={2}>
+//               <Button
+//                 variant="contained"
+//                 fullWidth
+//                 component={RouterLink}
+//                 to="/contact"
+//                 sx={{
+//                   borderRadius: 3,
+//                   backgroundColor: '#4F1985',
+//                   fontWeight: 600,
+//                   py: 1.5,
+//                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+//                   '&:hover': { 
+//                     backgroundColor: '#3a1259',
+//                     transform: 'translateY(-2px) scale(1.02)',
+                   
+//                   },
+//                   '&:active': {
+//                     transform: 'translateY(0) scale(0.98)',
+//                   }
+//                 }}
+//                 onClick={() => {
+//                   setDrawerOpen(false);
+//                   setActiveTab('Contact Us');
+//                 }}
+//               >
+//                 Request Demo
+//               </Button>
+//             </Box>
+//           )}
+//         </Box>
+//       </Drawer>
+//     </>
+//   );
+// }
+//blogsuseful
+// import { useState, useEffect } from 'react';
+// import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+// import { db } from "../firebase";
+// import { collection, onSnapshot } from "firebase/firestore";
+// import boltzBuzzLogo from '../assets/boltz_buzz_logo.png';
+// import Footer from '../components/Footer';
+
+// const BlogsPage = () => {
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const [selectedCategory, setSelectedCategory] = useState('');
+//   const [Pdata, setPdata] = useState([]);
+//   const [Reference, setReference] = useState([]);
+//   const [reslmessage, setreslmessage] = useState('');
+//   const [Postnotfound, setPostnotfound] = useState(false);
+//   const navigate = useNavigate();
+  
+//   const categories = [
+//     'Technology',
+//     'Case Studies',
+//     'Education',
+//     'Collaboration',
+//     'Industrial Insights'
+//   ];
+
+//   const blogsPerPage = 15;
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const initialPage = parseInt(searchParams.get('page') || '1', 10);
+//   const [currentPage, setCurrentPage] = useState(initialPage);
+
+//   useEffect(() => {
+//     setSearchParams({ page: currentPage });
+//   }, [currentPage, setSearchParams]);
+
+//   // Improved image extraction function
+//   const extractImageFromContent = (content) => {
+//     if (!content || typeof content !== 'string') {
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+
+//     try {
+//       // More robust regex pattern for img tags
+//       const imgTagRegex = /<img[^>]+>/gi;
+//       const imgMatch = content.match(imgTagRegex);
+      
+//       if (!imgMatch || imgMatch.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Extract src attribute from the first img tag
+//       const firstImgTag = imgMatch[0];
+//       const srcRegex = /src\s*=\s*["']([^"']+)["']/i;
+//       const srcMatch = firstImgTag.match(srcRegex);
+      
+//       if (!srcMatch || srcMatch.length < 2) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       const imageUrl = srcMatch[1].trim();
+      
+//       // Validate that the URL is not empty and looks like a valid URL
+//       if (!imageUrl || imageUrl.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Basic URL validation
+//       if (imageUrl.startsWith('data:image/') || 
+//           imageUrl.startsWith('http://') || 
+//           imageUrl.startsWith('https://') ||
+//           imageUrl.startsWith('/')) {
+//         return imageUrl;
+//       }
+
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     } catch (error) {
+//       console.error('Error extracting image from content:', error);
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+//   };
+
+//   const FETCHPosts = async () => {
+//     const Ref = collection(db, 'boltzmannlabs-posts');
+    
+//     try {
+//       await onSnapshot(Ref, (POSTE) => {
+//         if (POSTE.empty) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         const postarray = [];
+//         POSTE.forEach(Posts => {
+//           const postData = Posts.data();
+          
+//           if (postData.published) {
+//             const extractedImage = extractImageFromContent(postData.content);
+            
+//             postarray.push({
+//               id: Posts.id,
+//               Author: postData.author || 'Admin',
+//               category: postData.categories,
+//               title: postData.title || 'Untitled',
+//               content: postData.content,
+//               date: postData.created_date ? postData.created_date.toDate() : new Date(),
+//               image: extractedImage
+//             });
+//           }
+//         });
+
+//         if (postarray.length === 0) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         // Sort by date (newest first)
+//         postarray.sort((a, b) => b.date - a.date);
+        
+//         setPdata(postarray);
+//         setReference(postarray);
+//         setPostnotfound(false);
+//       });
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//       setPostnotfound(true);
+//     }
+//   };
+
+//   const SearchFun = () => {
+//     if (!searchTerm.trim()) {
+//       setPdata(Reference);
+//       setreslmessage('');
+//       setPostnotfound(Reference.length === 0);
+//       return;
+//     }
+
+//     const filteredArray = Reference.filter((post) => 
+//       post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//     );
+    
+//     setPdata(filteredArray);
+//     setreslmessage(searchTerm.trim());
+//     setPostnotfound(filteredArray.length === 0);
+//     setCurrentPage(1); // Reset to first page after search
+//   };
+
+//   const clearSearch = () => {
+//     setSearchTerm('');
+//     setPdata(Reference);
+//     setreslmessage('');
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+//     setPostnotfound(Reference.length === 0);
+//   };
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       FETCHPosts();
+//     }, 200);
+
+//     window.scrollTo(0, 0);
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   // Filtering logic with improved error handling
+//   const filteredBlogs = Pdata.filter(blog => {
+//     const matchesSearch = !searchTerm || 
+//       blog.title.toLowerCase().includes(searchTerm.toLowerCase());
+//     const matchesCategory = !selectedCategory || 
+//       blog.category === selectedCategory;
+    
+//     return matchesSearch && matchesCategory;
+//   });
+
+//   const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / blogsPerPage));
+//   const indexOfLastBlog = currentPage * blogsPerPage;
+//   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+//   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+//   // Image error handler component
+//   const BlogImage = ({ src, alt, style }) => {
+//     const [imgSrc, setImgSrc] = useState(src);
+//     const [hasError, setHasError] = useState(false);
+
+//     const handleError = () => {
+//       if (!hasError) {
+//         setHasError(true);
+//         setImgSrc('https://via.placeholder.com/300x180?text=Image+Not+Found');
+//       }
+//     };
+
+//     const handleLoad = () => {
+//       setHasError(false);
+//     };
+
+//     return (
+//       <div 
+//         style={{
+//           ...style,
+//           backgroundImage: `url(${imgSrc})`,
+//           backgroundSize: 'cover',
+//           backgroundPosition: 'center',
+//           backgroundRepeat: 'no-repeat'
+//         }}
+//       >
+//         <img
+//           src={imgSrc}
+//           alt={alt}
+//           onError={handleError}
+//           onLoad={handleLoad}
+//           style={{
+//             display: 'none' // Hidden img for error handling
+//           }}
+//         />
+//       </div>
+//     );
+//   };
+
+//   return (
+//     <div style={{ fontFamily: "'Inter', sans-serif" }}>
+     
+//       {/* Header */}
+//       <header style={{ textAlign: 'center', marginBottom: '24px', marginTop: '20px' }}>
+//         <h1 style={{ fontSize: '32px', color: '#3b82f6', fontWeight: '800' }}>
+//           Insights & Discoveries from AI Research
+//         </h1>
+//         <p style={{ fontSize: '18px', color: '#374151' }}>
+//           Stay updated with the latest breakthroughs
+//         </p>
+//       </header>
+
+//       {/* Blogs Heading */}
+//       <section style={{ textAlign: 'center', marginBottom: '32px' }}>
+//         <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#3b82f6' }}>
+//           Blogs
+//         </h2>
+//       </section>
+
+//       {/* Categories Section */}
+//       <section
+//         style={{
+//           maxWidth: '1200px',
+//           margin: '0 auto 32px',
+//           padding: '0 16px'
+//         }}
+//       >
+//         <h3 style={{
+//           fontSize: '20px',
+//           fontWeight: '700',
+//           marginBottom: '12px',
+//           color: '#1f2937'
+//         }}>
+//           Categories
+//         </h3>
+//         <div style={{
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//           gap: '12px'
+//         }}>
+//           {categories.map((cat, index) => {
+//             const isSelected = selectedCategory === cat;
+//             return (
+//               <div
+//                 key={index}
+//                 onClick={() => isSelected ? null : setSelectedCategory(cat)}
+//                 style={{
+//                   display: 'flex',
+//                   alignItems: 'center',
+//                   padding: '6px 12px',
+//                   borderRadius: '999px',
+//                   border: `1px solid ${isSelected ? '#6366f1' : '#d1d5db'}`,
+//                   backgroundColor: isSelected ? '#eef2ff' : '#f9fafb',
+//                   color: isSelected ? '#4338ca' : '#374151',
+//                   fontSize: '14px',
+//                   cursor: 'pointer',
+//                   transition: 'all 0.2s ease',
+//                   boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+//                 }}
+//               >
+//                 <span>{cat}</span>
+//                 {isSelected && (
+//                   <span
+//                     onClick={(e) => {
+//                       e.stopPropagation();
+//                       setSelectedCategory('');
+//                     }}
+//                     style={{
+//                       marginLeft: '8px',
+//                       fontSize: '14px',
+//                       cursor: 'pointer',
+//                       color: '#6366f1',
+//                       fontWeight: '600'
+//                     }}
+//                   >
+//                     ✖
+//                   </span>
+//                 )}
+//               </div>
+//             )
+//           })}
+//         </div>
+//       </section>
+
+//       {/* Search Bar */}
+//       <div style={{
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'flex-end',
+//         maxWidth: '1200px',
+//         margin: '0 auto 32px',
+//         marginTop: '-4rem',
+//         padding: '0 16px'
+//       }}>
+//         <div style={{
+//           display: 'flex',
+//           alignItems: 'center',
+//           borderRadius: '999px',
+//           border: '1px solid #d1d5db',
+//           backgroundColor: '#f9fafb',
+//           padding: '8px 20px',
+//           width: '320px',
+//           boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+//           transition: 'box-shadow 0.2s ease'
+//         }}>
+//           <span style={{ marginRight: '10px', color: '#9ca3af', fontSize: '16px' }}>🔍</span>
+//           <input
+//             type="text"
+//             placeholder="Search blogs..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             onKeyDown={(e) => {
+//               if (e.key === 'Enter') {
+//                 SearchFun();
+//               }
+//             }}
+//             style={{
+//               border: 'none',
+//               outline: 'none',
+//               flex: 1,
+//               fontSize: '14px',
+//               backgroundColor: 'transparent'
+//             }}
+//           />
+//           <button 
+//             style={searchTerm === '' ? { display: 'none' } : { border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={clearSearch}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>✖</span>
+//           </button>
+//           <button 
+//             style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={SearchFun}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>↵</span>
+//           </button>
+//         </div>
+
+//         {/* Search results message */}
+//         {(reslmessage !== '' || selectedCategory) && (
+//           <div style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}>
+//             <span style={{ color: '#501f84', fontWeight: 600 }}>
+//               Showing results {reslmessage && `for "${reslmessage}"`} 
+//               {reslmessage && selectedCategory && ' in'} 
+//               {selectedCategory && ` category "${selectedCategory}"`}
+//             </span>
+//             <button 
+//               onClick={clearSearch} 
+//               style={{ 
+//                 background: 'none', 
+//                 border: 'none', 
+//                 cursor: 'pointer',
+//                 marginLeft: '10px'
+//               }}
+//             >
+//               <span style={{ color: '#6366f1' }}>Clear all</span>
+//             </button>
+//           </div>
+//         )}
+
+//         {/* No Results */}
+//         {filteredBlogs.length === 0 && Pdata.length > 0 && (
+//           <section
+//             style={{
+//               marginTop: '24px',
+//               width: '100%',
+//               maxWidth: '700px',
+//               background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//               padding: '40px 24px',
+//               textAlign: 'center',
+//               borderRadius: '20px',
+//               boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               alignItems: 'center',
+//               marginInline: 'auto'
+//             }}
+//           >
+//             <div style={{
+//               fontSize: '48px',
+//               color: '#a855f7',
+//               marginBottom: '16px'
+//             }}>😕</div>
+//             <h3 style={{
+//               fontSize: '24px',
+//               fontWeight: '700',
+//               color: '#4c1d95',
+//               marginBottom: '12px'
+//             }}>
+//               No Results Found
+//             </h3>
+//             <p style={{
+//               fontSize: '16px',
+//               color: '#4b5563',
+//               maxWidth: '500px',
+//               lineHeight: '1.6'
+//             }}>
+//               We couldn't find any blogs matching <strong>"{searchTerm}"</strong>
+//               {selectedCategory && <> in <strong>{selectedCategory}</strong></>}. 
+//               Try refining your search or exploring other topics.
+//             </p>
+//           </section>
+//         )}
+//       </div>
+
+//       {/* Loading state */}
+//       {Pdata.length === 0 && !Postnotfound && (
+//         <div style={{ width: '100%', height: '100%', minHeight: '50vh', textAlign: 'center' }}>
+//           <div className="loader" style={{ 
+//             display: 'inline-block',
+//             width: '80px',
+//             height: '80px',
+//             border: '8px solid #f3f3f3',
+//             borderTop: '8px solid #3b82f6',
+//             borderRadius: '50%',
+//             animation: 'spin 1s linear infinite',
+//             marginTop: '100px'
+//           }}></div>
+//         </div>
+//       )}
+
+//       {/* No posts found */}
+//       {Postnotfound && Pdata.length === 0 && (
+//         <p style={{ fontSize: '20px', color: 'red', padding: '10px', textAlign: 'center' }}> No posts Found</p>
+//       )}
+
+//       {/* Blog Cards Grid */}
+//       {filteredBlogs.length > 0 && (
+//         <div style={{
+//           display: 'grid',
+//           gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+//           gap: '24px',
+//           maxWidth: '1200px',
+//           margin: '0 auto',
+//           padding: '0 16px'
+//         }}>
+//           {currentBlogs.map(blog => (
+//             <Link
+//               key={blog.id}
+//               to={`/blogs/${blog.id}?page=${currentPage}`}
+//               style={{
+//                 textDecoration: 'none',
+//                 color: 'inherit',
+//                 background: '#f9fafb',
+//                 borderRadius: '16px',
+//                 overflow: 'hidden',
+//                 boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+//                 display: 'flex',
+//                 flexDirection: 'column',
+//                 justifyContent: 'space-between',
+//                 paddingBottom: '16px'
+//               }}
+//             >
+//               <BlogImage
+//                 src={blog.image}
+//                 alt={blog.title}
+//                 style={{
+//                   width: '100%',
+//                   height: '180px'
+//                 }}
+//               />
+
+//               <div style={{ padding: '16px' }}>
+//                 <p style={{ 
+//                   fontSize: '14px', 
+//                   marginBottom: '12px',
+//                   fontWeight: '600',
+//                   height: '4.6rem',
+//                   overflow: 'hidden',
+//                   textOverflow: 'ellipsis',
+//                   display: '-webkit-box',
+//                   WebkitLineClamp: 3,
+//                   WebkitBoxOrient: 'vertical'
+//                 }}>
+//                   {blog.title}
+//                 </p>
+//                 <div style={{
+//                   display: 'flex',
+//                   justifyContent: 'space-between',
+//                   fontSize: '12px',
+//                   color: '#6b7280'
+//                 }}>
+//                   <span>👤 {blog.Author}</span>
+//                   <span>📅 {blog.date.toString().slice(4, 15)}</span>
+//                 </div>
+//               </div>
+//             </Link>
+//           ))}
+//         </div>
+//       )}
+
+//       {/* Pagination Controls */}
+//       {filteredBlogs.length > 0 && totalPages > 1 && (
+//         <div style={{
+//           marginTop: '40px',
+//           maxWidth: '1200px',
+//           marginInline: 'auto',
+//           display: 'flex',
+//           justifyContent: 'space-between',
+//           alignItems: 'center',
+//           flexWrap: 'wrap',
+//           padding: '0 16px'
+//         }}>
+//           {currentPage > 1 ? (
+//             <button
+//               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Previous
+//             </button>
+//           ) : <div></div>}
+
+//           <span style={{ color: '#6b7280', fontSize: '14px' }}>
+//             Page {currentPage} of {totalPages}
+//           </span>
+
+//           {currentPage < totalPages ? (
+//             <button
+//               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Next
+//             </button>
+//           ) : <div></div>}
+//         </div>
+//       )}
+
+//       {/* CTA Banner */}
+//       <section
+//         style={{
+//           margin: '80px auto',
+//           background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//           padding: '0',
+//           borderRadius: '24px',
+//           maxWidth: '740px',
+//           boxShadow: '0 12px 24px rgba(0, 0, 0, 0.05)',
+//           overflow: 'hidden',
+//           position: 'relative',
+//           border: '2px dotted rgba(167, 139, 250, 0.3)',
+//         }}
+//       >
+//         <div
+//           style={{
+//             display: 'flex',
+//             flexDirection: 'row',
+//             flexWrap: 'wrap',
+//             position: 'relative',
+//             zIndex: 1,
+//             minHeight: '300px',
+//           }}
+//         >
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               position: 'relative',
+//               overflow: 'hidden',
+//               display: 'flex',
+//               alignItems: 'center',
+//               justifyContent: 'center',
+//               padding: '20px',
+//             }}
+//           >
+//             <div
+//               style={{
+//                 width: '100%',
+//                 height: '100%',
+//                 background: 'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
+//                 borderRadius: '16px',
+//                 display: 'flex',
+//                 alignItems: 'center',
+//                 justifyContent: 'center',
+//                 border: '3px solid white',
+//                 boxShadow: 'inset 0 0 20px rgba(255,255,255,0.5)',
+//               }}
+//             >
+//               <img
+//                 src={boltzBuzzLogo}
+//                 alt="Boltz Buzz Logo"
+//                 style={{
+//                   width: '80%',
+//                   height: 'auto',
+//                   objectFit: 'contain',
+//                   display: 'block',
+//                   filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
+//                 }}
+//               />
+//             </div>
+//           </div>
+
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               padding: '40px',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               justifyContent: 'center',
+//               background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//               textAlign: 'left',
+//             }}
+//           >
+//             <h3
+//               style={{
+//                 fontSize: '28px',
+//                 fontWeight: '800',
+//                 color: '#6d28d9',
+//                 marginBottom: '16px',
+//                 lineHeight: '1.2',
+//                 letterSpacing: '-0.5px',
+//                 fontFamily: "'Comic Sans MS', cursive, sans-serif",
+//                 textShadow: '1px 1px 2px rgba(0,0,0,0.05)',
+//               }}
+//             >
+//               Want More Insights?
+//             </h3>
+//             <p
+//               style={{
+//                 fontSize: '17px',
+//                 color: '#5b21b6',
+//                 marginBottom: '28px',
+//                 lineHeight: '1.6',
+//                 fontFamily: "'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
+//               }}
+//             >
+//               Join our buzzing community on LinkedIn
+//             </p>
+//             <button
+//               style={{
+//                 padding: '12px 24px',
+//                 background: 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+//                 color: '#fff',
+//                 border: 'none',
+//                 borderRadius: '999px',
+//                 cursor: 'pointer',
+//                 fontSize: '16px',
+//                 fontWeight: '600',
+//                 boxShadow: '0 4px 12px rgba(167, 139, 250, 0.4)',
+//                 transition: 'all 0.3s ease',
+//                 alignSelf: 'flex-start',
+//                 position: 'relative',
+//                 overflow: 'hidden',
+//               }}
+//               onMouseOver={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #a78bfa, #8b5cf6)';
+//                 e.target.style.transform = 'translateY(-2px)';
+//               }}
+//               onMouseOut={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
+//                 e.target.style.transform = 'translateY(0)';
+//               }}
+//             >
+//               Buzz With Us on LinkedIn
+//             </button>
+//           </div>
+//         </div>
+//       </section>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default BlogsPage;
+
+
+
+
+// import { useState, useEffect } from 'react';
+// import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+// import { db } from "../firebase";
+// import { collection, onSnapshot } from "firebase/firestore";
+// import boltzBuzzLogo from '../assets/boltz_buzz_logo.png';
+// import Footer from '../components/Footer';
+
+// const BlogsPage = () => {
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const [selectedCategory, setSelectedCategory] = useState('');
+//   const [Pdata, setPdata] = useState([]);
+//   const [Reference, setReference] = useState([]);
+//   const [reslmessage, setreslmessage] = useState('');
+//   const [Postnotfound, setPostnotfound] = useState(false);
+//   const navigate = useNavigate();
+  
+//   const categories = [
+//     'Technology',
+//     'Case Studies',
+//     'Education',
+//     'Collaboration', // Fixed typo from 'Collabration'
+//     'Industrial Insights'
+//   ];
+
+//   const blogsPerPage = 15;
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const initialPage = parseInt(searchParams.get('page') || '1', 10);
+//   const [currentPage, setCurrentPage] = useState(initialPage);
+
+//   useEffect(() => {
+//     setSearchParams({ page: currentPage });
+//   }, [currentPage, setSearchParams]);
+
+//   // Improved image extraction function
+//   const extractImageFromContent = (content) => {
+//     if (!content || typeof content !== 'string') {
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+
+//     try {
+//       // More robust regex pattern for img tags
+//       const imgTagRegex = /<img[^>]+>/gi;
+//       const imgMatch = content.match(imgTagRegex);
+      
+//       if (!imgMatch || imgMatch.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Extract src attribute from the first img tag
+//       const firstImgTag = imgMatch[0];
+//       const srcRegex = /src\s*=\s*["']([^"']+)["']/i;
+//       const srcMatch = firstImgTag.match(srcRegex);
+      
+//       if (!srcMatch || srcMatch.length < 2) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       const imageUrl = srcMatch[1].trim();
+      
+//       // Validate that the URL is not empty and looks like a valid URL
+//       if (!imageUrl || imageUrl.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Basic URL validation
+//       if (imageUrl.startsWith('data:image/') || 
+//           imageUrl.startsWith('http://') || 
+//           imageUrl.startsWith('https://') ||
+//           imageUrl.startsWith('/')) {
+//         return imageUrl;
+//       }
+
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     } catch (error) {
+//       console.error('Error extracting image from content:', error);
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+//   };
+
+//   const FETCHPosts = async () => {
+//     const Ref = collection(db, 'boltzmannlabs-posts');
+    
+//     try {
+//       await onSnapshot(Ref, (POSTE) => {
+//         if (POSTE.empty) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         const postarray = [];
+//         POSTE.forEach(Posts => {
+//           const postData = Posts.data();
+          
+//           if (postData.published) {
+//             const extractedImage = extractImageFromContent(postData.content);
+            
+//             postarray.push({
+//               id: Posts.id,
+//               Author: postData.author || 'Admin',
+//               category: postData.categories, // Make sure this matches your Firestore field
+//               title: postData.title || 'Untitled',
+//               content: postData.content,
+//               date: postData.created_date ? postData.created_date.toDate() : new Date(),
+//               image: extractedImage
+//             });
+//           }
+//         });
+
+//         if (postarray.length === 0) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         // Sort by date (newest first)
+//         postarray.sort((a, b) => b.date - a.date);
+        
+//         setPdata(postarray);
+//         setReference(postarray);
+//         setPostnotfound(false);
+//       });
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//       setPostnotfound(true);
+//     }
+//   };
+
+//   const SearchFun = () => {
+//     if (!searchTerm.trim()) {
+//       setPdata(Reference);
+//       setreslmessage('');
+//       setPostnotfound(Reference.length === 0);
+//       return;
+//     }
+
+//     const filteredArray = Reference.filter((post) => 
+//       post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//     );
+    
+//     setPdata(filteredArray);
+//     setreslmessage(searchTerm.trim());
+//     setPostnotfound(filteredArray.length === 0);
+//     setCurrentPage(1); // Reset to first page after search
+//   };
+
+//   const clearSearch = () => {
+//     setSearchTerm('');
+//     setPdata(Reference);
+//     setreslmessage('');
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+//     setPostnotfound(Reference.length === 0);
+//   };
+
+//   // Fixed category filter function
+//   const handleCategoryFilter = (category) => {
+//     setSelectedCategory(category);
+//     setCurrentPage(1); // Reset to first page when changing category
+    
+//     // Filter posts by category - checking if category array contains the selected category
+//     let filteredData = Reference;
+    
+//     if (category) {
+//       filteredData = filteredData.filter(post => {
+//         // Handle both string and array categories
+//         if (Array.isArray(post.category)) {
+//           return post.category.includes(category);
+//         } else {
+//           return post.category === category;
+//         }
+//       });
+//     }
+    
+//     if (searchTerm.trim()) {
+//       filteredData = filteredData.filter(post => 
+//         post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//       );
+//     }
+    
+//     setPdata(filteredData);
+//     setPostnotfound(filteredData.length === 0);
+//   };
+
+//   // Clear category filter
+//   const clearCategoryFilter = () => {
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+    
+//     // Apply search filter if exists
+//     let filteredData = Reference;
+//     if (searchTerm.trim()) {
+//       filteredData = filteredData.filter(post => 
+//         post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//       );
+//     }
+    
+//     setPdata(filteredData);
+//     setPostnotfound(filteredData.length === 0);
+//   };
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       FETCHPosts();
+//     }, 200);
+
+//     window.scrollTo(0, 0);
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   // Updated filtering logic - this now correctly applies both filters
+//   const filteredBlogs = Pdata.filter(blog => {
+//     const matchesSearch = !searchTerm || 
+//       blog.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+//     // Handle both string and array categories
+//     let matchesCategory = !selectedCategory;
+//     if (selectedCategory) {
+//       if (Array.isArray(blog.category)) {
+//         matchesCategory = blog.category.includes(selectedCategory);
+//       } else {
+//         matchesCategory = blog.category === selectedCategory;
+//       }
+//     }
+    
+//     return matchesSearch && matchesCategory;
+//   });
+
+//   const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / blogsPerPage));
+//   const indexOfLastBlog = currentPage * blogsPerPage;
+//   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+//   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+//   // Image error handler component
+//   const BlogImage = ({ src, alt, style }) => {
+//     const [imgSrc, setImgSrc] = useState(src);
+//     const [hasError, setHasError] = useState(false);
+
+//     const handleError = () => {
+//       if (!hasError) {
+//         setHasError(true);
+//         setImgSrc('https://via.placeholder.com/300x180?text=Image+Not+Found');
+//       }
+//     };
+
+//     const handleLoad = () => {
+//       setHasError(false);
+//     };
+
+//     return (
+//       <div 
+//         style={{
+//           ...style,
+//           backgroundImage: `url(${imgSrc})`,
+//           backgroundSize: 'cover',
+//           backgroundPosition: 'center',
+//           backgroundRepeat: 'no-repeat'
+//         }}
+//       >
+//         <img
+//           src={imgSrc}
+//           alt={alt}
+//           onError={handleError}
+//           onLoad={handleLoad}
+//           style={{
+//             display: 'none' // Hidden img for error handling
+//           }}
+//         />
+//       </div>
+//     );
+//   };
+
+//   return (
+//     <div style={{ fontFamily: "'Inter', sans-serif" }}>
+     
+//       {/* Header */}
+//       <header style={{ textAlign: 'center', marginBottom: '24px', marginTop: '20px' }}>
+//         <h1 style={{ fontSize: '32px', color: '#3b82f6', fontWeight: '800' }}>
+//           Insights & Discoveries from AI Research
+//         </h1>
+//         <p style={{ fontSize: '18px', color: '#374151' }}>
+//           Stay updated with the latest breakthroughs
+//         </p>
+//       </header>
+
+//       {/* Blogs Heading */}
+//       <section style={{ textAlign: 'center', marginBottom: '32px' }}>
+//         <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#3b82f6' }}>
+//           Blogs
+//         </h2>
+//       </section>
+
+//       {/* Categories Section */}
+//       <section
+//         style={{
+//           maxWidth: '1200px',
+//           margin: '0 auto 32px',
+//           padding: '0 16px'
+//         }}
+//       >
+//         <h3 style={{
+//           fontSize: '20px',
+//           fontWeight: '700',
+//           marginBottom: '12px',
+//           color: '#1f2937'
+//         }}>
+//           Categories
+//         </h3>
+//         <div style={{
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//           gap: '12px'
+//         }}>
+//           {categories.map((cat, index) => {
+//             const isSelected = selectedCategory === cat;
+//             return (
+//               <div
+//                 key={index}
+//                 onClick={() => isSelected ? clearCategoryFilter() : handleCategoryFilter(cat)}
+//                 style={{
+//                   display: 'flex',
+//                   alignItems: 'center',
+//                   padding: '6px 12px',
+//                   borderRadius: '999px',
+//                   border: `1px solid ${isSelected ? '#6366f1' : '#d1d5db'}`,
+//                   backgroundColor: isSelected ? '#eef2ff' : '#f9fafb',
+//                   color: isSelected ? '#4338ca' : '#374151',
+//                   fontSize: '14px',
+//                   cursor: 'pointer',
+//                   transition: 'all 0.2s ease',
+//                   boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+//                 }}
+//               >
+//                 <span>{cat}</span>
+//                 {isSelected && (
+//                   <span
+//                     onClick={(e) => {
+//                       e.stopPropagation();
+//                       clearCategoryFilter();
+//                     }}
+//                     style={{
+//                       marginLeft: '8px',
+//                       fontSize: '14px',
+//                       cursor: 'pointer',
+//                       color: '#6366f1',
+//                       fontWeight: '600'
+//                     }}
+//                   >
+//                     ✖
+//                   </span>
+//                 )}
+//               </div>
+//             )
+//           })}
+//         </div>
+//       </section>
+
+//       {/* Search Bar */}
+//       <div style={{
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'flex-end',
+//         maxWidth: '1200px',
+//         margin: '0 auto 32px',
+//         marginTop: '-4rem',
+//         padding: '0 16px'
+//       }}>
+//         <div style={{
+//           display: 'flex',
+//           alignItems: 'center',
+//           borderRadius: '999px',
+//           border: '1px solid #d1d5db',
+//           backgroundColor: '#f9fafb',
+//           padding: '8px 20px',
+//           width: '320px',
+//           boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+//           transition: 'box-shadow 0.2s ease'
+//         }}>
+//           <span style={{ marginRight: '10px', color: '#9ca3af', fontSize: '16px' }}>🔍</span>
+//           <input
+//             type="text"
+//             placeholder="Search blogs..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             onKeyDown={(e) => {
+//               if (e.key === 'Enter') {
+//                 SearchFun();
+//               }
+//             }}
+//             style={{
+//               border: 'none',
+//               outline: 'none',
+//               flex: 1,
+//               fontSize: '14px',
+//               backgroundColor: 'transparent'
+//             }}
+//           />
+//           <button 
+//             style={searchTerm === '' ? { display: 'none' } : { border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={clearSearch}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>✖</span>
+//           </button>
+//           <button 
+//             style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={SearchFun}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>↵</span>
+//           </button>
+//         </div>
+
+//         {/* Search results message */}
+//         {(reslmessage !== '' || selectedCategory) && (
+//           <div style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}>
+//             <span style={{ color: '#501f84', fontWeight: 600 }}>
+//               Showing results {reslmessage && `for "${reslmessage}"`} 
+//               {reslmessage && selectedCategory && ' in'} 
+//               {selectedCategory && ` category "${selectedCategory}"`}
+//             </span>
+//             <button 
+//               onClick={clearSearch} 
+//               style={{ 
+//                 background: 'none', 
+//                 border: 'none', 
+//                 cursor: 'pointer',
+//                 marginLeft: '10px'
+//               }}
+//             >
+//               <span style={{ color: '#6366f1' }}>Clear all</span>
+//             </button>
+//           </div>
+//         )}
+
+//         {/* No Results */}
+//         {filteredBlogs.length === 0 && Pdata.length > 0 && (
+//           <section
+//             style={{
+//               marginTop: '24px',
+//               width: '100%',
+//               maxWidth: '700px',
+//               background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//               padding: '40px 24px',
+//               textAlign: 'center',
+//               borderRadius: '20px',
+//               boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               alignItems: 'center',
+//               marginInline: 'auto'
+//             }}
+//           >
+//             <div style={{
+//               fontSize: '48px',
+//               color: '#a855f7',
+//               marginBottom: '16px'
+//             }}>😕</div>
+//             <h3 style={{
+//               fontSize: '24px',
+//               fontWeight: '700',
+//               color: '#4c1d95',
+//               marginBottom: '12px'
+//             }}>
+//               No Results Found
+//             </h3>
+//             <p style={{
+//               fontSize: '16px',
+//               color: '#4b5563',
+//               maxWidth: '500px',
+//               lineHeight: '1.6'
+//             }}>
+//               We couldn't find any blogs matching 
+//               {searchTerm && <> <strong>"{searchTerm}"</strong></>}
+//               {selectedCategory && <> in <strong>{selectedCategory}</strong></>}. 
+//               Try refining your search or exploring other topics.
+//             </p>
+//           </section>
+//         )}
+//       </div>
+
+//       {/* Loading state */}
+//       {Pdata.length === 0 && !Postnotfound && (
+//         <div style={{ width: '100%', height: '100%', minHeight: '50vh', textAlign: 'center' }}>
+//           <div className="loader" style={{ 
+//             display: 'inline-block',
+//             width: '80px',
+//             height: '80px',
+//             border: '8px solid #f3f3f3',
+//             borderTop: '8px solid #3b82f6',
+//             borderRadius: '50%',
+//             animation: 'spin 1s linear infinite',
+//             marginTop: '100px'
+//           }}></div>
+//         </div>
+//       )}
+
+//       {/* No posts found */}
+//       {Postnotfound && Pdata.length === 0 && (
+//         <section
+//           style={{
+//             marginTop: '24px',
+//             width: '100%',
+//             maxWidth: '700px',
+//             background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//             padding: '40px 24px',
+//             textAlign: 'center',
+//             borderRadius: '20px',
+//             boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//             display: 'flex',
+//             flexDirection: 'column',
+//             alignItems: 'center',
+//             marginInline: 'auto'
+//           }}
+//         >
+//           <div style={{
+//             fontSize: '48px',
+//             color: '#a855f7',
+//             marginBottom: '16px'
+//           }}>🙂</div>
+//           <h3 style={{
+//             fontSize: '24px',
+//             fontWeight: '700',
+//             color: '#4c1d95',
+//             marginBottom: '12px'
+//           }}>
+//             No Posts Found
+//           </h3>
+//           <p style={{
+//             fontSize: '16px',
+//             color: '#4b5563',
+//             maxWidth: '500px',
+//             lineHeight: '1.6'
+//           }}>
+//             It looks like there are no blog posts available at the moment. 
+//             Please check back later for fresh insights and discoveries!
+//           </p>
+//         </section>
+//       )}
+
+//       {/* Blog Cards Grid */}
+//       {filteredBlogs.length > 0 && (
+//         <div style={{
+//           display: 'grid',
+//           gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+//           gap: '24px',
+//           maxWidth: '1200px',
+//           margin: '0 auto',
+//           padding: '0 16px'
+//         }}>
+//           {currentBlogs.map(blog => (
+//             <Link
+//               key={blog.id}
+//               to={`/blogs/${blog.id}?page=${currentPage}`}
+//               style={{
+//                 textDecoration: 'none',
+//                 color: 'inherit',
+//                 background: '#f9fafb',
+//                 borderRadius: '16px',
+//                 overflow: 'hidden',
+//                 boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+//                 display: 'flex',
+//                 flexDirection: 'column',
+//                 justifyContent: 'space-between',
+//                 paddingBottom: '16px'
+//               }}
+//             >
+//               <BlogImage
+//                 src={blog.image}
+//                 alt={blog.title}
+//                 style={{
+//                   width: '100%',
+//                   height: '180px'
+//                 }}
+//               />
+
+//               <div style={{ padding: '16px' }}>
+//                 <p style={{ 
+//                   fontSize: '14px', 
+//                   marginBottom: '12px',
+//                   fontWeight: '600',
+//                   height: '4.6rem',
+//                   overflow: 'hidden',
+//                   textOverflow: 'ellipsis',
+//                   display: '-webkit-box',
+//                   WebkitLineClamp: 3,
+//                   WebkitBoxOrient: 'vertical'
+//                 }}>
+//                   {blog.title}
+//                 </p>
+//                 <div style={{
+//                   display: 'flex',
+//                   justifyContent: 'space-between',
+//                   fontSize: '12px',
+//                   color: '#6b7280'
+//                 }}>
+//                   <span>👤 {blog.Author}</span>
+//                   <span>📅 {blog.date.toString().slice(4, 15)}</span>
+//                 </div>
+//               </div>
+//             </Link>
+//           ))}
+//         </div>
+//       )}
+
+//       {/* Pagination Controls */}
+//       {filteredBlogs.length > 0 && totalPages > 1 && (
+//         <div style={{
+//           marginTop: '40px',
+//           maxWidth: '1200px',
+//           marginInline: 'auto',
+//           display: 'flex',
+//           justifyContent: 'space-between',
+//           alignItems: 'center',
+//           flexWrap: 'wrap',
+//           padding: '0 16px'
+//         }}>
+//           {currentPage > 1 ? (
+//             <button
+//               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Previous
+//             </button>
+//           ) : <div></div>}
+
+//           <span style={{ color: '#6b7280', fontSize: '14px' }}>
+//             Page {currentPage} of {totalPages}
+//           </span>
+
+//           {currentPage < totalPages ? (
+//             <button
+//               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Next
+//             </button>
+//           ) : <div></div>}
+//         </div>
+//       )}
+
+//       {/* CTA Banner */}
+//       <section
+//         style={{
+//           margin: '80px auto',
+//           background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//           padding: '0',
+//           borderRadius: '24px',
+//           maxWidth: '740px',
+//           boxShadow: '0 12px 24px rgba(0, 0, 0, 0.05)',
+//           overflow: 'hidden',
+//           position: 'relative',
+//           border: '2px dotted rgba(167, 139, 250, 0.3)',
+//         }}
+//       >
+//         <div
+//           style={{
+//             display: 'flex',
+//             flexDirection: 'row',
+//             flexWrap: 'wrap',
+//             position: 'relative',
+//             zIndex: 1,
+//             minHeight: '300px',
+//           }}
+//         >
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               position: 'relative',
+//               overflow: 'hidden',
+//               display: 'flex',
+//               alignItems: 'center',
+//               justifyContent: 'center',
+//               padding: '20px',
+//             }}
+//           >
+//             <div
+//               style={{
+//                 width: '100%',
+//                 height: '100%',
+//                 background: 'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
+//                 borderRadius: '16px',
+//                 display: 'flex',
+//                 alignItems: 'center',
+//                 justifyContent: 'center',
+//                 border: '3px solid white',
+//                 boxShadow: 'inset 0 0 20px rgba(255,255,255,0.5)',
+//               }}
+//             >
+//               <img
+//                 src={boltzBuzzLogo}
+//                 alt="Boltz Buzz Logo"
+//                 style={{
+//                   width: '80%',
+//                   height: 'auto',
+//                   objectFit: 'contain',
+//                   display: 'block',
+//                   filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
+//                 }}
+//               />
+//             </div>
+//           </div>
+
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               padding: '40px',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               justifyContent: 'center',
+//               background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//               textAlign: 'left',
+//             }}
+//           >
+//             <h3
+//               style={{
+//                 fontSize: '28px',
+//                 fontWeight: '800',
+//                 color: '#6d28d9',
+//                 marginBottom: '16px',
+//                 lineHeight: '1.2',
+//                 letterSpacing: '-0.5px',
+//                 fontFamily: "'Comic Sans MS', cursive, sans-serif",
+//                 textShadow: '1px 1px 2px rgba(0,0,0,0.05)',
+//               }}
+//             >
+//               Want More Insights?
+//             </h3>
+//             <p
+//               style={{
+//                 fontSize: '17px',
+//                 color: '#5b21b6',
+//                 marginBottom: '28px',
+//                 lineHeight: '1.6',
+//                 fontFamily: "'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
+//               }}
+//             >
+//               Join our buzzing community on LinkedIn
+//             </p>
+//             <button
+//               style={{
+//                 padding: '12px 24px',
+//                 background: 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+//                 color: '#fff',
+//                 border: 'none',
+//                 borderRadius: '999px',
+//                 cursor: 'pointer',
+//                 fontSize: '16px',
+//                 fontWeight: '600',
+//                 boxShadow: '0 4px 12px rgba(167, 139, 250, 0.4)',
+//                 transition: 'all 0.3s ease',
+//                 alignSelf: 'flex-start',
+//                 position: 'relative',
+//                 overflow: 'hidden',
+//               }}
+//               onMouseOver={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #a78bfa, #8b5cf6)';
+//                 e.target.style.transform = 'translateY(-2px)';
+//               }}
+//               onMouseOut={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
+//                 e.target.style.transform = 'translateY(0)';
+//               }}
+//             >
+//               Buzz With Us on LinkedIn
+//             </button>
+//           </div>
+//         </div>
+//       </section>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default BlogsPage;
+
+
+// import { useState, useEffect } from 'react';
+// import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+// import { db } from "../firebase";
+// import { collection, onSnapshot } from "firebase/firestore";
+// import boltzBuzzLogo from '../assets/boltz_buzz_logo.png';
+// import Footer from '../components/Footer';
+
+// const BlogsPage = () => {
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const [selectedCategory, setSelectedCategory] = useState('');
+//   const [Pdata, setPdata] = useState([]);
+//   const [Reference, setReference] = useState([]);
+//   const [reslmessage, setreslmessage] = useState('');
+//   const [Postnotfound, setPostnotfound] = useState(false);
+//   const navigate = useNavigate();
+  
+//   const categories = [
+//     'Technology',
+//     'Case Studies',
+//     'Education',
+//     'Collaboration', // Fixed typo from 'Collabration'
+//     'Industrial Insights'
+//   ];
+
+//   const blogsPerPage = 15;
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const initialPage = parseInt(searchParams.get('page') || '1', 10);
+//   const [currentPage, setCurrentPage] = useState(initialPage);
+
+//   useEffect(() => {
+//     setSearchParams({ page: currentPage });
+//     // Scroll to top when page changes
+//     window.scrollTo({ top: 0, behavior: 'smooth' });
+//   }, [currentPage, setSearchParams]);
+
+//   // Improved image extraction function
+//   const extractImageFromContent = (content) => {
+//     if (!content || typeof content !== 'string') {
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+
+//     try {
+//       // More robust regex pattern for img tags
+//       const imgTagRegex = /<img[^>]+>/gi;
+//       const imgMatch = content.match(imgTagRegex);
+      
+//       if (!imgMatch || imgMatch.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Extract src attribute from the first img tag
+//       const firstImgTag = imgMatch[0];
+//       const srcRegex = /src\s*=\s*["']([^"']+)["']/i;
+//       const srcMatch = firstImgTag.match(srcRegex);
+      
+//       if (!srcMatch || srcMatch.length < 2) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       const imageUrl = srcMatch[1].trim();
+      
+//       // Validate that the URL is not empty and looks like a valid URL
+//       if (!imageUrl || imageUrl.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Basic URL validation
+//       if (imageUrl.startsWith('data:image/') || 
+//           imageUrl.startsWith('http://') || 
+//           imageUrl.startsWith('https://') ||
+//           imageUrl.startsWith('/')) {
+//         return imageUrl;
+//       }
+
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     } catch (error) {
+//       console.error('Error extracting image from content:', error);
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+//   };
+
+//   const FETCHPosts = async () => {
+//     const Ref = collection(db, 'boltzmannlabs-posts');
+    
+//     try {
+//       await onSnapshot(Ref, (POSTE) => {
+//         if (POSTE.empty) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         const postarray = [];
+//         POSTE.forEach(Posts => {
+//           const postData = Posts.data();
+          
+//           if (postData.published) {
+//             const extractedImage = extractImageFromContent(postData.content);
+            
+//             postarray.push({
+//               id: Posts.id,
+//               Author: postData.author || 'Admin',
+//               category: postData.categories, // Make sure this matches your Firestore field
+//               title: postData.title || 'Untitled',
+//               content: postData.content,
+//               date: postData.created_date ? postData.created_date.toDate() : new Date(),
+//               image: extractedImage
+//             });
+//           }
+//         });
+
+//         if (postarray.length === 0) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         // Sort by date (newest first)
+//         postarray.sort((a, b) => b.date - a.date);
+        
+//         setPdata(postarray);
+//         setReference(postarray);
+//         setPostnotfound(false);
+//       });
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//       setPostnotfound(true);
+//     }
+//   };
+
+//   const SearchFun = () => {
+//     if (!searchTerm.trim()) {
+//       setPdata(Reference);
+//       setreslmessage('');
+//       setPostnotfound(Reference.length === 0);
+//       return;
+//     }
+
+//     const filteredArray = Reference.filter((post) => 
+//       post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//     );
+    
+//     setPdata(filteredArray);
+//     setreslmessage(searchTerm.trim());
+//     setPostnotfound(filteredArray.length === 0);
+//     setCurrentPage(1); // Reset to first page after search
+//   };
+
+//   const clearSearch = () => {
+//     setSearchTerm('');
+//     setPdata(Reference);
+//     setreslmessage('');
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+//     setPostnotfound(Reference.length === 0);
+//   };
+
+//   // Fixed category filter function
+//   const handleCategoryFilter = (category) => {
+//     setSelectedCategory(category);
+//     setCurrentPage(1); // Reset to first page when changing category
+    
+//     // Filter posts by category - checking if category array contains the selected category
+//     let filteredData = Reference;
+    
+//     if (category) {
+//       filteredData = filteredData.filter(post => {
+//         // Handle both string and array categories
+//         if (Array.isArray(post.category)) {
+//           return post.category.includes(category);
+//         } else {
+//           return post.category === category;
+//         }
+//       });
+//     }
+    
+//     if (searchTerm.trim()) {
+//       filteredData = filteredData.filter(post => 
+//         post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//       );
+//     }
+    
+//     setPdata(filteredData);
+//     setPostnotfound(filteredData.length === 0);
+//   };
+
+//   // Clear category filter
+//   const clearCategoryFilter = () => {
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+    
+//     // Apply search filter if exists
+//     let filteredData = Reference;
+//     if (searchTerm.trim()) {
+//       filteredData = filteredData.filter(post => 
+//         post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//       );
+//     }
+    
+//     setPdata(filteredData);
+//     setPostnotfound(filteredData.length === 0);
+//   };
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       FETCHPosts();
+//     }, 200);
+
+//     window.scrollTo(0, 0);
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   // Updated filtering logic - this now correctly applies both filters
+//   const filteredBlogs = Pdata.filter(blog => {
+//     const matchesSearch = !searchTerm || 
+//       blog.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+//     // Handle both string and array categories
+//     let matchesCategory = !selectedCategory;
+//     if (selectedCategory) {
+//       if (Array.isArray(blog.category)) {
+//         matchesCategory = blog.category.includes(selectedCategory);
+//       } else {
+//         matchesCategory = blog.category === selectedCategory;
+//       }
+//     }
+    
+//     return matchesSearch && matchesCategory;
+//   });
+
+//   const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / blogsPerPage));
+//   const indexOfLastBlog = currentPage * blogsPerPage;
+//   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+//   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+//   // Image error handler component
+//   const BlogImage = ({ src, alt, style }) => {
+//     const [imgSrc, setImgSrc] = useState(src);
+//     const [hasError, setHasError] = useState(false);
+
+//     const handleError = () => {
+//       if (!hasError) {
+//         setHasError(true);
+//         setImgSrc('https://via.placeholder.com/300x180?text=Image+Not+Found');
+//       }
+//     };
+
+//     const handleLoad = () => {
+//       setHasError(false);
+//     };
+
+//     return (
+//       <div 
+//         style={{
+//           ...style,
+//           backgroundImage: `url(${imgSrc})`,
+//           backgroundSize: 'cover',
+//           backgroundPosition: 'center',
+//           backgroundRepeat: 'no-repeat'
+//         }}
+//       >
+//         <img
+//           src={imgSrc}
+//           alt={alt}
+//           onError={handleError}
+//           onLoad={handleLoad}
+//           style={{
+//             display: 'none' // Hidden img for error handling
+//           }}
+//         />
+//       </div>
+//     );
+//   };
+
+//   return (
+//     <div style={{ fontFamily: "'Inter', sans-serif" }}>
+     
+//       {/* Header */}
+//       <header style={{ textAlign: 'center', marginBottom: '24px', marginTop: '20px' }}>
+//         <h1 style={{ fontSize: '32px', color: '#3b82f6', fontWeight: '800' }}>
+//           Insights & Discoveries from AI Research
+//         </h1>
+//         <p style={{ fontSize: '18px', color: '#374151' }}>
+//           Stay updated with the latest breakthroughs
+//         </p>
+//       </header>
+
+//       {/* Blogs Heading */}
+//       <section style={{ textAlign: 'center', marginBottom: '32px' }}>
+//         <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#3b82f6' }}>
+//           Blogs
+//         </h2>
+//       </section>
+
+//       {/* Categories Section */}
+//       <section
+//         style={{
+//           maxWidth: '1200px',
+//           margin: '0 auto 32px',
+//           padding: '0 16px'
+//         }}
+//       >
+//         <h3 style={{
+//           fontSize: '20px',
+//           fontWeight: '700',
+//           marginBottom: '12px',
+//           color: '#1f2937'
+//         }}>
+//           Categories
+//         </h3>
+//         <div style={{
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//           gap: '12px'
+//         }}>
+//           {categories.map((cat, index) => {
+//             const isSelected = selectedCategory === cat;
+//             return (
+//               <div
+//                 key={index}
+//                 onClick={() => isSelected ? clearCategoryFilter() : handleCategoryFilter(cat)}
+//                 style={{
+//                   display: 'flex',
+//                   alignItems: 'center',
+//                   padding: '6px 12px',
+//                   borderRadius: '999px',
+//                   border: `1px solid ${isSelected ? '#6366f1' : '#d1d5db'}`,
+//                   backgroundColor: isSelected ? '#eef2ff' : '#f9fafb',
+//                   color: isSelected ? '#4338ca' : '#374151',
+//                   fontSize: '14px',
+//                   cursor: 'pointer',
+//                   transition: 'all 0.2s ease',
+//                   boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+//                 }}
+//               >
+//                 <span>{cat}</span>
+//                 {isSelected && (
+//                   <span
+//                     onClick={(e) => {
+//                       e.stopPropagation();
+//                       clearCategoryFilter();
+//                     }}
+//                     style={{
+//                       marginLeft: '8px',
+//                       fontSize: '14px',
+//                       cursor: 'pointer',
+//                       color: '#6366f1',
+//                       fontWeight: '600'
+//                     }}
+//                   >
+//                     ✖
+//                   </span>
+//                 )}
+//               </div>
+//             )
+//           })}
+//         </div>
+//       </section>
+
+//       {/* Search Bar */}
+//       <div style={{
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'flex-end',
+//         maxWidth: '1200px',
+//         margin: '0 auto 32px',
+//         marginTop: '-4rem',
+//         padding: '0 16px'
+//       }}>
+//         <div style={{
+//           display: 'flex',
+//           alignItems: 'center',
+//           borderRadius: '999px',
+//           border: '1px solid #d1d5db',
+//           backgroundColor: '#f9fafb',
+//           padding: '8px 20px',
+//           width: '320px',
+//           boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+//           transition: 'box-shadow 0.2s ease'
+//         }}>
+//           <span style={{ marginRight: '10px', color: '#9ca3af', fontSize: '16px' }}>🔍</span>
+//           <input
+//             type="text"
+//             placeholder="Search blogs..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             onKeyDown={(e) => {
+//               if (e.key === 'Enter') {
+//                 SearchFun();
+//               }
+//             }}
+//             style={{
+//               border: 'none',
+//               outline: 'none',
+//               flex: 1,
+//               fontSize: '14px',
+//               backgroundColor: 'transparent'
+//             }}
+//           />
+//           <button 
+//             style={searchTerm === '' ? { display: 'none' } : { border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={clearSearch}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>✖</span>
+//           </button>
+//           <button 
+//             style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={SearchFun}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>↵</span>
+//           </button>
+//         </div>
+
+//         {/* Search results message */}
+//         {(reslmessage !== '' || selectedCategory) && (
+//           <div style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}>
+//             <span style={{ color: '#501f84', fontWeight: 600 }}>
+//               Showing results {reslmessage && `for "${reslmessage}"`} 
+//               {reslmessage && selectedCategory && ' in'} 
+//               {selectedCategory && ` category "${selectedCategory}"`}
+//             </span>
+//             <button 
+//               onClick={clearSearch} 
+//               style={{ 
+//                 background: 'none', 
+//                 border: 'none', 
+//                 cursor: 'pointer',
+//                 marginLeft: '10px'
+//               }}
+//             >
+//               <span style={{ color: '#6366f1' }}>Clear all</span>
+//             </button>
+//           </div>
+//         )}
+
+//         {/* No Results */}
+//         {filteredBlogs.length === 0 && Pdata.length > 0 && (
+//           <section
+//             style={{
+//               marginTop: '24px',
+//               width: '100%',
+//               maxWidth: '700px',
+//               background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//               padding: '40px 24px',
+//               textAlign: 'center',
+//               borderRadius: '20px',
+//               boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               alignItems: 'center',
+//               marginInline: 'auto'
+//             }}
+//           >
+//             <div style={{
+//               fontSize: '48px',
+//               color: '#a855f7',
+//               marginBottom: '16px'
+//             }}>😕</div>
+//             <h3 style={{
+//               fontSize: '24px',
+//               fontWeight: '700',
+//               color: '#4c1d95',
+//               marginBottom: '12px'
+//             }}>
+//               No Results Found
+//             </h3>
+//             <p style={{
+//               fontSize: '16px',
+//               color: '#4b5563',
+//               maxWidth: '500px',
+//               lineHeight: '1.6'
+//             }}>
+//               We couldn't find any blogs matching 
+//               {searchTerm && <> <strong>"{searchTerm}"</strong></>}
+//               {selectedCategory && <> in <strong>{selectedCategory}</strong></>}. 
+//               Try refining your search or exploring other topics.
+//             </p>
+//           </section>
+//         )}
+//       </div>
+
+//       {/* Loading state */}
+//       {Pdata.length === 0 && !Postnotfound && (
+//         <div style={{ width: '100%', height: '100%', minHeight: '50vh', textAlign: 'center' }}>
+//           <div className="loader" style={{ 
+//             display: 'inline-block',
+//             width: '80px',
+//             height: '80px',
+//             border: '8px solid #f3f3f3',
+//             borderTop: '8px solid #3b82f6',
+//             borderRadius: '50%',
+//             animation: 'spin 1s linear infinite',
+//             marginTop: '100px'
+//           }}></div>
+//         </div>
+//       )}
+
+//       {/* No posts found */}
+//       {Postnotfound && Pdata.length === 0 && (
+//         <section
+//           style={{
+//             marginTop: '24px',
+//             width: '100%',
+//             maxWidth: '700px',
+//             background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//             padding: '40px 24px',
+//             textAlign: 'center',
+//             borderRadius: '20px',
+//             boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//             display: 'flex',
+//             flexDirection: 'column',
+//             alignItems: 'center',
+//             marginInline: 'auto'
+//           }}
+//         >
+//           <div style={{
+//             fontSize: '48px',
+//             color: '#a855f7',
+//             marginBottom: '16px'
+//           }}>🙂</div>
+//           <h3 style={{
+//             fontSize: '24px',
+//             fontWeight: '700',
+//             color: '#4c1d95',
+//             marginBottom: '12px'
+//           }}>
+//             No Posts Found
+//           </h3>
+//           <p style={{
+//             fontSize: '16px',
+//             color: '#4b5563',
+//             maxWidth: '500px',
+//             lineHeight: '1.6'
+//           }}>
+//             It looks like there are no blog posts available at the moment. 
+//             Please check back later for fresh insights and discoveries!
+//           </p>
+//         </section>
+//       )}
+
+//       {/* Blog Cards Grid */}
+//       {filteredBlogs.length > 0 && (
+//         <div style={{
+//           display: 'grid',
+//           gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+//           gap: '24px',
+//           maxWidth: '1200px',
+//           margin: '0 auto',
+//           padding: '0 16px'
+//         }}>
+//           {currentBlogs.map(blog => (
+//             <Link
+//               key={blog.id}
+//               to={`/blogs/${blog.id}?page=${currentPage}`}
+//               style={{
+//                 textDecoration: 'none',
+//                 color: 'inherit',
+//                 background: '#f9fafb',
+//                 borderRadius: '16px',
+//                 overflow: 'hidden',
+//                 boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+//                 display: 'flex',
+//                 flexDirection: 'column',
+//                 justifyContent: 'space-between',
+//                 paddingBottom: '16px'
+//               }}
+//             >
+//               <BlogImage
+//                 src={blog.image}
+//                 alt={blog.title}
+//                 style={{
+//                   width: '100%',
+//                   height: '180px'
+//                 }}
+//               />
+
+//               <div style={{ padding: '16px' }}>
+//                 <p style={{ 
+//                   fontSize: '14px', 
+//                   marginBottom: '12px',
+//                   fontWeight: '600',
+//                   height: '4.6rem',
+//                   overflow: 'hidden',
+//                   textOverflow: 'ellipsis',
+//                   display: '-webkit-box',
+//                   WebkitLineClamp: 3,
+//                   WebkitBoxOrient: 'vertical'
+//                 }}>
+//                   {blog.title}
+//                 </p>
+//                 <div style={{
+//                   display: 'flex',
+//                   justifyContent: 'space-between',
+//                   fontSize: '12px',
+//                   color: '#6b7280'
+//                 }}>
+//                   <span>👤 {blog.Author}</span>
+//                   <span>📅 {blog.date.toString().slice(4, 15)}</span>
+//                 </div>
+//               </div>
+//             </Link>
+//           ))}
+//         </div>
+//       )}
+
+//       {/* Pagination Controls */}
+//       {filteredBlogs.length > 0 && totalPages > 1 && (
+//         <div style={{
+//           marginTop: '40px',
+//           maxWidth: '1200px',
+//           marginInline: 'auto',
+//           display: 'flex',
+//           justifyContent: 'space-between',
+//           alignItems: 'center',
+//           flexWrap: 'wrap',
+//           padding: '0 16px'
+//         }}>
+//           {currentPage > 1 ? (
+//             <button
+//               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Previous
+//             </button>
+//           ) : <div></div>}
+
+//           <span style={{ color: '#6b7280', fontSize: '14px' }}>
+//             Page {currentPage} of {totalPages}
+//           </span>
+
+//           {currentPage < totalPages ? (
+//             <button
+//               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Next
+//             </button>
+//           ) : <div></div>}
+//         </div>
+//       )}
+
+//       {/* CTA Banner */}
+//       <section
+//         style={{
+//           margin: '80px auto',
+//           background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//           padding: '0',
+//           borderRadius: '24px',
+//           maxWidth: '740px',
+//           boxShadow: '0 12px 24px rgba(0, 0, 0, 0.05)',
+//           overflow: 'hidden',
+//           position: 'relative',
+//           border: '2px dotted rgba(167, 139, 250, 0.3)',
+//         }}
+//       >
+//         <div
+//           style={{
+//             display: 'flex',
+//             flexDirection: 'row',
+//             flexWrap: 'wrap',
+//             position: 'relative',
+//             zIndex: 1,
+//             minHeight: '300px',
+//           }}
+//         >
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               position: 'relative',
+//               overflow: 'hidden',
+//               display: 'flex',
+//               alignItems: 'center',
+//               justifyContent: 'center',
+//               padding: '20px',
+//             }}
+//           >
+//             <div
+//               style={{
+//                 width: '100%',
+//                 height: '100%',
+//                 background: 'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
+//                 borderRadius: '16px',
+//                 display: 'flex',
+//                 alignItems: 'center',
+//                 justifyContent: 'center',
+//                 border: '3px solid white',
+//                 boxShadow: 'inset 0 0 20px rgba(255,255,255,0.5)',
+//               }}
+//             >
+//               <img
+//                 src={boltzBuzzLogo}
+//                 alt="Boltz Buzz Logo"
+//                 style={{
+//                   width: '80%',
+//                   height: 'auto',
+//                   objectFit: 'contain',
+//                   display: 'block',
+//                   filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
+//                 }}
+//               />
+//             </div>
+//           </div>
+
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               padding: '40px',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               justifyContent: 'center',
+//               background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//               textAlign: 'left',
+//             }}
+//           >
+//             <h3
+//               style={{
+//                 fontSize: '28px',
+//                 fontWeight: '800',
+//                 color: '#6d28d9',
+//                 marginBottom: '16px',
+//                 lineHeight: '1.2',
+//                 letterSpacing: '-0.5px',
+//                 fontFamily: "'Comic Sans MS', cursive, sans-serif",
+//                 textShadow: '1px 1px 2px rgba(0,0,0,0.05)',
+//               }}
+//             >
+//               Want More Insights?
+//             </h3>
+//             <p
+//               style={{
+//                 fontSize: '17px',
+//                 color: '#5b21b6',
+//                 marginBottom: '28px',
+//                 lineHeight: '1.6',
+//                 fontFamily: "'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
+//               }}
+//             >
+//               Join our buzzing community on LinkedIn
+//             </p>
+//             <button
+//               style={{
+//                 padding: '12px 24px',
+//                 background: 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+//                 color: '#fff',
+//                 border: 'none',
+//                 borderRadius: '999px',
+//                 cursor: 'pointer',
+//                 fontSize: '16px',
+//                 fontWeight: '600',
+//                 boxShadow: '0 4px 12px rgba(167, 139, 250, 0.4)',
+//                 transition: 'all 0.3s ease',
+//                 alignSelf: 'flex-start',
+//                 position: 'relative',
+//                 overflow: 'hidden',
+//               }}
+//               onMouseOver={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #a78bfa, #8b5cf6)';
+//                 e.target.style.transform = 'translateY(-2px)';
+//               }}
+//               onMouseOut={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
+//                 e.target.style.transform = 'translateY(0)';
+//               }}
+//             >
+//               Buzz With Us on LinkedIn
+//             </button>
+//           </div>
+//         </div>
+//       </section>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default BlogsPage;
+
+
+// import { useState, useEffect } from 'react';
+// import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+// import { db } from "../firebase";
+// import { collection, onSnapshot } from "firebase/firestore";
+// import boltzBuzzLogo from '../assets/boltz_buzz_logo.png';
+// import Footer from '../components/Footer';
+
+// const BlogsPage = () => {
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const [selectedCategory, setSelectedCategory] = useState('');
+//   const [Pdata, setPdata] = useState([]);
+//   const [Reference, setReference] = useState([]);
+//   const [reslmessage, setreslmessage] = useState('');
+//   const [Postnotfound, setPostnotfound] = useState(false);
+//   const navigate = useNavigate();
+  
+//   const categories = [
+//     'Technology',
+//     'Case Studies',
+//     'Education',
+//     'Collaboration', // Fixed typo from 'Collabration'
+//     'Industrial Insights'
+//   ];
+
+//   const blogsPerPage = 15;
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const initialPage = parseInt(searchParams.get('page') || '1', 10);
+//   const [currentPage, setCurrentPage] = useState(initialPage);
+
+//   useEffect(() => {
+//     setSearchParams({ page: currentPage });
+//   }, [currentPage, setSearchParams]);
+
+//   // Separate useEffect for scrolling to top when page changes
+//   useEffect(() => {
+//     window.scrollTo({ top: 0, behavior: 'smooth' });
+//   }, [currentPage]);
+
+//   // Improved image extraction function
+//   const extractImageFromContent = (content) => {
+//     if (!content || typeof content !== 'string') {
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+
+//     try {
+//       // More robust regex pattern for img tags
+//       const imgTagRegex = /<img[^>]+>/gi;
+//       const imgMatch = content.match(imgTagRegex);
+      
+//       if (!imgMatch || imgMatch.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Extract src attribute from the first img tag
+//       const firstImgTag = imgMatch[0];
+//       const srcRegex = /src\s*=\s*["']([^"']+)["']/i;
+//       const srcMatch = firstImgTag.match(srcRegex);
+      
+//       if (!srcMatch || srcMatch.length < 2) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       const imageUrl = srcMatch[1].trim();
+      
+//       // Validate that the URL is not empty and looks like a valid URL
+//       if (!imageUrl || imageUrl.length === 0) {
+//         return 'https://via.placeholder.com/300x180?text=Image';
+//       }
+
+//       // Basic URL validation
+//       if (imageUrl.startsWith('data:image/') || 
+//           imageUrl.startsWith('http://') || 
+//           imageUrl.startsWith('https://') ||
+//           imageUrl.startsWith('/')) {
+//         return imageUrl;
+//       }
+
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     } catch (error) {
+//       console.error('Error extracting image from content:', error);
+//       return 'https://via.placeholder.com/300x180?text=Image';
+//     }
+//   };
+
+//   const FETCHPosts = async () => {
+//     const Ref = collection(db, 'boltzmannlabs-posts');
+    
+//     try {
+//       await onSnapshot(Ref, (POSTE) => {
+//         if (POSTE.empty) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         const postarray = [];
+//         POSTE.forEach(Posts => {
+//           const postData = Posts.data();
+          
+//           if (postData.published) {
+//             const extractedImage = extractImageFromContent(postData.content);
+            
+//             postarray.push({
+//               id: Posts.id,
+//               Author: postData.author || 'Admin',
+//               category: postData.categories, // Make sure this matches your Firestore field
+//               title: postData.title || 'Untitled',
+//               content: postData.content,
+//               date: postData.created_date ? postData.created_date.toDate() : new Date(),
+//               image: extractedImage
+//             });
+//           }
+//         });
+
+//         if (postarray.length === 0) {
+//           setPostnotfound(true);
+//           setPdata([]);
+//           setReference([]);
+//           return;
+//         }
+
+//         // Sort by date (newest first)
+//         postarray.sort((a, b) => b.date - a.date);
+        
+//         setPdata(postarray);
+//         setReference(postarray);
+//         setPostnotfound(false);
+//       });
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//       setPostnotfound(true);
+//     }
+//   };
+
+//   const SearchFun = () => {
+//     if (!searchTerm.trim()) {
+//       setPdata(Reference);
+//       setreslmessage('');
+//       setPostnotfound(Reference.length === 0);
+//       return;
+//     }
+
+//     const filteredArray = Reference.filter((post) => 
+//       post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//     );
+    
+//     setPdata(filteredArray);
+//     setreslmessage(searchTerm.trim());
+//     setPostnotfound(filteredArray.length === 0);
+//     setCurrentPage(1); // Reset to first page after search
+//   };
+
+//   const clearSearch = () => {
+//     setSearchTerm('');
+//     setPdata(Reference);
+//     setreslmessage('');
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+//     setPostnotfound(Reference.length === 0);
+//   };
+
+//   // Fixed category filter function
+//   const handleCategoryFilter = (category) => {
+//     setSelectedCategory(category);
+//     setCurrentPage(1); // Reset to first page when changing category
+    
+//     // Filter posts by category - checking if category array contains the selected category
+//     let filteredData = Reference;
+    
+//     if (category) {
+//       filteredData = filteredData.filter(post => {
+//         // Handle both string and array categories
+//         if (Array.isArray(post.category)) {
+//           return post.category.includes(category);
+//         } else {
+//           return post.category === category;
+//         }
+//       });
+//     }
+    
+//     if (searchTerm.trim()) {
+//       filteredData = filteredData.filter(post => 
+//         post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//       );
+//     }
+    
+//     setPdata(filteredData);
+//     setPostnotfound(filteredData.length === 0);
+//   };
+
+//   // Clear category filter
+//   const clearCategoryFilter = () => {
+//     setSelectedCategory('');
+//     setCurrentPage(1);
+    
+//     // Apply search filter if exists
+//     let filteredData = Reference;
+//     if (searchTerm.trim()) {
+//       filteredData = filteredData.filter(post => 
+//         post.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+//       );
+//     }
+    
+//     setPdata(filteredData);
+//     setPostnotfound(filteredData.length === 0);
+//   };
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       FETCHPosts();
+//     }, 200);
+
+//     window.scrollTo(0, 0);
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   // Updated filtering logic - this now correctly applies both filters
+//   const filteredBlogs = Pdata.filter(blog => {
+//     const matchesSearch = !searchTerm || 
+//       blog.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+//     // Handle both string and array categories
+//     let matchesCategory = !selectedCategory;
+//     if (selectedCategory) {
+//       if (Array.isArray(blog.category)) {
+//         matchesCategory = blog.category.includes(selectedCategory);
+//       } else {
+//         matchesCategory = blog.category === selectedCategory;
+//       }
+//     }
+    
+//     return matchesSearch && matchesCategory;
+//   });
+
+//   const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / blogsPerPage));
+//   const indexOfLastBlog = currentPage * blogsPerPage;
+//   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+//   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+//   // Pagination handlers with scroll to top
+//   const handlePreviousPage = () => {
+//     setCurrentPage(prev => Math.max(prev - 1, 1));
+//   };
+
+//   const handleNextPage = () => {
+//     setCurrentPage(prev => Math.min(prev + 1, totalPages));
+//   };
+
+//   // Image error handler component
+//   const BlogImage = ({ src, alt, style }) => {
+//     const [imgSrc, setImgSrc] = useState(src);
+//     const [hasError, setHasError] = useState(false);
+
+//     const handleError = () => {
+//       if (!hasError) {
+//         setHasError(true);
+//         setImgSrc('https://via.placeholder.com/300x180?text=Image+Not+Found');
+//       }
+//     };
+
+//     const handleLoad = () => {
+//       setHasError(false);
+//     };
+
+//     return (
+//       <div 
+//         style={{
+//           ...style,
+//           backgroundImage: `url(${imgSrc})`,
+//           backgroundSize: 'cover',
+//           backgroundPosition: 'center',
+//           backgroundRepeat: 'no-repeat'
+//         }}
+//       >
+//         <img
+//           src={imgSrc}
+//           alt={alt}
+//           onError={handleError}
+//           onLoad={handleLoad}
+//           style={{
+//             display: 'none' // Hidden img for error handling
+//           }}
+//         />
+//       </div>
+//     );
+//   };
+
+//   return (
+//     <div style={{ fontFamily: "'Inter', sans-serif" }}>
+     
+//       {/* Header */}
+//       <header style={{ textAlign: 'center', marginBottom: '24px', marginTop: '20px' }}>
+//         <h1 style={{ fontSize: '32px', color: '#3b82f6', fontWeight: '800' }}>
+//           Insights & Discoveries from AI Research
+//         </h1>
+//         <p style={{ fontSize: '18px', color: '#374151' }}>
+//           Stay updated with the latest breakthroughs
+//         </p>
+//       </header>
+
+//       {/* Blogs Heading */}
+//       <section style={{ textAlign: 'center', marginBottom: '32px' }}>
+//         <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#3b82f6' }}>
+//           Blogs
+//         </h2>
+//       </section>
+
+//       {/* Categories Section */}
+//       <section
+//         style={{
+//           maxWidth: '1200px',
+//           margin: '0 auto 32px',
+//           padding: '0 16px'
+//         }}
+//       >
+//         <h3 style={{
+//           fontSize: '20px',
+//           fontWeight: '700',
+//           marginBottom: '12px',
+//           color: '#1f2937'
+//         }}>
+//           Categories
+//         </h3>
+//         <div style={{
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//           gap: '12px'
+//         }}>
+//           {categories.map((cat, index) => {
+//             const isSelected = selectedCategory === cat;
+//             return (
+//               <div
+//                 key={index}
+//                 onClick={() => isSelected ? clearCategoryFilter() : handleCategoryFilter(cat)}
+//                 style={{
+//                   display: 'flex',
+//                   alignItems: 'center',
+//                   padding: '6px 12px',
+//                   borderRadius: '999px',
+//                   border: `1px solid ${isSelected ? '#6366f1' : '#d1d5db'}`,
+//                   backgroundColor: isSelected ? '#eef2ff' : '#f9fafb',
+//                   color: isSelected ? '#4338ca' : '#374151',
+//                   fontSize: '14px',
+//                   cursor: 'pointer',
+//                   transition: 'all 0.2s ease',
+//                   boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+//                 }}
+//               >
+//                 <span>{cat}</span>
+//                 {isSelected && (
+//                   <span
+//                     onClick={(e) => {
+//                       e.stopPropagation();
+//                       clearCategoryFilter();
+//                     }}
+//                     style={{
+//                       marginLeft: '8px',
+//                       fontSize: '14px',
+//                       cursor: 'pointer',
+//                       color: '#6366f1',
+//                       fontWeight: '600'
+//                     }}
+//                   >
+//                     ✖
+//                   </span>
+//                 )}
+//               </div>
+//             )
+//           })}
+//         </div>
+//       </section>
+
+//       {/* Search Bar */}
+//       <div style={{
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'flex-end',
+//         maxWidth: '1200px',
+//         margin: '0 auto 32px',
+//         marginTop: '-4rem',
+//         padding: '0 16px'
+//       }}>
+//         <div style={{
+//           display: 'flex',
+//           alignItems: 'center',
+//           borderRadius: '999px',
+//           border: '1px solid #d1d5db',
+//           backgroundColor: '#f9fafb',
+//           padding: '8px 20px',
+//           width: '320px',
+//           boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+//           transition: 'box-shadow 0.2s ease'
+//         }}>
+//           <span style={{ marginRight: '10px', color: '#9ca3af', fontSize: '16px' }}>🔍</span>
+//           <input
+//             type="text"
+//             placeholder="Search blogs..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             onKeyDown={(e) => {
+//               if (e.key === 'Enter') {
+//                 SearchFun();
+//               }
+//             }}
+//             style={{
+//               border: 'none',
+//               outline: 'none',
+//               flex: 1,
+//               fontSize: '14px',
+//               backgroundColor: 'transparent'
+//             }}
+//           />
+//           <button 
+//             style={searchTerm === '' ? { display: 'none' } : { border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={clearSearch}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>✖</span>
+//           </button>
+//           <button 
+//             style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+//             onClick={SearchFun}
+//           >
+//             <span style={{ color: '#9ca3af', fontSize: '16px' }}>↵</span>
+//           </button>
+//         </div>
+
+//         {/* Search results message */}
+//         {(reslmessage !== '' || selectedCategory) && (
+//           <div style={{ marginTop: '10px', width: '100%', textAlign: 'center' }}>
+//             <span style={{ color: '#501f84', fontWeight: 600 }}>
+//               Showing results {reslmessage && `for "${reslmessage}"`} 
+//               {reslmessage && selectedCategory && ' in'} 
+//               {selectedCategory && ` category "${selectedCategory}"`}
+//             </span>
+//             <button 
+//               onClick={clearSearch} 
+//               style={{ 
+//                 background: 'none', 
+//                 border: 'none', 
+//                 cursor: 'pointer',
+//                 marginLeft: '10px'
+//               }}
+//             >
+//               <span style={{ color: '#6366f1' }}>Clear all</span>
+//             </button>
+//           </div>
+//         )}
+
+//         {/* No Results */}
+//         {filteredBlogs.length === 0 && Pdata.length > 0 && (
+//           <section
+//             style={{
+//               marginTop: '24px',
+//               width: '100%',
+//               maxWidth: '700px',
+//               background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//               padding: '40px 24px',
+//               textAlign: 'center',
+//               borderRadius: '20px',
+//               boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               alignItems: 'center',
+//               marginInline: 'auto'
+//             }}
+//           >
+//             <div style={{
+//               fontSize: '48px',
+//               color: '#a855f7',
+//               marginBottom: '16px'
+//             }}>😕</div>
+//             <h3 style={{
+//               fontSize: '24px',
+//               fontWeight: '700',
+//               color: '#4c1d95',
+//               marginBottom: '12px'
+//             }}>
+//               No Results Found
+//             </h3>
+//             <p style={{
+//               fontSize: '16px',
+//               color: '#4b5563',
+//               maxWidth: '500px',
+//               lineHeight: '1.6'
+//             }}>
+//               We couldn't find any blogs matching 
+//               {searchTerm && <> <strong>"{searchTerm}"</strong></>}
+//               {selectedCategory && <> in <strong>{selectedCategory}</strong></>}. 
+//               Try refining your search or exploring other topics.
+//             </p>
+//           </section>
+//         )}
+//       </div>
+
+//       {/* Loading state */}
+//       {Pdata.length === 0 && !Postnotfound && (
+//         <div style={{ width: '100%', height: '100%', minHeight: '50vh', textAlign: 'center' }}>
+//           <div className="loader" style={{ 
+//             display: 'inline-block',
+//             width: '80px',
+//             height: '80px',
+//             border: '8px solid #f3f3f3',
+//             borderTop: '8px solid #3b82f6',
+//             borderRadius: '50%',
+//             animation: 'spin 1s linear infinite',
+//             marginTop: '100px'
+//           }}></div>
+//         </div>
+//       )}
+
+//       {/* No posts found */}
+//       {Postnotfound && Pdata.length === 0 && (
+//         <section
+//           style={{
+//             marginTop: '24px',
+//             width: '100%',
+//             maxWidth: '700px',
+//             background: 'linear-gradient(135deg, #f9f5ff, #f3e8ff)',
+//             padding: '40px 24px',
+//             textAlign: 'center',
+//             borderRadius: '20px',
+//             boxShadow: '0 8px 24px rgba(0,0,0,0.03)',
+//             display: 'flex',
+//             flexDirection: 'column',
+//             alignItems: 'center',
+//             marginInline: 'auto'
+//           }}
+//         >
+//           <div style={{
+//             fontSize: '48px',
+//             color: '#a855f7',
+//             marginBottom: '16px'
+//           }}>🙂</div>
+//           <h3 style={{
+//             fontSize: '24px',
+//             fontWeight: '700',
+//             color: '#4c1d95',
+//             marginBottom: '12px'
+//           }}>
+//             No Posts Found
+//           </h3>
+//           <p style={{
+//             fontSize: '16px',
+//             color: '#4b5563',
+//             maxWidth: '500px',
+//             lineHeight: '1.6'
+//           }}>
+//             It looks like there are no blog posts available at the moment. 
+//             Please check back later for fresh insights and discoveries!
+//           </p>
+//         </section>
+//       )}
+
+//       {/* Blog Cards Grid */}
+//       {filteredBlogs.length > 0 && (
+//         <div style={{
+//           display: 'grid',
+//           gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+//           gap: '24px',
+//           maxWidth: '1200px',
+//           margin: '0 auto',
+//           padding: '0 16px'
+//         }}>
+//           {currentBlogs.map(blog => (
+//             <Link
+//               key={blog.id}
+//               to={`/blogs/${blog.id}?page=${currentPage}`}
+//               style={{
+//                 textDecoration: 'none',
+//                 color: 'inherit',
+//                 background: '#f9fafb',
+//                 borderRadius: '16px',
+//                 overflow: 'hidden',
+//                 boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+//                 display: 'flex',
+//                 flexDirection: 'column',
+//                 justifyContent: 'space-between',
+//                 paddingBottom: '16px'
+//               }}
+//             >
+//               <BlogImage
+//                 src={blog.image}
+//                 alt={blog.title}
+//                 style={{
+//                   width: '100%',
+//                   height: '180px'
+//                 }}
+//               />
+
+//               <div style={{ padding: '16px' }}>
+//                 <p style={{ 
+//                   fontSize: '14px', 
+//                   marginBottom: '12px',
+//                   fontWeight: '600',
+//                   height: '4.6rem',
+//                   overflow: 'hidden',
+//                   textOverflow: 'ellipsis',
+//                   display: '-webkit-box',
+//                   WebkitLineClamp: 3,
+//                   WebkitBoxOrient: 'vertical'
+//                 }}>
+//                   {blog.title}
+//                 </p>
+//                 <div style={{
+//                   display: 'flex',
+//                   justifyContent: 'space-between',
+//                   fontSize: '12px',
+//                   color: '#6b7280'
+//                 }}>
+//                   <span>👤 {blog.Author}</span>
+//                   <span>📅 {blog.date.toString().slice(4, 15)}</span>
+//                 </div>
+//               </div>
+//             </Link>
+//           ))}
+//         </div>
+//       )}
+
+//       {/* Pagination Controls */}
+//       {filteredBlogs.length > 0 && totalPages > 1 && (
+//         <div style={{
+//           marginTop: '40px',
+//           maxWidth: '1200px',
+//           marginInline: 'auto',
+//           display: 'flex',
+//           justifyContent: 'space-between',
+//           alignItems: 'center',
+//           flexWrap: 'wrap',
+//           padding: '0 16px'
+//         }}>
+//           {currentPage > 1 ? (
+//             <button
+//               onClick={handlePreviousPage}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Previous
+//             </button>
+//           ) : <div></div>}
+
+//           <span style={{ color: '#6b7280', fontSize: '14px' }}>
+//             Page {currentPage} of {totalPages}
+//           </span>
+
+//           {currentPage < totalPages ? (
+//             <button
+//               onClick={handleNextPage}
+//               style={{
+//                 padding: '10px 20px',
+//                 borderRadius: '999px',
+//                 border: 'none',
+//                 background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
+//                 color: '#fff',
+//                 fontSize: '14px',
+//                 cursor: 'pointer',
+//                 boxShadow: '0 4px 8px rgba(99,102,241,0.2)',
+//                 transition: 'background 0.3s ease'
+//               }}
+//             >
+//               Next
+//             </button>
+//           ) : <div></div>}
+//         </div>
+//       )}
+
+//       {/* CTA Banner */}
+//       <section
+//         style={{
+//           margin: '80px auto',
+//           background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//           padding: '0',
+//           borderRadius: '24px',
+//           maxWidth: '740px',
+//           boxShadow: '0 12px 24px rgba(0, 0, 0, 0.05)',
+//           overflow: 'hidden',
+//           position: 'relative',
+//           border: '2px dotted rgba(167, 139, 250, 0.3)',
+//         }}
+//       >
+//         <div
+//           style={{
+//             display: 'flex',
+//             flexDirection: 'row',
+//             flexWrap: 'wrap',
+//             position: 'relative',
+//             zIndex: 1,
+//             minHeight: '300px',
+//           }}
+//         >
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               position: 'relative',
+//               overflow: 'hidden',
+//               display: 'flex',
+//               alignItems: 'center',
+//               justifyContent: 'center',
+//               padding: '20px',
+//             }}
+//           >
+//             <div
+//               style={{
+//                 width: '100%',
+//                 height: '100%',
+//                 background: 'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
+//                 borderRadius: '16px',
+//                 display: 'flex',
+//                 alignItems: 'center',
+//                 justifyContent: 'center',
+//                 border: '3px solid white',
+//                 boxShadow: 'inset 0 0 20px rgba(255,255,255,0.5)',
+//               }}
+//             >
+//               <img
+//                 src={boltzBuzzLogo}
+//                 alt="Boltz Buzz Logo"
+//                 style={{
+//                   width: '80%',
+//                   height: 'auto',
+//                   objectFit: 'contain',
+//                   display: 'block',
+//                   filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
+//                 }}
+//               />
+//             </div>
+//           </div>
+
+//           <div
+//             style={{
+//               flex: '1 1 300px',
+//               minWidth: '280px',
+//               padding: '40px',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               justifyContent: 'center',
+//               background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//               textAlign: 'left',
+//             }}
+//           >
+//             <h3
+//               style={{
+//                 fontSize: '28px',
+//                 fontWeight: '800',
+//                 color: '#6d28d9',
+//                 marginBottom: '16px',
+//                 lineHeight: '1.2',
+//                 letterSpacing: '-0.5px',
+//                 fontFamily: "'Comic Sans MS', cursive, sans-serif",
+//                 textShadow: '1px 1px 2px rgba(0,0,0,0.05)',
+//               }}
+//             >
+//               Want More Insights?
+//             </h3>
+//             <p
+//               style={{
+//                 fontSize: '17px',
+//                 color: '#5b21b6',
+//                 marginBottom: '28px',
+//                 lineHeight: '1.6',
+//                 fontFamily: "'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
+//               }}
+//             >
+//               Join our buzzing community on LinkedIn
+//             </p>
+//             <button
+//               style={{
+//                 padding: '12px 24px',
+//                 background: 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+//                 color: '#fff',
+//                 border: 'none',
+//                 borderRadius: '999px',
+//                 cursor: 'pointer',
+//                 fontSize: '16px',
+//                 fontWeight: '600',
+//                 boxShadow: '0 4px 12px rgba(167, 139, 250, 0.4)',
+//                 transition: 'all 0.3s ease',
+//                 alignSelf: 'flex-start',
+//                 position: 'relative',
+//                 overflow: 'hidden',
+//               }}
+//               onMouseOver={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #a78bfa, #8b5cf6)';
+//                 e.target.style.transform = 'translateY(-2px)';
+//               }}
+//               onMouseOut={(e) => {
+//                 e.target.style.background = 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
+//                 e.target.style.transform = 'translateY(0)';
+//               }}
+//             >
+//               Buzz With Us on LinkedIn
+//             </button>
+//           </div>
+//         </div>
+//       </section>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default BlogsPage;
+
+//// import { useState, useEffect } from 'react';
+// import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+// import { db } from '../firebase';
+// import { doc, getDoc, collection, query, orderBy, getDocs } from 'firebase/firestore';
+// import Footer from '../components/Footer';
+// import boltzBuzzLogo from '../assets/boltz_buzz_logo.png'
+
+// export default function BlogDetails() {
+//   const { id } = useParams();
+//   const navigate = useNavigate();
+//   const [searchParams] = useSearchParams();
+//   const page = parseInt(searchParams.get('page') || '1', 10);
+//   const [blog, setBlog] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [adjacentPosts, setAdjacentPosts] = useState({ prev: null, next: null });
+//   const [scrollProgress, setScrollProgress] = useState(0);
+
+//   // Scroll progress handler
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+//       const windowHeight = window.innerHeight;
+//       const docHeight = document.documentElement.scrollHeight;
+//       const progress = (scrollTop / (docHeight - windowHeight)) * 100;
+//       setScrollProgress(progress);
+//     };
+
+//     window.addEventListener('scroll', handleScroll);
+//     return () => window.removeEventListener('scroll', handleScroll);
+//   }, []);
+
+//   useEffect(() => {
+//     const fetchBlogPost = async () => {
+//       try {
+//         const docRef = doc(db, 'boltzmannlabs-posts', id);
+//         const docSnap = await getDoc(docRef);
+        
+//         if (docSnap.exists()) {
+//           const data = docSnap.data();
+//           // Extract first image for the title image
+//           const firstImageMatch = data.content?.match(/<img[^>]*>/);
+//           const titleImage = firstImageMatch 
+//             ? firstImageMatch[0].match(/src=["']([^"']*)["']/)[1] 
+//             : 'https://via.placeholder.com/800x450?text=No+Image';
+          
+//           // Remove the first image from content if it exists
+//           const contentWithoutFirstImage = firstImageMatch 
+//             ? data.content.replace(firstImageMatch[0], '') 
+//             : data.content;
+
+//           const currentPost = {
+//             id: docSnap.id,
+//             title: data.title,
+//             author: data.author || 'Admin',
+//             date: data.created_date?.toDate() || new Date(),
+//             content: contentWithoutFirstImage,
+//             categories: data.categories || [],
+//             image: titleImage
+//           };
+//           setBlog(currentPost);
+
+//           // Fetch adjacent posts
+//           const postsRef = collection(db, 'boltzmannlabs-posts');
+//           const q = query(postsRef, orderBy('created_date', 'desc'));
+//           const querySnapshot = await getDocs(q);
+          
+//           const allPosts = [];
+//           querySnapshot.forEach((doc) => {
+//             allPosts.push({
+//               id: doc.id,
+//               ...doc.data(),
+//               created_date: doc.data().created_date?.toDate() || new Date()
+//             });
+//           });
+
+//           const currentIndex = allPosts.findIndex(post => post.id === id);
+//           setAdjacentPosts({
+//             prev: currentIndex > 0 ? allPosts[currentIndex - 1] : null,
+//             next: currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
+//           });
+//         } else {
+//           setError('Blog post not found');
+//         }
+//       } catch (err) {
+//         setError('Failed to load blog post');
+//         console.error('Error fetching blog post:', err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchBlogPost();
+//     window.scrollTo(0, 0);
+//   }, [id]);
+
+//   // Function to process content images - show full images without cutting
+//   const processContentImages = (html) => {
+//     if (!html) return html;
+    
+//     // Make all content images show fully without cutting
+//     const processedHtml = html.replace(/<img[^>]*>/g, (imgTag) => {
+//       // Extract src from the original img tag
+//       const srcMatch = imgTag.match(/src=["']([^"']*)["']/);
+//       const src = srcMatch ? srcMatch[1] : '';
+      
+//       return `<div style="width:100%; border-radius:12px; overflow:hidden; margin:24px auto; box-shadow:0 8px 24px rgba(0,0,0,0.1); display:block; background-color:#f8f9fa;">
+//         <img src="${src}" alt="" style="width:100%; height:auto; object-fit:contain; object-position:center; display:block; max-height:600px;" />
+//       </div>`;
+//     });
+    
+//     return processedHtml;
+//   };
+
+//   if (loading) {
+//     return (
+//       <div style={{ 
+//         display: 'flex', 
+//         justifyContent: 'center', 
+//         alignItems: 'center', 
+//         height: '50vh' 
+//       }}>
+//         <div style={{ 
+//           width: '50px',
+//           height: '50px',
+//           border: '5px solid #f3f3f3',
+//           borderTop: '5px solid #4F1985',
+//           borderRadius: '50%',
+//           animation: 'spin 1s linear infinite'
+//         }}></div>
+//         <style>{`
+//           @keyframes spin {
+//             0% { transform: rotate(0deg); }
+//             100% { transform: rotate(360deg); }
+//           }
+//         `}</style>
+//       </div>
+//     );
+//   }
+
+//   if (error) {
+//     return (
+//       <div style={{ 
+//         padding: '40px', 
+//         textAlign: 'center',
+//         fontFamily: "'Inter', sans-serif" 
+//       }}>
+//         <h2 style={{ color: '#ef4444' }}>{error}</h2>
+//         <button
+//           onClick={() => navigate(`/blogs?page=${page}`)}
+//           style={{
+//             padding: '10px 20px',
+//             marginTop: '20px',
+//             borderRadius: '999px',
+//             border: 'none',
+//             background: '#4F1985',
+//             color: '#fff',
+//             cursor: 'pointer',
+//             transition: 'background-color 0.2s ease'
+//           }}
+//           onMouseOver={(e) => e.target.style.backgroundColor = '#3a1263'}
+//           onMouseOut={(e) => e.target.style.backgroundColor = '#4F1985'}
+//         >
+//           Back to Blogs
+//         </button>
+//       </div>
+//     );
+//   }
+
+//   if (!blog) return null;
+
+//   return (
+//     <div style={{ 
+//       fontFamily: "'Inter', sans-serif",
+//       position: 'relative'
+//     }}>
+//       {/* Progress Bar - positioned below navbar */}
+    
+
+//       {/* Main Content Container */}
+//       <div style={{
+//         width: '100%',
+//         maxWidth: '1100px',
+//         margin: '0 auto',
+//         padding: '90px 20px 20px 20px', // Increased top padding for navbar + progress bar
+//       }}>
+//         {/* Blog Header */}
+//         <header style={{ marginBottom: '40px' }}>
+//           <h1 style={{ 
+//             fontSize: '2.5rem',
+//             fontWeight: '800',
+//             color: '#1f2937',
+//             marginBottom: '1.5rem',
+//             lineHeight: '1.2',
+//             letterSpacing: '-0.5px'
+//           }}>
+//             {blog.title}
+//           </h1>
+          
+//           <div style={{ 
+//             display: 'flex',
+//             alignItems: 'center',
+//             gap: '1rem',
+//             marginBottom: '1.5rem',
+//             color: '#6b7280',
+//             fontSize: '0.875rem'
+//           }}>
+//             <span>👤 {blog.author}</span>
+//             <span>📅 {blog.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+//           </div>
+
+//           {/* Title Image - Full image visible without cutting */}
+//           {blog.image && (
+//          <div 
+//   style={{ 
+//     width: '70%',
+//     maxWidth: '890px',
+//     margin: '0 auto 2.5rem auto', // center horizontally
+//     borderRadius: '20px',
+//     boxShadow: '0 8px 24px rgba(0,0,0,0.08)', // soft cute shadow
+//     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+//     display: 'flex',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     background: '#fff' // fallback background
+//   }}
+//   onMouseEnter={(e) => {
+//     e.currentTarget.style.transform = 'scale(1.02)';
+//     e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.12)';
+//   }}
+//   onMouseLeave={(e) => {
+//     e.currentTarget.style.transform = 'scale(1)';
+//     e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)';
+//   }}
+// >
+//   <img 
+//     src={blog.image} 
+//     alt={blog.title}
+//     style={{
+//       width: '100%',
+//       height: 'auto',
+//       borderRadius: '20px',
+//       display: 'block',
+      
+//       maxHeight: '520px'
+//     }}
+//   />
+// </div>
+
+//           )}
+//         </header>
+
+//         {/* Blog Content */}
+//         <article 
+//           dangerouslySetInnerHTML={{ __html: processContentImages(blog.content) }} 
+//           style={{
+//             lineHeight: '1.8',
+//             fontSize: '1.125rem',
+//             color: '#374151',
+//             marginBottom: '3rem',
+//             fontFamily: "'Inter', sans-serif"
+//           }}
+//         />
+
+//         {/* Navigation */}
+//         <div style={{
+//   display: 'flex',
+//   justifyContent: 'space-between',
+//   marginTop: '3rem',
+//   paddingTop: '2rem',
+//   borderTop: '1px solid #e5e7eb'
+// }}>
+//   {adjacentPosts.prev ? (
+//     <button
+//       onClick={() => navigate(`/blogs/${adjacentPosts.prev.id}?page=${page}`)}
+//       style={{
+//         padding: '12px 28px',
+//         borderRadius: '999px',
+//         border: 'none',
+//         background: 'linear-gradient(135deg, #4F1985)',
+//         color: '#ffffff',
+//         fontSize: '1rem',
+//         fontWeight: '500',
+//         cursor: 'pointer',
+//         display: 'flex',
+//         alignItems: 'center',
+//         gap: '10px',
+//         minWidth: '160px',
+//         justifyContent: 'center',
+//         boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+//         transition: 'all 0.3s ease'
+//       }}
+//       onMouseOver={(e) => {
+//         e.currentTarget.style.transform = 'translateY(-2px)';
+//         e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.12)';
+       
+//       }}
+//       onMouseOut={(e) => {
+//         e.currentTarget.style.transform = 'translateY(0)';
+//         e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.05)';
+       
+//       }}
+//     >
+//       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+//         <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+//       </svg>
+//       Previous
+//     </button>
+//   ) : <div style={{ width: '160px' }}></div>}
+
+//   <button
+//     onClick={() => navigate(`/blogs?page=${page}`)}
+//     style={{
+//       padding: '12px 28px',
+//       borderRadius: '999px',
+//       border: 'none',
+//        background: 'linear-gradient(135deg, #4F1985)',
+//         color: '#ffffff',
+//       fontSize: '1rem',
+//       fontWeight: '500',
+//       cursor: 'pointer',
+//       transition: 'all 0.3s ease',
+//       boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
+//     }}
+//     onMouseOver={(e) => {
+//       e.currentTarget.style.transform = 'translateY(-2px)';
+//       e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.12)';
+      
+//     }}
+//     onMouseOut={(e) => {
+//       e.currentTarget.style.transform = 'translateY(0)';
+//       e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.05)';
+     
+//     }}
+//   >
+//     All Posts
+//   </button>
+
+//   {adjacentPosts.next ? (
+//     <button
+//       onClick={() => navigate(`/blogs/${adjacentPosts.next.id}?page=${page}`)}
+//       style={{
+//         padding: '12px 28px',
+//         borderRadius: '999px',
+//         border: 'none',
+//         background: 'linear-gradient(135deg, #4F1985)',
+//         color: '#ffffff',
+//         fontSize: '1rem',
+//         fontWeight: '500',
+//         cursor: 'pointer',
+//         display: 'flex',
+//         alignItems: 'center',
+//         gap: '10px',
+//         minWidth: '160px',
+//         justifyContent: 'center',
+//         boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+//         transition: 'all 0.3s ease'
+//       }}
+//       onMouseOver={(e) => {
+//         e.currentTarget.style.transform = 'translateY(-2px)';
+//         e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.12)';
+       
+//       }}
+//       onMouseOut={(e) => {
+//         e.currentTarget.style.transform = 'translateY(0)';
+//         e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.05)';
+        
+//       }}
+//     >
+//       Next
+//       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+//         <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+//       </svg>
+//     </button>
+//   ) : <div style={{ width: '160px' }}></div>}
+// </div>
+
+//         {/* CTA Banner */}
+//     {/* CTA Banner */}
+//           <section
+//             style={{
+//               margin: '80px auto',
+//               background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//               padding: '0',
+//               borderRadius: '24px',
+//               maxWidth: '740px',
+//               boxShadow: '0 12px 24px rgba(0, 0, 0, 0.05)',
+//               overflow: 'hidden',
+//               position: 'relative',
+//               border: '2px dotted rgba(167, 139, 250, 0.3)',
+//             }}
+//           >
+//             <div
+//               style={{
+//                 display: 'flex',
+//                 flexDirection: 'row',
+//                 flexWrap: 'wrap',
+//                 position: 'relative',
+//                 zIndex: 1,
+//                 minHeight: '300px',
+//               }}
+//             >
+//               <div
+//                 style={{
+//                   flex: '1 1 300px',
+//                   minWidth: '280px',
+//                   position: 'relative',
+//                   overflow: 'hidden',
+//                   display: 'flex',
+//                   alignItems: 'center',
+//                   justifyContent: 'center',
+//                   padding: '20px',
+//                 }}
+//               >
+//                 <div
+//                   style={{
+//                     width: '100%',
+//                     height: '100%',
+//                     background: 'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
+//                     borderRadius: '16px',
+//                     display: 'flex',
+//                     alignItems: 'center',
+//                     justifyContent: 'center',
+//                     border: '3px solid white',
+//                     boxShadow: 'inset 0 0 20px rgba(255,255,255,0.5)',
+//                   }}
+//                 >
+//                   <img
+//                     src={boltzBuzzLogo}
+//                     alt="Boltz Buzz Logo"
+//                     style={{
+//                       width: '80%',
+//                       height: 'auto',
+//                       objectFit: 'contain',
+//                       display: 'block',
+//                       filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
+//                     }}
+//                   />
+//                 </div>
+//               </div>
+    
+//               <div
+//                 style={{
+//                   flex: '1 1 300px',
+//                   minWidth: '280px',
+//                   padding: '40px',
+//                   display: 'flex',
+//                   flexDirection: 'column',
+//                   justifyContent: 'center',
+//                   background: 'linear-gradient(135deg, #faf5ff, #f5f3ff)',
+//                   textAlign: 'left',
+//                 }}
+//               >
+//                 <h3
+//                   style={{
+//                     fontSize: '28px',
+//                     fontWeight: '800',
+//                     color: '#6d28d9',
+//                     marginBottom: '16px',
+//                     lineHeight: '1.2',
+//                     letterSpacing: '-0.5px',
+//                     fontFamily: "'Comic Sans MS', cursive, sans-serif",
+//                     textShadow: '1px 1px 2px rgba(0,0,0,0.05)',
+//                   }}
+//                 >
+//                   Want More Insights?
+//                 </h3>
+//                 <p
+//                   style={{
+//                     fontSize: '17px',
+//                     color: '#5b21b6',
+//                     marginBottom: '28px',
+//                     lineHeight: '1.6',
+//                     fontFamily: "'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
+//                   }}
+//                 >
+//                   Join our buzzing community on LinkedIn
+//                 </p>
+//                 <button
+//                   style={{
+//                     padding: '12px 24px',
+//                     background: 'linear-gradient(90deg, #8b5cf6, #a78bfa)',
+//                     color: '#fff',
+//                     border: 'none',
+//                     borderRadius: '999px',
+//                     cursor: 'pointer',
+//                     fontSize: '16px',
+//                     fontWeight: '600',
+//                     boxShadow: '0 4px 12px rgba(167, 139, 250, 0.4)',
+//                     transition: 'all 0.3s ease',
+//                     alignSelf: 'flex-start',
+//                     position: 'relative',
+//                     overflow: 'hidden',
+//                   }}
+//                   onMouseOver={(e) => {
+//                     e.target.style.background = 'linear-gradient(90deg, #a78bfa, #8b5cf6)';
+//                     e.target.style.transform = 'translateY(-2px)';
+//                   }}
+//                   onMouseOut={(e) => {
+//                     e.target.style.background = 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
+//                     e.target.style.transform = 'translateY(0)';
+//                   }}
+//                 >
+//                   Buzz With Us on LinkedIn
+//                 </button>
+//               </div>
+//             </div>
+//           </section>
+
+        
+//       </div>
+//       <Footer />
+//     </div>
+//   );
+// }
+

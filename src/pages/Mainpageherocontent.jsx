@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { motion, scale, useAnimationControls } from "framer-motion";
 
 export default function MainPageherocontent() {
-  const taglineLines = ["Reimagine drug discovery through"];
-  const phrases = ["Generative AI", "Multi-Agent Systems", "Automated Scientific Workflows"];
+  const taglineLines = ["Reimagine life sciences research with"];
+  const phrases = ["AI Powered Precision and Speed", "Multi Agent Automation System", "Data into Insights"];
 
   const [startTyping, setStartTyping] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -407,7 +407,7 @@ export default function MainPageherocontent() {
         }}
       >
         <video
-          src='public/video3.mp4'
+          src='/video5.mp4'
           autoPlay
           loop
           muted

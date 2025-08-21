@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Link, Grid, Container } from '@mui/material';
-import { LinkedIn, Instagram, Twitter } from '@mui/icons-material';
+import { LinkedIn, Instagram } from '@mui/icons-material';
+import XIcon from '@mui/icons-material/X';
 
 export default function Footer() {
   return (
@@ -67,7 +68,7 @@ export default function Footer() {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 0.5,
-                    fontFamily: "'Inria Serif', serif",
+                    fontFamily: "times",
                   }}
                 >
                   contact@boltzmann.co
@@ -88,13 +89,17 @@ export default function Footer() {
                   +91 9498866488
                 </Link>
               </Typography>
-              <Typography component="p" sx={{ fontSize: '1.1rem' }}>
-                B Block, Asian Sun City, 309,
+<p style={{fontFamily: 'times',fontSize: '1.1rem'}}>
+
+     B Block, Asian Sun City, 309,
                 <br />
                 Forest Dept Colony, Kondapur,
                 <br />
                 Hyderabad, Telangana 500084
-              </Typography>
+                
+              
+
+              </p>
             </Box>
           </Grid>
 
@@ -117,10 +122,10 @@ export default function Footer() {
             </Typography>
             <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               {[
-                { label: 'Home', href: '#' },
-                { label: 'About', href: '#' },
-                { label: 'Products', href: '#' },
-                { label: 'Careers', href: '#' },
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Boltzmann AI Suite', href: '/oursuite' },
+                // { label: 'Careers', href: '#' },
               ].map((item) => (
                 <Link
                   key={item.label}
@@ -160,10 +165,10 @@ export default function Footer() {
             </Typography>
             <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               {[
-                { label: 'Blogs', href: '#' },
+                { label: 'Blogs', href: '/blogs' },
                 // { label: 'Pipeline', href: '#' },
                 // { label: 'Hackathon', href: '/hackathon' },
-                { label: 'Research Papers', href: '#' },
+                // { label: 'Research Papers', href: '#' },
               ].map((item) => (
                 <Link
                   key={item.label}
@@ -206,17 +211,17 @@ export default function Footer() {
                 {
                   label: 'LinkedIn',
                   icon: <LinkedIn fontSize="small" />,
-                  href: 'https://linkedin.com',
+                  href: 'https://in.linkedin.com/company/boltzmannlabs' ,target:"_blank",
                 },
                 {
                   label: 'Instagram',
                   icon: <Instagram fontSize="small" />,
-                  href: 'https://instagram.com',
+                  href: 'https://www.instagram.com/boltzmannlabs1/',target:"_blank"
                 },
                 {
                   label: 'Twitter',
-                  icon: <Twitter fontSize="small" />,
-                  href: 'https://twitter.com',
+                  icon: <XIcon fontSize="small" />,
+                  href: 'https://twitter.com/LabsBoltzmann',target:"_blank",
                 },
               ].map((item) => (
                 <Link

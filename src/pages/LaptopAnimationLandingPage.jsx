@@ -643,10 +643,7 @@ export default function LaptopSection({ isOpen }) {
             >
               <h3 style={headingStyle}>Discover Our Technology</h3>
               <p style={paragraphStyle}>
-                This is where you can put descriptive text about your platform,
-                how it transforms workflows, or any sales message you want. It
-                slides in from the right while the MacBook slides in from the
-                left.
+               We’d love to hear from you at Boltzmann Labs. Whether you have questions, partnership ideas, or need support, our team is here to help.
               </p>
 
               <div style={buttonContainerStyle}>

@@ -2,6 +2,21 @@ import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+const logos = [
+  '/logo-1.png',
+  '/logo-2.png',  
+  '/logo-4.png',
+  '/logo-5.png',
+  '/logo-6.png',
+  '/logo-7.png',
+  '/logo-8.png',
+  '/logo-9.png',
+  '/logo-10.png',
+  '/logo-11.png',
+  '/logo-12.png',
+  '/logo-13.png',
+  '/logo-14.png'
+];
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
@@ -175,7 +190,7 @@ export default function ContactUs() {
   };
 
   const iconBox = {
-    backgroundColor: 'rgba(124,58,237,0.1)',
+    
     color: '#7c3aed',
     padding: '14px',
     borderRadius: '14px',
@@ -229,7 +244,7 @@ export default function ContactUs() {
     fontSize: '1.8rem',
     fontWeight: '700',
     marginBottom: '30px',
-    background: '#4F1985',
+    
     fontFamily: 'times',
     WebkitBackgroundClip: 'text',
     color: 'transparent',
@@ -523,48 +538,24 @@ export default function ContactUs() {
             <p style={responsiveStyle(sectionTitle)}>Our Customers</p>
 
             {/* Logos */}
-            <div style={responsiveStyle(badgeRow)}>
-              {[...Array(14)].map((_, i) => (
-                <img
-                  key={i}
-                  src={`/logo-${i + 1}.png`}
-                  alt={`Logo ${i + 1}`}
-                  style={responsiveStyle(badgeStyle)}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                />
-              ))}
-            </div>
+
+
+<div style={responsiveStyle(badgeRow)}>
+  {logos.map((src, i) => (
+    <img
+      key={i}
+      src={src}
+      alt={`Logo ${i + 1}`}
+      style={responsiveStyle(badgeStyle)}
+      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+    />
+  ))}
+</div>
+
 
             {/* Contact Info - Now horizontal on desktop */}
-            <div style={responsiveStyle(contactDetails)}>
-              <div style={responsiveStyle(contactItem)}>
-                <div style={responsiveStyle(iconBox)}><FaEnvelope /></div>
-                <div>
-                  <h3 style={responsiveStyle(detailTitle)}>Email Us</h3>
-                  <p style={responsiveStyle(detailText)}>contact@boltzmann.co</p>
-                </div>
-              </div>
 
-              <div style={responsiveStyle(contactItem)}>
-                <div style={responsiveStyle(iconBox)}><FaPhoneAlt /></div>
-                <div>
-                  <h3 style={responsiveStyle(detailTitle)}>Call Us</h3>
-                  <p style={responsiveStyle(detailText)}>+91 9498866488</p>
-                </div>
-              </div>
-
-              <div style={responsiveStyle(contactItem)}>
-                <div style={responsiveStyle(iconBox)}><FaMapMarkerAlt /></div>
-                <div>
-                  <h3 style={responsiveStyle(detailTitle)}>Visit Us</h3>
-                  <p style={responsiveStyle(detailText)}>
-                    B Block, Asian Sun City, 309, Forest Dept Colony, Kondapur,
-                    Hyderabad, Telangana 500084
-                  </p>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
           {/* RIGHT FORM */}
@@ -683,7 +674,121 @@ export default function ContactUs() {
               )}
             </form>
           </motion.div>
+          
         </div>
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    gap: "30px",           // space between cards
+    margin: "60px auto",   // center on page
+  }}
+>
+  {/* Box 1 */}
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column", // stack icon above text
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#ffffff",
+      border: "2px solid #d8b4fe",
+      borderRadius: "16px",
+      boxShadow: "0 6px 14px rgba(0,0,0,0.1)",
+      width: "280px",
+      height: "220px",
+      padding: "20px",
+      textAlign: "center",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-6px)";
+      e.currentTarget.style.boxShadow = "0 10px 18px rgba(0,0,0,0.15)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow = "0 6px 14px rgba(0,0,0,0.1)";
+    }}
+  >
+    <div style={{ fontSize: "36px", color: "#7c3aed", marginBottom: "12px" }}>
+      <FaEnvelope />
+    </div>
+    <h3 style={{ fontSize: "20px", margin: "0 0 10px", color: "#4c1d95" }}>Email Us</h3>
+    <p style={{ fontSize: "15px", margin: 0, color: "#333" }}>contact@boltzmann.co</p>
+  </div>
+
+  {/* Box 2 */}
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#ffffff",
+      border: "2px solid #d8b4fe",
+      borderRadius: "16px",
+      boxShadow: "0 6px 14px rgba(0,0,0,0.1)",
+      width: "280px",
+      height: "220px",
+      padding: "20px",
+      textAlign: "center",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-6px)";
+      e.currentTarget.style.boxShadow = "0 10px 18px rgba(0,0,0,0.15)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow = "0 6px 14px rgba(0,0,0,0.1)";
+    }}
+  >
+    <div style={{ fontSize: "36px", color: "#7c3aed", marginBottom: "12px" }}>
+      <FaPhoneAlt />
+    </div>
+    <h3 style={{ fontSize: "20px", margin: "0 0 10px", color: "#4c1d95" }}>Call Us</h3>
+    <p style={{ fontSize: "15px", margin: 0, color: "#333" }}>+91 9498866488</p>
+  </div>
+
+  {/* Box 3 */}
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#ffffff",
+      border: "2px solid #d8b4fe",
+      borderRadius: "16px",
+      boxShadow: "0 6px 14px rgba(0,0,0,0.1)",
+      width: "280px",
+      height: "220px",
+      padding: "20px",
+      textAlign: "center",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-6px)";
+      e.currentTarget.style.boxShadow = "0 10px 18px rgba(0,0,0,0.15)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow = "0 6px 14px rgba(0,0,0,0.1)";
+    }}
+  >
+    <div style={{ fontSize: "36px", color: "#7c3aed", marginBottom: "12px" }}>
+      <FaMapMarkerAlt />
+    </div>
+    <h3 style={{ fontSize: "20px", margin: "0 0 10px", color: "#4c1d95" }}>Visit Us</h3>
+    <p style={{ fontSize: "15px", margin: 0, color: "#333" }}>
+      B Block, Asian Sun City, 309, Forest Dept Colony, Kondapur,
+      Hyderabad, Telangana 500084
+    </p>
+  </div>
+</div>
+
+
       </div>
       <Footer />
     </>
