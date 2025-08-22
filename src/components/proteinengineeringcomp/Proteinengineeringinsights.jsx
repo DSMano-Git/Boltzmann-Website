@@ -617,7 +617,7 @@
 //           position: "relative",
 //           opacity: isVisible ? 1 : 0,
 //           transition: "opacity 0.6s ease-out 0.2s",
-//           fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'timesnew'
+//           fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'times'
 //         }}
 //       >
 //         We empower businesses to be insight-driven.

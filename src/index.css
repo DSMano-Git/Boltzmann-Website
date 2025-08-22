@@ -1,9 +1,9 @@
 :root {
-  font-family: Times, serif; /* No quotes unless the font name has spaces */
+  font-family: "times"; /* No quotes unless the font name has spaces */
   overflow-x: hidden; /* no quotes */
 }
 
 body, html {
-  font-family: Times, serif;
+  font-family: "times";
   overflow-X: hidden;
 }

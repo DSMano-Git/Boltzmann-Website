@@ -700,7 +700,7 @@ export default function SmallExploreModulesSection() {
       <ContentWrapper>
         <Header>
         <h2 style={{ 
-            fontFamily: "'Inter', sans-serif", 
+            fontFamily: "times", 
             fontSize: '42px', 
             fontWeight: '200', 
             color: '#111827',
@@ -710,7 +710,7 @@ export default function SmallExploreModulesSection() {
             fontWeight: 400,
             color: '#4F1985',
             fontSize: '2.5rem',
-            fontFamily: 'timesnew'
+            fontFamily: 'times'
           }}>
            Explore Small Molecule Design
 
@@ -736,6 +736,7 @@ export default function SmallExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{fontFamily: 'times'}}
                 >
                   {module.name}
                 </Tab>

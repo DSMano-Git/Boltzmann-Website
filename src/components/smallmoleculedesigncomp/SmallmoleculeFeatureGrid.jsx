@@ -771,7 +771,7 @@
 //   return (
 //     <section style={containerStyle}>
 //       <div style={headerStyle}>
-//         <h2 style={{textAlign: 'center',marginBottom: '4%',fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'timesnew'}}>Small Molecule Design AI-Driven Features.
+//         <h2 style={{textAlign: 'center',marginBottom: '4%',fontWeight: 400,color: '#4F1985',fontSize: '2.5rem',fontFamily: 'times'}}>Small Molecule Design AI-Driven Features.
 //          <span
 //             style={{
 //               display: "block",
@@ -973,7 +973,7 @@ export default function SmallFeaturesGrid() {
           fontWeight: 400, 
           color: '#4F1985', 
           fontSize: '2.2rem', // Reduced from 2.5rem
-          fontFamily: 'timesnew'
+          fontFamily: 'times'
         }}>
           Generative Protein Design AI-Driven Features
           <span

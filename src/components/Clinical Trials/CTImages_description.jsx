@@ -502,7 +502,7 @@ const CTBrandShowcase = () => {
                     fontSize: { xs: "0.6rem", sm: "0.7rem" }, // Reduced
                   }}
                 >
-                  Small Molecule Design
+                  Clinical Trials and Health Care
                 </Typography>
               </Box>
             </Box>

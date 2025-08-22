@@ -247,7 +247,7 @@ export default function ContactUs() {
     
     fontFamily: 'times',
     WebkitBackgroundClip: 'text',
-    color: 'transparent',
+    color: '#4F1985',
     textAlign: 'center',
     '@media (max-width: 992px)': {
       fontSize: '1.6rem',
@@ -265,6 +265,7 @@ export default function ContactUs() {
     color: '#475569',
     marginBottom: '8px',
     display: 'block',
+    fontFamily: 'times',
     '@media (max-width: 480px)': {
       fontSize: '0.95rem',
     },
@@ -279,6 +280,7 @@ export default function ContactUs() {
     backgroundColor: '#f8fafc',
     marginBottom: '20px',
     outline: 'none',
+    fontFamily: 'times',
     '@media (max-width: 480px)': {
       padding: '12px 16px',
       borderRadius: '12px',
@@ -486,7 +488,7 @@ export default function ContactUs() {
                   </>
                 ) : (
                   <>
-                    <FaPaperPlane /> Send Message
+                    <FaPaperPlane /> <span sx={{fontFamily: 'times'}}> Send Message </span>
                   </>
                 )}
               </motion.button>

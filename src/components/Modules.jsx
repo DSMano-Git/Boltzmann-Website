@@ -1473,7 +1473,7 @@ const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-
+margin-top: 90px;
   @media (max-width: 768px) {
     padding: 40px 0;
   }
@@ -1645,7 +1645,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  padding: 2rem;
 
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
@@ -1655,9 +1655,11 @@ const ImageContainer = styled.div`
 
 const Image = styled(motion.img)`
   width: 100%;
+  height: 430px;
+  max-height: 430px;
   max-width: 650px;
   border-radius: 1rem;
-  object-fit: cover;
+  
 `;
 
 const MobileControls = styled.div`
@@ -1702,7 +1704,7 @@ const modules = [
     description:
       "Transform the way you discover, design, and optimize small molecules — faster, smarter.",
     imageUrl:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      "./3_smallmoleculedesign.mp4",
     path: "/smallmoleculedesign"
   },
   {
@@ -1710,7 +1712,7 @@ const modules = [
     description:
       "Reimagine how proteins are designed, optimized, and brought to life — faster, smarter, more precise.",
     imageUrl:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      "./4_proteinEngineering.mp4",
     path: "/proteinengineering"
   },
    {
@@ -1718,23 +1720,23 @@ const modules = [
     description:
       "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
     imageUrl:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      "./5_custom synthesis.png",
     path: "/proteinengineering"
   },
   {
     name: "Multi Omics Analysis",
     description:
-      "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
+      "Transform complex biological data into actionable insights — faster, smarter.",
     imageUrl:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+    "./6_multiomics.png",
     path: "/multiomicsanalysis"
   },
   {
     name: "Clinical Trials",
     description:
-      "Reimagine how you design, plan, and execute synthesis—faster, greener, smarter.",
+      "Accelerate clinical development and unlock insights — smarter, safer, faster.",
     imageUrl:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      "./6_multiomics.png",
     path: "/clinicaltrials"
   },
 
@@ -1786,7 +1788,7 @@ export default function ExploreModulesSection() {
       <ContentWrapper>
         <Header>
          <h2 style={{ 
-            fontFamily: "'Inter', sans-serif", 
+            
             fontSize: '42px', 
             fontWeight: '200', 
             color: '#111827',
@@ -1798,7 +1800,7 @@ export default function ExploreModulesSection() {
             fontSize: '2.5rem',
             fontFamily: 'timesnew'
           }}>
-           Explore Small Molecule Design
+           Explore Our Modules
 
              <span
             style={{
@@ -1823,6 +1825,7 @@ export default function ExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{fontFamily: 'times'}}
                 >
                   {module.name}
                 </Tab>

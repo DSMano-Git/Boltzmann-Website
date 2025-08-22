@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Globe, Clock } from 'lucide-react';
+import { Workflow, Puzzle, Zap, Server } from 'lucide-react';
 
 export default function Oursuitedata() {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -31,21 +31,31 @@ export default function Oursuitedata() {
 
   const features = [
     {
-      icon: <Sparkles size={32} style={{ color: '#8b5cf6' }} />,
-      title: 'Multi-Agent AI Specialists',
-      description: 'Smart AI agents collaborate seamlessly to accelerate scientific breakthroughs and deliver faster results.'
+      icon: <Workflow size={32} style={{ color: '#8b5cf6' }} />,
+      
+    title: 'Multi-agent AI workflows that automate complex scientific decisions',
+    description: 'Intelligent AI agents work together to handle intricate scientific decision-making processes automatically.'
     },
     {
-      icon: <Globe size={32} style={{ color: '#06b6d4' }} />,
-      title: 'End-to-End Automation',
-      description: 'Complete workflow from molecule design to synthesis planning, safety checks, and data analysis.'
+      icon: <Puzzle size={32} style={{ color: '#06b6d4' }} />,
+      title: 'Customizable modules to fit your discovery stage and team size',
+    description: 'Flexible modular components that adapt to your specific research phase and organizational requirements.'
     },
     {
-      icon: <Clock size={32} style={{ color: '#10b981' }} />,
-      title: 'Lab-Level Expertise',
-      description: 'Experience next-level precision with AI that thinks like a full team of experts working in harmony.'
-    }
+      icon: <Zap size={32} style={{ color: '#10b981' }} />,
+      title: 'Built-in scientific reasoning so your results are not just fast, but reliable',
+    description: 'Advanced reasoning capabilities ensure your outcomes combine speed with scientific accuracy and reliability.'
+    },
+    {
+      icon: <Server size={32} style={{ color: '#10b981' }} />,
+     title: 'Cloud or on-prem, ready for easy deployment, scale, and compliance',
+    description: 'Deploy anywhere with flexible infrastructure options designed for seamless scaling and regulatory compliance.'
+    },
+
   ];
+
+
+
 
   return (
     <section 

@@ -516,8 +516,8 @@ const BlogsPage = () => {
             display: 'inline-block',
             width: '80px',
             height: '80px',
-            border: '8px solid #f3f3f3',
-            borderTop: '8px solid #3b82f6',
+            border: '2px solid #f3f3f3',
+            borderTop: '4px solid #4F1985',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite',
             marginTop: '100px'

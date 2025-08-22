@@ -1,190 +1,72 @@
 import React from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 export default function LeadershipSection() {
+  const navigate = useNavigate();
+
   const leaders = [
     {
       name: "SARATH KOLLI",
       title: "Chief Executive Officer",
       image: "/sarath-sir.png",
-      linkedin: "https://in.linkedin.com/in/kollisarath"
+      linkedin: "https://in.linkedin.com/in/kollisarath",
+      route: "sarath-kolli"
     },
     {
       name: "DR. PARITOSH PRASHAR",
       title: "Chief Technology Officer",
       image: "/paritosh-sir.png",
-      linkedin: "https://www.linkedin.com/in/paritosh-prashar-04a366163"
+      linkedin: "https://www.linkedin.com/in/paritosh-prashar-04a366163",
+      route: "paritosh-prashar"
     }
   ];
 
   const isMobileOrTablet = useMediaQuery({ maxWidth: 1024 });
 
-  const handleLinkedInClick = (url) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
   return (
-    <section className="leadership-section" style={{
-      padding: "2rem 1rem 5rem",
-      textAlign: "center",
-      fontFamily: "'Inter', sans-serif",
-      maxWidth: "1200px",
-      margin: "0 auto",
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "100vh",
-      justifyContent: "center"
-    }}>
-      {/* Section Header */}
-      <header style={{ 
-        marginBottom: "3rem",
-        padding: "0 1rem",
-        transform: isMobileOrTablet ? "translateX(1px)" : "translateX(20px)" // Slight right shift
-      }}>
-        <h2 style={{
-          textAlign: 'center',
-          marginBottom: '1.5rem',
-          fontWeight: 400,
-          color: '#4F1985',
-          fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-          fontFamily: 'timesnew'
-        }}>
+    <section style={{ padding: "2rem 1rem 5rem", textAlign: "center" }}>
+      <header style={{ marginBottom: "3rem" }}>
+        <h2 style={{ color: "#4F1985", fontSize: "clamp(1.8rem, 5vw, 2.5rem)" }}>
           Our Leadership
-          <span style={{
-            display: "block",
-            width: "80px",
-            height: "4px",
-            backgroundColor: "#4F1985",
-            margin: "15px auto 0",
-            borderRadius: "2px"
-          }} />
         </h2>
       </header>
 
-      {/* Leadership Cards Container */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "3rem",
-        flexWrap: "wrap",
-        padding: "0 1rem",
-        width: "100%",
-        transform: isMobileOrTablet ? "translateX(38px)" : "none" // Slight right shift
-      }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
         {leaders.map((leader, idx) => (
           <article 
             key={idx}
+            onClick={() => navigate(`/leadership/${leader.route}`)}
             style={{
-              backgroundColor: "#ffffff",
-            
-              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-              width: "clamp(280px, 90vw, 320px)",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              paddingBottom: "1.5rem",
-              margin: "1rem 0",
-              ":hover": {
-                transform: isMobileOrTablet ? "translateY(-8px)" : "translateY(-8px)",
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
-              }
+              cursor: "pointer",
+              backgroundColor: "#fff",
+              boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
+              width: "300px",
+              textAlign: "center",
+              padding: "1rem",
+              borderRadius: "12px",
+              transition: "transform 0.3s ease",
             }}
           >
-            {/* Profile Image */}
-            <div style={{
-              width: "100%",
-              padding: "2rem 1rem 1rem",
-              backgroundColor: "#f1f5f9",
-              display: "flex",
-              justifyContent: "center"
-            }}>
-              <div style={{
-                //for mobileview change 
-                width: isMobileOrTablet ? "clamp(180px, 50vw, 220px)" : "clamp(150px, 40vw, 200px)",
-                height: isMobileOrTablet ? "clamp(180px, 50vw, 220px)" : "clamp(150px, 40vw, 200px)",
-                
-                overflow: "hidden",
-              }}>
-                <img
-                  src={leader.image}
-                  alt={leader.name}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    transition: "transform 0.3s ease"
-                  }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/default-profile.png";
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Leader Info */}
-            <div style={{
-              padding: "1.5rem 1rem 0",
-              textAlign: "center",
-              width: "100%"
-            }}>
-              <h3 style={{
-                fontSize: "clamp(1.1rem, 4vw, 1.375rem)",
-                fontWeight: 700,
-                color: "#1e293b",
-                marginBottom: "0.5rem",
-                lineHeight: "1.3"
-              }}>
-                {leader.name}
-              </h3>
-              
-              <p style={{
-                color: "#64748b",
-                fontSize: "clamp(0.9rem, 3vw, 1rem)",
-                fontWeight: 500,
-                marginBottom: "1.5rem",
-                lineHeight: "1.5"
-              }}>
-                {leader.title}
-              </p>
-
-              {/* LinkedIn Button */}
-              <button
-                onClick={() => handleLinkedInClick(leader.linkedin)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "0.5rem",
-                  color: "#0a66c2",
-                  transition: "all 0.2s ease",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "50%",
-                  ":hover": {
-                    color: "#004182",
-                    transform: "scale(1.1)",
-                    background: "rgba(10, 102, 194, 0.1)"
-                  }
-                }}
-                aria-label={`Connect with ${leader.name} on LinkedIn`}
-              >
-                <FaLinkedin style={{ fontSize: "clamp(1.5rem, 5vw, 1.75rem)" }} />
-              </button>
-            </div>
+            <img src={leader.image} alt={leader.name} style={{ width: "100%", height: "auto" }} />
+            <h3 style={{ margin: "1rem 0 0.5rem" }}>{leader.name}</h3>
+            <p style={{ color: "#64748b" }}>{leader.title}</p>
+            <button
+              onClick={(e) => { 
+                e.stopPropagation(); // prevent triggering card navigation
+                window.open(leader.linkedin, "_blank", "noopener,noreferrer");
+              }}
+              style={{ marginTop: "1rem", color: "#0a66c2", border: "none", background: "none" }}
+            >
+              <FaLinkedin size={24} />
+            </button>
           </article>
         ))}
       </div>
     </section>
   );
 }
-
-
 
 
 

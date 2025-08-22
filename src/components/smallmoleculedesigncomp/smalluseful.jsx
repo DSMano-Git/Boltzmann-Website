@@ -1435,7 +1435,7 @@
 //       }}>
 //         <h2
 //           style={{
-//             fontFamily: "'Inter', sans-serif",
+//           fontFamily: 'times'
 //             fontSize: "48px",
 //             fontWeight: "800",
 //             textAlign: "center",
@@ -1500,7 +1500,7 @@
               
 //               <h3
 //                 style={{
-//                   fontFamily: "'Inter', sans-serif",
+//                 fontFamily: 'times'
 //                   fontSize: "24px",
 //                   fontWeight: "700",
 //                   marginBottom: "20px",
@@ -1662,7 +1662,7 @@
 //       }}>
 //         <h2
 //           style={{
-//             fontFamily: "'Inter', sans-serif",
+//           fontFamily: 'times'
 //             fontSize: "48px",
 //             fontWeight: "200",
 //             textAlign: "center",
@@ -1730,7 +1730,7 @@
               
 //               <h3
 //                 style={{
-//                   fontFamily: "'Inter', sans-serif",
+//                 fontFamily: 'times'
 //                   fontSize: "24px",
 //                   fontWeight: "500",
 //                   marginBottom: "20px",
@@ -1904,7 +1904,7 @@
 //       }}>
 //         <h2
 //           style={{
-//             fontFamily: "'Inter', sans-serif",
+//           fontFamily: 'times'
 //             fontSize: "48px",
 //             fontWeight: "200",
 //             textAlign: "center",
@@ -1970,7 +1970,7 @@
 
 //               <h3
 //                 style={{
-//                   fontFamily: "'Inter', sans-serif",
+//                 fontFamily: 'times'
 //                   fontSize: "24px",
 //                   fontWeight: "500",
 //                   marginBottom: "20px",
@@ -2119,7 +2119,7 @@
 //         marginTop: '-25px',
 //         paddingBottom: '40px',
 //         color: "#111827",
-//         fontFamily: "'Inter', sans-serif",
+//       fontFamily: 'times'
 //         position: "relative",
 //         overflow: "hidden",
 //         opacity: isVisible ? 1 : 0,

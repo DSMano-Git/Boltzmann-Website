@@ -740,6 +740,7 @@ export default function MultiomicsModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{fontFamily: 'times'}}
                 >
                   {module.name}
                 </Tab>

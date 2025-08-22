@@ -717,11 +717,18 @@ export default function InsightCards() {
         );
       case "network":
         return (
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-            <path d="M17.8 19.2a9 9 0 0 0 1.6-4.7 1 1 0 0 0-1-1h-3.2a4 4 0 0 1-.8-2.3V8.3a1 1 0 0 0-1-1H9.2a1 1 0 0 0-1 1v2.5a4 4 0 0 1-.8 2.3H4.2a1 1 0 0 0-1 1 9 9 0 0 0 1.6 4.7"></path>
-            <path d="M7.5 14.6a5 5 0 0 1 9 0"></path>
-          </svg>
+         <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Gear for automation */}
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+
+      {/* Neural network nodes for AI */}
+      <circle cx="6" cy="6" r="1.5"></circle>
+      <circle cx="18" cy="6" r="1.5"></circle>
+      <circle cx="6" cy="18" r="1.5"></circle>
+      <circle cx="18" cy="18" r="1.5"></circle>
+      <path d="M6 6 L12 12 L18 6 M6 18 L12 12 L18 18"></path>
+    </svg>
         );
       case "integration":
         return (

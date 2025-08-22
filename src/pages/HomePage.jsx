@@ -402,42 +402,9 @@ export default function HomePage() {
      
 
         {/* Lab Automation Section 1 */}
-        <motion.div
-          ref={labAutomation1Ref}
-          initial="hidden"
-          animate={visibleSections.labAutomation1 ? "visible" : "hidden"}
-          variants={fadeInLeft}
-          style={{ marginBottom: '80px' }}
-        >
-          <LabAutomationSection
-            
-            heading="Gen AI for Scientific Precision"
-            paragraphs={[
-              'Unifies all stages of the discovery lifecycle.',
-              'Connects molecular generation to synthesis and execution.',
-              'Automates workflows with real-time data exchange.',
-            ]}
-          />
-        </motion.div>
-        
-        {/* Lab Automation Section 2 */}
-        <motion.div
-          ref={labAutomation2Ref}
-          initial="hidden"
-          animate={visibleSections.labAutomation2 ? "visible" : "hidden"}
-          variants={fadeInRight}
-      
-        >
-          <LabAutomationSection
-            
-            heading="Integrated LIMS with customizable APIs and CLI-first workflows for seamless operations."
-            paragraphs={[
-              'Unifies all stages of the discovery lifecycle.',
-              'Connects molecular generation to synthesis and execution.',
-              'Automates workflows with real-time data exchange.',
-            ]}
-          />
-        </motion.div>
+       
+          <LabAutomationSection />
+
 
         {/* Modules Section */}
         <motion.div 

@@ -798,7 +798,7 @@
 //   return (
 //     <section style={containerStyle}>
 //       <div style={headerStyle}>
-//         <h2 style={{textAlign: 'center', marginBottom: '4%', fontWeight: 400, color: '#4F1985', fontSize: '2.5rem', fontFamily: 'timesnew'}}>
+//         <h2 style={{textAlign: 'center', marginBottom: '4%', fontWeight: 400, color: '#4F1985', fontSize: '2.5rem', fontFamily: 'times'}}>
 //           Generative Protein Design AI-Driven Features
 //           <span
 //             style={{
@@ -1006,7 +1006,7 @@ export default function ProteinFeaturesGrid() {
           fontWeight: 400, 
           color: '#4F1985', 
           fontSize: '2.2rem', // Reduced from 2.5rem
-          fontFamily: 'timesnew'
+          fontFamily: 'times'
         }}>
           Generative Protein Design AI-Driven Features
           <span

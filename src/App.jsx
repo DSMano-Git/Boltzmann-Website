@@ -91,6 +91,7 @@ import NavbarPage from './components/NavbarPage';
 import HomePage from './pages/HomePage';
 import HackathonPage from './pages/HackathonPage';
 import About from './pages/AboutPage';
+import LeaderDetails from './components/Leaderdetails';
 import Blogs from './pages/BlogsPage';
 import CategoryBlog from './pages/Categoryblogs';
 import Products from './pages/Products';
@@ -130,6 +131,7 @@ export default function App() {
         {/* Add the category route with parameter */}
         <Route path="/blog/:category" element={<CategoryBlog />} />
         <Route path="/blogs/:id" element={<BlogDetails />} />
+        <Route path="/leadership/:leaderId" element={<LeaderDetails />} />
         <Route path="/pipeline" element={<Pipeline />} />
         <Route path="/hackathon" element={<HackathonPage />} />
         <Route path="/contact" element={<ContactUs />} />
