@@ -271,11 +271,13 @@ export default function ProteinOverlappingCard() {
         }}
       >
         <img
-          src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+          src="PE_Hero.png"
           alt="Splash"
           style={{
             width: "100%",
             borderRadius: "16px",
+             boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
+            backgroundColor: "#ffffff",
           }}
         />
       </div>

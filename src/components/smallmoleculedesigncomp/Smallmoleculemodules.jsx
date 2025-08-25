@@ -581,6 +581,7 @@ borer-radius: 30px;
 
 const Image = styled(motion.img)`
   width: 100%;
+  height: 320px;
   max-width: 550px; 
   borer-radius: 30px;
   

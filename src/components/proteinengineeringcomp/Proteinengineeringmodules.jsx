@@ -583,9 +583,10 @@ const ImageContainer = styled.div`
 
 const Image = styled(motion.img)`
   width: 100%;
+  height: 320px;
   max-width: 550px; // Reduced from 650px
-  border-radius: 0.8rem; // Reduced from 1rem
-  object-fit: cover;
+  
+  
 `;
 
 const MobileControls = styled.div`
@@ -627,34 +628,58 @@ const ArrowButton = styled.button`
 const modules = [
   {
     name: "AI Agents in Protein Engineering",
-    description: `Impact Statement: Your autonomous protein design team, on call 24/7.
-Specialized AI agents work in parallel for sequence generation, structure prediction, stability scoring, and developability assessment—coordinating an end-to-end protein engineering cycle with unmatched speed and reliability.`,
-    imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: (
+      <>
+        <strong>Your autonomous protein design team, on call 24/7.</strong> <br />
+        Specialized AI agents work in parallel for sequence generation,
+        structure prediction, stability scoring, and developability
+        assessment—coordinating an end-to-end protein engineering cycle with
+        unmatched speed and reliability.
+      </>
+    ),
+    imageUrl: "/PE_agent.png",
   },
   {
     name: "Target Definition & Design",
-    description: `Impact Statement: Go from target concept to protein blueprint in record time.
-AI-driven target analysis and generative design models create initial protein sequences optimized for function, stability, and manufacturability—laying the foundation for successful engineering.`,
+    description: (
+      <>
+        <strong>Go from target concept to protein blueprint in record time.</strong> <br />
+        AI-driven target analysis and generative design models create initial
+        protein sequences optimized for function, stability, and
+        manufacturability—laying the foundation for successful engineering.
+      </>
+    ),
     imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/PE_Design_7SH3.png",
   },
   {
     name: "In Silico Optimization",
-    description: `Impact Statement: Optimize protein candidates without endless lab iterations.
-Our predictive models evaluate structural stability, binding affinity, immunogenicity, and solubility—suggesting intelligent sequence modifications for improved performance.`,
+    description: (
+      <>
+        <strong>Optimize protein candidates without endless lab iterations.</strong> <br />
+        Our predictive models evaluate structural stability, binding affinity,
+        immunogenicity, and solubility—suggesting intelligent sequence
+        modifications for improved performance.
+      </>
+    ),
     imageUrl:
-     "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/protein3.jpg",
   },
   {
     name: "Preclinical Readiness",
-    description: `Impact Statement: Move to the lab with designs you can trust.
-We simulate functional performance, manufacturability, and formulation compatibility—ensuring the best candidates advance to wet-lab testing with higher success rates.`,
+    description: (
+      <>
+        <strong>Move to the lab with designs you can trust.</strong> <br />
+        We simulate functional performance, manufacturability, and formulation
+        compatibility—ensuring the best candidates advance to wet-lab testing
+        with higher success rates.
+      </>
+    ),
     imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/PE_PreclinicalReadiness.png",
   },
-  
 ];
+
 
 
 const textVariants = {
