@@ -7,7 +7,7 @@ export default function Medicinalchemist(){
     return(
 <>
 <Medichemistheader 
-logo="logo.png"
+logo="./medicinalchemist.png.jpeg"
       title="Medicinal Chemists"
       subtitle="By Role"
       description="Medicinal chemists design and refine molecules to modulate biological targets effectively.

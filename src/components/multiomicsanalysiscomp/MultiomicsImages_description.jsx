@@ -503,7 +503,7 @@ const MultiomicsBrandShowcase = () => {
                     fontSize: { xs: "0.6rem", sm: "0.7rem" }, // Reduced
                   }}
                 >
-                  Small Molecule Design
+                  Multi-Omics Analysis
                 </Typography>
               </Box>
             </Box>

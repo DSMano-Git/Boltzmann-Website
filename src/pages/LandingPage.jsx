@@ -471,17 +471,241 @@
 // }
 
 
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+// import { motion, AnimatePresence } from 'framer-motion';
+// import MacBookComponent from '../components/Laptopanimation';
+
+// export default function LaptopSection({ isOpen }) {
+//   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+//   useEffect(() => {
+//     const handleResize = () => setWindowWidth(window.innerWidth);
+//     window.addEventListener('resize', handleResize);
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   // Responsive breakpoints
+//   const isMobile = windowWidth < 640;
+//   const isTablet = windowWidth >= 640 && windowWidth < 1024;
+//   const isLaptop = windowWidth >= 1024 && windowWidth < 1440;
+//   const isDesktop = windowWidth >= 1440;
+
+//   // Dynamic styles
+//   const containerStyle = {
+//     maxWidth: '1200px',
+//     width: '90%',
+   
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//     boxSizing: 'border-box',
+//     margin: '70px auto',
+ 
+//   };
+
+//   const sectionTitleStyle = {
+//     fontFamily: "'Inter', sans-serif",
+//     fontSize: isMobile ? '1.8rem' : isTablet ? '2.5rem' : '3rem',
+    
+//     textAlign: 'center',
+//     margin: '0 0 3rem 0',
+//     color: '#0D1B3F',
+//     position: 'relative',
+//     display: 'inline-block',
+//   };
+
+//   const underlineStyle = {
+//     position: 'absolute',
+//     bottom: '-12px',
+//     left: '50%',
+//     transform: 'translateX(-50%)',
+//     width: isMobile ? '80px' : '120px',
+//     height: '4px',
+//     background:
+//       'linear-gradient(90deg, rgba(34, 211, 238, 0.8), rgba(192, 132, 252, 0.8), rgba(251, 146, 60, 0.8))',
+//     borderRadius: '2px',
+//   };
+
+//   const flexContainerStyle = {
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'space-between',
+//     width: '100%',
+//     flexWrap: 'wrap',
+//     gap: isMobile ? '20px' : isTablet ? '40px' : '60px',
+//   };
+
+//   const laptopStyle = {
+//     flex: '1 1 300px',
+//     minWidth: '280px',
+//     maxWidth: '600px',
+//     display: 'flex',
+//     justifyContent: 'center',
+//     marginTop: isMobile ? '3%' : '6%',
+//   };
+
+//   const textStyle = {
+//     flex: '1 1 300px',
+//     minWidth: '280px',
+//     maxWidth: '500px',
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//     padding: isMobile ? '0 1rem' : '0',
+//   };
+
+//   const headingStyle = {
+//     fontSize: isMobile ? '1.4rem' : isTablet ? '1.8rem' : '2rem',
+//     marginBottom: '1rem',
+//     color: '#111827',
+//     textAlign: isMobile ? 'center' : 'left',
+//   };
+
+//   const paragraphStyle = {
+//     fontSize: isMobile ? '0.95rem' : '1rem',
+//     lineHeight: 1.6,
+//     color: '#4B5563',
+//     marginBottom: '2rem',
+//     textAlign: isMobile ? 'center' : 'left',
+//   };
+
+//   const buttonContainerStyle = {
+//     display: 'flex',
+//     gap: '16px',
+//     flexWrap: 'wrap',
+//     justifyContent: isMobile ? 'center' : 'flex-start',
+//   };
+
+//   const buttonStyle = {
+//     backgroundColor: '#4F1985',
+//     color: '#fff',
+//     border: 'none',
+//     borderRadius: '50px',
+//     padding: '12px 28px',
+//     fontSize: '1rem',
+//     cursor: 'pointer',
+//     transition: 'background 0.3s ease',
+//     minWidth: isMobile ? '45%' : 'auto',
+//     display: 'block',
+//   };
+
+//   return (
+//     <div style={containerStyle}>
+//       {/* Section Title */}
+//       <h2 style={{ 
+//             fontFamily: "'Inter', sans-serif", 
+//             fontSize: '42px', 
+//             fontWeight: '200', 
+//             color: '#111827',
+//             margin: 0,
+//             padding: '20px',
+//             textAlign: 'center',
+//             fontWeight: 400,
+//             color: '#4F1985',
+//             fontSize: '2.5rem',
+//             fontFamily: 'timesnew'
+//           }}>
+//            Explore Our Technology
+
+//              <span
+//             style={{
+//               display: "block",
+//               width: "80px",
+//               height: "4px",
+//               backgroundColor: "#4F1985",
+//               margin: "15px auto 0",
+//               borderRadius: "2px"
+//             }}
+//           />
+//           </h2>
+
+//       <AnimatePresence>
+//         {isOpen && (
+//           <div style={flexContainerStyle}>
+//             {/* Laptop */}
+//             <motion.div
+//               initial={{ opacity: 0, x: -100 }}
+//               animate={{ opacity: 1, x: 0 }}
+//               exit={{ opacity: 0, x: -100 }}
+//               transition={{ duration: 1 }}
+//               style={laptopStyle}
+//             >
+//               <MacBookComponent isOpen={isOpen} />
+//             </motion.div>
+
+//             {/* Text & Buttons */}
+//             <motion.div
+//               initial={{ opacity: 0, x: 100 }}
+//               animate={{ opacity: 1, x: 0 }}
+//               exit={{ opacity: 0, x: 100 }}
+//               transition={{ duration: 1 }}
+//               style={textStyle}
+//             >
+//               <h3 style={headingStyle}>Discover Our Technology</h3>
+//               <p style={paragraphStyle}>
+//                We’d love to hear from you at Boltzmann Labs. Whether you have questions, partnership ideas, or need support, our team is here to help.
+//               </p>
+
+//               <div style={buttonContainerStyle}>
+//   {['Request Demo'].map((text) => (
+//     <button
+//       key={text}
+//       style={buttonStyle}
+//       onMouseOver={(e) =>
+//         (e.target.style.backgroundColor = '#3c1269')
+//       }
+//       onMouseOut={(e) =>
+//         (e.target.style.backgroundColor = '#4F1985')
+//       }
+//       onClick={() => window.location.href = '/contact'} 
+//     >
+//       {text}
+//     </button>
+//   ))}
+// </div>
+
+//             </motion.div>
+//           </div>
+//         )}
+//       </AnimatePresence>
+//     </div>
+//   );
+// }
+
+
+
+
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MacBookComponent from '../components/Laptopanimation';
 
 export default function LaptopSection({ isOpen }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    
+    // Intersection Observer setup
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.3 } // Trigger when 30% of the element is visible
+    );
+    
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   // Responsive breakpoints
@@ -494,19 +718,16 @@ export default function LaptopSection({ isOpen }) {
   const containerStyle = {
     maxWidth: '1200px',
     width: '90%',
-   
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     boxSizing: 'border-box',
-    margin: '70px auto',
- 
+    margin: '20px auto',
   };
 
   const sectionTitleStyle = {
     fontFamily: "'Inter', sans-serif",
     fontSize: isMobile ? '1.8rem' : isTablet ? '2.5rem' : '3rem',
-    
     textAlign: 'center',
     margin: '0 0 3rem 0',
     color: '#0D1B3F',
@@ -590,7 +811,7 @@ export default function LaptopSection({ isOpen }) {
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} ref={sectionRef}>
       {/* Section Title */}
       <h2 style={{ 
             fontFamily: "'Inter', sans-serif", 
@@ -620,7 +841,7 @@ export default function LaptopSection({ isOpen }) {
           </h2>
 
       <AnimatePresence>
-        {isOpen && (
+        {(isOpen && isInView) && (
           <div style={flexContainerStyle}>
             {/* Laptop */}
             <motion.div
@@ -630,7 +851,7 @@ export default function LaptopSection({ isOpen }) {
               transition={{ duration: 1 }}
               style={laptopStyle}
             >
-              <MacBookComponent isOpen={isOpen} />
+              <MacBookComponent isOpen={isOpen && isInView} />
             </motion.div>
 
             {/* Text & Buttons */}
@@ -643,7 +864,7 @@ export default function LaptopSection({ isOpen }) {
             >
               <h3 style={headingStyle}>Discover Our Technology</h3>
               <p style={paragraphStyle}>
-               We’d love to hear from you at Boltzmann Labs. Whether you have questions, partnership ideas, or need support, our team is here to help.
+               We'd love to hear from you at Boltzmann Labs. Whether you have questions, partnership ideas, or need support, our team is here to help.
               </p>
 
               <div style={buttonContainerStyle}>

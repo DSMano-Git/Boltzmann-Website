@@ -606,18 +606,18 @@ const MacBookComponent = ({ isOpen = false }) => {
       zIndex: 3,
     },
     screenContent: {
-      width: `calc(100% - ${16 * scale}px)`,
-      height: `calc(100% - ${16 * scale}px)`,
+      width: `calc(100% - ${9 * scale}px)`,
+      height: `calc(100% - ${9 * scale}px)`,
       background: '#fff',
       opacity: 0,
       animation: 'screenFadeIn 0.5s ease 2.2s forwards',
       position: 'absolute',
-      top: `${8 * scale}px`,
-      left: `${8 * scale}px`,
+      top: `${3 * scale}px`,
+      left: `${3 * scale}px`,
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden',
-      borderRadius: `${2 * scale}px`,
+      
+      
     },
     browserHeader: {
       height: `${24 * scale}px`,
@@ -810,10 +810,10 @@ const MacBookComponent = ({ isOpen = false }) => {
   const keyframes = `
     @keyframes float {
       0% {
-        transform: rotateX(10deg) rotateY(1deg) rotateZ(0deg) translateY(0px);
+        transform: rotateX(10deg) ;
       }
       100% {
-        transform: rotateX(65deg) rotateY(3deg) rotateZ(-15deg) translateY(-15px);
+        transform: rotateX(67deg) ;
       }
     }
     
@@ -897,60 +897,20 @@ const MacBookComponent = ({ isOpen = false }) => {
               <div style={styles.notch}></div>
               <div style={styles.glare}></div>
               <div style={styles.screenContent}>
-                <div style={styles.browserHeader}>
-                  <div style={styles.browserControls}>
-                    <div style={{...styles.controlBtn, ...styles.close}}></div>
-                    <div style={{...styles.controlBtn, ...styles.minimize}}></div>
-                    <div style={{...styles.controlBtn, ...styles.maximize}}></div>
-                  </div>
-                  <div style={styles.searchBar}>https://dashboard.example.com</div>
-                </div>
-                <div style={styles.browserContent}>
-                  <div style={styles.dashboard}>
-                    <div style={styles.sidebar}>
-                      <div style={{...styles.sidebarItem, ...styles.sidebarItemActive}}>Dashboard</div>
-                      <div style={styles.sidebarItem}>Analytics</div>
-                      <div style={styles.sidebarItem}>Reports</div>
-                      <div style={styles.sidebarItem}>Users</div>
-                      <div style={styles.sidebarItem}>Settings</div>
-                    </div>
-                    <div style={styles.mainContent}>
-                      <div style={styles.contentHeader}>
-                        <div style={styles.contentTitle}>Analytics Overview</div>
-                        <div style={styles.contentControls}>
-                          <div style={styles.controlBtnSm}>Export</div>
-                          <div style={styles.controlBtnSm}>Filter</div>
-                        </div>
-                      </div>
-                      <div style={styles.dataGrid}>
-                        <div style={styles.gridHeader}>
-                          <div>Metric</div>
-                          <div>Value</div>
-                          <div>Change</div>
-                          <div>Status</div>
-                        </div>
-                        <div style={styles.gridRow}>
-                          <div>Users</div>
-                          <div>12,453</div>
-                          <div>+12%</div>
-                          <div>Active</div>
-                        </div>
-                        <div style={styles.gridRow}>
-                          <div>Revenue</div>
-                          <div>$45,231</div>
-                          <div>+8%</div>
-                          <div>Growing</div>
-                        </div>
-                        <div style={styles.gridRow}>
-                          <div>Sessions</div>
-                          <div>8,921</div>
-                          <div>-2%</div>
-                          <div>Stable</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div style={styles.screenContent}>
+  <img 
+    src="/main.png"  
+    alt="Screen Content"
+    style={{
+      width: "100%",
+      height: "100%",
+      
+      borderRadius: `${2 * scale}px`
+    }}
+  />
+</div>
+
+
               </div>
             </div>
           </div>

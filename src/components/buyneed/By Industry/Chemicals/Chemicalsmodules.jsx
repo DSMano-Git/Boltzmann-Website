@@ -235,46 +235,48 @@ const ArrowButton = styled.button`
 // Data
 const modules = [
   {
-    name: "Accelerate Product Development",
-    description: `
-Traditional formulation and process optimization cycles take months—our platform reduces them to weeks.
-- AI-driven simulations replace time-consuming trial-and-error experiments.
-- Multi-objective optimization balances performance, cost, and sustainability.
-- Digital twins predict outcomes before plant-scale trials.
-    `,
+    name: "Sustainable Chemical Design",
+    description: (
+      <>
+        <strong>Build the Future of Chemistry with Green-by-Design Molecules</strong>
+        <br />
+        The world is moving beyond petroleum-based processes toward sustainability. 
+        Our AI-powered discovery suite designs chemicals that maximize performance while minimizing toxicity, waste, and carbon footprint. 
+        By embedding green chemistry principles from the start, we help companies innovate responsibly—delivering breakthrough products 
+        that meet both regulatory and environmental standards.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Reduce R&D Cost and Waste",
-    description: `
-Every failed iteration wastes resources—our suite helps you design right the first time.
-- Predict chemical stability, reactivity, and compatibility instantly.
-- Screen for environmental and safety compliance early in development.
-- Optimize yields with minimal raw material use.
-    `,
+    name: "Retrosynthesis & Route Optimization",
+    description: (
+      <>
+        <strong>Discover the Fastest, Greenest Path to Molecules That Matter</strong>
+        <br />
+        Developing new molecules is not just about “what” to make, but also “how” to make it. 
+        Our retrosynthesis engine leverages AI and green chemistry metrics to map out optimal reaction pathways, minimize hazardous intermediates, 
+        and maximize atom economy. 
+        By balancing cost, safety, and sustainability, companies can accelerate route planning, scale production efficiently, 
+        and reduce time from design to delivery.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Unlock Breakthrough Materials",
-    description: `
-Stay at the forefront of innovation.
-- Explore novel chemistries and composites with generative AI design.
-- Simulate extreme-condition performance for aerospace, automotive, and energy sectors.
-- Rapidly identify promising candidates for next-gen applications.
-    `,
-    imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
-  },
-  {
-    name: "Seamless Scale-Up and Manufacturing Integration",
-    description: `
-Move from concept to production without friction.
-- Link lab data with manufacturing execution systems (MES).
-- Predict scale-up risks and adapt processes in real time.
-- Align R&D, production, and quality teams with unified dashboards.
-    `,
+    name: "Process Optimization",
+    description: (
+      <>
+        <strong>Transform Manufacturing with Predictive, Efficient Workflows</strong>
+        <br />
+        Chemical manufacturing is complex, costly, and resource-intensive. 
+        Our platform uses machine learning to model reaction pathways, predict yields, and minimize side products. 
+        This enables companies to streamline production, reduce E-factors, and achieve higher efficiency with lower environmental impact—
+        turning sustainability into a competitive advantage.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
@@ -365,6 +367,7 @@ export default function SmallExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{ fontFamily: 'times' }}
                 >
                   {module.name}
                 </Tab>

@@ -447,7 +447,7 @@ export default function Oursuitetables() {
   const sections = [
     {
       title: "Biological Discovery & Target Identification",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./biology.png",
       items: [
         {
           title: "Multi-Omics Integration",
@@ -465,7 +465,7 @@ export default function Oursuitetables() {
     },
     {
       title: "Molecular Design & Optimization",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./molecular.png",
       items: [
         {
           title: "Generative Molecule Creation",
@@ -483,7 +483,7 @@ export default function Oursuitetables() {
     },
     {
       title: "Synthetic Route Planning & Feasibility",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./syhtheticroute.jpg",
       items: [
         {
           title: "Green Retrosynthesis",
@@ -501,7 +501,7 @@ export default function Oursuitetables() {
     },
     {
       title: "Agrochemical & Environmental Research",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./agrochemical.jpeg",
       items: [
         {
           title: "Safe Compound Discovery",
@@ -519,7 +519,7 @@ export default function Oursuitetables() {
     },
     {
       title: "Materials & Formulation Innovation",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./materialdesign.jpg",
       items: [
         {
           title: "Material Design",
@@ -537,7 +537,7 @@ export default function Oursuitetables() {
     },
     {
       title: "Precision Medicine & Clinical Research",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./PrecisionMedicine.png",
       items: [
         {
           title: "Data-Driven Personalization",
@@ -555,7 +555,7 @@ export default function Oursuitetables() {
     },
     {
       title: "Academic & Translational Science",
-      image: "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      image: "./academicresearch.png",
       items: [
         {
           title: "Accessible AI for Research",
@@ -599,7 +599,7 @@ export default function Oursuitetables() {
             boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            
           }}
         />
       </div>

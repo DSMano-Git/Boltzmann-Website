@@ -91,7 +91,7 @@ import NavbarPage from './components/NavbarPage';
 import HomePage from './pages/HomePage';
 import HackathonPage from './pages/HackathonPage';
 import About from './pages/AboutPage';
-import LeaderDetails from './components/Leaderdetails';
+// import LeaderDetails from './components/Leaderdetails';
 import Blogs from './pages/BlogsPage';
 import CategoryBlog from './pages/Categoryblogs';
 import Products from './pages/Products';
@@ -118,6 +118,8 @@ import Clinicaltrials from './pages/Clinicaltrials';
 import Materialsciences from './pages/Materialscience';
 import ClinicalTrialshealth from './pages/Clinicaltrialsandhealth';
 import Oursuite from './pages/Oursuite';
+import Privacypolicy from './pages/Privacypoliy';
+import Termsofusage from './pages/Termsofusage';
 export default function App() {
   return (
     <BrowserRouter>
@@ -131,7 +133,7 @@ export default function App() {
         {/* Add the category route with parameter */}
         <Route path="/blog/:category" element={<CategoryBlog />} />
         <Route path="/blogs/:id" element={<BlogDetails />} />
-        <Route path="/leadership/:leaderId" element={<LeaderDetails />} />
+        {/* <Route path="/leadership/:leaderId" element={<LeaderDetails />} /> */}
         <Route path="/pipeline" element={<Pipeline />} />
         <Route path="/hackathon" element={<HackathonPage />} />
         <Route path="/contact" element={<ContactUs />} />
@@ -154,17 +156,9 @@ export default function App() {
         <Route path="/precision-medicine" element={<PrecisionMedicine/>} />
         <Route path="/material-science" element={<Materialsciences/>} />
         <Route path="/clinical-trials" element={<ClinicalTrialshealth/>} />
+        <Route path="/privacy-policy" element={<Privacypolicy/>} />
+        <Route path="/terms" element={<Termsofusage/>} />
 
-
-        
-        
-        
-
-        
-     
-
-
-        
       </Routes>
     </BrowserRouter>
   );

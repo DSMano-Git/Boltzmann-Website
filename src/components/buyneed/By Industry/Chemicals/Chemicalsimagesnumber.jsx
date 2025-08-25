@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 
 const Chemicals = () => {
   const [animatedStats, setAnimatedStats] = useState([
-    { value: 0, target: 75, suffix: '%' },
-    { value: 0, target: 80, suffix: '%' },
-    { value: 0, target: 90, suffix: '%' }
+    { value: 0, target: 50, suffix: '%' },
+    { value: 0, target: 70, suffix: '%' },
+    { value: 0, target: 85, suffix: '%' }
   ]);
   const [isVisible, setIsVisible] = useState(false);
   const statsRef = useRef(null);
@@ -23,15 +23,15 @@ const Chemicals = () => {
   const statsData = [
     {
       color: "#00BCD4",
-      description: "faster drug discovery."
+      description: "faster formulation design."
     },
     {
       color: "#E91E63", 
-      description: "of repetitive screening tasks automated."
+      description: "of experimental trials eliminated with predictive modeling."
     },
     {
       color: "#FF5722",
-      description: "parameters optimized in a single iteration."
+      description: "resource efficiency gains in process optimization."
     }
   ];
 
@@ -226,7 +226,7 @@ const Chemicals = () => {
                   color: "#333333",
                 }}
               >
-                Empower Faster, Safer, and Greener Chemical Innovation
+               Smarter, Safer, Greener Chemistry with the Boltzmann AI Discovery Suite
               </h2>
               <p
                 style={{

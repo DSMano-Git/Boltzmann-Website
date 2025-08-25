@@ -235,46 +235,44 @@ const ArrowButton = styled.button`
 // Data
 const modules = [
   {
-    name: "Accelerate Material Development Timelines",
-    description: `
-Traditional material discovery can take years—our platform compresses them into months.
-- Multi-agent AI workflows explore vast chemical and structural design spaces.
-- Predictive modeling identifies high-potential candidates early.
-- Automated synthesis and fabrication route planning reduces lab trial bottlenecks.
-    `,
+    name: "Computational Material Discovery",
+    description: (
+      <>
+        <strong>Accelerate Innovation with AI-Powered Simulations</strong>
+        <br />
+        Discover materials faster than ever before with AI-driven molecular modeling and predictive simulations. 
+        Our platform screens millions of possibilities virtually—evaluating stability, durability, and performance—before a single experiment is run. 
+        This reduces guesswork, cuts R&D timelines, and helps you bring breakthrough materials to market at record speed.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Reduce R&D Risk and Cost",
-    description: `
-Every failed prototype wastes time and resources—our suite helps you invest in the winners.
-- AI-driven property prediction minimizes late-stage performance failures.
-- Durability and lifecycle modeling prevent costly redesigns.
-- Sustainability scoring ensures eco-friendly, regulatory-compliant processes.
-    `,
-       imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
-  },
-  {
-    name: "Unlock Next-Generation Material Possibilities",
-    description: `
-Stay ahead in the race for advanced materials.
-- Multi-scale modeling integrates molecular, microstructural, and macro-level properties.
-- Generative AI explores design concepts beyond human intuition.
-- Structure-performance correlation tools uncover novel property enhancements.
-    `,
+    name: "Property Optimization",
+    description: (
+      <>
+        <strong>Design Materials Tailored to Your Needs</strong>
+        <br />
+        From strength and flexibility to thermal and chemical resistance, our AI models optimize properties to match your exact requirements. 
+        By integrating generative algorithms with high-throughput simulations, we refine material candidates for peak performance. 
+        This ensures not just discovery, but discovery with purpose—aligned to your product goals.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Seamless Lab-to-Production Translation",
-    description: `
-Move from computational predictions to scalable manufacturing without friction.
-- LIMS and MES integration for unified material data management.
-- API-ready architecture for automated fabrication workflows.
-- Collaborative dashboards align scientists, engineers, and decision-makers.
-    `,
+    name: "Sustainability Scoring",
+    description: (
+      <>
+        <strong>Build Greener, Smarter, Future-Ready Materials</strong>
+        <br />
+        Sustainability is no longer optional. 
+        Our suite embeds green chemistry metrics—like carbon efficiency, biodegradability, and regulatory compliance—directly into the design process. 
+        By prioritizing eco-friendly pathways, you can innovate responsibly while securing long-term market competitiveness.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
@@ -366,6 +364,7 @@ export default function MSExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{ fontFamily: 'times' }}
                 >
                   {module.name}
                 </Tab>

@@ -6,7 +6,7 @@ export default function Pharmacologist(){
 return(
 <>
 <Pharmacoloheader
-logo="logo.png"
+logo="pharmacologists.png.jpg"
       title="Pharmacologists"
       subtitle="By Role"
       description="Pharmacologists study how molecules interact with biological systems.

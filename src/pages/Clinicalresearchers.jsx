@@ -7,7 +7,7 @@ export default function Clinicalresearchers(){
 return(
 <>
 <CRheader
-logo="logo.png"
+logo="clinicalresearchers.png.jpg"
       title="Clinical Researchers"
       subtitle="By Role"
       description="Clinical researchers translate preclinical findings into patient-centered trials.

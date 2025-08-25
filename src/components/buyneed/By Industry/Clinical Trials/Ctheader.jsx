@@ -521,7 +521,7 @@ const CTShowcase = () => {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+            src="/CT_BlueHero.png"
             alt="Protein Engineering"
             style={{
               borderRadius: '20px',

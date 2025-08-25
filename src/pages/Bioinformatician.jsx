@@ -6,7 +6,7 @@ export default function Bioinformatician(){
     return(
         <>
         <Medichemistheader
-        logo="logo.png"
+        logo="./bioinfor.png.jpg"
       title="Bioinformatician"
       subtitle="By Role"
       description="Bioinformaticians turn complex biological datasets into actionable patterns and predictions.

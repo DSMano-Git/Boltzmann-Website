@@ -1,270 +1,197 @@
-
 // import React from "react";
 
 // const CultureCards = () => {
 //   const cards = [
 //     {
-//       color: "#4F1985",
-//       title: "Innovation at the Core",
-//       text: `We believe innovation is not a one-off spark—it’s a continuous process of curiosity, experimentation, and adaptation. From developing autonomous scientific workflows to designing new AI architectures for complex problem-solving, we are committed to pushing the boundaries of what’s possible in science and technology.
-// .`,
-//       img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
-//     },
-//     {
-//       color: "#00B5AD", 
-//       title: " Open Source Research",
-//       text: ` We champion openness in science. By contributing tools, datasets, and methodologies to the open-source community, we enable researchers worldwide to collaborate, validate, and build upon shared knowledge—accelerating global progress in the process.
-// .`,
-//       img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
-//     },
-//     {
-//       color: "#FF7F50", 
-//       title: "Scientific Integrity",
-//       text: ` Every discovery we pursue is rooted in data-driven rigor and ethical research practices. We maintain transparency, reproducibility, and reliability as the foundation of all our solutions.
-// `,
-//       img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
-//     },
-    
-//   ];
-
-//   return (
-//     <div style={{ maxWidth: "1100px", margin: "40px auto" }}>
-//          <h2
-//           style={{
-//             textAlign: "center",
-//             fontSize: "2.5rem",
-//            paddingBottom: '20px',
-//             fontWeight: "400",
-//             color: "#4F1985",
-//             position: "relative"
-//           }}
-//         >
-//           What we Stand for.
-//           <span
-//             style={{
-//               display: "block",
-//               width: "80px",
-//               height: "4px",
-//               backgroundColor: "#4F1985",
-//               margin: "15px auto 0",
-            
-//               borderRadius: "2px"
-//             }}
-//           />
-//         </h2>
-//       {cards.map((card, index) => (
-//         <div
-//           key={index}
-//           style={{
-//             display: "flex",
-//             alignItems: "center",
-//             background: "#fff",
-//             borderRadius: "20px",
-//             padding: "20px",
-//             boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
-//             marginBottom: "30px",
-//             overflow: "hidden",
-//           }}
-//         >
-//           {/* Image Container */}
-//           <div
-//             style={{
-//               background: card.color,
-//               padding: "20px",
-//               borderRadius: "20px",
-//               display: "flex",
-//               alignItems: "center",
-//               justifyContent: "center",
-//               flexShrink: 0,
-//             }}
-//           >
-//             <img
-//               src={card.img}
-//               alt={card.title}
-//               style={{
-//                 width: "250px",
-//                 height: "auto",
-//                 borderRadius: "15px",
-//                 objectFit: "cover",
-//               }}
-//             />
-//           </div>
-
-//           {/* Text Section */}
-//           <div style={{ marginLeft: "30px", flex: 1 }}>
-//             <h2
-//               style={{
-//                 color: card.color,
-//                 fontSize: "24px",
-//                 marginBottom: "10px",
-//               }}
-//             >
-//               {card.title}
-//             </h2>
-//             <p style={{ fontSize: "16px", lineHeight: "1.6", color: "#333" }}>
-//               {card.text}
-//             </p>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default CultureCards;
-
-
-// import React from "react";
-
-// const CultureCards = () => {
-//   const cards = [
-//     {
-//       color: "#4F1985",
+      
 //       title: "Innovation at the Core",
 //       text: `We believe innovation is not a one-off spark—it's a continuous process of curiosity, experimentation, and adaptation. From developing autonomous scientific workflows to designing new AI architectures for complex problem-solving, we are committed to pushing the boundaries of what's possible in science and technology.`,
-//       img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+//       img: "./what1.png",
 //     },
 //     {
-//       color: "#00B5AD", 
+      
 //       title: "Open Source Research",
 //       text: `We champion openness in science. By contributing tools, datasets, and methodologies to the open-source community, we enable researchers worldwide to collaborate, validate, and build upon shared knowledge—accelerating global progress in the process.`,
-//       img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+//       img: "./what2.png",
 //     },
 //     {
-//       color: "#FF7F50", 
+      
 //       title: "Scientific Integrity",
 //       text: `Every discovery we pursue is rooted in data-driven rigor and ethical research practices. We maintain transparency, reproducibility, and reliability as the foundation of all our solutions.`,
-//       img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+//       img: "./integrity.png",
 //     },
 //   ];
 
 //   return (
-//     <div style={{ maxWidth: "1100px", margin: "40px auto", padding: "0 20px" }}>
-//       <h2
-//         style={{
-//           textAlign: "center",
-//           fontSize: "2.5rem",
-//           paddingBottom: '20px',
-//           fontWeight: "400",
-//           color: "#4F1985",
-//           position: "relative"
-//         }}
-//       >
+//     <div className="culture-cards-container">
+//       <h2 className="culture-title">
 //         What we Stand for.
-//         <span
-//           style={{
-//             display: "block",
-//             width: "80px",
-//             height: "4px",
-//             backgroundColor: "#4F1985",
-//             margin: "15px auto 0",
-//             borderRadius: "2px"
-//           }}
-//         />
+//         <span className="title-underline" />
 //       </h2>
-      
-//       {cards.map((card, index) => (
-//         <div
-//           key={index}
-//           style={{
-//             display: "flex",
-//             flexDirection: "row",
-//             alignItems: "center",
-//             background: "#fff",
-//             borderRadius: "20px",
-//             padding: "20px",
-//             boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
-//             marginBottom: "30px",
-//             overflow: "hidden",
-//           }}
-//           className="culture-card"
-//         >
-//           {/* Image Container */}
-//           <div
-//             style={{
-//               background: card.color,
-//               padding: "20px",
-//               borderRadius: "20px",
-//               display: "flex",
-//               alignItems: "center",
-//               justifyContent: "center",
-//               flexShrink: 0,
-//             }}
-//             className="culture-card-image-container"
-//           >
-//             <img
-//               src={card.img}
-//               alt={card.title}
-//               style={{
-//                 width: "250px",
-//                 height: "auto",
-//                 borderRadius: "15px",
-//                 objectFit: "cover",
-//               }}
-//               className="culture-card-image"
-//             />
-//           </div>
 
-//           {/* Text Section */}
-//           <div style={{ marginLeft: "30px", flex: 1 }} className="culture-card-text">
-//             <h2
-//               style={{
-//                 color: card.color,
-//                 fontSize: "24px",
-//                 marginBottom: "10px",
-//               }}
-//             >
-//               {card.title}
-//             </h2>
-//             <p style={{ fontSize: "16px", lineHeight: "1.6", color: "#333" }}>
-//               {card.text}
-//             </p>
+//       {cards.map((card, index) => (
+//         <div key={index} className="culture-card">
+//           <div
+//             className="culture-card-image-container"
+//             style={{ background: card.color }}
+//           >
+//             <img src={card.img} alt={card.title} className="culture-card-image" />
+//           </div>
+//           <div className="culture-card-text">
+//             <h2 style={{ color: card.color }}>{card.title}</h2>
+//             <p>{card.text}</p>
 //           </div>
 //         </div>
 //       ))}
 
 //       <style jsx>{`
+//         .culture-cards-container {
+//           max-width: 1100px;
+//           margin: 40px auto;
+//           padding: 0 20px;
+//         }
+
+//         .culture-title {
+//           text-align: center;
+//           font-size: 2.5rem;
+//           padding-bottom: 20px;
+//           font-weight: 400;
+//           color: #4f1985;
+//           position: relative;
+//         }
+
+//         .title-underline {
+//           display: block;
+//           width: 80px;
+//           height: 4px;
+//           background-color: #4f1985;
+//           margin: 15px auto 0;
+//           border-radius: 2px;
+//         }
+
+//         .culture-card {
+//           display: flex;
+//           flex-direction: row;
+//           align-items: center;
+//           background: #fff;
+//           border-radius: 20px;
+//           padding: 20px;
+//           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+//           margin-bottom: 30px;
+//           overflow: hidden;
+//         }
+
+//         .culture-card-image-container {
+//           padding: 20px;
+//           border-radius: 20px;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           flex-shrink: 0;
+//         }
+
+//         .culture-card-image {
+//           width: 250px;
+//           height: 220px;
+//           border-radius: 15px;
+          
+//         }
+
+//         .culture-card-text {
+//           margin-left: 30px;
+//           flex: 1;
+//         }
+
+//         .culture-card-text h2 {
+//           font-size: 24px;
+//           margin-bottom: 10px;
+//         }
+
+//         .culture-card-text p {
+//           font-size: 16px;
+//           line-height: 1.6;
+//           color: #333;
+//         }
+
+//         /* Tablet & Mobile */
 //         @media (max-width: 900px) {
-//           .culture-card {
-//             flex-direction: column !important;
-//             margin-top: 20px;
-//           }
-          
-//           .culture-card-image-container {
-//             margin-bottom: 20px;
+//           .culture-cards-container {
+//             margin-top: 190%; /* this works perfectly on smaller screens */
 //             width: 100%;
+//             max-width: 470px;
 //           }
-          
-//           .culture-card-image {
-//             width: 100% !important;
+
+//           .culture-card {
+//             flex-direction: column;
+//             padding: 15px;
+//             width: 100%;
+//             max-width: 443px;
+//           }
+
+//           .culture-card-image-container {
+//             width: 100%;
 //             max-width: 400px;
+//             margin-bottom: 20px;
+//             padding: 15px;
+            
 //           }
-          
+
+//           .culture-card-image {
+//             width: 100%;
+//             max-width: 350px;
+            
+//           }
+
 //           .culture-card-text {
-//             margin-left: 0 !important;
+//             margin-left: 0;
 //             width: 100%;
 //           }
+
+//           .culture-card-text h2 {
+//             font-size: 22px;
+//             text-align: center;
+//           }
+
+//           .culture-card-text p {
+//             font-size: 15px;
+//             text-align: center;
+//             text-align: justify;
+//           }
 //         }
-        
+
 //         @media (max-width: 600px) {
-//           h2 {
-//             font-size: 2rem !important;
-            
-//           }
-          
-//           .culture-card {
-//             padding: 15px !important;
-//           }
-          
 //           .culture-card-image-container {
-//             padding: 15px !important;
-            
+//             max-width: 250px;
+//           }
+
+//           .culture-card-text h2 {
+//             font-size: 20px;
+//           }
+
+//           .culture-card-text p {
+//             font-size: 14px;
+//           }
+
+//           .culture-title {
+//             font-size: 2rem;
 //           }
 //         }
-        
+
 //         @media (max-width: 400px) {
-//           h2 {
-//             font-size: 1.8rem !important;
+//           .culture-card-image-container {
+//             max-width: 200px;
+//           }
+
+//           .culture-card-text h2 {
+//             font-size: 18px;
+//           }
+
+//           .culture-card-text p {
+//             font-size: 13px;
+//           }
+
+//           .culture-title {
+//             font-size: 1.8rem;
 //           }
 //         }
 //       `}</style>
@@ -275,200 +202,219 @@
 // export default CultureCards;
 
 
+
 import React from "react";
 
 const CultureCards = () => {
   const cards = [
     {
-      color: "#4F1985",
       title: "Innovation at the Core",
       text: `We believe innovation is not a one-off spark—it's a continuous process of curiosity, experimentation, and adaptation. From developing autonomous scientific workflows to designing new AI architectures for complex problem-solving, we are committed to pushing the boundaries of what's possible in science and technology.`,
-      img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      img: "./what1.png",
+      color: "#6a11cb",
     },
     {
-      color: "#00B5AD",
       title: "Open Source Research",
       text: `We champion openness in science. By contributing tools, datasets, and methodologies to the open-source community, we enable researchers worldwide to collaborate, validate, and build upon shared knowledge—accelerating global progress in the process.`,
-      img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      img: "./what2.png",
+      color: "#2575fc",
     },
     {
-      color: "#FF7F50",
       title: "Scientific Integrity",
       text: `Every discovery we pursue is rooted in data-driven rigor and ethical research practices. We maintain transparency, reproducibility, and reliability as the foundation of all our solutions.`,
-      img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80",
+      img: "./what3.png",
+      color: "#4f1985",
     },
   ];
 
   return (
     <div className="culture-cards-container">
-      <h2 className="culture-title">
-        What we Stand for.
-        <span className="title-underline" />
-      </h2>
+      <div className="culture-header">
+        <h2 className="culture-title">
+          What we Stand for.
+          <span className="title-underline" />
+        </h2>
+      </div>
 
-      {cards.map((card, index) => (
-        <div key={index} className="culture-card">
-          <div
-            className="culture-card-image-container"
-            style={{ background: card.color }}
-          >
-            <img src={card.img} alt={card.title} className="culture-card-image" />
+      <div className="culture-cards-grid">
+        {cards.map((card, index) => (
+          <div key={index} className="culture-card">
+            <div
+              className="culture-card-image-container"
+              style={{ backgroundColor: `${card.color}15` }} // Light background using the color with opacity
+            >
+              <img src={card.img} alt={card.title} className="culture-card-image" />
+            </div>
+            <div className="culture-card-text">
+              <h3 style={{ color: card.color }}>{card.title}</h3>
+              <p>{card.text}</p>
+            </div>
           </div>
-          <div className="culture-card-text">
-            <h2 style={{ color: card.color }}>{card.title}</h2>
-            <p>{card.text}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <style jsx>{`
         .culture-cards-container {
-          max-width: 1100px;
-          margin: 40px auto;
-          padding: 0 20px;
+          max-width: 1200px;
+          margin: 2rem auto;
+          padding: 0 1.5rem;
+        }
+
+        .culture-header {
+          text-align: center;
+          margin-bottom: 3rem;
         }
 
         .culture-title {
-          text-align: center;
           font-size: 2.5rem;
-          padding-bottom: 20px;
-          font-weight: 400;
+          font-weight: 600;
           color: #4f1985;
+          margin-bottom: 1rem;
           position: relative;
+          display: inline-block;
         }
 
         .title-underline {
-          display: block;
-          width: 80px;
-          height: 4px;
-          background-color: #4f1985;
-          margin: 15px auto 0;
-          border-radius: 2px;
+          position: absolute;
+          bottom: -0.75rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 5rem;
+          height: 0.25rem;
+          background: linear-gradient(90deg, #4F1985 0%, #4F1985 100%);
+          border-radius: 0.125rem;
+        }
+
+        .culture-cards-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
         }
 
         .culture-card {
           display: flex;
-          flex-direction: row;
-          align-items: center;
           background: #fff;
-          border-radius: 20px;
-          padding: 20px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-          margin-bottom: 30px;
-          overflow: hidden;
+          border-radius: 1.25rem;
+          padding: 1.5rem;
+          box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .culture-card:hover {
+          transform: translateY(-0.25rem);
+          box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12);
         }
 
         .culture-card-image-container {
-          padding: 20px;
-          border-radius: 20px;
+          flex-shrink: 0;
+          padding: 1.5rem;
+          border-radius: 1rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          flex-shrink: 0;
+          width: 300px;
+          height: 250px;
         }
 
         .culture-card-image {
-          width: 250px;
-          height: auto;
-          border-radius: 15px;
-          object-fit: cover;
+          width: 80%;
+          height: 80%;
+          
+          border-radius: 1rem;
         }
 
         .culture-card-text {
-          margin-left: 30px;
-          flex: 1;
+          margin-left: 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
-        .culture-card-text h2 {
-          font-size: 24px;
-          margin-bottom: 10px;
+        .culture-card-text h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
         }
 
         .culture-card-text p {
-          font-size: 16px;
-          line-height: 1.6;
-          color: #333;
+          font-size: 1rem;
+          line-height: 1.7;
+          color: #444;
         }
 
-        /* Tablet & Mobile */
+        /* Tablet */
         @media (max-width: 900px) {
           .culture-cards-container {
-            margin-top: 190%; /* this works perfectly on smaller screens */
-            width: 100%;
-            max-width: 470px;
+            margin: 4rem auto;
           }
-
+          
+          .culture-title {
+            font-size: 2.25rem;
+          }
+          
           .culture-card {
             flex-direction: column;
-            padding: 15px;
-            width: 100%;
-            max-width: 443px;
+            align-items: center;
+            text-align: center;
           }
-
+          
           .culture-card-image-container {
             width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-            padding: 15px;
-            
-          }
-
-          .culture-card-image {
-            width: 100%;
             max-width: 350px;
-            
+            margin-bottom: 1.5rem;
           }
-
+          
           .culture-card-text {
             margin-left: 0;
-            width: 100%;
           }
+        }
 
-          .culture-card-text h2 {
-            font-size: 22px;
-            text-align: center;
+        /* Mobile */
+        @media (max-width: 600px) {
+          .culture-cards-container {
+            margin: 3rem auto;
+            padding: 0 1rem;
           }
-
+          
+          .culture-title {
+            font-size: 2rem;
+          }
+          
+          .culture-card {
+            padding: 1.25rem;
+          }
+          
+          .culture-card-image-container {
+            padding: 1rem;
+            height: 200px;
+          }
+          
+          .culture-card-text h3 {
+            font-size: 1.35rem;
+          }
+          
           .culture-card-text p {
-            font-size: 15px;
-            text-align: center;
+            font-size: 0.95rem;
             text-align: justify;
           }
         }
 
-        @media (max-width: 600px) {
-          .culture-card-image-container {
-            max-width: 250px;
-          }
-
-          .culture-card-text h2 {
-            font-size: 20px;
-          }
-
-          .culture-card-text p {
-            font-size: 14px;
-          }
-
-          .culture-title {
-            font-size: 2rem;
-          }
-        }
-
+        /* Small Mobile */
         @media (max-width: 400px) {
-          .culture-card-image-container {
-            max-width: 200px;
-          }
-
-          .culture-card-text h2 {
-            font-size: 18px;
-          }
-
-          .culture-card-text p {
-            font-size: 13px;
-          }
-
           .culture-title {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
+          }
+          
+          .culture-card-image-container {
+            height: 180px;
+          }
+          
+          .culture-card-text h3 {
+            font-size: 1.25rem;
+          }
+          
+          .culture-card-text p {
+            font-size: 0.9rem;
           }
         }
       `}</style>

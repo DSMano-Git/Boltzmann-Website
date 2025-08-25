@@ -10,7 +10,7 @@ const Container = styled.section`
   justify-content: center;
   align-items: center;
   padding: 40px 0; // Reduced padding
-
+font-family: 'times';
   @media (max-width: 768px) {
     padding: 30px 0; // Reduced padding
   }
@@ -29,11 +29,13 @@ const Header = styled.div`
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  font-family: 'times';
 `;
 
 const Title = styled.h2`
   font-size: 2.25rem; // Reduced from 2.75rem
   font-weight: 700;
+  font-family: 'timesnew';
   background: linear-gradient(90deg, #22d3ee, #c084fc, #fb923c);
   -webkit-background-clip: text;
   background-clip: text;
@@ -235,50 +237,49 @@ const ArrowButton = styled.button`
 // Data
 const modules = [
   {
-    name: "Accelerate Material Development Timelines",
-    description: `
-Traditional material discovery can take years—our platform compresses them into months.
-- Multi-agent AI workflows explore vast chemical and structural design spaces.
-- Predictive modeling identifies high-potential candidates early.
-- Automated synthesis and fabrication route planning reduces lab trial bottlenecks.
-    `,
+    name: "Digital Twins",
+    description: (
+      <>
+        <strong>Redefining Clinical Insight Before Trials Begin.  </strong>
+        
+        Leverage AI-driven digital twins to simulate patient biology, treatment response, and disease progression. 
+        These virtual replicas allow researchers to optimize dosing, predict efficacy, and identify risks long before real-world enrollment. 
+        By reducing trial uncertainty, digital twins accelerate decision-making and improve the likelihood of success in later phases.
+      </>
+    ),
     imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "/digitaltwins.webp",
   },
   {
-    name: "Reduce R&D Risk and Cost",
-    description: `
-Every failed prototype wastes time and resources—our suite helps you invest in the winners.
-- AI-driven property prediction minimizes late-stage performance failures.
-- Durability and lifecycle modeling prevent costly redesigns.
-- Sustainability scoring ensures eco-friendly, regulatory-compliant processes.
-    `,
+    name: "Patient Recruitment",
+    description: (
+      <>
+        <strong>Find the Right Patients, Faster.  </strong>
+        
+        Recruitment bottlenecks delay most clinical trials. 
+        Our AI-powered recruitment engine scans diverse data sources—including EMRs, registries, and genomic datasets—to identify ideal candidates. 
+        With intelligent matching and engagement, you ensure diversity, compliance, and rapid enrollment, cutting months off your trial timelines.
+      </>
+    ),
     imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "/patient.jpg",
   },
   {
-    name: "Unlock Next-Generation Material Possibilities",
-    description: `
-Stay ahead in the race for advanced materials.
-- Multi-scale modeling integrates molecular, microstructural, and macro-level properties.
-- Generative AI explores design concepts beyond human intuition.
-- Structure-performance correlation tools uncover novel property enhancements.
-    `,
+    name: "Trial Optimization",
+    description: (
+      <>
+        <strong>Minimize Risk, Maximize Success. </strong>{""}
+        
+        Traditional trial protocols are slow to adapt and prone to failure. 
+        With predictive analytics, our platform forecasts trial risks, suggests protocol refinements, and optimizes site selection in real time. 
+        This proactive approach reduces costly delays, improves patient safety, and drives higher trial success rates.
+      </>
+    ),
     imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
-  },
-  {
-    name: "Seamless Lab-to-Production Translation",
-    description: `
-Move from computational predictions to scalable manufacturing without friction.
-- LIMS and MES integration for unified material data management.
-- API-ready architecture for automated fabrication workflows.
-- Collaborative dashboards align scientists, engineers, and decision-makers.
-    `,
-    imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "/patientt.jpg",
   },
 ];
+
 
 
 
@@ -366,6 +367,7 @@ export default function CTExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{ fontFamily: 'times' }}
                 >
                   {module.name}
                 </Tab>

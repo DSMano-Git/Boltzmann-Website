@@ -1736,7 +1736,7 @@ const modules = [
     description:
       "Accelerate clinical development and unlock insights — smarter, safer, faster.",
     imageUrl:
-      "./6_multiomics.png",
+      "./7_ClinicalTrials.png",
     path: "/clinicaltrials"
   },
 
@@ -1872,19 +1872,43 @@ export default function ExploreModulesSection() {
               </Link>
             </TextContent>
 
-            <ImageContainer>
-              <AnimatePresence mode="wait">
-                <Image
-                  key={`image-${selected}`}
-                  variants={imageVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  src={modules[selected].imageUrl}
-                  alt={modules[selected].name}
-                />
-              </AnimatePresence>
-            </ImageContainer>
+        <ImageContainer>
+  <AnimatePresence mode="wait">
+    {modules[selected].imageUrl.endsWith(".mp4") ? (
+      <motion.video
+        key={`video-${selected}`}
+        variants={imageVariants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        src={modules[selected].imageUrl}
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          width: "100%",
+          height: "430px",
+          maxHeight: "430px",
+          maxWidth: "650px",
+          borderRadius: "1rem",
+          objectFit: "cover",
+        }}
+      />
+    ) : (
+      <Image
+        key={`image-${selected}`}
+        variants={imageVariants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        src={modules[selected].imageUrl}
+        alt={modules[selected].name}
+      />
+    )}
+  </AnimatePresence>
+</ImageContainer>
+
           </ContentArea>
         </Card>
       </ContentWrapper>

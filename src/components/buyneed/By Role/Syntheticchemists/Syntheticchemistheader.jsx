@@ -36,11 +36,9 @@ const Synthetichemistrheader = ({ logo, subtitle, title, description }) => {
             src={logo}
             alt=""
             style={{
-              maxWidth: "100%",
-              maxHeight: "200px",
-              width: "auto",
-              height: "auto",
-              objectFit: "contain",
+              height: "230px",
+              width: "390px",
+              borderRadius: "30px",
             }}
           />
         </div>

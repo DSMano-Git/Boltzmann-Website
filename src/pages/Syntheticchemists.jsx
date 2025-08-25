@@ -7,7 +7,7 @@ export default function Syntheticchemist(){
     return(
         <>
 <Synthetichemistrheader
- logo="logo.png"
+ logo="./synthetichemists.png.jpg"
       title="Synthetic Chemists"
       subtitle="By Role"
       description="Synthetic chemists transform molecular designs into real, testable compounds.

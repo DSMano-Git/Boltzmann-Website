@@ -552,6 +552,7 @@ export default function LaptopSection({ isOpen }) {
     flexDirection: 'column',
     justifyContent: 'center',
     padding: isMobile ? '0 1rem' : '0',
+    
   };
 
   const headingStyle = {
@@ -559,6 +560,7 @@ export default function LaptopSection({ isOpen }) {
     marginBottom: '1rem',
     color: '#111827',
     textAlign: isMobile ? 'center' : 'left',
+    marginTop: "-90px"
   };
 
   const paragraphStyle = {
@@ -643,7 +645,8 @@ export default function LaptopSection({ isOpen }) {
             >
               <h3 style={headingStyle}>Discover Our Technology</h3>
               <p style={paragraphStyle}>
-               We’d love to hear from you at Boltzmann Labs. Whether you have questions, partnership ideas, or need support, our team is here to help.
+             See how fast tomorrow’s molecules can be discovered
+
               </p>
 
               <div style={buttonContainerStyle}>

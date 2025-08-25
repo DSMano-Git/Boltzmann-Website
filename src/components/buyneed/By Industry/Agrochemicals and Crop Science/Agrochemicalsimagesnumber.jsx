@@ -564,7 +564,7 @@ const AgroNumbers = () => {
                   color: "#333333",
                 }}
               >
-                Empower Faster, Safer, and Greener Chemical Innovation
+                Accelerating Sustainable Innovation in Chemicals with Boltzmann AI
               </h2>
               <p
                 style={{

@@ -235,50 +235,50 @@ const ArrowButton = styled.button`
 // Data
 const modules = [
   {
-    name: "Accelerate Biomarker-to-Therapy Timelines",
-    description: `
-Traditional precision medicine development takes years—our platform compresses them into months.
-- Multi-agent AI workflows rapidly analyze high-dimensional patient data.
-- Predictive modeling identifies the most promising therapy-patient matches early.
-- AI-driven clinical trial simulation optimizes inclusion and exclusion criteria.
-    `,
+    name: "Genomic-Driven Therapies",
+    description: (
+      <>
+        <strong>Unlock Treatments Tailored to Every Individual</strong>
+        <br />
+        No two patients are alike, and their treatments shouldn’t be either. 
+        Our AI platform integrates genomic, transcriptomic, and proteomic data to design therapies that match a patient’s unique biology. 
+        By predicting response profiles and identifying molecular drivers of disease, we enable researchers to move from population-based medicine 
+        to highly personalized solutions that maximize efficacy and minimize side effects.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Reduce Clinical Risk and Development Cost",
-    description: `
-Every failed trial costs millions and delays patient access—our suite helps you get it right-first-time.
-- AI-driven toxicity and response prediction minimizes trial attrition.
-- Adaptive trial design recommendations improve success rates.
-- Cost, efficacy, and safety scoring ensures optimal therapy selection.
-    `,
+    name: "Biomarker Discovery",
+    description: (
+      <>
+        <strong>Reveal the Hidden Signals Behind Patient Outcomes</strong>
+        <br />
+        Identifying the right biomarkers is the key to unlocking precision care. 
+        Our AI models sift through massive datasets—omics, clinical, and imaging—to uncover predictive biomarkers that guide therapy selection and monitoring. 
+        With faster, more accurate biomarker discovery, you can stratify patients effectively, accelerate trials, and improve treatment outcomes.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Unlock Next-Gen Personalized Therapies",
-    description: `
-Stay ahead in the era of patient-specific medicine.
-- Multi-omics integration reveals novel molecular signatures for disease.
-- Structure-based drug design tools tailor molecules to genetic subtypes.
-- Generative AI explores therapy options beyond current medical paradigms.
-    `,
-    imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
-  },
-  {
-    name: "Seamless Bench-to-Bedside Translation",
-    description: `
-Move from computational predictions to validated, patient-ready therapies without friction.
-- EHR and LIMS integration for unified patient data management.
-- API-ready architecture for clinical decision support systems.
-- Collaborative dashboards align researchers, clinicians, and decision-makers.
-    `,
+    name: "Companion Diagnostics",
+    description: (
+      <>
+        <strong>Pair Every Therapy with the Right Diagnostic Tool</strong>
+        <br />
+        Precision medicine thrives when diagnostics and therapeutics move in sync. 
+        Our platform helps develop AI-enhanced companion diagnostics that predict which patients will benefit from specific therapies. 
+        This alignment between drugs and diagnostics reduces wasted treatments, lowers healthcare costs, and increases patient trust in personalized care.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
 ];
+
 
 
 
@@ -366,6 +366,7 @@ export default function PMExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{ fontFamily: 'times' }}
                 >
                   {module.name}
                 </Tab>

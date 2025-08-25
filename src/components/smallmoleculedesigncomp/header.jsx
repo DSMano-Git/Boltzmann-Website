@@ -330,7 +330,7 @@ export default function SmallOverlappingCard() {
           <motion.h2
             style={{
               marginBottom: "20px",
-              fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+              fontSize: "clamp(0.7rem, 4vw, 2.5rem)",
               fontWeight: 400,
               letterSpacing: "0.5px",
               lineHeight: 1.2,
@@ -343,9 +343,9 @@ export default function SmallOverlappingCard() {
 
           <motion.p
             style={{
-              maxWidth: "700px",
+              maxWidth: "860px",
               margin: "0 auto 30px",
-              fontSize: "clamp(1rem, 2vw, 1.2rem)",
+              fontSize: "clamp(1.5rem, 2vw, 1.2rem)",
               lineHeight: 1.6,
               opacity: 0.9,
             }}
@@ -402,14 +402,17 @@ export default function SmallOverlappingCard() {
           maxWidth: "900px",
           padding: "0 20px",
           boxSizing: "border-box",
+
         }}
       >
         <img
-          src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+          src="./5Y79.png"
           alt="Splash"
           style={{
             width: "100%",
             borderRadius: "16px",
+            boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
+            backgroundColor: "#ffffff",
           }}
         />
       </div>

@@ -235,46 +235,44 @@ const ArrowButton = styled.button`
 // Data
 const modules = [
   {
-    name: "Accelerate Drug Discovery Timelines",
-    description: `
-Traditional discovery cycles take years—our platform compresses them into months.
-- Multi-agent AI workflows rapidly screen vast compound libraries for high-value hits.
-- Predictive modeling pinpoints the most promising candidates early.
-- Automated retrosynthesis planning ensures the fastest route to lab validation.
-    `,
+    name: "Target Identification",
+    description: (
+      <>
+        <strong>Unlock Novel Therapeutic Opportunities with Precision AI</strong>
+        <br />
+        Drug discovery starts with finding the right target—and our AI platform makes it faster and more accurate than ever. 
+        By analyzing multi-omics data, literature, and molecular networks, we identify disease-driving targets that others miss. 
+        This not only reduces the risk of late-stage failure but also expands pipelines with validated, high-value opportunities.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Reduce R&D Risk and Cost",
-    description: `
-Every failed candidate costs millions. Our suite helps you invest in the winners.
-- AI-driven property prediction minimizes late-stage failures.
-- Toxicity and ADMET screening detect red flags before lab trials.
-- Sustainability scoring ensures eco-friendly, regulatory-compliant processes.
-    `,
+    name: "Hit-to-Lead Optimization",
+    description: (
+      <>
+        <strong>Transform Promising Hits into Viable Leads with Confidence</strong>
+        <br />
+        Moving from hits to leads is often where timelines stall. 
+        Our AI-driven models evaluate binding affinity, selectivity, and ADMET profiles simultaneously, allowing you to optimize molecules with precision. 
+        By narrowing down the best candidates early, you save resources and accelerate the journey toward first-in-class therapies.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Unlock Next-Gen Therapeutic Opportunities",
-    description: `
-Stay ahead in the race for innovation.
-- Multi-omics integration reveals novel biomarkers and drug targets.
-- Structure-based drug design tools uncover unique, high-affinity ligands.
-- Generative AI chemistry explores chemical spaces beyond human intuition.
-    `,
-    imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
-  },
-  {
-    name: "Seamless Lab-to-Clinical Translation",
-    description: `
-Move from computational predictions to validated candidates without friction.
-- LIMS integration for unified data management.
-- API-ready architecture for smooth lab automation.
-- Collaborative dashboards align scientists, chemists, and decision-makers.
-    `,
+    name: "Biologic Engineering",
+    description: (
+      <>
+        <strong>Design Better Antibodies, Proteins, and Enzymes—Faster</strong>
+        <br />
+        Biologics are reshaping medicine, but their design is complex. 
+        Our generative AI models engineer antibodies, peptides, and enzymes with improved stability, efficacy, and manufacturability. 
+        By reducing experimental trial-and-error, we enable rapid iteration and innovation in biologics development, cutting years off the R&D cycle.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
@@ -363,6 +361,7 @@ export default function SmallExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{ fontFamily: 'times' }}
                 >
                   {module.name}
                 </Tab>

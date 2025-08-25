@@ -256,7 +256,7 @@ const BlogsPage = () => {
   };
 
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ fontFamily: 'times' }}>
       {/* Add CSS for spinner animation */}
       <style>
         {`

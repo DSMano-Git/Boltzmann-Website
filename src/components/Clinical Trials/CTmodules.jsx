@@ -716,7 +716,7 @@ export default function CTModulesSection() {
             fontSize: '2.5rem',
             fontFamily: 'timesnew'
           }}>
-           Explore Multi Omics Analysis
+           Explore Trials and Healthcare
 
              <span
             style={{

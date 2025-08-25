@@ -572,7 +572,7 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2.5rem; // Reduced from 3rem
-
+borer-radius: 30px;
   @media (max-width: 768px) {
     padding: 1.5rem 1.25rem; // Reduced
     order: 1;
@@ -581,9 +581,10 @@ const ImageContainer = styled.div`
 
 const Image = styled(motion.img)`
   width: 100%;
-  max-width: 550px; // Reduced from 650px
-  border-radius: 0.8rem; // Reduced from 1rem
-  object-fit: cover;
+  max-width: 550px; 
+  borer-radius: 30px;
+  
+  
 `;
 
 const MobileControls = styled.div`
@@ -625,31 +626,45 @@ const ArrowButton = styled.button`
 const modules = [
   {
     name: "Agents in Small Molecule Design",
-    description:
-      "Impact Statement: Your autonomous discovery team, always at work. Our multi-agent architecture combines specialized AI agents for molecular generation, virtual screening, property prediction, and synthesis feasibility. Working in concert, they orchestrate an end-to-end design cycle that transforms ideas into validated candidates—24/7, with zero downtime.",
+    description:(
+      <>
+        <strong>Your autonomous discovery team, always at work.</strong>{" "}
+        Our multi-agent architecture combines specialized AI agents
+        for molecular generation, virtual screening, property prediction, and synthesis feasibility.
+      </>
+      ),
     imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+      "/SM_agent.png", 
   },
   {
     name: "Hit Identification",
-    description:
-      "Impact Statement: Discover hits in days, not months. AI-powered screening agents rapidly mine vast chemical spaces, integrating structure-based and ligand-based approaches to uncover promising hit candidates with exceptional precision. Our platform accelerates the earliest stage of discovery, ensuring you start with the most viable chemical matter.",
+    description:(
+      <>
+      <strong> Discover hits in days, not months.</strong> AI-powered screening agents rapidly mine vast chemical spaces, integrating structure-based and ligand-based approaches to uncover promising hit candidates with exceptional precision. Our platform accelerates the earliest stage of discovery, ensuring you start with the most viable chemical matter.</>
+      ),
      imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+      "/SM_hitID.png", 
   },
   {
     name: "Hit-to-Lead Optimization",
-    description:
-      "Impact Statement: Turn early hits into high-potential leads—faster than ever. From ADMET profiling to predictive SAR, our AI agents refine and prioritize molecules that balance potency, selectivity, and developability. The result? Streamlined decision-making and reduced attrition in the costly mid-stage pipeline.",
+    description:(
+      <>
+      <strong> Turn early hits into high-potential leads—faster than ever.</strong> From ADMET profiling to predictive SAR, our AI agents refine and prioritize molecules that balance potency, selectivity, and developability. The result? Streamlined decision-making and reduced attrition in the costly mid-stage pipeline.</>
+
+      ),
      imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+      "/SM_hit2Lead.png", 
   },
   {
     name: "Lead Optimization",
-    description:
-      "Impact Statement: Design your best drug candidate with confidence. Our AI-driven optimization agents fine-tune molecular properties to maximize efficacy, safety, and manufacturability. By simulating and evaluating thousands of design variations, we help you land on the optimal candidate ready for preclinical success.",
+    description:(
+      <>
+      
+      <strong> Design your best drug candidate with confidence. </strong>Our AI-driven optimization agents fine-tune molecular properties to maximize efficacy, safety, and manufacturability. By simulating and evaluating thousands of design variations, we help you land on the optimal candidate ready for preclinical success.</>
+
+      ),
       imageUrl:
-      "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+      "/SM_leadOpt_4U01.png", 
   },
   
 ];

@@ -235,50 +235,65 @@ const ArrowButton = styled.button`
 // Data
 const modules = [
   {
-    name: "Shorten Development Timelines",
-    description: `
-Traditional agrochemical R&D cycles can take years—our platform compresses them into months.
-- AI-driven screening rapidly identifies top-performing candidates.
-- Predictive modeling narrows down the best compounds for field validation.
-- Automated retrosynthesis ensures the fastest, most efficient lab routes.
-    `,
+    name: "Sustainable Crop Protection",
+    description: (
+      <>
+        <strong>Redefine Crop Protection with Smarter, Safer Molecules</strong>
+        <br />
+        The future of agriculture demands innovation beyond traditional pesticides. 
+        Our AI platform designs crop protection agents with enhanced efficacy and reduced environmental impact. 
+        By predicting toxicity, resistance patterns, and off-target effects early, we enable the development of next-generation agrochemicals 
+        that protect yields while safeguarding ecosystems.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Reduce R&D Risk and Cost",
-    description: `
-Avoid costly late-stage failures by designing with precision from the start.
-- Predict environmental impact and toxicity before synthesis.
-- Model persistence, bioaccumulation, and degradation profiles in silico.
-- Sustainability scoring ensures adherence to eco-friendly regulations.
-    `,
+    name: "Trait Discovery & Enhancement",
+    description: (
+      <>
+        <strong>Unlock Natural Resilience in Crops Through AI-Driven Insights</strong>
+        <br />
+        Resilient crops are the backbone of sustainable farming. 
+        Our multi-omics powered discovery tools identify genetic traits linked to drought tolerance, pest resistance, and yield improvement. 
+        By accelerating trait selection and breeding strategies, we empower agri-companies to deliver stronger, more productive crop varieties 
+        that adapt to global challenges.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Unlock Breakthrough Agricultural Solutions",
-    description: `
-Stay ahead in the race for resilient, high-yield crops.
-- Multi-omics integration uncovers new targets in plants, pests, and soil microbes.
-- Structure-activity modeling reveals unique bioactive compounds.
-- Generative AI chemistry explores safe, novel chemical spaces.
-    `,
+    name: "Formulation Innovation",
+    description: (
+      <>
+        <strong>Optimize Agrochemical Formulations for Maximum Impact</strong>
+        <br />
+        It’s not just about the molecule—it’s about how it’s delivered. 
+        Our AI-driven formulation engine predicts solubility, stability, and environmental behavior to design efficient delivery systems. 
+        This ensures higher bioavailability, reduced waste, and cost-effective products that farmers can rely on season after season.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
   {
-    name: "Seamless Lab-to-Field Translation",
-    description: `
-Move from computational insights to real-world field trials without friction.
-- LIMS integration for unified project management.
-- API-ready architecture for automated lab workflows.
-- Collaborative dashboards align chemists, agronomists, and regulatory teams.
-    `,
+    name: "Precision Agriculture Enablement",
+    description: (
+      <>
+        <strong>From Data to Decisions: Smarter Inputs, Healthier Crops</strong>
+        <br />
+        Modern farming thrives on precision. 
+        By integrating satellite imagery, soil data, and predictive analytics, our platform guides the optimal use of agrochemicals and nutrients. 
+        The result? Reduced input costs, healthier crops, and higher yields—with sustainability built into every acre.
+      </>
+    ),
     imageUrl:
       "https://images.unsplash.com/photo-1693919653649-27492e78899d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0",
   },
 ];
+
 
 
 
@@ -366,6 +381,7 @@ export default function SmallExploreModulesSection() {
                   ref={(el) => (tabRefs.current[index] = el)}
                   $active={selected === index}
                   onClick={() => setSelected(index)}
+                  style={{ fontFamily: 'times' }}
                 >
                   {module.name}
                 </Tab>

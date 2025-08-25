@@ -1,337 +1,197 @@
 import React from "react";
-import { FaLinkedin } from "react-icons/fa";
-import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
+import { Linkedin } from "lucide-react";
 
 export default function LeadershipSection() {
-  const navigate = useNavigate();
+  const [isMobile, setIsMobile] = React.useState(false);
+  
+  React.useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const leaders = [
     {
       name: "SARATH KOLLI",
-      title: "Chief Executive Officer",
-      image: "/sarath-sir.png",
+      title: "Co-Founder & Chief Executive Officer",
+      image: "/Sarath_white.png",
       linkedin: "https://in.linkedin.com/in/kollisarath",
-      route: "sarath-kolli"
+      route: "sarath-kolli",
+      description: "Sarath Kolli is the Co-Founder and Chief Executive Officer of Boltzmann Labs, an AI-driven drug discovery company pioneering autonomous science in India. Since co-founding the company in 2019, Sarath has spearheaded its mission to transform pharmaceutical R&D through cutting-edge AI, multi-agent systems, and automation. Under his leadership, Boltzmann Labs—also known as Bayes Labs—has developed advanced computational tools to accelerate hit identification, molecular optimization, and synthetic pathway design. With a strong vision for building India's tech-bio ecosystem, Sarath is driving initiatives that merge AI innovation with real-world therapeutic impact."
     },
     {
       name: "DR. PARITOSH PRASHAR",
-      title: "Chief Technology Officer",
+      title: "Co-Founder & Director",
       image: "/paritosh-sir.png",
       linkedin: "https://www.linkedin.com/in/paritosh-prashar-04a366163",
-      route: "paritosh-prashar"
+      route: "paritosh-prashar",
+      description: "Dr Paritosh Prashar is the Co-Founder and Director of Boltzmann Labs, bringing deep expertise in biotechnology, drug discovery, and translational research. He joined Boltzmann Labs' leadership in 2023, complementing the company's AI capabilities with his strong domain background. His Expertise encompasses pre-clinical drug discovery including target identification and validation, assay development, biomarker analysis, and in vitro studies for IND filing, iPSC and CAR-T cells generation and validation. At Boltzmann Labs, Dr Prashar plays a pivotal role in shaping strategy, scientific direction, and collaborations with industry partners."
     }
   ];
 
-  const isMobileOrTablet = useMediaQuery({ maxWidth: 1024 });
+  const isMobileOrTablet = isMobile;
 
   return (
-    <section style={{ padding: "2rem 1rem 5rem", textAlign: "center" }}>
-      <header style={{ marginBottom: "3rem" }}>
-        <h2 style={{ color: "#4F1985", fontSize: "clamp(1.8rem, 5vw, 2.5rem)" }}>
-          Our Leadership
-        </h2>
-      </header>
-
-      <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
-        {leaders.map((leader, idx) => (
-          <article 
-            key={idx}
-            onClick={() => navigate(`/leadership/${leader.route}`)}
+    <section style={{
+      padding: "1rem 1rem 6rem",
+      marginBottom: "3rem"
+    }}>
+      <div style={{ maxWidth: "1100px", margin: "15px auto",background: '#ffffff'}}>
+        <header style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+          <h2 style={{
+            color: "#4F1985",
+           fontSize: '32px', 
+            fontWeight: '200', 
+            
+            background: "linear-gradient(135deg, #4F1985 )",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}>
+            Our Leadership
+             <span
             style={{
-              cursor: "pointer",
-              backgroundColor: "#fff",
-              boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
-              width: "300px",
-              textAlign: "center",
-              padding: "1rem",
-              borderRadius: "12px",
-              transition: "transform 0.3s ease",
+              display: "block",
+              width: "80px",
+              height: "4px",
+              backgroundColor: "#4F1985",
+              margin: "2px auto 0",
+              borderRadius: "2px"
             }}
-          >
-            <img src={leader.image} alt={leader.name} style={{ width: "100%", height: "auto" }} />
-            <h3 style={{ margin: "1rem 0 0.5rem" }}>{leader.name}</h3>
-            <p style={{ color: "#64748b" }}>{leader.title}</p>
-            <button
-              onClick={(e) => { 
-                e.stopPropagation(); // prevent triggering card navigation
-                window.open(leader.linkedin, "_blank", "noopener,noreferrer");
+          />
+          </h2>
+          <p style={{
+            color: "#64748b",
+            fontSize: "1.2rem",
+            maxWidth: "600px",
+            margin: "0 auto"
+          }}>
+            Meet the visionary leaders driving innovation in AI-powered drug discovery
+          </p>
+        </header>
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: isMobileOrTablet ? "1fr" : "repeat(2, minmax(0, 1fr))",
+          gap: "2.5rem",
+          alignItems: "stretch"
+        }}>
+          {leaders.map((leader, idx) => (
+            <article
+              key={idx}
+              onClick={() => {
+                // Navigate functionality would go here
+                console.log(`Navigate to /leadership/${leader.route}`);
               }}
-              style={{ marginTop: "1rem", color: "#0a66c2", border: "none", background: "none" }}
+              style={{
+                cursor: "pointer",
+                borderRadius: "20px",
+                padding: "1.5rem 1rem",
+                boxShadow: "0 10px 30px rgba(79, 25, 133, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04)",
+                border: "1px solid rgba(79, 25, 133, 0.08)",
+                transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                position: "relative",
+                overflow: "hidden",
+                transform: "translateY(0)",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column"
+              }}
+             
             >
-              <FaLinkedin size={24} />
-            </button>
-          </article>
-        ))}
+              <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center"
+              }}>
+                <div style={{
+                  marginBottom: "2rem"
+                }}>
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    style={{
+                      width: "180px",
+                      height: "220px",
+                      objectFit: "cover",
+                      
+                    }}
+                  />
+                </div>
+
+                <div style={{ width: "100%" }}>
+                  <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "1rem",
+                    marginBottom: "0.5rem"
+                  }}>
+                    <h3 style={{
+                      margin: "0",
+                      fontSize: "1.8rem",
+                      fontWeight: "700",
+                      color: "#1e293b",
+                      letterSpacing: "-0.025em"
+                    }}>
+                      {leader.name}
+                    </h3>
+                    
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(leader.linkedin, "_blank", "noopener,noreferrer");
+                      }}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "32px",
+                        height: "32px",
+                        background: "#0a66c2",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        flexShrink: 0
+                      }}
+                      
+                    >
+                      <Linkedin size={16} />
+                    </button>
+                  </div>
+                  
+                 <i> <p style={{
+                    
+                    color: "#4F1985",
+                    fontSize: "1.2rem",
+                    fontWeight: "600",
+                    margin: "0 0 1.5rem 0"
+                  }}>
+                    {leader.title}
+                  </p> </i>
+
+                  <p style={{
+                    color: "#475569",
+                    fontSize: "0.95rem",
+                    lineHeight: "1.6",
+                    margin: "0",
+                    textAlign: "justify"
+                  }}>
+                    {leader.description}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import {
-//   AppBar,
-//   Toolbar,
-//   IconButton,
-//   Button,
-//   Box,
-//   Drawer,
-//   List,
-//   ListItem,
-//   ListItemButton,
-//   ListItemText,
-//   Divider,
-//   useMediaQuery,
-//   useScrollTrigger,
-//   Typography,
-// } from '@mui/material';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import CloseIcon from '@mui/icons-material/Close';
-// import { useTheme, styled } from '@mui/material/styles';
-// import { Link as RouterLink, useLocation } from 'react-router-dom';
-
-// // Define your navigation items and their routes
-// const NAV_ITEMS = [
-//   { label: 'Home', path: '/' },
-//   { label: 'Our Suite', path: '/products' },
-//   { label: 'Buy Need', path: '#' },
-//   { label: 'Resources', path: '/blogs' },
-//   { label: 'About', path: '/about' },
-  
-  
-//   // { label: 'Blogs', path: '/blogs' },
-//   // { label: 'Pipeline', path: '/pipeline' },
-//   // { label: 'Hackathon', path: '/hackathon' },
-  
-// ];
-
-// // Styled wrapper for desktop nav
-// const NavWrapper = styled(Box)(({ theme }) => ({
-//   display: 'flex',
-//   backgroundColor: theme.palette.action.hover,
-//   borderRadius: 24,
-//   padding: '4px',
-//   width: '100%',
-//   justifyContent: 'space-evenly',
-// }));
-
-// // Styled nav button
-// const NavButton = styled(Button, {
-//   shouldForwardProp: (prop) => prop !== 'active',
-// })(({ theme, active }) => ({
-//   textTransform: 'none',
-//   fontWeight: 500,
-//   fontSize: 14,
-//   padding: '4px 16px',
-//   borderRadius: 20,
-//   backgroundColor: active ? theme.palette.background.paper : 'transparent',
-//   color: active ? '#4f1985' : theme.palette.text.primary, // Changed to #4f1985 for active state
-//   boxShadow: active ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-//   transition: 'all 0.3s ease',
-//   '&:hover': {
-//     backgroundColor: active
-//       ? theme.palette.background.paper
-//       : theme.palette.action.selected,
-//   },
-// }));
-
-// export default function NavbarPage() {
-//   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-//   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
-//   const location = useLocation(); // Get current route location
-
-//   const [drawerOpen, setDrawerOpen] = useState(false);
-//   const [activeTab, setActiveTab] = useState('');
-
-//   // Set active tab based on current route when component mounts or location changes
-//   useEffect(() => {
-//     const currentItem = NAV_ITEMS.find(item => item.path === location.pathname);
-//     if (currentItem) {
-//       setActiveTab(currentItem.label);
-//     } else {
-//       setActiveTab('Home'); // Default to Home if no match
-//     }
-//   }, [location.pathname]);
-
-//   const handleNavClick = (label) => {
-//     setActiveTab(label);
-//     setDrawerOpen(false);
-//   };
-
-//   return (
-//     <>
-//       {/* App Bar - Updated with solid background */}
-//       <AppBar
-//         position="relative"
-//         elevation={trigger ? 4 : 0}
-//         sx={{
-//           backgroundColor: theme.palette.background.paper,
-//           color: "#4F1985",
-//           transition: 'all 0.3s ease',
-//           boxShadow: trigger ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
-//         }}
-//       >
-//         <Toolbar
-//           sx={{
-//             minHeight: 64,
-            
-//             display: 'flex',
-//             justifyContent: 'center',
-//             px: 2,
-//           }}
-//         >
-//           <Box
-//             sx={{
-//               width: '100%',
-//               maxWidth: '1440px',
-//               display: 'flex',
-//               alignItems: 'center',
-//               justifyContent: 'space-evenly',
-//             }}
-//           >
-//             {/* Logo */}
-//             <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-//               <RouterLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-//                 <img
-//                   src="/logo.png"
-//                   alt="Boltzmann Logo"
-//                   height={50}
-//                   style={{ marginRight: 8 }}
-//                 />
-//               </RouterLink>
-//             </Box>
-
-//             {/* Desktop Navigation */}
-//             {!isMobile && (
-//               <Box sx={{ flex: 1, mx: 4 }}>
-//                 <NavWrapper>
-//                   {NAV_ITEMS.map((item) => (
-//                     <NavButton
-//                       key={item.label}
-//                       active={activeTab === item.label}
-//                       component={RouterLink}
-//                       to={item.path}
-//                       onClick={() => setActiveTab(item.label)}
-//                     >
-//                       {item.label}
-//                     </NavButton>
-//                   ))}
-//                 </NavWrapper>
-//               </Box>
-//             )}
-
-//             {/* Desktop Contact Us Button */}
-//             {!isMobile && (
-//               <Button
-//                 variant="contained"
-//                 component={RouterLink}
-//                 to="/contact"
-//                 sx={{
-//                   textTransform: 'none',
-//                   fontSize: 13,
-//                   borderRadius: 2,
-//                   px: 2,
-//                   py: 0.5,
-//                   height: 35,
-//                   backgroundColor: '#4F1985',
-//                   '&:hover': {
-//                     backgroundColor: '#3a1259',
-//                   }
-//                 }}
-//               >
-//                 Request Demo
-//               </Button>
-//             )}
-
-//             {/* Mobile Menu Icon */}
-//             {isMobile && (
-//               <IconButton edge="end" onClick={() => setDrawerOpen(true)}>
-//                 <MenuIcon />
-//               </IconButton>
-//             )}
-//           </Box>
-//         </Toolbar>
-//       </AppBar>
-
-//       {/* Mobile Drawer */}
-//       <Drawer
-//         anchor="right"
-//         open={drawerOpen}
-//         onClose={() => setDrawerOpen(false)}
-//       >
-//         <Box sx={{ width: 280 }}>
-//           <Box
-//             display="flex"
-//             justifyContent="space-between"
-//             alignItems="center"
-//             p={2}
-//           >
-//             <Typography variant="h6">Menu</Typography>
-//             <IconButton onClick={() => setDrawerOpen(false)}>
-//               <CloseIcon />
-//             </IconButton>
-//           </Box>
-//           <Divider />
-
-//           <List>
-//             {NAV_ITEMS.map((item) => (
-//               <ListItem disablePadding key={item.label}>
-//                 <ListItemButton
-//                   component={RouterLink}
-//                   to={item.path}
-//                   onClick={() => handleNavClick(item.label)}
-//                   selected={activeTab === item.label}
-//                   sx={{
-//                     '&.Mui-selected': {
-//                       color: '#4f1985',
-//                       backgroundColor: 'transparent',
-//                     },
-//                     '&.Mui-selected:hover': {
-//                       backgroundColor: theme.palette.action.selected,
-//                     }
-//                   }}
-//                 >
-//                   <ListItemText 
-//                     primary={item.label} 
-//                     primaryTypographyProps={{
-//                       fontWeight: activeTab === item.label ? 600 : 'normal',
-//                     }}
-//                   />
-//                 </ListItemButton>
-//               </ListItem>
-//             ))}
-
-//             <Divider sx={{ my: 1 }} />
-
-//             <Box p={2}>
-//               <Button
-//                 variant="contained"
-//                 fullWidth
-//                 component={RouterLink}
-//                 to="/contact"
-//                 sx={{ 
-//                   borderRadius: 5,
-//                   backgroundColor: '#4F1985',
-//                   '&:hover': {
-//                     backgroundColor: '#3a1259',
-//                   }
-//                 }}
-//                 onClick={() => setDrawerOpen(false)}
-//               >
-//                 Contact Us
-//               </Button>
-//             </Box>
-//           </List>
-//         </Box>
-//       </Drawer>
-//     </>
-//   );
-// }
-

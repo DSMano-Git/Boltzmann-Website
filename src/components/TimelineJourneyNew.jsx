@@ -3418,6 +3418,7 @@ const YearlyTimeline = () => {
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.1
+        
       }
     }
   };
@@ -3520,6 +3521,7 @@ const YearlyTimeline = () => {
         paddingBottom: '20px',
         marginBottom: '0',
         backgroundColor: '#ffffff'
+        
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -3538,6 +3540,7 @@ const YearlyTimeline = () => {
         
         <motion.div 
           initial="hidden"
+          
           animate={isLoaded && isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
@@ -3593,7 +3596,7 @@ const YearlyTimeline = () => {
                 </filter>
               </defs>
 
-              <rect width={isTablet ? '900' : '1400'} height="600" fill="#F8FAFC" />
+              <rect width={isTablet ? '900' : '1400'} height="600" fill="#ffffff" />
 
               <motion.path
                 d={calculatePath()}
