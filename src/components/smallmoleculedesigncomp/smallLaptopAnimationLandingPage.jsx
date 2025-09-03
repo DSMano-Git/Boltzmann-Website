@@ -473,7 +473,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import MacBookComponent from '../Laptopanimation';
+import MacBookComponent from '../../components/smallmoleculedesigncomp/smallLaptopanimation';
 
 export default function LaptopSection({ isOpen }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -560,13 +560,14 @@ export default function LaptopSection({ isOpen }) {
     marginBottom: '1rem',
     color: '#111827',
     textAlign: isMobile ? 'center' : 'left',
-    marginTop: "-90px"
+    marginTop: "-90px",
+    fontSize: "2rem"
   };
 
   const paragraphStyle = {
     fontSize: isMobile ? '0.95rem' : '1rem',
     lineHeight: 1.6,
-    color: '#4B5563',
+    color: '#374151',
     marginBottom: '2rem',
     textAlign: isMobile ? 'center' : 'left',
   };
@@ -589,6 +590,7 @@ export default function LaptopSection({ isOpen }) {
     transition: 'background 0.3s ease',
     minWidth: isMobile ? '45%' : 'auto',
     display: 'block',
+    fontFamily: 'times'
   };
 
   return (
@@ -603,8 +605,8 @@ export default function LaptopSection({ isOpen }) {
             padding: '20px',
             textAlign: 'center',
             fontWeight: 400,
-            color: '#4F1985',
-            fontSize: '2.5rem',
+            
+            fontSize: '2rem',
             fontFamily: 'timesnew'
           }}>
            Explore Our Technology

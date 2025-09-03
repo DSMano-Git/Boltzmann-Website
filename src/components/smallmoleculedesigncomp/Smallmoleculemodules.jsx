@@ -724,8 +724,8 @@ export default function SmallExploreModulesSection() {
             padding: '20px',
             textAlign: 'center',
             fontWeight: 400,
-            color: '#4F1985',
-            fontSize: '2.5rem',
+            
+            fontSize: '2rem',
             fontFamily: 'times'
           }}>
            Explore Small Molecule Design

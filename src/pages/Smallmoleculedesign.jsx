@@ -7,7 +7,7 @@ import SmallFullWidthContainer from '../components/smallmoleculedesigncomp/Image
 import SmallInsightCards from '../components/smallmoleculedesigncomp/Smallmoleculeinsights';
 import SmallExploreModulesSection from '../components/smallmoleculedesigncomp/Smallmoleculemodules';
 import SmallFeaturesGrid from '../components/smallmoleculedesigncomp/SmallmoleculeFeatureGrid';
-import LaptopSection from './LaptopAnimationLandingPage';
+import LaptopSection from '../components/smallmoleculedesigncomp/smallLaptopAnimationLandingPage';
 import Footer from '../components/Footer';
 export default function SmallmoleculeDesign() {
   // Intersection Observer for Laptop Section

@@ -302,7 +302,7 @@ export default function SmallOverlappingCard() {
       {/* Top purple section */}
       <div
         style={{
-          background: "linear-gradient(135deg, #4F1985 0%, #6A1B9A 100%)",
+          background: "#FFFFFFF",
           height: "calc(100vh - 150px)",
           minHeight: "600px",
           maxHeight: "790px",
@@ -335,10 +335,21 @@ export default function SmallOverlappingCard() {
               letterSpacing: "0.5px",
               lineHeight: 1.2,
               paddingTop: "40px",
+              color: '#4F1985'
             }}
             variants={fadeUpVariant}
           >
             Small Molecule Design
+            <span
+            style={{
+              display: "block",
+              width: "80px",
+              height: "4px",
+              backgroundColor: "#4F1985",
+              margin: "15px auto 0",
+              borderRadius: "2px"
+            }}
+          />
           </motion.h2>
 
           <motion.p
@@ -348,31 +359,34 @@ export default function SmallOverlappingCard() {
               fontSize: "clamp(1.5rem, 2vw, 1.2rem)",
               lineHeight: 1.6,
               opacity: 0.9,
+              color: "#111827"
             }}
             variants={fadeUpVariant}
           >
             Transform the way you discover, design, and optimize small molecules — faster, smarter  
           </motion.p>
 
-          <motion.button
-            style={{
-              backgroundColor: "white",
-              color: "#4F1985",
-              border: "none",
-              padding: "12px 30px",
-              borderRadius: "30px",
-              fontSize: "1rem",
-              fontWeight: 500,
-              cursor: "pointer",
-              marginBottom: "20px",
-            }}
-            variants={buttonVariant}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={()=> window.location.href='contact'}
-          >
-            Request Demo
-          </motion.button>
+       <motion.button
+  style={{
+    backgroundColor: "#4F1985",
+    color: "white",
+    border: "none",
+    padding: "12px 30px",
+    borderRadius: "30px",
+    fontSize: "1rem",
+    fontWeight: 500,
+    cursor: "pointer",
+    marginBottom: "20px",
+    fontFamily: 'inherit',
+  }}
+  variants={buttonVariant}
+  whileHover={{ scale: 1.05, backgroundColor: "#7A40AD" }}
+  whileTap={{ scale: 0.95 }}
+  onClick={() => (window.location.href = "contact")}
+>
+  Request Demo
+</motion.button>
+
         </motion.div>
       </div>
 

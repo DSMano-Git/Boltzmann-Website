@@ -671,10 +671,7 @@ const SmallLogoCarousel = () => {
           position: "relative",
           borderRadius: "26px", // Reduced from 32px
           p: "2px", // Reduced from 3px
-          background: `linear-gradient(135deg, 
-            ${theme.palette.primary.main}, 
-            ${theme.palette.secondary.main}, 
-            ${theme.palette.primary.main})`,
+          background: "#f3f4f6",
         }}
       >
         {/* Inner Container */}
@@ -688,7 +685,7 @@ const SmallLogoCarousel = () => {
           {/* Logo Carousel */}
           <Box
             sx={{
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: "F3F4F6",
               backgroundColor: "#ffffff",
               backdropFilter: "blur(4px)",
             }}
@@ -767,7 +764,7 @@ const SmallLogoCarousel = () => {
                   fontWeight: 500,
                   lineHeight: 1.25,
                   mb: { xs: 1, md: 1.8 }, // Reduced margin
-                  color: "text.primary",
+                  color: "#111827",
                 }}
               >
                Harnessing AI to Empower the Next Generation of Drug Discovery
@@ -777,7 +774,7 @@ const SmallLogoCarousel = () => {
                 sx={{
                   fontSize: { xs: "0.82rem", sm: "0.9rem", md: "0.95rem" }, // Reduced
                   lineHeight: 1.5, // Reduced from 1.6
-                  color: "text.secondary",
+                  color: "#374151",
                   mb: { xs: 1.5, md: 2.5 }, // Reduced margin
                 }}
               >

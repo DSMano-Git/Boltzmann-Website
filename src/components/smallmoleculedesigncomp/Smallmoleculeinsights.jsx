@@ -881,7 +881,7 @@ const renderIcon = (type, color) => {
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.5s ease-out 0.2s",
           fontWeight: 400,
-          color: "#4F1985",
+          
           fontSize: "2rem",
           fontFamily: "timesnew"
         }}

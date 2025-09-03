@@ -273,12 +273,12 @@ const VisionMission = () => {
             textAlign: "center",
             fontSize: "2.5rem",
             marginBottom: "60px",
-            fontWeight: "700",
+            fontWeight: "400",
             color: "#4F1985",
             position: "relative"
           }}
         >
-          What guides us
+          What guides us.
           <span
             style={{
               display: "block",

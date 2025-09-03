@@ -267,7 +267,7 @@ const CultureCards = () => {
 
         .culture-title {
           font-size: 2.5rem;
-          font-weight: 600;
+          font-weight: 400;
           color: #4f1985;
           margin-bottom: 1rem;
           position: relative;

@@ -219,7 +219,7 @@ import { motion } from 'framer-motion';
 import ExploreModulesSection from '../components/Modules';
 import LabAutomationSection from '../components/LabAutomationSection';
 import Images from '../components/HomeImages';
-
+import { useInView } from 'react-intersection-observer';
 
 export default function HomePage() {
   // Refs for each section
@@ -230,9 +230,13 @@ export default function HomePage() {
   const labAutomation1Ref = useRef(null);
   const labAutomation2Ref = useRef(null);
   const modulesRef = useRef(null);
-  const laptopRef = useRef(null);
-  const footerRef = useRef(null);
   
+  const footerRef = useRef(null);
+    // Intersection Observer for Laptop Section
+    const { ref: laptopRef, inView: laptopInView } = useInView({
+      triggerOnce: true,
+      threshold: 0.3, // triggers when 30% of section is visible
+    });
   // Track which sections are visible
   const [visibleSections, setVisibleSections] = useState({
     hero: true, // Always visible initially
@@ -428,24 +432,35 @@ export default function HomePage() {
         </motion.div>
 
         {/* Laptop Section */}
-        <motion.div
-          ref={laptopRef}
-          initial="hidden"
-          animate={visibleSections.laptop ? "visible" : "hidden"}
-          variants={fadeInUp}
-          style={{ 
-            width: '100%', 
-            padding: '100px 0',
-            boxSizing: 'border-box'
-          }}
-        >
-          <div style={{ 
-            maxWidth: '1400px',
-            margin: '0 auto'
-          }}>
-            <LaptopSection isOpen={visibleSections.laptop} />
-          </div>
-        </motion.div>
+       <motion.div
+               ref={laptopRef}
+               initial={{ opacity: 0, y: 60 }}
+               animate={laptopInView ? { opacity: 1, y: 0 } : {}}
+               transition={{
+                 duration: 0.8,
+                 ease: [0.25, 0.1, 0.25, 1],
+                 delay: 0.2,
+               }}
+               style={{
+                 width: '100%',
+                 display: 'flex',
+                 justifyContent: 'center',
+               
+                 boxSizing: 'border-box',
+               }}
+             >
+               <div
+                 style={{
+                   display: 'flex',
+                   flexDirection: 'row',
+                   justifyContent: 'center',
+                   width: '100%',
+                   maxWidth: '1400px',
+                 }}
+               >
+                 <LaptopSection isOpen={laptopInView} />
+               </div>
+             </motion.div>
       </main>
 
       {/* Footer */}

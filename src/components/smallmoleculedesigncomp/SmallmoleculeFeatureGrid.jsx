@@ -971,8 +971,8 @@ export default function SmallFeaturesGrid() {
           textAlign: 'center', 
           marginBottom: '4%', 
           fontWeight: 400, 
-          color: '#4F1985', 
-          fontSize: '2.2rem', // Reduced from 2.5rem
+          color: '#111827', 
+          fontSize: '2rem', // Reduced from 2.5rem
           fontFamily: 'times'
         }}>
           Generative Protein Design AI-Driven Features

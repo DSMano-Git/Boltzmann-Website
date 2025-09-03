@@ -434,7 +434,7 @@ export default function Footer() {
           </Grid>
 
           {/* Resources Column */}
-          <Grid item xs={12} sm={6} md={3}>
+          {/* <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="h6"
               component="h3"
@@ -453,11 +453,11 @@ export default function Footer() {
             <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               {[
                 
-                // { label: 'Privacy Policy', href: '/privacy-policy' },
-                // { label: 'Terms of Usage', href: '/terms-of-usage' },
-                // { label: 'Pipeline', href: '#' },
-                // { label: 'Hackathon', href: '/hackathon' },
-                // { label: 'Research Papers', href: '#' },
+                { label: 'Privacy Policy', href: '/privacy-policy' },
+                { label: 'Terms of Usage', href: '/terms-of-usage' },
+                { label: 'Pipeline', href: '#' },
+                { label: 'Hackathon', href: '/hackathon' },
+                { label: 'Research Papers', href: '#' },
               ].map((item) => (
                 <Link
                   key={item.label}
@@ -476,7 +476,7 @@ export default function Footer() {
                 </Link>
               ))}
             </Box>
-          </Grid>
+          </Grid> */}
 
           {/* Connect Column */}
           <Grid item xs={12} sm={6} md={3}>
